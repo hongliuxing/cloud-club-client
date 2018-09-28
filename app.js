@@ -1,3 +1,4 @@
+import * as Actions from "./utils/net/Actions.js";
 //app.js
 App({
   onLaunch: function () {
@@ -7,11 +8,16 @@ App({
     wx.setStorageSync('logs', logs)
 
     // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      }
+    // Actions.login().then(result => {
+    //   console.log('login: ', result);
+    // })
+
+    Actions.doPost({ 
+      url: "http://luv-ui.com/dian/client/getUserInfo"
+    }).then(res => {
+      console.log('getUserInfo: ', res);
     })
+
     // 获取用户信息
     wx.getSetting({
       success: res => {
