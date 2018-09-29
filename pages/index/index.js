@@ -41,7 +41,14 @@ Page({
           })
         }
       })
-    }
+    }// end: if-else
+    let topBtns = [
+        {title: "频道1", btype: "url", value: "xxx"},
+        { title: "频道2", btype: "event", value: "xxx" }
+    ];
+    this.setData({
+        topBtns: topBtns
+    });
   },
   getUserInfo: function(e) {
     console.log(e)

@@ -1,1 +1,5 @@
-{}
+{
+    "usingComponents": {
+        "top-channel": "/component/TopChannel/TopChannel"
+    }
+}

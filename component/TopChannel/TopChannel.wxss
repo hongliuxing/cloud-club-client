@@ -1,0 +1,6 @@
+/* component/TopChannel/TopChannel.wxss */
+.comp-top-channel{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around; 
+}
