@@ -1,15 +1,20 @@
+<!-- 如果是普通按钮 -->
 <block wx:if="{{btnConf.btype === 'event'}}">
-    <view class="ch-btn" bindtap='onTap' style='width:{{styles.width}}' bindtap='{{btnConf.value}}'>
-        <view class="ch-text">
+    <view class="ch-btn" bindtap='onTap' style='width:{{styles.width}}'>
+        <view class="ch-text {{selected?'choose-text':''}}">
             <text>{{btnConf.title}}</text>
         </view>
-        <view class="ch-block"></view>
+        <view wx:if="{{selected}}" class="ch-block"></view>
     </view>
 </block>
+<!-- 如果是下拉菜单 -->
 <block wx:elif="{{btnConf.btype === 'list'}}">
-    <view class="ch-btn">
-        <picker bindchange="bindPickerChange" value="{{btnConf.value.index}}" range="{{btnConf.value.range}}">
-            <view class="ch-text">{{btnConf.value.range[btnConf.value.index].title}}</view>
+    <view class="ch-btn" style='width:{{styles.width}}'>
+        <picker class="ch-btn-picker" bindchange="bindPickerChange" value="{{btnConf.value.index}}" range="{{btnConf.value.range}}" range-key='title'>
+            <view class="ch-text">
+            {{btnConf.value.range[btnConf.value.index].title}}
+            <image class="ch-icon" src='../icon/more_unfold.png'></image>
+            </view>
         </picker>
     </view>
 </block>

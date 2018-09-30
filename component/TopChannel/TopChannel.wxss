@@ -7,4 +7,17 @@
     height: 110rpx;
     /* background-color:aquamarine; */
     border-bottom: 1rpx solid #eee;
+    /* 强制不换行 */
+    white-space:nowrap;
+}
+.arrow{
+    position: fixed;
+    margin-top: 33rpx;
+    width: 20rpx;height: 33rpx;
+}
+.arrowLeft{
+    left: 15rpx;
+}
+.arrowRight{
+    right: 15rpx;
 }

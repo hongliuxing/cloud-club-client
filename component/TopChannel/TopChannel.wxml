@@ -1,5 +1,17 @@
-<view class='comp-top-channel'>
+<scroll-view scroll-x="true" scroll-with-animation="true" class='comp-top-channel' bindChannelChange="onChannelChange"  
+bindscroll="onScroll" 
+style='background-color: {{bgColor}};'
+>
+    <image class="arrow arrowLeft" style="display:{{arrowLeft}}" src='icon/arrowLeft.png'></image>
+    <image class="arrow arrowRight" style="display:{{arrowRight}}" src='icon/arrowRight.png'></image>
     <block wx:for="{{btns}}" wx:for-index="idx" wx:for-item="b" wx:key="title">
-        <btn btn-conf="{{b}}" btn-len="{{btns.length}}"></btn>
+        <btn 
+            btn-conf="{{b}}" 
+            btn-index="{{idx}}" 
+            btn-len="{{btns.length}}" 
+            btn-width="{{childWidth}}" 
+            selected="{{selectedIndex === idx}}"
+        ></btn>
     </block>
-</view>
+    
+</scroll-view>

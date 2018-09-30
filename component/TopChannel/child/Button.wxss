@@ -7,13 +7,28 @@
     /* background-color: red; */
     /* flex: 1; */
 }
+.ch-btn-picker{
+    
+}
 .ch-text{
     height: 100rpx;
     line-height: 100rpx;
     font-size: 30rpx;
+    color: #aaa;
 }
 .ch-block{
     width: 15px;
     height: 10rpx;
     background-color: #38BFBB;
+}
+.ch-icon{
+    width: 30rpx;
+    height: 30rpx;
+    vertical-align: middle;
+}
+/* 选中该标签时,字体放大加粗 */
+.choose-text{
+    color: #3f3f3f;
+    font-size: 32rpx;
+    font-weight: 800;
 }
