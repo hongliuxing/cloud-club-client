@@ -1,4 +1,15 @@
-<!--component/TopChannel/child/Button.wxml-->
-<view bindtap='onTap'>
-    {{title}}
-</view>
+<block wx:if="{{btnConf.btype === 'event'}}">
+    <view class="ch-btn" bindtap='onTap' style='width:{{styles.width}}' bindtap='{{btnConf.value}}'>
+        <view class="ch-text">
+            <text>{{btnConf.title}}</text>
+        </view>
+        <view class="ch-block"></view>
+    </view>
+</block>
+<block wx:elif="{{btnConf.btype === 'list'}}">
+    <view class="ch-btn">
+        <picker bindchange="bindPickerChange" value="{{btnConf.value.index}}" range="{{btnConf.value.range}}">
+            <view class="ch-text">{{btnConf.value.range[btnConf.value.index].title}}</view>
+        </picker>
+    </view>
+</block>

@@ -43,8 +43,16 @@ Page({
       })
     }// end: if-else
     let topBtns = [
-        {title: "频道1", btype: "url", value: "xxx"},
-        { title: "频道2", btype: "event", value: "xxx" }
+        { title: "频道1", btype: "event", value: () => { console.log('this is 频道2 event !!!'); }},
+        { title: "频道2", btype: "event", value: () => { console.log('this is 频道2 event !!!'); } },
+        { title: "频道3", btype: "list", value: {
+            range: [{ ind: 0, title: '陕师大' }, { ind: 1, title: '西法大' }, { ind: 2, title: '外国语大学' }],
+            rangeKey: 'title',
+            index: 1,
+            bindchange: (e) => {
+                console.log("触发了下拉....");
+            }
+        } }
     ];
     this.setData({
         topBtns: topBtns

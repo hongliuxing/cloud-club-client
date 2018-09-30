@@ -1,5 +1,5 @@
 <view class='comp-top-channel'>
     <block wx:for="{{btns}}" wx:for-index="idx" wx:for-item="b" wx:key="title">
-        <btn title="{{b.title}}" btype="{{b.btype}}" bvalue="{{b.value}}"></btn>
+        <btn btn-conf="{{b}}" btn-len="{{btns.length}}"></btn>
     </block>
 </view>

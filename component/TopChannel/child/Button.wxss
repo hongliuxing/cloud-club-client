@@ -1,1 +1,19 @@
-/* component/TopChannel/child/Button.wxss */
+.ch-btn{
+    /* width: 50%; */
+    height: 100%;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    /* background-color: red; */
+    /* flex: 1; */
+}
+.ch-text{
+    height: 100rpx;
+    line-height: 100rpx;
+    font-size: 30rpx;
+}
+.ch-block{
+    width: 15px;
+    height: 10rpx;
+    background-color: #38BFBB;
+}
