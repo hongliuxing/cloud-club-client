@@ -52,8 +52,15 @@ Component({
           typeof tap == 'function' && tap(e);
       },
       // 下拉事件
-      bindPickerChange(e){
-          this.data.btnConf.value.bindchange(e, this);
+      bindPickerChange(e) {//target.setData({ 'btnConf.value.index': e.detail.value });
+          let currentIndex = e.detail.value;
+          let currentRange = this.data.btnConf.value.range;
+          // 设置选中当前索引
+          this.setData({
+              'btnConf.value.index': e.detail.value
+          });
+          // 事件传递至调用者位置
+          this.data.btnConf.value.bindchange(e, currentIndex, currentRange, this);
       }
   }
 })

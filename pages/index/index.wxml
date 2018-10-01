@@ -1,5 +1,4 @@
 <!--index.wxml-->
 <view class="container">
     <top-channel btns="{{topBtns}}" is-truncation="{{false}}"></top-channel>
-    
 </view>

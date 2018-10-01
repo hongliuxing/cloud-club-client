@@ -45,7 +45,18 @@ Page({
     let topBtns = [
         { title: "频道1", btype: "event", value: (e) => { console.log('this is 频道1 event !!!'); }},
         { title: "频道2", btype: "event", value: (e) => { console.log('this is 频道2 event !!!'); } },
-        { title: "频道3", btype: "event", value: (e) => { console.log('this is 频道3 event !!!'); }}
+        {
+            title: "频道3", btype: "list", value: {
+                range: [{ ind: 0, title: '陕师大' }, { ind: 1, title: '西法大' }, { ind: 2, title: '外国语大学' }],
+                rangeKey: 'title',
+                index: 1,
+                bindchange: function (e, index, rangeArr, target) {
+                    console.log("触发了下拉....", index, rangeArr, target.data.btnConf);
+                    // target表示目标组件
+                    // target.setData({ 'btnConf.value.index': e.detail.value });
+                }
+            }
+        }// end: btn3
     ];
     this.setData({
         topBtns: topBtns

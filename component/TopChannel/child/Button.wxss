@@ -16,6 +16,12 @@
     font-size: 30rpx;
     color: #aaa;
 }
+.ch-list-text{
+    height: 100rpx;
+    line-height: 100rpx;
+    font-size: 30rpx;
+    color: #555;
+}
 .ch-block{
     width: 15px;
     height: 10rpx;
