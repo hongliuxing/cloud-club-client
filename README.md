@@ -40,10 +40,10 @@ this.setData({
 参数名 | 类型 | 注释
 --------  | ------ | --------
 **btns** | Array | 表示频道按钮的数组
-- channel | Object | 频道按钮对象
--- title | String | 频道名称
--- btype | String | 频道类别(可选`event`和`list`)
--- value | String | 频道按钮值(根据类别不同,值也不同)
+-- channel | Object | 频道按钮对象
+---- title | String | 频道名称
+---- btype | String | 频道类别(可选`event`和`list`)
+---- value | String | 频道按钮值(根据类别不同,值也不同)
 **is-truncation** | Boolean | （默认值：true）是否截断频道数组。频道默认显示最大按钮数量为·3·，如果该值为true，则btns数组超出最大数量的部分将被忽略（可调整最大数量，不建议超过4）。**而当截断值为false时**，如果此时btns数量超出默认最大显示数量，则提供滑动显示更多频道按钮。
 **max-count** | Number | 频道按钮最大数量（默认为：3）
 **bg-color** | String | 频道默认背景颜色(默认为: #ffffff)
