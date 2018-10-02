@@ -1,7 +1,8 @@
 {
     "pages": [
         "pages/index/index",
-        "pages/logs/logs"
+        "pages/logs/logs",
+        "pages/test/uploadtest"
     ],
     "window": {
         "backgroundTextStyle": "light",
@@ -19,7 +20,7 @@
                 "text": "活动"
             },
             {
-                "pagePath": "pages/index/index",
+                "pagePath": "pages/test/uploadtest",
                 "iconPath": "images/cloud-1.png",
                 "selectedIconPath": "images/cloud-2.png",
                 "text": "云社团"
