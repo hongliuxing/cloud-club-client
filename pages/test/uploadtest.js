@@ -1,5 +1,7 @@
 // pages/test/uploadtest.js
 import uploadFile from '../../utils/upload/ali-oss.js';
+import { uploadSign } from '../../utils/net/Actions.js';
+
 Page({
 
   /**
@@ -31,12 +33,18 @@ Page({
             sourceType: ['album', 'camera'],
             success: function(res) {
                 console.log('选择成功： ', res.tempFiles)
-                console.log('开始上传...');
-                uploadFile(res.tempFiles[0].path, 'img/', (aliyunFileKey) => {
-                    console.log('aliyunFileKey：：', aliyunFileKey);
-                }, (err) => {
-                    console.log('上传错误...');
-                });
+                /**
+                 * 参数有两个：
+                 * filepath: 微信选择的上传图片地址
+                 * singAPI: 用于获取上传签名的函数
+                 */
+                uploadFile(res.tempFiles[0].path, uploadSign.headpic)
+                    .then((uploadRes) => {
+                        console.log('上传结果：：：', uploadRes);
+                    })
+                    .catch(err => {
+                        console.log('上传错误：：', err);
+                    });
             },
             fail: function(res) {},
             complete: function(res) {},

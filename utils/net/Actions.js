@@ -13,3 +13,21 @@ export const activity = {
         
     })
 };
+
+// 2. 上传相关
+export const uploadSign = {
+    headpic: (filepath) => new Promise((resolve, reject) => {
+        // filepath is not null
+        doGet({ 
+            url: 'http://127.0.0.1:8888/upload/sheu/headpic', 
+            data: { filepath: filepath },
+            verifyLogin: false
+        }).then(result => {
+            console.log('上传接口结果：', result);
+            resolve(result);
+        }).catch(err => {
+            console.log('上传接口错误：', err);
+            reject(err);
+        }); // doGet
+    })
+};

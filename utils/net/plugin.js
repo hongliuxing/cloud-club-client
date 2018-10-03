@@ -29,43 +29,46 @@ export const login = () => new Promise((resolve, reject) => {
   })
 });
 
-const checkRequest = (res) => {
-  const errCode = res.data.err.errCode;
-  if (errCode === 0) return Promise.resolve({ err: null, data: res.data});
-  const pluginArr = [];
-  if (errCode == 1001 || errCode == 1002 || errCode == 1003)
-    pluginArr.push(login());
-  return ~~pluginArr === 0 ? Promise.all(pluginArr) : Promise.reject({ err: errCode, data: res.data});
+const checkRequest = (res, verifyLogin) => {
+    if (!verifyLogin) return Promise.resolve({ err: null, data: res.data });
+    const errCode = res.data.err.errCode;
+    if (errCode === 0) return Promise.resolve({ err: null, data: res.data});
+    const pluginArr = [];
+    if (errCode == 1001 || errCode == 1002 || errCode == 1003)
+        pluginArr.push(login());
+    return ~~pluginArr === 0 ? Promise.all(pluginArr) : Promise.reject({ err: errCode, data: res.data});
 }
 
-const ajax = function ajax({ url, method, header, data, success, fail }) {
+const ajax = function ajax({ url, method, header, data, verifyLogin=true}) {
   return new Promise((resolve, reject) => {
     wx.request({
       url, data, header, method,
       dataType: 'json',
       responseType: 'text',
       success: function (res) {
-        checkRequest(res).then( result => {
-          // Array is Promise.all(iterator)
-          if (Array.isArray(result)){ 
-            header = { "x-access-token": wx.getStorageSync('token') };
-            return resolve(ajax({ url, method, header, data, success, fail }) );
-          }
-          resolve(result);
-        }).catch( err => {
-          reject(err);
-        })
+            checkRequest(res, verifyLogin).then( result => {
+                // Array is Promise.all(iterator)
+                if (Array.isArray(result)){ 
+                    header = { "x-access-token": wx.getStorageSync('token') };
+                    return resolve(ajax({ url, method, header, data}) );
+                }
+                resolve(result);
+                }).catch( err => {
+                reject(err);
+            })
       },
-      fail
+      fail: function(res){
+          reject(err);
+      }
     })
   })
 }
 
-export const doPost = ({ url, header = { "x-access-token": wx.getStorageSync('token')}, data, success, fail}) => {
+export const doPost = ({ url, header = { "x-access-token": wx.getStorageSync('token') }, data, verifyLogin}) => {
   if (!header || !header["x-access-token"]) header = { "x-access-token": "errToken"};
-  return ajax({ url, method: "POST", header, data, success, fail });
+    return ajax({ url, method: "POST", header, data, verifyLogin});
 }
 
-export const doGet = ({ url, header, data, success, fail }) => {
-  return ajax({ url, method: "GET", header, data, success, fail });
+export const doGet = ({ url, header = {}, data, verifyLogin}) => {
+    return ajax({ url, method: "GET", header, data, verifyLogin});
 }
