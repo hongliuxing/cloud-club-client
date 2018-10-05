@@ -1,5 +1,5 @@
 // pages/test/uploadtest.js
-import uploadFile from '../../utils/upload/ali-oss.js';
+import uploadFile from '../../utils/upload/support.js';
 import { uploadSign } from '../../utils/net/Actions.js';
 
 Page({
@@ -24,19 +24,22 @@ Page({
           topBtns: topBtns
       });
   },
-
+  /**
+   * 测试上传接口
+   */
   testUpload(e){
-      console.log('准备上传图片...');
+        // 选择图片先
         wx.chooseImage({
             count: 1,
             sizeType: ['compressed'],
             sourceType: ['album', 'camera'],
             success: function(res) {
-                console.log('选择成功： ', res.tempFiles)
+                console.log('选择图片成功： ', res.tempFiles)
                 /**
+                 * upload/support.js提供的上传封装
                  * 参数有两个：
                  * filepath: 微信选择的上传图片地址
-                 * singAPI: 用于获取上传签名的函数
+                 * singAPI: 用于获取上传签名的函数（这个函数请自行编写）
                  */
                 uploadFile(res.tempFiles[0].path, uploadSign.headpic)
                     .then((uploadRes) => {

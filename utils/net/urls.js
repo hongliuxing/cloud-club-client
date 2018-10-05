@@ -1,1 +1,1 @@
-export const LOGIN = "http://luv-ui.com/dian/access/clientLogin";
+export const LOGIN = "http://127.0.0.1:58888/access/login";

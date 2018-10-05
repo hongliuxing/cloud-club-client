@@ -1,0 +1,8 @@
+<!--pages/test/headpic.wxml-->
+<text>用户信息界面</text>
+<block wx:if="{{null != headpic}}">
+    <image src='{{headpic}}'></image>
+</block>
+<block wx:else>
+    <button open-type='getUserInfo' lang="zh_CN" bindgetuserinfo="getUser">获取微信头像</button>
+</block>

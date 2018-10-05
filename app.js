@@ -7,16 +7,38 @@ App({
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
 
-    // 登录
-    // Actions.login().then(result => {
-    //   console.log('login: ', result);
+    // 临时登录
+      if (!wx.getStorageSync("loginer")){
+        Actions.login().then(result => {
+            console.log('login: ', result);
+        })
+    }
+
+    // Actions.doPost({ 
+    //   url: "http://luv-ui.com/dian/client/getUserInfo"
+    // }).then(res => {
+    //   console.log('getUserInfo: ', res);
     // })
 
-    Actions.doPost({ 
-      url: "http://luv-ui.com/dian/client/getUserInfo"
-    }).then(res => {
-      console.log('getUserInfo: ', res);
-    })
+    // wx.login({
+    //     success: function(res) {
+    //         // console.log('login: ', res.code);
+    //         wx.request({
+    //             url: 'http://127.0.0.1:58888/access/login',
+    //             data: {
+    //                 loginCode: res.code
+    //             },
+    //             header: {
+    //                 'test-token': 'this_is_a_test_token'
+    //             },
+    //             method: 'POST',
+    //             dataType: 'json',
+    //             success: function(res) {
+    //                 console.log('login result:: ', res);
+    //             }
+    //         })
+    //     }
+    // })
 
     // 获取用户信息
     wx.getSetting({
