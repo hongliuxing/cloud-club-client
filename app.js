@@ -8,37 +8,27 @@ App({
     wx.setStorageSync('logs', logs)
 
     // 临时登录
-      if (!wx.getStorageSync("loginer")){
-        Actions.login().then(result => {
-            console.log('login: ', result);
-        })
-    }
+    // if (!wx.getStorageSync("loginer")){
+    //     Actions.login().then(result => {
+    //         console.log('login: ', result);
+    //     })
+    // }
 
-    // Actions.doPost({ 
-    //   url: "http://luv-ui.com/dian/client/getUserInfo"
-    // }).then(res => {
-    //   console.log('getUserInfo: ', res);
-    // })
+    Actions.doGet({ 
+        url: "http://localhost:58888/user/panel-info"
+    }).then(res => {
+        console.log('PanelInfo: ', res);
+    }).catch(err => {
+        console.log('err: ', err);
+    });
 
-    // wx.login({
-    //     success: function(res) {
-    //         // console.log('login: ', res.code);
-    //         wx.request({
-    //             url: 'http://127.0.0.1:58888/access/login',
-    //             data: {
-    //                 loginCode: res.code
-    //             },
-    //             header: {
-    //                 'test-token': 'this_is_a_test_token'
-    //             },
-    //             method: 'POST',
-    //             dataType: 'json',
-    //             success: function(res) {
-    //                 console.log('login result:: ', res);
-    //             }
-    //         })
-    //     }
-    // })
+    wx.getLocation({
+        type: "gcj02",
+        success: function(res){
+            console.log(`latitude:  ${res.latitude}`);
+            console.log(`longitude:  ${res.longitude}`);
+        }
+    });
 
     // 获取用户信息
     wx.getSetting({

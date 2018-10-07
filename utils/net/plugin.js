@@ -44,12 +44,12 @@ export const login = () => new Promise((resolve, reject) => {
  */
 const checkRequest = (res, verifyLogin) => {
     if (!verifyLogin) return Promise.resolve({ err: null, data: res.data });
-    const errCode = res.data.err.errCode;
-    if (errCode === 0) return Promise.resolve({ err: null, data: res.data });
+    const err = res.data.err;
+    if (!err) return Promise.resolve({ err: null, data: res.data });
     const pluginArr = [];
-    if (errCode == 1001 || errCode == 1002 || errCode == 1003)
+    if (err.errCode == 1001 || err.errCode == 1002 || err.errCode == 1003)
         pluginArr.push(login());
-    return ~~pluginArr === 0 ? Promise.all(pluginArr) : Promise.reject({ err: errCode, data: res.data });
+    return ~~pluginArr === 0 ? Promise.all(pluginArr) : Promise.reject({ err: err.errCode, data: res.data });
 }
 /**
  * 统一请求
