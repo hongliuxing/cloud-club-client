@@ -29,16 +29,16 @@
 
 <view class='goto'>
    <line-item/>
-   <icon-to-page src="../../images/page/school.png" title="设置学校" value="已通过"/>
+   <icon-to-page src="../../images/page/school.png" title="设置学校" value="已通过" bind:onclick="goTo" url="{{urlSchool}}"/>
    <line-item/>
-   <icon-to-page src="../../images/page/group.png" title="我的社团" value="2" icon-image="icon"/>
+   <icon-to-page src="../../images/page/group.png" title="我的社团" value="2" icon-image="icon" title-name="titleName" bind:onclick="goTo" url="{{myAssociation}}"/>
    <line-item/>
 
    <line-item height="60" back="#f9f9f9"/>
    <line-item/>
-   <icon-to-page src="../../images/page/luck.png" title="幸运值" value="幸运值是干什么?" />
+   <icon-to-page src="../../images/page/luck.png" title="幸运值" value="幸运值是干什么?" bind:onclick="goTo" url="{{luckExplain}}"/>
    <line-item/>
-   <icon-to-page src="../../images/page/fire-2.png" title="运动热度说明"  />
+   <icon-to-page src="../../images/page/fire-2.png" title="运动热度说明" bind:onclick="goTo" url="{{sportExplain}}" />
    <line-item/>
 </view>
 

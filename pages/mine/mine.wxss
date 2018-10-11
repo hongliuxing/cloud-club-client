@@ -75,9 +75,12 @@ page{
   text-align: center;
 }
 .icon{
-  height: 50rpx !important;
-  width: 50rpx !important;
+  height: 60rpx !important;
+  width: 60rpx !important;
   margin-left: -10rpx;
+}
+.titleName{
+  margin-left:-10rpx !important;
 }
 .goto{
   margin-top: 100px;

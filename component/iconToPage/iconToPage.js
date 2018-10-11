@@ -10,9 +10,11 @@ Component({
     },
     src:String,
     title:String,
-    value:String
+    value:String,
+    name:String,
+    url:String
   },
-  externalClasses:["icon-image"],
+  externalClasses: ["icon-image","title-name"],
 
   /**
    * 组件的初始数据
@@ -25,6 +27,8 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    _click(e){
+      this.triggerEvent('onclick',{url:e.target.dataset.url})
+    }
   }
 })

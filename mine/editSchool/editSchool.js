@@ -1,72 +1,66 @@
-let app = getApp();
+// mine/editSchool/editSchool.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    urlSchool: "../../mine/editSchool/editSchool",
-    myAssociation: "../../mine/myAssociation/myAssociation",
-    luckExplain: "../../mine/luckExplain/luckExplain",
-    sportExplain: "../../mine/sportExplain/sportExplain"
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
 
   },
-  //页面跳转
-  goTo(e){
-    app.globalData.goToPage(e.detail.url)
-  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

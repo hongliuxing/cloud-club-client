@@ -1,7 +1,7 @@
-<view class='list' style="height:{{height}}rpx">
+<view class='list' style="height:{{height}}rpx" bindtap='_click' data-url="{{url}}">
   <view>
     <image src="{{src}}" class='icon icon-image'></image>
-    <text class='title'>{{title}}</text>
+    <text class='title title-name'>{{title}}</text>
   </view>
   <view>
     <text class='value'>{{value}}</text>

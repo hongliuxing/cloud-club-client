@@ -1,8 +1,14 @@
 {
     "pages": [
+        "mine/editSchool/editSchool",
         "pages/mine/mine",
         "pages/index/index",
-        "pages/association/association"
+        "pages/association/association",
+
+        "mine/myAssociation/myAssociation",
+        "mine/luckExplain/luckExplain",
+        "mine/sportExplain/sportExplain"
+
 
     ],
     "window": {
