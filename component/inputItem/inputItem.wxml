@@ -1,0 +1,5 @@
+<view class='input'>
+   <text class='title' style="letter-spacing:{{spac}}px">{{title}}</text>
+   <input disabled='{{diabled}}' placeholder='请选择城市' class='_input' value="{{value}}" placeholder-class="plac"></input>
+   <image src="{{right?'../../images/page/more.png':'../../images/page/more_unfold.png'}}" class='right'></image>
+</view>

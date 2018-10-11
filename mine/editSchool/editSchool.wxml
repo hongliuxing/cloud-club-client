@@ -1,2 +1,12 @@
-<!--mine/editSchool/editSchool.wxml-->
-<text>mine/editSchool/editSchool.wxml</text>
+<view class='body'>
+  <input-item title="城市" value="北京"/>
+  <line-item height="30" back="#fff"/>
+  <input-item title="学校" value="xxxxxxx大学" right="{{false}}"/>
+  <line-item height="30" back="#fff"/>
+  <input-item title="专业" value="计算机科学与技术" right="{{false}}"/>
+  <line-item height="30" back="#fff"/>
+  <input-item title="学历/职务" value="计算机科学与技术" right="{{false}}" spac="2"/>
+  <line-item height="30" back="#fff"/>
+  <input-item title="姓名" value="计算机科学与技术" right="{{false}}"/>
+</view>
+
