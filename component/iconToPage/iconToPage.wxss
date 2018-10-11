@@ -1,0 +1,33 @@
+.list{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  padding: 0 15rpx 0 50rpx;
+}
+.icon{
+  height: 40rpx;
+  width:40rpx;
+}
+.right{
+  width: 50rpx;
+  height: 50rpx;
+}
+.list >view{
+  display:flex;
+  align-items: center;
+}
+.icon{
+    margin-right: 30rpx;
+}
+.title{
+  font-size: 22rpx;
+  color:#999;
+  letter-spacing: 2px;
+}
+.value{
+  font-size: 20rpx;
+  color:#ccc;
+  letter-spacing: 2px;
+}

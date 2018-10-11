@@ -14,13 +14,13 @@ App({
     //     })
     // }
 
-    Actions.doGet({ 
-        url: "http://localhost:58888/user/panel-info"
-    }).then(res => {
-        console.log('PanelInfo: ', res);
-    }).catch(err => {
-        console.log('err: ', err);
-    });
+    // Actions.doGet({ 
+    //     url: "http://localhost:58888/user/panel-info"
+    // }).then(res => {
+    //     console.log('PanelInfo: ', res);
+    // }).catch(err => {
+    //     console.log('err: ', err);
+    // });
 
     wx.getLocation({
         type: "gcj02",

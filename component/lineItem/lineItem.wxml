@@ -1,0 +1,2 @@
+<!--component/lineItem/lineItem.wxml-->
+<view class='line' style="height:{{height}}rpx;background:{{back}}"></view>

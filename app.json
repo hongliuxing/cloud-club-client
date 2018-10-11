@@ -1,9 +1,9 @@
 {
     "pages": [
+        "pages/mine/mine",
         "pages/index/index",
-        "pages/logs/logs",
-        "pages/test/uploadtest",
-        "pages/test/headpic"
+        "pages/association/association"
+
     ],
     "window": {
         "backgroundTextStyle": "light",
@@ -21,17 +21,18 @@
                 "text": "活动"
             },
             {
-                "pagePath": "pages/test/uploadtest",
+                "pagePath": "pages/association/association",
                 "iconPath": "images/cloud-1.png",
                 "selectedIconPath": "images/cloud-2.png",
                 "text": "云社团"
             },
             {
-                "pagePath": "pages/test/headpic",
+                "pagePath": "pages/mine/mine",
                 "iconPath": "images/my-1.png",
                 "selectedIconPath": "images/my-2.png",
                 "text": "我的"
             }
         ]
     }
+
 }

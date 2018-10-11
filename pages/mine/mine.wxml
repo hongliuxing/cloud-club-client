@@ -1,0 +1,44 @@
+<view class='bg'>
+   <view class='con'>
+      <view class='person'>
+          <view class='header'></view>
+          <text class='name'>阿拉拉布</text>
+          <view class='editInfo'>
+               <text>修改个人信息</text>
+               <image src='../../images/page/more.png' class='more'></image>
+          </view>
+      </view>
+      <view class='schoolInfo'>
+         <view>
+            <text class='title'>幸运值</text>
+            <text class='value'>32</text>
+         </view>
+         <view>
+            <text class='title'>学校</text>
+            <text class='value'>西安外事打算的空间啊暗示打卡机时间阿</text>
+         </view>
+        <view>
+            <text class='title'>社团数量</text>
+            <text class='value'>2</text>
+         </view>
+      
+      </view>
+   
+   </view>
+</view>
+
+<view class='goto'>
+   <line-item/>
+   <icon-to-page src="../../images/page/school.png" title="设置学校" value="已通过"/>
+   <line-item/>
+   <icon-to-page src="../../images/page/group.png" title="我的社团" value="2" icon-image="icon"/>
+   <line-item/>
+
+   <line-item height="60" back="#f9f9f9"/>
+   <line-item/>
+   <icon-to-page src="../../images/page/luck.png" title="幸运值" value="幸运值是干什么?" />
+   <line-item/>
+   <icon-to-page src="../../images/page/fire-2.png" title="运动热度说明"  />
+   <line-item/>
+</view>
+
