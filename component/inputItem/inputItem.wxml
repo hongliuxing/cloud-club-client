@@ -1,5 +1,8 @@
-<view class='input'>
-   <text class='title' style="letter-spacing:{{spac}}px">{{title}}</text>
-   <input disabled='{{diabled}}' placeholder='请选择城市' class='_input' value="{{value}}" placeholder-class="plac"></input>
-   <image src="{{right?'../../images/page/more.png':'../../images/page/more_unfold.png'}}" class='right'></image>
+<view bindtap='onclick'>
+  <line-item height="{{height}}" back="{{back}}" />
+  <view class='input'>
+    <text class='title' style="letter-spacing:{{spac}}px">{{title}}</text>
+    <input disabled='{{diabled}}' placeholder='{{plac}}' class='_input _input-class' value="{{value}}" data-name="{{name}}" placeholder-class="plac" bindinput='onchange'></input>
+    <image wx:if="{{go}}" src="{{right?'../../images/page/more.png':'../../images/page/more_unfold.png'}}" class='right'></image>
+  </view>
 </view>

@@ -1,0 +1,3 @@
+<view class='btn btn-class' style="height:{{height}}rpx;background:{{back}}" bindtap='onclick'>
+  {{value}}
+</view>

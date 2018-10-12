@@ -1,12 +1,25 @@
-<view class='body'>
-  <input-item title="城市" value="北京"/>
-  <line-item height="30" back="#fff"/>
-  <input-item title="学校" value="xxxxxxx大学" right="{{false}}"/>
-  <line-item height="30" back="#fff"/>
-  <input-item title="专业" value="计算机科学与技术" right="{{false}}"/>
-  <line-item height="30" back="#fff"/>
-  <input-item title="学历/职务" value="计算机科学与技术" right="{{false}}" spac="2"/>
-  <line-item height="30" back="#fff"/>
-  <input-item title="姓名" value="计算机科学与技术" right="{{false}}"/>
-</view>
+<view class='body' >
+  <input-item title="城市" value="北京" bind:click="selectCity"/>
+  <input-item title="学校" value="xxxxxxx大学" right="{{false}}" bind:click="selectSchool"/>
+  <input-item title="专业" value="计算机科学与技术" right="{{false}}" go="{{false}}" diabled="{{false}}" _input-class="_input-class" 
+  bind:change="onChange" />
+  <input-item title="学历/职务" value="本科" right="{{false}}" spac="2" _input-class="_input-class" bind:click="selectDuty"/>
+  <input-item title="姓名" value="{{name}}"  bind:change="onChange"  plac="我是谁?" right="{{false}}" go="{{false}}" diabled="{{false}}" _input-class="_input-class" name="name"/>
 
+
+
+  <view class='image'>
+      <view class='image_left'>
+         <text class="card">证件</text>
+         <text class='look'>查看示例</text>
+      </view>
+      <view class='image_right'>
+        <image src="{{imageUrl?imageUrl:'../../images/page/uploadCard.jpg'}}" class='uploadCard {{imageUrl?"border":""}}'  bindtap='changeImage'></image>
+      </view>
+  </view>
+
+  <view class='bottom'>
+    <btn value="申请" btn-class="btn" height="90" bind:click="onSubmit"/>
+  </view>
+
+</view>

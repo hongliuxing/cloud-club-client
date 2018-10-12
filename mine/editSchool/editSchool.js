@@ -1,20 +1,53 @@
-// mine/editSchool/editSchool.js
+let that;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    name:"",
+    imageUrl:""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+     that = this;
+  },
+  //获取input值
+  onChange(e){
+    this.setData({
+      [e.detail.name]:e.detail.value
+    })
+  },
+  //选择城市
+  selectCity(){
 
   },
+  //选择学校
+  selectSchool() {
 
+  },
+  //选择学历或职务
+  selectDuty() {
+
+  },
+  //提交
+  onSubmit(){
+
+  },
+  changeImage(){
+    wx.chooseImage({
+      success: function(res) {
+        let url = res.tempFilePaths[0]
+         that.setData({
+           imageUrl:url
+         })
+      },
+    })
+
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

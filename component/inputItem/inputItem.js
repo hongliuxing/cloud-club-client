@@ -4,6 +4,7 @@ Component({
    * 组件的属性列表
    */
   properties: {
+    name:String,
     diabled:{
       type:Boolean,
       value:true
@@ -17,8 +18,22 @@ Component({
       value:8
     },
     title:String,
-    value:String
+    value:String,
+    height:{
+      type:Number,
+      value:30
+    },
+    back:{
+      type:String,
+      value:'#fff'
+    },
+    plac:String,
+    go:{
+      type:Boolean,
+      value:true
+    }
   },
+  externalClasses: ["_input-class"],
 
   /**
    * 组件的初始数据
@@ -31,6 +46,15 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    onchange(e){
+      let resData = {
+        value:e.detail.value,
+        name:e.target.dataset.name
+      }
+      this.triggerEvent('change', resData)
+    },
+    onclick(){
+      this.triggerEvent('click')
+    }
   }
 })
