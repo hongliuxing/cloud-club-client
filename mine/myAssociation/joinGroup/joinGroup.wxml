@@ -1,0 +1,4 @@
+<!--pages/test/uploadtest.wxml-->
+<view>
+    <top-channel btns="{{topBtns}}" is-truncation="{{false}}" channel-class="table"></top-channel>
+</view>

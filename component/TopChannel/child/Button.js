@@ -46,7 +46,7 @@ Component({
       // 按钮单击事件
       onTap(e){
           // 触发父组件的【频道改变事件】，并传递参数
-          this.triggerEvent('ChannelChange', this.data.btnIndex, { bubbles: true });
+        this.triggerEvent('ChannelChange',this.data.btnIndex, { bubbles: true });
           // 触发调用者事件
           let tap = this.data.btnConf.value;
           typeof tap == 'function' && tap(e);

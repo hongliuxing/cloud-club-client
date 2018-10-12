@@ -68,7 +68,7 @@ Component({
         },
         fontColor: String
     },
-
+    externalClasses: ["channel-class"],
     /**
      * 组件的初始数据
      */

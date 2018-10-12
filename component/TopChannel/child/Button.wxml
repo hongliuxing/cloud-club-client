@@ -1,6 +1,6 @@
 <!-- 如果是普通按钮 -->
 <block wx:if="{{btnConf.btype === 'event'}}">
-    <view class="ch-btn" bindtap='onTap' style='width:{{styles.width}}'>
+    <view class="ch-btn" bindtap='onTap' style='width:{{styles.width}}' data-index="{{btnIndex}}">
         <view class="ch-text {{selected?'choose-text':''}}">
             <text>{{btnConf.title}}</text>
         </view>
