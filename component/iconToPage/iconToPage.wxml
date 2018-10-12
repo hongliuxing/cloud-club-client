@@ -1,11 +1,12 @@
+<line-item wx:if="{{top}}"/>
 <view class='list' style="height:{{height}}rpx" bindtap='_click' data-url="{{url}}">
   <view>
     <image src="{{src}}" class='icon icon-image'></image>
     <text class='title title-name'>{{title}}</text>
   </view>
   <view>
-    <text class='value'>{{value}}</text>
-    <image src="../../images/page/more.png" class='right'></image>
+    <text class='value value-class'>{{value}}</text>
+    <image src="../../images/page/more.png" class='right' wx:if="{{right}}"></image>
   </view>
-
 </view>
+<line-item wx:if="{{bottom}}"/>

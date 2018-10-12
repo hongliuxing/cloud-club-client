@@ -1,1 +1,8 @@
-{}
+{
+  "navigationBarBackgroundColor": "#38bfbb",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "icon-to-page": "../../component/iconToPage/iconToPage",
+    "line-item":"../../component/lineItem/lineItem"
+  }
+}

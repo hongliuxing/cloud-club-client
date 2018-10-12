@@ -8,13 +8,25 @@ Component({
       type:Number,
       value:100
     },
+    right:{
+      type:Boolean,
+      value:true
+    },
+    top: {
+      type: Boolean,
+      value: true
+    },
+    bottom: {
+      type: Boolean,
+      value: true
+    },
     src:String,
     title:String,
     value:String,
     name:String,
     url:String
   },
-  externalClasses: ["icon-image","title-name"],
+  externalClasses: ["icon-image", "title-name","value-class"],
 
   /**
    * 组件的初始数据
