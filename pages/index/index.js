@@ -1,4 +1,5 @@
 import * as Actions from "../../utils/net/Actions.js";
+import * as URLs from "../../utils/net/urls.js";
 //获取应用实例
 const app = getApp()
 
@@ -14,58 +15,80 @@ Page({
             url: '../logs/logs'
         })
     },
-    bti(e) {
-        console.log('bti: ', e);
+    /**
+     * 若无登录态则尝试登录一次
+     */
+    checkLogin() {
+        if (!this.data.hasLoginer) {
+            // 如果没有登录态则登录一次
+            wx.showLoading({ title: '正在组装社团...', mask: true });
+            return Actions.login();
+        }else{
+            return Promise.resolve();
+        }
     },
-    mySetting(e) {
-        console.log('mySetting: ', e);
+    onTabbarClick(club_id){
+        console.log('点击的标签页id是:', club_id);
+    },
+    loadMyClub(){
+        let that = this;
+        return Actions.doGet({
+            url: URLs.CLUB_SIMPLE_LIST,
+            data: {}
+        }).then(res => {
+            console.log('我的社团 res: ', res);
+            let clubs = res.data.list? res.data.list: [];
+            let topBtns = clubs.map(club => {
+                return {
+                    title: club.title,
+                    btype: "event",
+                    value: () => that.onTabbarClick(club.id)
+                };
+            });
+            that.setData({
+                topBtns: topBtns
+            });
+        }).catch(err => {
+            console.log('我的社团 err: ', err);
+        });
     },
     onLoad: function() {
-        if (!this.data.hasLoginer){
-            // 如果没有登录态则登录一次
-            wx.showLoading({
-                title: '正在组装社团...',
-                mask: true
-            })
-            // 登录
-            Actions.login().then(res => {
-                wx.hideLoading();
-            }).catch(err => {
-                wx.showToast({
-                    title: err,
-                    icon: 'none',
-                    duration: 1500,
-                    mask: true
-                })
-            });
-        }
+        this.checkLogin().then(res => {
+            // 首次登录成功
+            wx.hideLoading();
+        })
+        .then(this.loadMyClub)
+        .catch(err => {
+            // 失败
+            console.log(err);
+        });
 
         // 标签页频道组件
-        let topBtns = [{
-                title: "全部社团",
-                btype: "event",
-                value: (e) => {
-                    console.log('this is 频道1 event !!!');
-                }
-            },
-            {
-                title: "频道2",
-                btype: "event",
-                value: (e) => {
-                    console.log('this is 频道2 event !!!');
-                }
-            },
-            {
-                title: "频道3",
-                btype: "event",
-                value: (e) => {
-                    console.log('this is 频道3 event !!!');
-                }
-            }
-        ];
-        this.setData({
-            topBtns: topBtns
-        });
+        // let topBtns = [{
+        //         title: "全部社团",
+        //         btype: "event",
+        //         value: (e) => {
+        //             console.log('this is 频道1 event !!!');
+        //         }
+        //     },
+        //     {
+        //         title: "频道2",
+        //         btype: "event",
+        //         value: (e) => {
+        //             console.log('this is 频道2 event !!!');
+        //         }
+        //     },
+        //     {
+        //         title: "频道3",
+        //         btype: "event",
+        //         value: (e) => {
+        //             console.log('this is 频道3 event !!!');
+        //         }
+        //     }
+        // ];
+        // this.setData({
+        //     topBtns: topBtns
+        // });
         // 获取活动数据,并载入新闻列表组件
 
     },
