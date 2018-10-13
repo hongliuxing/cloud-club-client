@@ -44,6 +44,12 @@ Page({
             console.log('我的社团 res: ', res);
             // 我的社团数据
             let clubs = res.data.list? res.data.list: [];
+            clubs.unshift({
+                title: '全部社团',// 社团名称
+                btype: "event",
+                // 这里统一绑定了一个点击之后的处理函数,并传递当前对象的id过去
+                value: () => that.onTabbarClick('all')
+            });
             // 将社团数组生成标签页按钮所需的数据
             let topBtns = clubs.map(club => {
                 return {
