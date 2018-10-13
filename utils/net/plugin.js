@@ -9,35 +9,118 @@ let retry_msec = 300;
 
 // const appid = "wx33cfb92cf676aa59";
 // const appsecret = "87ccbe8283dae7dbc429a5da8f4ed408";
+
 /**
- * 登陆专用
+ * 微信 - getUserInfo
+ * 没意义
  */
-export const login = () => new Promise((resolve, reject) => {
-    wx.login({
-        success: function (res) {
-            wx.request({
-                url: urls.LOGIN,
-                data: {
-                    // appid, appsecret, 
-                    loginCode: res.code
-                },
-                method: 'POST',
-                dataType: 'json',
-                responseType: 'text',
-                success: function (res) {
-                    console.log("login: ", res);
-                    if (!res || res.err)
-                        return reject(res.err || 'res is null');
-                    const loginer = res.data.info;
-                    wx.setStorageSync("loginer", loginer);
-                    resolve(loginer);
-                },
-                fail: reject
-            })// request end ...
+const wxUserinfo = (loginRes) => new Promise((resolve, reject) => {
+    wx.getUserInfo({
+        withCredentials: true,
+        success: function (userRes){
+            resolve({ loginRes, userRes});
         },
         fail: reject
     })
 });
+
+/**
+ * 微信 - 登录方法
+ */
+const wxLogin = () => new Promise((resolve, reject) => {
+    wx.login({
+        timeout: (2 * 24 * 60 * 60 * 1000), // 超时时间为2天, 支持版本 >= 1.9.9
+        success: function (loginRes) {
+            resolve({ loginRes });
+        },
+        fail: reject
+    })
+});
+
+/**
+ * 应用服务器 - 登录方法
+ */
+const appLogin = ({ loginCode }) => new Promise((resolve, reject) => {
+    /**
+     * 应用服务器登陆时传递的数据包括:
+     * appid: 应用标识
+     * loginCode: wx.login的res中获取的code
+     */
+    wx.request({
+        url: urls.LOGIN,
+        data: {
+            appid: 'wxf22545deb852c577',
+            loginCode
+        },
+        method: 'POST',
+        dataType: 'json',
+        responseType: 'text',
+        success: function(res){
+            // 登录成功后, 缓存token
+            if (!res || res.err) return reject(res && res.err);
+            // console.log(res);
+            resolve(res);
+        },
+        fail: reject
+    })
+});
+
+/**
+ * 登录方法: 0.2
+ * 替换原有的登录方式, 使用鉴权后的 getUserInfo
+ */
+export const login = () => new Promise((resolve, reject) => {
+    // 登录之后, 将session_key交给getUserInfo进行解密
+    wxLogin()
+    .then(({ loginRes }) => {
+        // 登录成功
+        return appLogin({
+            loginCode: loginRes.code
+        });
+    })
+    .then( appLoginRes => {
+        // 发送给登录服务器的登录结果
+        console.log('appLogin success:', appLoginRes);
+        const loginer = appLoginRes.data.info;
+        wx.setStorageSync("loginer", loginer);
+        resolve( loginer );
+    })
+    .catch(err => {
+        // 登录失败
+        console.log('getUserInfo fail:', err);
+        reject({err});
+    });
+});
+
+/**
+ * 登陆专用
+ */
+// export const login = () => new Promise((resolve, reject) => {
+//     wx.login({
+//         success: function (res) {
+//             wx.request({
+//                 url: urls.LOGIN,
+//                 data: {
+//                     // appid, appsecret, 
+//                     loginCode: res.code
+//                 },
+//                 method: 'POST',
+//                 dataType: 'json',
+//                 responseType: 'text',
+//                 success: function (res) {
+//                     // 登录成功后会获取换取登录态所需的code
+//                     console.log("login: ", res);
+//                     if (!res || res.err) return reject(res.err || 'res is null');
+//                     const loginer = res.data.info;
+//                     wx.setStorageSync("loginer", loginer);
+//                     resolve(loginer);
+//                 },
+//                 fail: reject
+//             })// request end ...
+//         },
+//         fail: reject
+//     })
+// });
 
 /**
  * 检查请求中是否有正常的登陆状态

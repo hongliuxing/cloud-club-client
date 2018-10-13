@@ -2,3 +2,6 @@
 <view class="container">
     <top-channel btns="{{topBtns}}" is-truncation="{{false}}"></top-channel>
 </view>
+<view>
+    这里是首页
+</view>

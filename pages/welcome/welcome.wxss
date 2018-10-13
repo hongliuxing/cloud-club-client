@@ -1,0 +1,24 @@
+/* pages/welcome/welcome.wxss */
+.wel-bg{
+    width: 100%;
+}
+.btns-box{
+    position: fixed;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    bottom: 100rpx;
+    justify-content: space-around;
+}
+.rowBtn{
+    width: 300rpx;
+    height: 90rpx;
+    line-height: 90rpx;
+    font-size: 12pt;
+}
+.wel-dialog{
+    position: absolute;
+    width: 68%;
+    margin-top: -300rpx;
+    margin-left: 80rpx;
+}
