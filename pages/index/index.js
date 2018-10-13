@@ -27,21 +27,29 @@ Page({
             return Promise.resolve();
         }
     },
+    // 用于处理标签页的点击
     onTabbarClick(club_id){
         console.log('点击的标签页id是:', club_id);
     },
+    /**
+     * 加载社团,并填充标签页按钮
+     */
     loadMyClub(){
         let that = this;
+        // 返回的是请求的Promise
         return Actions.doGet({
             url: URLs.CLUB_SIMPLE_LIST,
             data: {}
         }).then(res => {
             console.log('我的社团 res: ', res);
+            // 我的社团数据
             let clubs = res.data.list? res.data.list: [];
+            // 将社团数组生成标签页按钮所需的数据
             let topBtns = clubs.map(club => {
                 return {
-                    title: club.title,
+                    title: club.title,// 社团名称
                     btype: "event",
+                    // 这里统一绑定了一个点击之后的处理函数,并传递当前对象的id过去
                     value: () => that.onTabbarClick(club.id)
                 };
             });
