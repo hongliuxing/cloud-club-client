@@ -1,0 +1,14 @@
+/* component/NewsList/NewsList.wxss */
+.news-list{
+    box-sizing: border-box;
+    background-color: #F9F9F9;
+    font-family: "黑体";
+}
+
+.timeline{
+    position: fixed;
+    width: 1rpx;
+    background-color: #ddd;
+    height: 100%;
+    overflow: hidden;
+}

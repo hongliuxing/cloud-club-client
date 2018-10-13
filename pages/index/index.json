@@ -1,5 +1,6 @@
 {
     "usingComponents": {
-        "top-channel": "/component/TopChannel/TopChannel"
+        "top-channel": "/component/TopChannel/TopChannel",
+        "news-list": "/component/DataList/DataList"
     }
 }

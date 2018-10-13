@@ -76,7 +76,8 @@ Component({
         // 被选中的 btn index
         selectedIndex: 0,
         arrowLeft: 'none',
-        arrowRight: 'none'
+        arrowRight: 'none',
+        isFixed: true
     },
     attached(){
         // console.log('attached: ', this.data.btns);

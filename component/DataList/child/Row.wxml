@@ -1,0 +1,35 @@
+<block wx:if="{{item.type === 'date'}}">
+    <view class='date-row'
+    style='margin-left:{{mLeft}}rpx;'
+    >
+        <view class="mark-icon" style='margin-left:-{{mLeft+7}}rpx;background-color:{{dateColor}};'></view>
+        <view class="mark-text" style='background-color:{{dateColor}};'>{{item.text}}</view>
+    </view>
+</block>
+<block wx:else>
+    <view class='list-row'
+    style='margin-left:{{mLeft}}rpx;'
+    >
+        <view class="list-top"><!-- 社团部分 -->
+            <image class='list-top-logo' mode='scaleToFill' src='{{item.logo_url}}'></image>
+            <view class='list-top-text'>
+                <view class='list-top-club'>{{item.club_title}}</view>
+                <view class='list-top-school'>{{item.school}}</view>
+            </view>
+            <view class='list-top-time'>{{item.createdAt}}</view>
+        </view>
+
+        <view class="news-title">
+            {{item.title}}
+        </view>
+        <view class="news-content">
+            {{item.content}}
+        </view>
+        <view class="news-pics">
+            <block wx:for="{{pics}}" wx:key="*this">
+                <image class='pic-item' style=''></image>
+            </block>
+        </view>
+        <view class="list-btns"></view>
+    </view>
+</block>

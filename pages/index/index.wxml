@@ -3,5 +3,5 @@
     <top-channel btns="{{topBtns}}" is-truncation="{{false}}"></top-channel>
 </view>
 <view>
-    这里是首页
+    <news-list rows="{{ newsListData }}"></news-list>
 </view>

@@ -1,0 +1,11 @@
+<view id='{{listId}}' class='news-list'
+ style='min-height: {{minHeight}}px;padding: {{padding.top}}rpx {{padding.right}}rpx {{padding.bottom}}rpx {{padding.left}}rpx;'
+>
+    <view wx:if="{{hasTimeline}}" class="timeline" style="margin-top:-{{padding.top-1}}rpx;"></view>
+    <block wx:for="{{rows}}" wx:for-index="idx" wx:for-item="item" wx:key="title">
+        <row m-left="{{hasTimeline?50:0}}" 
+            item="{{item}}"
+            colors="{{item.type==='date'?colors:[]}}"
+        ></row>
+    </block>
+</view>

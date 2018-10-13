@@ -1,6 +1,6 @@
 <scroll-view scroll-x="true" scroll-with-animation="true" class='comp-top-channel channel-class' bindChannelChange="onChannelChange"  
 bindscroll="onScroll" 
-style='background-color: {{bgColor}};'
+style='background-color: {{bgColor}};{{isFixed?"position:fixed;z-index: 10000;":""}}'
 >
     <image class="arrow arrowLeft" style="display:{{arrowLeft}}" src='icon/arrowLeft.png'></image>
     <image class="arrow arrowRight" style="display:{{arrowRight}}" src='icon/arrowRight.png'></image>
@@ -13,5 +13,5 @@ style='background-color: {{bgColor}};'
             selected="{{selectedIndex === idx}}"
         ></btn>
     </block>
-    
 </scroll-view>
+<view wx:if="{{isFixed}}" style="height:110rpx;overflow:hidden;"></view>

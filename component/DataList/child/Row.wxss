@@ -1,0 +1,108 @@
+/* component/NewsList/child/Row.wxss */
+/**
+ * 日期相关标记行
+ */
+.date-row{
+    margin-bottom: 20rpx;
+    display: flex;
+    flex-direction: row;
+}
+.mark-icon{
+    width: 20rpx;
+    height: 20rpx;
+    border-radius: 50%;
+    margin-top: 12rpx;
+    background-color: red;
+    position: absolute;
+    z-index: 1;
+}
+.mark-text{
+    color: #fff;
+    font-size: 10pt;
+    padding: 8rpx 15rpx;
+    border-radius: 6rpx;
+    background-color: red;
+}
+
+/**
+ * 新闻内容行
+ */
+.list-row{
+    /* background-color: royalblue; */
+    margin-bottom: 60rpx;
+    
+}
+/** 新闻行: 列表顶部 **/
+.list-top{
+    width: 100%;
+    height: 80rpx;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 26rpx;
+}
+.list-top-logo{
+    width: 100rpx;
+    height: 80rpx;
+    margin-right: 20rpx;
+}
+.list-top-text{
+    height: 100rpx;
+}
+.list-top-club{
+    font-size: 26rpx;
+    font-weight: 600;
+    color: #697077;
+    height: 45rpx;
+    line-height: 45rpx;
+}
+.list-top-school{
+    font-size: 26rpx;
+    color: #98A4AE;
+    height: 35rpx;
+    line-height: 35rpx;
+}
+.list-top-time{
+    color: #B4B5B7;
+    font-size: 10pt;
+    position: absolute;
+    right: 30rpx;
+}
+/** 新闻行: 标题 **/
+.news-title{
+    font-size: 28rpx;
+    font-weight: 600;
+    color: #4D5762;
+    margin-bottom: 15rpx;
+    letter-spacing: 2rpx;
+}
+/** 新闻行: 内容 **/
+.news-content{
+    font-size: 27rpx;
+    letter-spacing: 5rpx;
+    color: #9ea1a5;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/
+    -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+    -webkit-line-clamp: 3; /** 显示的行数 **/
+    overflow: hidden;  /** 隐藏超出的内容 **/
+    margin-bottom: 30rpx;
+}
+/** 新闻行: 图片部分 **/
+.news-pics{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.pic-item{
+    background-color: #ddd;
+    width: 180rpx;
+    height: 180rpx;
+    margin: 0 15rpx 15rpx 0;
+    border-radius: 5rpx;
+}
+/** 新闻行: 列表底部按钮 **/
+.list-btns{
+    
+}
