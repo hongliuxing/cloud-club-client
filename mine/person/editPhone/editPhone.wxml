@@ -1,0 +1,19 @@
+<view class='input'>
+  <view class='font'>
+    <view class='name' >手机</view>
+    <input  value='{{phoneNum}}' bindinput='onCallPhone'></input>
+  </view>
+  <view class='bottomBtn'>
+    <button bindtap='onPhone' disabled='{{disabled}}'>{{codeText}}</button>
+  </view>
+</view>
+
+<view class='input'>
+  <view class='font'>
+    <view class='name code'>验证码</view>
+    <input style="padding-left:12rpx;" value='{{verifyCode}}' bindinput='onCode'></input>
+  </view>
+</view>
+<view class='bottom'>
+  <btn value="保存" btn-class="btn" height="90" bind:click="onSubmit"/>
+</view>

@@ -1,8 +1,10 @@
 <view class='bg'>
    <view class='con'>
-      <view class='person'>
-          <view class='header'></view>
-          <text class='name'>阿拉拉布</text>
+      <view class='person' bindtap='goToUser'>
+          <view class='header'>
+             <image src='{{avatarUrl?avatarUrl:"../../images/page/default-avatar.png"}}'></image>
+          </view>
+          <text class='name'>{{nickName}}</text>
           <view class='editInfo'>
                <text>修改个人信息</text>
                <image src='../../images/page/more.png' class='more'></image>

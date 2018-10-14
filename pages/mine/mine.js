@@ -1,4 +1,5 @@
 let app = getApp();
+let that;
 Page({
 
   /**
@@ -15,7 +16,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    that = this;
+    let data = wx.getStorageSync("userInfo")
+    if (data) {
+      that.setData({
+        nickName: data.nickName,
+        avatarUrl: data.avatarUrl
+      })
+    }
+  },
+  //修改信息页面
+  goToUser(){
+    app.globalData.goToPage("../../mine/person/person")
   },
   //页面跳转
   goTo(e){
