@@ -1,0 +1,19 @@
+<view>
+    <top-channel btns="{{topBtns}}" is-truncation="{{false}}" channel-class="channel"></top-channel>
+</view>
+<view class='list'>
+  <block wx:if="{{table===1}}">
+    <association-list
+     height="140"
+     image="{{false}}"
+     time="2018/09/26"
+     name="B-Box社"
+  />
+  </block>
+  <block wx:if="{{table===2}}">
+   <view>123</view>
+  </block>
+     
+</view>
+
+
