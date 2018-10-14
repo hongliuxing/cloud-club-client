@@ -8,8 +8,8 @@ Component({
             type: Array,
             value: [],
             observer: function (newVal, oldVal, changedPath) {
+                // console.log('[rows newVal] : ', newVal);
                 
-
             }
         }
     },
@@ -24,7 +24,7 @@ Component({
         minHeight: 0,
         // 列表内边距
         padding: {
-            top: 60, right: 30, bottom: 20, left: 60
+            top: 60, right: 30, bottom: 60, left: 60
         },
         // 是否拥有时间线(必须是时间倒序)
         hasTimeline: true,

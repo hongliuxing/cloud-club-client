@@ -9,6 +9,7 @@ Component({
             type: Object,
             value: {},
             observer: function (newVal, oldVal, changedPath) {
+                // console.log('[item newVal] : ', newVal);
                 // 格式化日期(去掉时间)
                 if (newVal.createdAt){
                     this.setData({
