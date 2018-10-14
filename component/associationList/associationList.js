@@ -19,7 +19,26 @@ Component({
       value: 140
     },
     name:String,
-    time:String
+    time:String,
+    istime:{
+      type:Boolean,
+      value:false,
+    },
+    //判断是不是加入社团或社团入驻(eg:false 社团入驻)
+    admission:{
+      type: Boolean,
+      value:true
+    },
+    //社团入驻 false为申请状态,
+    isBtn:{
+      type: Boolean,
+      value: false
+    },
+    //判断是不是历史channel
+    history:{
+      type: Boolean,
+      valse:false
+    }
   },
 
   /**

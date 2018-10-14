@@ -4,14 +4,23 @@
 
     </view>
     <view class='leftContext' style="margin-left:{{image?30:null}}rpx;">
-      <text class='name'>{{name}}</text>
-      <text class='time'>{{time}}</text>
-      <text class='time' wx:if="{{case}}">{{case}}</text>
+      <text class='{{image?"title":"name"}}'>{{name}}</text>
+      <text class='{{image && !istime?"employee":"time"}}'>{{time}}</text>
+      <text class='case'>{{case}}</text>
+      <text class='case cases' wx:if="{{!admission && !case && history}}">111</text>
     </view>
   </view>
-  <view class='status'>
+  <view class='status' wx:if="{{admission}}">
     <text wx:if="{{status===0}}" class='applying'>申请中</text>
-    <text wx:if="{{status===1}}" class='noPass'>未通过</text>
-    <text wx:if="{{status===-1}}" class='pass'>已通过</text>
+    <text wx:if="{{status===1}}" class='pass'>已通过</text>
+    <text wx:if="{{status===-1}}" class='noPass'>未通过</text>
+  </view>
+  <view class='status' wx:if="{{!admission && !isBtn}}">
+    <text wx:if="{{status===0}}" class='applying'>申请中</text>
+    <text wx:if="{{status===1}}" class='pass'>已通过</text>
+    <text wx:if="{{status===-1}}" class='noPass'>已拒绝</text>
+  </view>
+  <view class='status' wx:if="{{!admission && isBtn}}">
+    <text class='btn'>申 请</text>
   </view>
 </view>

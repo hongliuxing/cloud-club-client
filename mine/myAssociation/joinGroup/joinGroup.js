@@ -1,11 +1,12 @@
-// mine/myAssociation/joinGroup/joinGroup.js
+let that;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    table:1,
+    aa:123
   },
 
   /**
@@ -13,6 +14,7 @@ Page({
    */
   onLoad: function (options) {
     // 标签页频道组件
+    that = this;
     let topBtns = [
       { title: "本校社团列表", btype: "event", value: (e) => this.Associations() },
       { title: "申请历史", btype: "event", value: (e) => this.applyHistory()}
@@ -24,12 +26,36 @@ Page({
 
   //本校社团
   Associations(){
+    if (this.data.table === 1) {
+      return
+    } else {
+      that.setData({
+        table: 1
+      })
+    }
      console.log("shetuanlibiao")
   },
 
   //申请历史
   applyHistory(){
+    if (this.data.table === 2) {
+      return
+    } else {
+      that.setData({
+        table: 2
+      })
+    }
     console.log("applyHistory")
+  },
+
+  onChange(e) {
+    this.setData({
+      k: e.detail.value
+    })
+  },
+
+  onSearch() {
+   
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

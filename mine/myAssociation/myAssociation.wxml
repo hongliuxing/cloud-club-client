@@ -1,5 +1,5 @@
-<icon-to-page src="../../images/page/school.png" title="社团入驻" value="社团负责人入口" bind:onclick="goTo" right="{{false}}"  value-class="principal"/>
-<icon-to-page src="../../images/page/joinGroup.png" title="加入社团"  bind:onclick="goTo" right="{{false}}" top="{{false}}" />
+<icon-to-page src="../../images/page/school.png" title="社团入驻" value="社团负责人入口" bind:onclick="associationEnter" right="{{false}}"  value-class="principal"/>
+<icon-to-page src="../../images/page/joinGroup.png" title="加入社团"  bind:onclick="joinGroup" right="{{false}}" top="{{false}}" />
 <view class='noMore' wx:if="{{more}}">
    <image src='../../images/page/noMore.png' class='noMoreimage'></image>
    <text>您还没有加入任何社团</text>

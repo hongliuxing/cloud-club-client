@@ -28,10 +28,18 @@
 .leftContext>text {
   display: inline-block;
 }
-.border{
-  border:2rpx solid #b7b7b7;
+
+.border {
+  border: 2rpx solid #b7b7b7;
 }
+
 .name {
+  font-size: 28rpx;
+  color: #4c5257;
+  font-weight: bold;
+}
+
+.title {
   font-size: 28rpx;
   color: #4c5257;
   font-weight: bold;
@@ -43,30 +51,71 @@
   margin-right: 10rpx;
 }
 
+.employee {
+  color:#7285dd;
+  font-size: 26rpx;
+}
+
+.employee::before {
+  color: #b7b7b7;
+  content: "社团成员:";
+  margin-right: 10rpx;
+}
+
+.employee::after {
+  color: #b7b7b7;
+  content: "人";
+}
+
 .time {
   color: #b7b7b7;
   font-size: 26rpx;
 }
-
+.case{
+  color: #b7b7b7;
+  font-size: 22rpx;
+  display: inline-block;
+}
+.cases{
+  opacity: 0;
+}
 .status {
   font-size: 24rpx;
   letter-spacing: 2px;
 }
-.padd{
-  padding-right:50rpx;
+
+.padd {
+  padding-right: 50rpx;
 }
-.imagePadd{
+
+.imagePadd {
   padding: 0 50rpx;
 }
 
-
 /**状态判断**/
-.applying{
-  color:#7285dd;
+
+.applying {
+  color: #7285dd;
 }
-.noPass{
-  color:#c46369;
+
+.noPass {
+  color: #c46369;
 }
-.pass{
-  color:#5bd695;
+
+.pass {
+  color: #5bd695;
+}
+
+.btn {
+  display: block;
+  width: 140rpx;
+  height: 50rpx;
+  background: #5cc8c8;
+  text-align: center;
+  line-height: 50rpx;
+  color: #fff;
+}
+
+.btn:active {
+  opacity: 0.8;
 }

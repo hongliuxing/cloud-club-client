@@ -1,4 +1,4 @@
-// mine/myAssociation/myAssociation.js
+let app = getApp();
 Page({
 
   /**
@@ -14,7 +14,15 @@ Page({
   onLoad: function (options) {
 
   },
+  //前往社团入驻
+  associationEnter(){
+    app.globalData.goToPage("./associationEnter/associationEnter")
+  },
 
+  //加入社团
+  joinGroup(){
+    app.globalData.goToPage("./joinGroup/joinGroup")
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

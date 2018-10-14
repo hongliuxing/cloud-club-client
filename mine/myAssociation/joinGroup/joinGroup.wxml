@@ -1,4 +1,23 @@
 <!--pages/test/uploadtest.wxml-->
 <view>
-    <top-channel btns="{{topBtns}}" is-truncation="{{false}}" channel-class="table"></top-channel>
+  <top-channel btns="{{topBtns}}" is-truncation="{{false}}" channel-class="table"></top-channel>
+</view>
+
+
+<view class='logoCon' wx:if="{{table===1}}">
+  <view class='search'>
+    <input placeholder="搜索社团名称" class="searchInput" value='{{k}}' bindinput='onChange'></input>
+    <view class='searchBtn' bindtap='onSearch'>
+      <image src="../../../images/page/search.png"></image>
+    </view>
+  </view>
+</view>
+
+<view class='list' style="margin-top:{{table===1?0:40}}rpx;">
+  <block wx:if="{{table===1}}">
+    <association-list height="140" time="1" name="B-Box社" isBtn="{{true}}" admission="{{false}}" />
+  </block>
+  <block wx:if="{{table===2}}">
+      <association-list history="{{true}}" height="160" time="2018/9/10" name="B-Box社" admission="{{false}}" status="-1"  istime="{{true}}" />
+  </block>
 </view>
