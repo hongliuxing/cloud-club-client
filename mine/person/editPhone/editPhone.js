@@ -1,4 +1,10 @@
-// mine/person/editPhone/editPhone.js
+import * as Actions from "../../../utils/net/Actions.js";
+import * as URLs from "../../../utils/net/urls.js";
+let app = getApp();
+let that;
+let x = 0;
+let testPhone = /^[1][3,4,5,6,7,8,9][0-9]{9}$/;
+let times;
 Page({
 
   /**
@@ -6,26 +12,30 @@ Page({
    */
   data: {
     codeText: "发送短信验证码",
+    smsToken: "",
+    code: "",
+    telephone: ""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: function(options) {
+    that = this;
   },
   //手机号
   onCallPhone(e) {
     this.setData({
-      phoneNum: e.detail.value
+      telephone: e.detail.value
     })
   },
-  async onPhone() {
+  //发送验证码
+  onPhone() {
     x++;
     if (!this.data.isTime && x === 1) {
-      if (testPhone.test(this.data.phoneNum)) {
+      if (testPhone.test(this.data.telephone)) {
         let time = 60;
-        times = setInterval(function () {
+        times = setInterval(function() {
           if (time <= 1) {
             that.setData({
               codeText: "再次获取",
@@ -42,76 +52,58 @@ Page({
           }
 
         }, 1000)
-        let data = await sendSMS({
-          phoneNum: this.data.phoneNum
-        })
-        console.log(data.data, "data.data")
-        if (data.err.errCode === 0) {
-          this.setData({
-            smscode: data.data.smscode
+
+        Actions.doPost({
+          url: URLs.USER_PHONE_SMS,
+          data: {
+            telephone: that.data.telephone
+          }
+        }).then(res => {
+          that.setData({
+            smsToken: res.data.info
           })
-        }
-      } else {
-        app.globalData.toast({
-          title: "请输入正确手机号",
-          icon: "none"
+        }).catch(error => {
+
         })
+
+      } else {
+        app.globalData.toast("请输入正确手机号")
         x = 0;
         return
       }
     }
   },
+  //获取验证码
   onCode(e) {
     this.setData({
-      verifyCode: e.detail.value
+      code: e.detail.value
     })
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
+  //提交
+  onSubmit() {
+    if (!testPhone.test(this.data.telephone)) {
+      app.globalData.toast("请输入正确手机号")
+      return
+    }
+    if(this.data.code==""){
+      app.globalData.toast("请输入验证码")
+      return
+    } 
+    let data = {
+      telephone: this.data.telephone,
+      code: this.data.code,
+      smsToken: this.data.smsToken
+    }
+    Actions.doPost({
+      url: URLs.USER_PHONE_SAVE,
+      data: data
+    }).then(res => {
+      that.setData({
+        smsToken: res.data.info
+      })
+    }).catch(error => {
 
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+    })
   }
+
 })

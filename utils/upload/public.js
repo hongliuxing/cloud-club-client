@@ -3,3 +3,10 @@ export const goToPage = (url)=>{
      url: url,
    })
 }
+
+export const toast = (title, icon="none")=>{
+  wx.showToast({
+    title: title,
+    icon: icon,
+  })
+}

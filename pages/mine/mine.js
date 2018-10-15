@@ -1,3 +1,5 @@
+import * as Actions from "../../utils/net/Actions.js";
+import * as URLs from "../../utils/net/urls.js";
 let app = getApp();
 let that;
 Page({
@@ -9,7 +11,8 @@ Page({
     urlSchool: "../../mine/editSchool/editSchool",
     myAssociation: "../../mine/myAssociation/myAssociation",
     luckExplain: "../../mine/luckExplain/luckExplain",
-    sportExplain: "../../mine/sportExplain/sportExplain"
+    sportExplain: "../../mine/sportExplain/sportExplain",
+    info:{}
   },
 
   /**
@@ -17,11 +20,10 @@ Page({
    */
   onLoad: function(options) {
     that = this;
-
   },
   //修改信息页面
   goToUser(){
-    app.globalData.goToPage("../../mine/person/person")
+    app.globalData.goToPage("../../mine/person/person?userinfo="+JSON.stringify(this.data.info))
   },
   //页面跳转
   goTo(e){
@@ -45,6 +47,16 @@ Page({
         avatarUrl: data.avatarUrl
       })
     }
+    Actions.doGet({
+      url: URLs.USER_PANEL_INFO,
+      data: {}
+    }).then(res => {
+      that.setData({
+        info: res.data.info
+      })
+    }).catch(err => {
+      console.log('我的社团 err: ', err);
+    });
   },
 
   /**

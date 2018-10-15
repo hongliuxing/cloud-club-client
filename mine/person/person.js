@@ -1,3 +1,5 @@
+import * as Actions from "../../utils/net/Actions.js";
+import * as URLs from "../../utils/net/urls.js";
 let app = getApp();
 let that;
 let times;
@@ -23,6 +25,7 @@ Page({
     disabled: false,
     phoneNum: "",
     smscode: "",
+    info:{}
   },
 
   /**
@@ -30,14 +33,12 @@ Page({
    */
   onLoad: function (options) {
     that = this;
-    let data = wx.getStorageSync("userInfo")
-    if (data){
-      that.setData({
-        nickName: data.nickName,
-        avatarUrl: data.avatarUrl
-      })
-    }
-
+    let data = JSON.parse(options.userinfo);
+    that.setData({
+      gender: data.gender,
+      avatar_url: data.avatar_url,
+      nickname: data.nickname
+    })
   },
 
   /**
@@ -56,19 +57,14 @@ Page({
   bindgetuserinfo(e) {
     if (e.detail.errMsg === "getUserInfo:ok") {
       that.setData({
-        nickName:e.detail.userInfo.nickName,
-        avatarUrl: e.detail.userInfo.avatarUrl
+        nickname:e.detail.userInfo.nickName,
+        avatar_url: e.detail.userInfo.avatarUrl
       })
-      let data = {
-        nickName: e.detail.userInfo.nickName,
-        avatarUrl: e.detail.userInfo.avatarUrl
-      }
-      wx.setStorageSync("userInfo", data)  
     }
   },
   //跳转
   goTo() {
-    goToPage("../editPhone/editPhone")
+    app.globalData.goToPage("./editPhone/editPhone")
   },
   //修改属性
   chang(e) {
@@ -77,8 +73,22 @@ Page({
     })
   },
   //提交
-  onClick() {
+  onSubmit() {
+    let data = {
+      nickname: this.data.nickname,
+      avatar_url: this.data.avatar_url,
+      gender: this.data.gender
+    }
+    Actions.doPost({
+      url: URLs.USER_SAVE,
+      data: data
+    }).then(res=>{
 
+      console.log(res,"uuuuuuuu")
+
+    }).catch(error=>{
+
+    })
   }
 
 })

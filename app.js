@@ -1,5 +1,5 @@
 import * as Actions from "./utils/net/Actions.js";
-import {goToPage} from "./utils/upload/public.js";
+import { goToPage, toast} from "./utils/upload/public.js";
 //app.js
 App({
   onLaunch: function () {
@@ -54,6 +54,7 @@ App({
   },
   globalData: {
     userInfo: null,
-    goToPage: goToPage
+    goToPage: goToPage,
+    toast: toast
   }
 })

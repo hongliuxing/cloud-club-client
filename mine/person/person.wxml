@@ -1,12 +1,12 @@
 <view class="summary">
   <view>
-    <image src="{{avatarUrl ?avatarUrl : '../../images/page/default-avatar.png'}}" class="avatar" />
+    <image src="{{avatar_url ?avatar_url : '../../images/page/default-avatar.png'}}" class="avatar" />
   </view>
 </view>
 <view class='input'>
   <view class='font'>
     <view class='name'>昵称</view>
-    <input placeholder='我是谁？' value='{{nickName}}' disabled></input>
+    <input placeholder='我是谁？' value='{{nickname || ""}}' disabled></input>
   </view>
   <view class='bottomBtn'>
     <button open-type='getUserInfo' bindgetuserinfo="bindgetuserinfo">获取头像/昵称</button>
@@ -17,7 +17,7 @@
   <view class='input'>
     <view class='font'>
       <view class='name'>性别</view>
-      <input disabled value="{{gender=='0'?'小姐姐':'小哥哥'}}"></input>
+      <input disabled value="{{gender==0?'小姐姐':'小哥哥'}}"></input>
     </view>
     <view class='sexBtn'>
       <image src="../../images/page/more_unfold.png" class="more"></image>
@@ -25,10 +25,10 @@
   </view>
 </picker>
 
-<view class='input'>
+<view class='input' bindtap='goTo'>
   <view class='font'>
     <view class='name' >手机</view>
-    <input  value='{{phoneNum}}' disabled></input>
+    <input placeholder='请设置手机号码'  value='{{phoneNum}}' disabled></input>
   </view>
   <view class='sexBtn'>
       <image src="../../images/page/more.png" class="more"></image>
