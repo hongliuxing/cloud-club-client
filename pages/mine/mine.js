@@ -17,13 +17,7 @@ Page({
    */
   onLoad: function(options) {
     that = this;
-    let data = wx.getStorageSync("userInfo")
-    if (data) {
-      that.setData({
-        nickName: data.nickName,
-        avatarUrl: data.avatarUrl
-      })
-    }
+
   },
   //修改信息页面
   goToUser(){
@@ -44,7 +38,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    let data = wx.getStorageSync("userInfo")
+    if (data) {
+      that.setData({
+        nickName: data.nickName,
+        avatarUrl: data.avatarUrl
+      })
+    }
   },
 
   /**
