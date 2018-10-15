@@ -28,7 +28,7 @@
 <view class='input' bindtap='goTo'>
   <view class='font'>
     <view class='name' >手机</view>
-    <input placeholder='请设置手机号码'  value='{{phoneNum}}' disabled></input>
+    <input placeholder='请设置手机号码'  value='{{telephone || ""}}' disabled></input>
   </view>
   <view class='sexBtn'>
       <image src="../../images/page/more.png" class="more"></image>

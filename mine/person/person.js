@@ -37,8 +37,10 @@ Page({
     that.setData({
       gender: data.gender,
       avatar_url: data.avatar_url,
-      nickname: data.nickname
+      nickname: data.nickname,
+      telephone: data.telephone
     })
+    wx.removeStorageSync("phone")
   },
 
   /**
@@ -51,7 +53,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let phone = wx.getStorageSync("phone");
+    if (phone){
+      that.setData({
+        telephone: phone
+      })
+    }
   },
   //获取头像
   bindgetuserinfo(e) {
@@ -64,7 +71,7 @@ Page({
   },
   //跳转
   goTo() {
-    app.globalData.goToPage("./editPhone/editPhone")
+    app.globalData.goToPage("./editPhone/editPhone?phone=" + this.data.telephone)
   },
   //修改属性
   chang(e) {
@@ -83,9 +90,9 @@ Page({
       url: URLs.USER_SAVE,
       data: data
     }).then(res=>{
-
-      console.log(res,"uuuuuuuu")
-
+      wx.navigateBack({
+        delta:1
+      })
     }).catch(error=>{
 
     })

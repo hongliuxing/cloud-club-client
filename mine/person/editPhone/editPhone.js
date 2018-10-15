@@ -22,6 +22,11 @@ Page({
    */
   onLoad: function(options) {
     that = this;
+    if (options.phone){
+      this.setData({
+        telephone: options.phone
+      })
+    }
   },
   //手机号
   onCallPhone(e) {
@@ -98,9 +103,10 @@ Page({
       url: URLs.USER_PHONE_SAVE,
       data: data
     }).then(res => {
-      that.setData({
-        smsToken: res.data.info
+      wx.navigateBack({
+        delta:1
       })
+      wx.setStorageSync("phone", that.data.telephone)
     }).catch(error => {
 
     })
