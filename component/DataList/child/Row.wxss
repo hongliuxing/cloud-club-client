@@ -29,8 +29,9 @@
  */
 .list-row{
     /* background-color: royalblue; */
-    margin-bottom: 60rpx;
-    
+    margin-bottom: 40rpx;
+    padding-bottom: 15rpx;
+    border-bottom: 1rpx solid #eee;
 }
 /** 新闻行: 列表顶部 **/
 .list-top{
@@ -50,7 +51,7 @@
 }
 .list-top-club{
     font-size: 26rpx;
-    font-weight: 600;
+    font-weight: 700;
     color: #697077;
     height: 45rpx;
     line-height: 45rpx;
@@ -70,22 +71,52 @@
 /** 新闻行: 标题 **/
 .news-title{
     font-size: 28rpx;
-    font-weight: 600;
+    font-weight: 700;
     color: #4D5762;
     margin-bottom: 15rpx;
     letter-spacing: 2rpx;
 }
+/** 新闻行: 活动周期 **/
+.news-period{
+    font-size: 24rpx;
+    color: #98A4AE;
+    margin: 10rpx 0;
+    display: flex;
+    flex-direction: row;
+}
+.news-period-label{
+    font-size: 22rpx;
+    padding: 3rpx 10rpx;
+    background-color: #05A2E9;
+    border-radius: 10rpx;
+    color: #FFF;
+    margin-right: 15rpx;
+}
+.news-timing{
+    /* width: 180rpx; */
+    display: inline-block;
+    padding: 0 15rpx;
+    height: 38rpx;
+    line-height: 38rpx;
+    border-radius: 10rpx;
+    /* background-color: rgb(143, 94, 192); */
+    font-size: 25rpx;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 8rpx;
+}
 /** 新闻行: 内容 **/
 .news-content{
-    font-size: 27rpx;
+    font-size: 30rpx;
     letter-spacing: 5rpx;
-    color: #9ea1a5;
+    color: #868a8f;
     word-break: break-all;
     text-overflow: ellipsis;
     display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/
     -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
     -webkit-line-clamp: 3; /** 显示的行数 **/
     overflow: hidden;  /** 隐藏超出的内容 **/
+    margin-top: 20rpx;
     margin-bottom: 30rpx;
 }
 /** 新闻行: 图片部分 **/
@@ -104,5 +135,27 @@
 }
 /** 新闻行: 列表底部按钮 **/
 .list-btns{
-    
+    display: flex;
+    flex-direction: row;
+    /* height: 50rpx;
+    line-height: 50rpx; */
+    margin-top: 30rpx;
+    color: #8F99A1;
+    justify-content: space-between;
+}
+.list-btn{
+    display: flex;
+    flex-direction: row;
+}
+.list-icon{
+    width: 50rpx;
+    height: 50rpx;
+    vertical-align: middle;
+}
+.list-icon-text{
+    height: 50rpx;
+    line-height: 60rpx;
+    font-size: 24rpx;
+    letter-spacing: 2rpx;
+    vertical-align: middle;
 }

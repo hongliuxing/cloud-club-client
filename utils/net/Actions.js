@@ -8,32 +8,81 @@ export const login = plugin.login;
 export const doPost = plugin.doPost;
 export const doGet = plugin.doGet;
 
-// 2. 上传相关
-const upload = (url, filepath) => new Promise((resolve, reject) => {
+/**
+ * 上传通用工具
+ * 涵盖签名获取 -> 上传至OSS
+ */
+const uploadUtil = (url, filepath) => new Promise((resolve, reject) => {
+    if (!filepath || filepath.length < 9) {
+        return wx.showModal({
+            title: '图片错误',
+            content: '请重试',
+            showCancel: false,
+        });
+    }
     // filepath is not null
     doGet({
         url,
         data: { filepath: filepath },
         // verifyLogin: false // 是否验证登陆的参数，临时用
     }).then(result => {
+        // 获得签名成功后执行上传任务
         console.log('上传接口结果：', result);
-        resolve(result);
+        const { url, key, policy, OSSAccessKeyId, signature } = result.data.formData;
+        return uploadToAlioss({
+            filepath, url, key, policy, OSSAccessKeyId, signature
+        });
+    }).then(uploadRes => {
+        // 上传结果
+        if (uploadRes.err) return reject({ err: new Error('上传图片错误', uploadRes) });
+        resolve(uploadRes);
     }).catch(err => {
         console.log('上传接口错误：', err);
         reject(err);
     }); // doGet
 });
 
-// 上传通用事件
+/**
+ * 代码不要太长，所以xcx上传部分独立出来了
+ */
+const uploadToAlioss = ({ filepath, url, key, policy, OSSAccessKeyId, signature }) => new Promise((resolve, reject) => {
+    // 调用小程序的上传接口
+    wx.uploadFile({
+        url: url,
+        filePath: filepath, // 这个filePath是通过chooseImage选择到的那个路径
+        name: 'file', //必须填file
+        // 这里必须这么填
+        formData: {
+            'key': key,
+            'policy': policy,
+            'OSSAccessKeyId': OSSAccessKeyId,
+            'signature': signature,
+            'success_action_status': '200',
+        },
+        success: function (res) {
+            if (res.statusCode != 200) {
+                return reject(new Error('网络错误:', res));
+            }
+            console.log('上传图片成功', res)
+            resolve(Object.assign({ pic: url + '/' + key }, res));
+        },
+        fail: function (err) {
+            // err.wxaddinfo = aliyunServerURL;
+            reject(new Error('上传错误:', err));
+        },
+    }) // wx.uploadFile
+});
+
+// 对外暴露的上传通用事件
 export const uploadSign = {
     // 手持学生证或身份证上传签名
-    pid: (filepath) => upload(URLs.UPLOAD_CLUB_PID, filepath),
+    pid: (filepath) => uploadUtil(URLs.UPLOAD_CLUB_PID, filepath),
     // 社团合影上传签名
-    clubApply: (filepath) => upload(URLs.UPLOAD_CLUBAPPLY, filepath),
+    clubApply: (filepath) => uploadUtil(URLs.UPLOAD_CLUBAPPLY, filepath),
     // 社团logo上传签名
-    clubLogo: (clubid, filepath) => upload(URLs.UPLOAD_CLUB_LOGO(clubid), filepath),
+    clubLogo: (clubid, filepath) => uploadUtil(URLs.UPLOAD_CLUB_LOGO(clubid), filepath),
     // 社团背景图上传签名
-    clubBgimg: (clubid, filepath) => upload(URLs.UPLOAD_CLUB_BGIMG(clubid), filepath),
+    clubBgimg: (clubid, filepath) => uploadUtil(URLs.UPLOAD_CLUB_BGIMG(clubid), filepath),
     // 社团活动图的签名
-    activityPic: (filepath) => upload(URLs.UPLOAD_CLUB_ACTIVITY_PIC, filepath)
+    activityPic: (filepath) => uploadUtil(URLs.UPLOAD_CLUB_ACTIVITY_PIC, filepath)
 };

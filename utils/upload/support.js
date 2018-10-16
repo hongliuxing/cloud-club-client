@@ -42,13 +42,6 @@ const uploadFile = (filePath, signAPI) => new Promise((resolve, reject) => {
             showCancel: false,
         });
     }
-    if (typeof signAPI !== 'function'){
-        return wx.showModal({
-            title: '未添加签名函数',
-            content: '请重试',
-            showCancel: false,
-        });
-    }
 
     console.log('开始上传图片…');
     // 开始进行签名获取

@@ -1,11 +1,22 @@
-<view id='{{listId}}' class='news-list'
- style='min-height: {{minHeight}}px;padding: {{padding.top}}rpx {{padding.right}}rpx {{padding.bottom}}rpx {{padding.left}}rpx;'
+<view id='{{listId}}' class='news-list' wx:if="{{active}}"
+ style='min-height: {{minHeight}}px;padding: {{padding.top}}rpx {{padding.right}}rpx {{padding.bottom}}rpx {{padding.left}}rpx;background-color: {{bgcolor}};'
 >
-    <view wx:if="{{hasTimeline}}" class="timeline" style="margin-top:-{{padding.top-1}}rpx;"></view>
-    <block wx:for="{{rows}}" wx:for-index="idx" wx:for-item="item" wx:key="title">
-        <row m-left="{{hasTimeline?50:0}}" 
-            item="{{item}}"
-            colors="{{item.type==='date'?colors:[]}}"
-        ></row>
+    <block wx:if="{{rows.length > 0}}">
+        <view wx:if="{{hasTimeline}}" class="timeline" style="margin-top:-{{padding.top-1}}rpx;"></view>
+        <block wx:for="{{rows}}" wx:for-index="idx" wx:for-item="item" wx:key="title">
+            <row m-left="{{hasTimeline?50:0}}" 
+                item="{{item}}"
+                colors="{{item.type==='date'?colors:[]}}"
+                bindRowTap="onRowTap"
+            ></row>
+        </block>
+    </block>
+    <block wx:else>
+        <view class='nomore' wx:if="{{showEmpty && isQueryed}}">
+            <image class='nomore-pic' mode='aspectFit' src='./icon/noMore.png'></image>
+            <view class='nomore-text'>
+                未找到任何活动
+            </view>
+        </view>
     </block>
 </view>

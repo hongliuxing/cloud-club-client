@@ -1,0 +1,133 @@
+.container{
+    border-top: 1rpx solid #ddd;
+    height: 100%;
+    
+    
+}
+.news{
+    background-color: #FFF;
+    padding: 50rpx 60rpx 30rpx;
+}
+/** top **/
+.top{
+    width: 100%;
+    min-height: 100rpx;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 50rpx;
+}
+.top-img{
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 10rpx;
+    box-shadow: 6rpx 6rpx 0px #eee;
+    position: absolute;
+}
+.top-title{
+    margin-left: 120rpx;
+    padding-left: 30rpx;
+    border-left: 10rpx solid steelblue;
+    font-weight: 700;
+}
+/** subhead **/
+.subhead{
+    font-size: 26rpx;
+    display: flex;
+    flex-direction: row;
+    color: #bbb;
+}
+.subhead-left{
+    width: 60%;
+}
+.left-li{
+    display: flex;
+    flex-direction: row;
+    height: 30rpx;
+    line-height: 30rpx;
+    margin: 10rpx 0;
+}
+.yuan{
+    width: 20rpx;height: 20rpx;
+    border-radius: 50%;
+    background-color: #05A2E9;
+    margin-right: 25rpx;
+}
+
+/** content **/
+.content{
+    margin-top: 40rpx;
+    font-size: 30rpx;
+    color: #686868;
+    letter-spacing: 5rpx;
+    /* text-indent: 66rpx; */
+}
+.imgs{
+    margin: 50rpx 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.pic-item{
+    background-color: #ddd;
+    width: 190rpx;
+    height: 190rpx;
+    margin: 0 15rpx 15rpx 0;
+    border-radius: 5rpx;
+}
+.news-time{
+    font-size: 23rpx;
+    color: #bbb;
+    margin-bottom: 15rpx;
+}
+/** 新闻行: 列表底部按钮 **/
+.list-btns{
+    display: flex;
+    flex-direction: row;
+    /* height: 50rpx;
+    line-height: 50rpx; */
+    padding: 10rpx 0;
+    border-top: 1rpx solid #eee;
+    color: #8F99A1;
+}
+.news-period{
+    font-size: 24rpx;
+    color: #98A4AE;
+    margin: 10rpx 0;
+    display: flex;
+    flex-direction: row;
+}
+.news-period-label{
+    font-size: 22rpx;
+    padding: 3rpx 10rpx;
+    background-color: #05A2E9;
+    border-radius: 10rpx;
+    color: #FFF;
+    margin-right: 15rpx;
+}
+/****/
+.list-icon{
+    width: 50rpx;
+    height: 50rpx;
+    vertical-align: middle;
+}
+.list-icon-text{
+    height: 50rpx;
+    line-height: 60rpx;
+    font-size: 24rpx;
+    letter-spacing: 2rpx;
+    vertical-align: middle;
+}
+/****/
+.interval{
+    width: 100%;
+    height: 30rpx;
+    background-color: #F1F1F1;
+    box-shadow:-5px 5px 0px #eee inset;
+}
+/****/
+.moreList{
+    padding: 30rpx;
+    font-size: 30rpx;
+    color: #05A2E9;
+}

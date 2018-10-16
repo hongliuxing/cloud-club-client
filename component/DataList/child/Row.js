@@ -18,8 +18,21 @@ Component({
                 }
                 // 初始化图片数量
                 this.setData({
-                    pics: Array(newVal.pic_count).fill({})
+                    pics: Array(newVal.pic_count).fill(0)
                 });
+                // 加载图片
+                // console.log('imgs::  ',newVal);
+                if ( newVal && newVal.imgs){
+                    this.setData({
+                        pics: newVal.imgs
+                    });
+                    // 将图片对象数组, 解析为简单的图片字符串数组
+                    let previewArr = newVal.imgs.map(img => img.pic_url);
+                    this.setData({
+                        previewArr: previewArr
+                    });
+                }
+                
             }
         },
         colors: {
@@ -40,19 +53,58 @@ Component({
      */
     data: {
         dateColor: "red",
-        pics: []
+        pics: [],
+        timingColor: "#a6a6a6"
     },
     /**
      * 加载事件
      */
     ready() {
-        
+        // console.log('Row.js...', this.data.item.imgs);
+        this.setData({
+            timingColor: this.getTimingColor(this.data.item.timing_text)
+        });
     },
 
     /**
      * 组件的方法列表
      */
     methods: {
-
+        onTap(e){
+            let that = this;
+            // console.log('新闻点击...', that.data.item);
+            that.triggerEvent('RowTap', {item: that.data.item}, { bubbles: true });
+            // this.data.item.onTap(e);
+        },
+        onProview(e){
+            // console.log(e.currentTarget.dataset.index);
+            // e.stopPropagation();
+            var index = e.currentTarget.dataset.index;
+            var imgArr = this.data.previewArr;
+            // console.log(imgArr);
+            wx.previewImage({
+                current: imgArr[index],
+                urls: imgArr,
+                success: function(res) {},
+                fail: function(res) {},
+                complete: function(res) {},
+            })
+        },
+        /**
+         * 获取表示时机的背景色
+         */
+        getTimingColor(timing_text){
+            if (timing_text == '活动总结'){
+                return "#8F5EC0";
+            } else if (timing_text == '活动即将开始') {
+                return "#DA2A14";
+            } else if (timing_text == '活动进行中') {
+                return "#05A2E9";
+            } else if (timing_text == '已结束') {
+                return "#bbbbbb";
+            }else{
+                return "#FFF";
+            }
+        }
     }
 })

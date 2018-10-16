@@ -3,5 +3,13 @@
     <top-channel btns="{{topBtns}}" is-truncation="{{false}}"></top-channel>
 </view>
 <view>
-    <news-list rows="{{ newsListData }}"></news-list>
+    <block wx:for="{{ tabController }}" wx:for-index="idx" wx:for-item="item" wx:key="data.id">
+    
+        <list-panel active="{{item.data.id === currentTabId}}" 
+            rows="{{ item.list }}" 
+            min-height="{{tabHeight}}"
+            bean="{{item}}"
+            is-queryed="{{item.isQueryed}}"
+            ></list-panel>
+    </block>
 </view>

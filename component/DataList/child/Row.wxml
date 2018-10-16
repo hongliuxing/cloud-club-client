@@ -9,6 +9,7 @@
 <block wx:else>
     <view class='list-row'
     style='margin-left:{{mLeft}}rpx;'
+    bindtap='onTap'
     >
         <view class="list-top"><!-- 社团部分 -->
             <image class='list-top-logo' mode='scaleToFill' src='{{item.logo_url}}'></image>
@@ -22,14 +23,34 @@
         <view class="news-title">
             {{item.title}}
         </view>
+        <view class="news-timing" style='background-color:{{timingColor}};'>
+            {{item.timing_text}}
+        </view>
+        <view class="news-period">
+            <view class='news-period-label'>开始</view>{{item.brief_start}}
+        </view>
+        <view class="news-period">
+            <view class='news-period-label'>结束</view>{{item.brief_end}}
+        </view>
         <view class="news-content">
             {{item.content}}
         </view>
         <view class="news-pics">
-            <block wx:for="{{pics}}" wx:key="*this">
-                <image class='pic-item' style=''></image>
+            <block wx:for="{{pics}}" wx:key="*this" wx:for-item="pic"  wx:for-index="idx" >
+                <image class='pic-item' style='' catchtap='onProview' data-index="{{idx}}" src="{{ pic.pic_url }}"></image>
             </block>
         </view>
-        <view class="list-btns"></view>
+        <view class="list-btns">
+            <view class='list-btn'>
+                <image class="list-icon" src='../icon/fire-2.png'></image>
+                <view class='list-icon-text'>{{item.heat}}</view>
+            </view>
+            <view class='list-btn'>
+                <image class="list-icon" src='../icon/comment.png'></image>
+            </view>
+            <view class='list-btn'>
+                <image class="list-icon" style='width:40rpx;height:40rpx;margin-top:5rpx;' src='../icon/share-1.png'></image>
+            </view>
+        </view>
     </view>
 </block>

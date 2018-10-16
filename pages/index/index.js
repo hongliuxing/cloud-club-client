@@ -1,5 +1,6 @@
 import * as Actions from "../../utils/net/Actions.js";
 import * as URLs from "../../utils/net/urls.js";
+import DataListController from "../../utils/comps/DataListController.js";
 //获取应用实例
 const app = getApp()
 
@@ -12,7 +13,8 @@ Page({
         newsListData: [],
         // 标签数据控制器
         currentTabId: null,
-        tabController: null
+        tabController: null,
+        tabHeight: 0
     },
     //事件处理函数
     bindViewTap: function() {
@@ -43,8 +45,10 @@ Page({
             return;
         }
         let that = this;
+        
         console.log('点击的标签页id是:', club_id);
         // tab切换后, 设置当前页面的 tabId
+        // 激活新的标签页
         that.setData({
             currentTabId: club_id
         });
@@ -59,6 +63,7 @@ Page({
                 newsListData: currentTab.list
             });
         }
+        // wx.hideLoading();
     },
     /**
      * 加载社团,并填充标签页按钮
@@ -91,45 +96,78 @@ Page({
             that.setData({
                 topBtns: topBtns
             });
+            // 设置 ListPanel 的最小高度
+            let { windowHeight, windowWidth } = wx.getSystemInfoSync();
+            // px = rpx / 750 * windowWidth
+            that.setData({
+                tabHeight: windowHeight - (110 / 750 * windowWidth)
+            });
             // 添加标签控制器的初始数据
-            let tc = new Map();
+            // let tc = new Map();
+            let tc = [];
+
+            let tabMapper = new Map();
+            let tc_index = 0;
+            // let now = new Date(); // 今天
             for(let club of clubs) {
+
                 // 这里通过 社团id 作为标签页的key
                 // 所指向的值,是一个标签页控制的对象(这个对象很有意思)
-                tc.set(club.id, {
+                tc.push(new DataListController({
                     data: {
                         id: club.id // 记录了标签页id
                     },
-                    list: [], // 当前标签页的list数据
-                    more: true, // 是否有更多数据(处理下拉刷新时一直跳的bug)
-                    pagenum: 0, // 默认初始页面是0, 但实际上页面是从1开始的,因此每次都调用nextPagenum方法
-                    nextPagenum: function(){ // 要加载的下一个数据时的页码
-                        this.pagenum++;
-                        return this.pagenum;
+                    tabIndex: tc_index,
+                    onTap: function (e) {
+                        // console.log('啊啊啊啊啊啊啊啊啊啊啊啊啊啊', e.detail.item);
+                        // 该数据的点击事件处理
+                        wx.navigateTo({
+                            url: '/pages/activity/info/info?id=' + e.detail.item.id
+                        })
                     },
-                    push: function(arr){ // 这里将接口中获取的 数组 加载到标签数据中的list
-                        this.list = this.list.concat(arr);
-                        // console.log('push list: ', this.list);
-                        // console.log('push arr: ', arr);
+                    push: function (arr) { // 这里将接口中获取的 数组 加载到标签数据中的list
                         // 如果已经没有数据时,调整more为false
-                        if(!Array.isArray(arr) || arr.length === 0 ){
+                        if (!Array.isArray(arr) || arr.length === 0) {
+                            console.log('没数据了...');
+                            this.isQueryed = true; // 已经查询过一次了再判断是否显示空图片
                             this.more = false;
+
+                            let queryKey = 'tabController[' + this.tabIndex + '].isQueryed';
+                            let moreKey = 'tabController[' + this.tabIndex + '].more';
+                            that.setData({
+                                [queryKey]: this.isQueryed,
+                                [moreKey]: this.more
+                            });
+                        } else {
+                            this.list = this.list.concat(this.addDateLabel(arr));
+                            this.isQueryed = true; // 已经查询过一次了再判断是否显示空图片
+
+                            let queryKey = 'tabController[' + this.tabIndex + '].isQueryed';
+                            let listKey = 'tabController[' + this.tabIndex + '].list';
+                            that.setData({
+                                [listKey]: this.list,
+                                [queryKey]: this.isQueryed
+                            });
                         }
-                        that.setData({ // 设置newsListData,填充list组件
-                            newsListData: this.list
-                        });
-                        //console.log('that.data.newsListData : ', that.data.newsListData);
-                    }
-                });
-            }
-            // 第一次初始化tabController
-            that.setData({
-                tabController: tc
-            });
+                    }// func: push
+                }));// new DataListController
+
+                tabMapper.set(club.id, tc_index++);
+            } // for(let club of clubs)
+            console.log('【TC】: :: ', tc);
             // 设置 "全部社团" 为当前的页面的默认标签id
             that.setData({
                 currentTabId: 'all'
             });
+            // 设置 "全部社团" 为当前激活的 标签指定的Panel
+            // tc.get('all').active = true;
+            // 第一次初始化tabController
+            that.setData({
+                tabController: tc,
+                tabMapper: tabMapper
+            });
+            // console.log('panels: ', Array.from(tc.values()));
+            
             // 手动加载第一次的"全部社团"中的数据
             that.loadActivityList();
         }).catch(err => {
@@ -141,7 +179,8 @@ Page({
      */
     getCurrentTabData(){
         let tabId = this.data.currentTabId;
-        return this.data.tabController.get(tabId);
+        // return this.data.tabController.get(tabId);
+        return this.data.tabController[ this.data.tabMapper.get(tabId) ];
     },
     /**
      * 加载活动列表
@@ -150,21 +189,29 @@ Page({
     loadActivityList() {
         let that = this;
         let currentTab = that.getCurrentTabData(); // 获取当前 标签页数据对象
+        console.log('currentTabcurrentTab: ', currentTab);
         // 如果是全部标签, 则将社团id置空, 因为服务器对于想要获取所有的认证时,id需要是空字符串
         let club_id = currentTab.data.id === 'all' ? '' : currentTab.data.id;
         let pagenum = currentTab.nextPagenum();
+
+        // 加载框
+        wx.showLoading({
+            title: '正在运送社团活动...', mask: true
+        })
 
         // 返回活动查询结果
         return Actions.doGet({
             url: URLs.ACTIVITY_CONCERNED_LIST,
             data: { club_id, pagenum }
         }).then(res => {
+            wx.hideLoading();
             if(res && !res.data.err && res.data.list){
                 console.log('社团活动列表:', res);
                 // 考虑如何分标签及保存的数据
                 currentTab.push(res.data.list);
             }
         }).catch(err => {
+            wx.hideLoading();
             console.log('社团活动列表 err: ', err);
         });
     },

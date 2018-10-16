@@ -1,0 +1,58 @@
+<!--活动信息-->
+<view class="container">
+
+    <!--新闻-->
+    <view class='news'>
+        <!--顶部标题 - logo-->
+        <view class='top'>
+            <image class='top-img' mode='aspectFill' src='{{activity.logo_url}}'></image>
+            <view class='top-title'>
+                {{activity.title}}
+            </view>
+        </view>
+        <!--副标题部分-->
+        <view class='subhead'>
+            <view class='subhead-left'>
+                <view class='left-li'><view class='yuan'></view>{{activity.school}}</view>
+                <view class='left-li'><view class='yuan'></view>{{activity.club_title}}</view>
+            </view>
+        </view>
+        <!--内容-->
+        <view class='content'>
+            {{activity.content}}
+        </view>
+        <!--图片部分-->
+        <view class='imgs'>
+            <block wx:for="{{activity.imgs}}" wx:key="*this" wx:for-item="pic"  wx:for-index="idx" >
+                <image class='pic-item' style='' catchtap='onProview' data-index="{{idx}}" src="{{ pic.pic_url }}"></image>
+            </block>
+        </view>
+        <view class='news-time'>
+            <view class="news-period">
+                <view class='news-period-label'>开始</view>{{activity.brief_start}}
+            </view>
+            <view class="news-period">
+                <view class='news-period-label'>结束</view>{{activity.brief_end}}
+            </view>
+        </view>
+        <view class="list-btns">
+            <image class="list-icon" src='/images/page/fire-2.png'></image>
+            <view class='list-icon-text'>{{activity.heat}}</view>
+        </view>
+    </view>
+
+    <view class='interval'></view>
+
+    <!--活动信息-->
+    <view class='others'>
+        <view class='moreList'>更多活动 ↓</view>
+        <list-panel active="{{true}}" 
+            rows="{{ dataListController.list }}" 
+            has-timeline="{{false}}"
+            bgcolor="#FFFFFF"
+            bean="{{dataListController}}"
+            show-empty="{{false}}"
+        ></list-panel>
+    </view>
+
+</view>
