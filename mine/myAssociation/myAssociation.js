@@ -1,18 +1,30 @@
+import * as Actions from "../../utils/net/Actions.js";
+import * as URLs from "../../utils/net/urls.js";
 let app = getApp();
+let that;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    more:false,//临时使用
+    more:false,//临时使用,
+    pagenum:1
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    that = this;
+    Actions.doGet({
+      url: URLs.CLUB_DETAIL_LIST,
+      data: {pagenum:that.data.pagenum}
+    }).then(res=>{
+      console.log(res,"888888")
+    }).catch(error=>{
 
+    })
   },
   //前往社团入驻
   associationEnter(){

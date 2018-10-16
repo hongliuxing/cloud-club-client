@@ -1,8 +1,8 @@
 <view class='listItem {{image?"padd":"imagePadd"}}' style="height:{{height}}rpx">
   <view class='context'>
-    <view wx:if="{{image}}" class='border' style="width:{{height}}rpx;height:{{height}}rpx">
+    <image wx:if="{{image}}" src="{{imageUrl}}" style="width:{{height}}rpx;height:{{height}}rpx">
 
-    </view>
+    </image>
     <view class='leftContext' style="margin-left:{{image?30:null}}rpx;">
       <text class='{{image?"title":"name"}}'>{{name}}</text>
       <text class='{{image && !istime?"employee":"time"}}'>{{time}}</text>

@@ -50,6 +50,8 @@ export const SCHOOL_PROVINCE_LIST = HOST + "area/province-list";
 export const SCHOOL_CITY_LIST = HOST + "area/city-list";
 // 新增学校设置申请
 export const SCHOOL_SETTING = HOST + "school/setting";
+// 根据城市code查询所对应的学校列表
+export const SCHOOL_CITYLIST = HOST + "school/city/list";
 
 /***************************************
  * 

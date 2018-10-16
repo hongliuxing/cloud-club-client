@@ -1,51 +1,49 @@
 {
-    "pages": [
+  "pages": [
+      "mine/myAssociation/joinGroup/joinGroup",
         "pages/mine/mine",
-	    	"pages/index/index",
-        "mine/myAssociation/associationEnter/associationEnter",
-        "mine/myAssociation/joinGroup/joinGroup",
-        "pages/association/association",
         "mine/myAssociation/myAssociation",
-        "mine/luckExplain/luckExplain",
-        "mine/sportExplain/sportExplain",
-        "mine/editSchool/editSchool",
-        "mine/person/person",
 
-        
-        "demo/uploadtest/uploadtest",
-        "pages/guide/guide",
-        "pages/welcome/welcome"
+    "mine/editSchool/editSchool",
+    "pages/index/index",
+    "mine/myAssociation/associationEnter/associationEnter",
+  
+    "pages/association/association",
 
-
-    ],
-    "window": {
-        "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "#fff",
-        "navigationBarTitleText": "社有云社团",
-        "navigationBarTextStyle": "black"
-    },
-    "tabBar": {
-        "selectedColor": "#01b2bc",
-        "list": [
-            {
-                "pagePath": "pages/index/index",
-                "iconPath": "images/activity-1.png",
-                "selectedIconPath": "images/activity-2.png",
-                "text": "活动"
-            },
-            {
-                "pagePath": "pages/association/association",
-                "iconPath": "images/cloud-1.png",
-                "selectedIconPath": "images/cloud-2.png",
-                "text": "云社团"
-            },
-            {
-                "pagePath": "pages/mine/mine",
-                "iconPath": "images/my-1.png",
-                "selectedIconPath": "images/my-2.png",
-                "text": "我的"
-            }
-        ]
-    }
-
+    "mine/luckExplain/luckExplain",
+    "mine/sportExplain/sportExplain",
+    "mine/person/person",
+    "demo/uploadtest/uploadtest",
+    "pages/guide/guide",
+    "pages/welcome/welcome"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "社有云社团",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "selectedColor": "#01b2bc",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/activity-1.png",
+        "selectedIconPath": "images/activity-2.png",
+        "text": "活动"
+      },
+      {
+        "pagePath": "pages/association/association",
+        "iconPath": "images/cloud-1.png",
+        "selectedIconPath": "images/cloud-2.png",
+        "text": "云社团"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "iconPath": "images/my-1.png",
+        "selectedIconPath": "images/my-2.png",
+        "text": "我的"
+      }
+    ]
+  }
 }

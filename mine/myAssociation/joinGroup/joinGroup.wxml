@@ -15,9 +15,13 @@
 
 <view class='list' style="margin-top:{{table===1?0:40}}rpx;">
   <block wx:if="{{table===1}}">
-    <association-list height="140" time="1" name="B-Box社" isBtn="{{true}}" admission="{{false}}" />
+    <view wx:for="{{canapplyList}}"  wx:key="index" >
+        <association-list imageUrl="{{item.logo_url}}" height="150" time="{{item.membership}}" name="{{item.title}}" isBtn="{{true}}" admission="{{false}}" />
+    </view> 
   </block>
   <block wx:if="{{table===2}}">
-      <association-list history="{{true}}" height="160" time="2018/9/10" name="B-Box社" admission="{{false}}" status="-1"  istime="{{true}}" />
+      <view>
+        <association-list history="{{true}}" height="160" time="2018/9/10" name="B-Box社" admission="{{false}}" status="-1"  istime="{{true}}" />
+     </view> 
   </block>
 </view>

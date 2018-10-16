@@ -14,7 +14,7 @@ Page({
     value: "修改电话",
     schoolData: {},
     nickName: "",
-    gender: null,
+    gender: 1,
     sexArr: ['小姐姐', "小哥哥"],
     mobile: "",
     detail: "",
@@ -35,7 +35,7 @@ Page({
     that = this;
     let data = JSON.parse(options.userinfo);
     that.setData({
-      gender: data.gender,
+      gender: data.gender || 0,
       avatar_url: data.avatar_url,
       nickname: data.nickname,
       telephone: data.telephone

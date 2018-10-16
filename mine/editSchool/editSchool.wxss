@@ -3,6 +3,64 @@
   box-sizing: border-box;
 }
 
+.selectcity {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: flex-end;
+  z-index: 5;
+}
+
+.mask {
+  background: none;
+  padding: 0 30rpx;
+}
+
+.selectcity >view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background: #f4f4f4;
+  padding-bottom: 20rpx;
+  transform: translateY(300px);
+}
+.button {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  background: #fff;
+  font-size: 32rpx;
+}
+
+.button>text {
+  padding: 20rpx 30rpx;
+  box-sizing: border-box;
+}
+
+.button>text:active {
+  background: #f4f4f4;
+}
+
+.button>text:nth-child(2) {
+  color: #66d6d7;
+}
+
+.button>text:nth-child(1) {
+  color: #808080;
+}
+.childView{
+  display: flex;
+  justify-content: center;
+  line-height: 50px;
+  font-size: 28rpx;
+}
+
 ._input-class {
   font-weight: normal !important;
   color: #b9b9b9 !important;
@@ -10,7 +68,7 @@
 
 .image {
   display: flex;
-  flex:1;
+  flex: 1;
   flex-direction: row;
   justify-content: space-between;
   margin-top: 50rpx;
@@ -21,26 +79,30 @@
   display: flex;
   flex-direction: column;
 }
-.image_right{
+
+.image_right {
   display: flex;
   flex-direction: column;
-  flex:1;
+  flex: 1;
   padding: 0 20rpx;
   box-sizing: border-box;
   margin-top: -20rpx;
 }
-.uploadCard{
+
+.uploadCard {
   width: auto;
   height: 500rpx;
 }
-.card{
+
+.card {
   width: 200rpx;
   text-align: center;
   font-size: 30rpx;
-  color:#a8a8a8;
+  color: #a8a8a8;
   font-weight: bold;
-  letter-spacing:8px; 
+  letter-spacing: 8px;
 }
+
 .look {
   color: #3881d8;
   font-size: 26rpx;
@@ -60,17 +122,25 @@
   color: #898989;
   margin-left: 3rpx;
 }
-.bottom{
+
+.bottom {
   padding: 0 30rpx;
   box-sizing: border-box;
-  margin-top:40rpx;
+  margin-top: 40rpx;
 }
-.btn{
+
+.btn {
   border-radius: 10rpx;
-  color:#fff;
+  color: #fff;
   letter-spacing: 8px;
   box-sizing: border-box;
 }
-.border{
-  border:2rpx solid #b9b9b9;
+
+.border {
+  border: 2rpx solid #b9b9b9;
+}
+.canvas{
+  position: absolute;
+  left:-3000px;
+  top:-3000px;
 }

@@ -1,25 +1,54 @@
-<view class='body' >
-  <input-item title="城市" value="北京" bind:click="selectCity"/>
-  <input-item title="学校" value="xxxxxxx大学" right="{{false}}" bind:click="selectSchool"/>
-  <input-item title="专业" value="计算机科学与技术" right="{{false}}" go="{{false}}" diabled="{{false}}" _input-class="_input-class" 
-  bind:change="onChange" />
-  <input-item title="学历/职务" value="本科" right="{{false}}" spac="2" _input-class="_input-class" bind:click="selectDuty"/>
-  <input-item title="姓名" value="{{name}}"  bind:change="onChange"  plac="我是谁?" right="{{false}}" go="{{false}}" diabled="{{false}}" _input-class="_input-class" name="name"/>
+<view class='body'>
+
+  <input-item title="城市" value="{{proCity}}" bind:click="openCity" />
+
+  <view class="selectcity" wx:if="{{visable}}"  animation="{{animationMask}}">
+    <view animation="{{animationData}}">
+      <view class='button'>
+        <text bindtap='onClose'>取消</text>
+        <text bindtap='onSure'>确定</text>
+      </view>
+      <picker-view indicator-style="height: 50px;" style="width: 100%; height: 270px;" value="{{value}}" bindchange="selectCity" indicator-style="height: 50px;" mask-class="mask">
+        <picker-view-column>
+          <view wx:for="{{provinceList}}" class='childView' wx:key="index">{{item.name}}</view>
+        </picker-view-column>
+        <picker-view-column>
+          <view wx:for="{{cityList}}" class='childView' wx:key="index">{{item.name}}</view>
+        </picker-view-column>
+      </picker-view>
+    </view>
+  </view>
+
+
+
+  <picker range='{{schoolList}}' range-key='{{"uName"}}' bindchange="selectSchool">
+    <input-item title="学校" value="{{uName}}" right="{{false}}" />
+  </picker>
+
+  <input-item title="专业" value="{{profe}}" name="profe" right="{{false}}" go="{{false}}" diabled="{{false}}" _input-class="_input-class" bind:change="onChange" plac="请描述所学专业?"/>
+
+  <picker range='{{educ_jopArr}}'  bindchange="selectDuty">
+    <input-item title="学历/职务" value="{{educ_jopArr[educ_job]}}" right="{{false}}" spac="2" _input-class="_input-class"/>
+   </picker>
+
+  <input-item title="姓名" value="{{realname}}" bind:change="onChange" plac="我是谁?" right="{{false}}" go="{{false}}" diabled="{{false}}" _input-class="_input-class" name="realname" />
 
 
 
   <view class='image'>
-      <view class='image_left'>
-         <text class="card">证件</text>
-         <text class='look'>查看示例</text>
-      </view>
-      <view class='image_right'>
-        <image src="{{imageUrl?imageUrl:'../../images/page/uploadCard.jpg'}}" class='uploadCard {{imageUrl?"border":""}}'  bindtap='changeImage'></image>
-      </view>
+    <view class='image_left'>
+      <text class="card">证件</text>
+      <text class='look'>查看示例</text>
+    </view>
+    <view class='image_right'>
+      <image src="{{cert_url?cert_url:'../../images/page/uploadCard.jpg'}}" class='uploadCard {{cert_url?"border":""}}' bindtap='changeImage'></image>
+    </view>
   </view>
 
   <view class='bottom'>
-    <btn value="申请" btn-class="btn" height="90" bind:click="onSubmit"/>
+    <btn value="申请" btn-class="btn" height="90" bind:click="onSubmit" />
   </view>
 
 </view>
+
+<!-- <canvas canvas-id="photo_canvas" style="width:{{canvasWidth}}px;height:{{canvasHeight}}px;" class="canvas"></canvas> -->
