@@ -14,7 +14,9 @@ Page({
         // 标签数据控制器
         currentTabId: null,
         tabController: null,
-        tabHeight: 0
+        tabHeight: 0,
+        // 当前的活动时机
+        currentTiming: 0
     },
     //事件处理函数
     bindViewTap: function() {
@@ -35,35 +37,76 @@ Page({
         }
     },
     // 用于处理标签页的点击
-    onTabbarClick(club_id){
-        // 滚动条置顶
+    // onTabbarClick(club_id){
+    //     // 滚动条置顶
+    //     // wx.pageScrollTo({
+    //     //     scrollTop: 0
+    //     // })
+    //     // 如果点击的标签页 等于 当前激活的标签页, 则没有其他动作
+    //     if (club_id === this.data.currentTabId){
+    //         return;
+    //     }
+    //     let that = this;
+        
+    //     console.log('点击的标签页id是:', club_id);
+    //     // tab切换后, 设置当前页面的 tabId
+    //     // 激活新的标签页
+    //     that.setData({
+    //         currentTabId: club_id
+    //     });
+    //     // 获取当前页面的 tabData 数据, 如果数据无内容,则尝试请求一次活动列表, 有则略过
+    //     let currentTab = that.getCurrentTabData();
+    //     if (Array.isArray(currentTab.list) && currentTab.list.length === 0){
+    //         // 当前标签页数据为空时,尝试调用一次 活动列表加载
+    //         that.loadActivityList();
+    //     }else{
+    //         // 显示当前标签页数据所示的list
+    //         that.setData({
+    //             newsListData: currentTab.list
+    //         });
+    //     }
+    //     // wx.hideLoading();
+    // },
+    /**
+     * 社团的下拉在切换数据时
+     */
+    onClubChange(e, index, range){
+        let that = this;
         wx.pageScrollTo({
             scrollTop: 0
         })
-        // 如果点击的标签页 等于 当前激活的标签页, 则没有其他动作
-        if (club_id === this.data.currentTabId){
-            return;
-        }
-        let that = this;
-        
-        console.log('点击的标签页id是:', club_id);
-        // tab切换后, 设置当前页面的 tabId
+        // console.log(index, range[index].activityId);
+        let club_id = range[index].activityId;
         // 激活新的标签页
         that.setData({
             currentTabId: club_id
         });
         // 获取当前页面的 tabData 数据, 如果数据无内容,则尝试请求一次活动列表, 有则略过
         let currentTab = that.getCurrentTabData();
-        if (Array.isArray(currentTab.list) && currentTab.list.length === 0){
+        // if (Array.isArray(currentTab.list) && currentTab.list.length === 0) {
             // 当前标签页数据为空时,尝试调用一次 活动列表加载
-            that.loadActivityList();
-        }else{
-            // 显示当前标签页数据所示的list
-            that.setData({
-                newsListData: currentTab.list
-            });
-        }
-        // wx.hideLoading();
+        that.loadActivityList(false);
+        // } else {
+        //     // 显示当前标签页数据所示的list
+        //     that.setData({
+        //         newsListData: currentTab.list
+        //     });
+        // }
+    },
+    /**
+     * 活动时机下拉
+     */
+    onActivityTiming(e, index, range){
+        let that = this;
+        wx.pageScrollTo({
+            scrollTop: 0
+        })
+        let timing = index;
+        that.setData({
+            currentTiming: timing
+        });
+        // 当前标签页数据为空时,尝试调用一次 活动列表加载
+        that.loadActivityList(false);
     },
     /**
      * 加载社团,并填充标签页按钮
@@ -84,14 +127,30 @@ Page({
                 id: 'all'
             });
             // 将社团数组生成标签页按钮所需的数据
-            let topBtns = clubs.map(club => {
+            let clubs_range = clubs.map((club, index) => {
                 return {
                     title: club.title,// 社团名称
-                    btype: "event",
-                    // 这里统一绑定了一个点击之后的处理函数,并传递当前对象的id过去
-                    value: () => that.onTabbarClick(club.id)
+                    ind: index,
+                    activityId: club.id
                 };
             });
+            let topBtns = [
+                {
+                    title: "我的社团", btype: "list", value: {
+                        range: clubs_range,
+                        rangeKey: 'title',
+                        index: 0,
+                        bindchange: that.onClubChange
+                    }
+                }, {
+                    title: "活动时间", btype: "list", value: {
+                        range: [{ ind: 0, title: '所有活动' }, { ind: 1, title: '即将开始' }, { ind: 2, title: '进行中的' }, { ind: 3, title: '已结束' }, { ind: 4, title: '活动总结' }],
+                        rangeKey: 'title',
+                        index: 0,
+                        bindchange: that.onActivityTiming
+                    }
+                },
+            ];
             // 渲染顶部标签页
             that.setData({
                 topBtns: topBtns
@@ -125,21 +184,37 @@ Page({
                             url: '/pages/activity/info/info?id=' + e.detail.item.id
                         })
                     },
-                    push: function (arr) { // 这里将接口中获取的 数组 加载到标签数据中的list
+                    push: function (arr, append=true) { // 这里将接口中获取的 数组 加载到标签数据中的list
                         // 如果已经没有数据时,调整more为false
                         if (!Array.isArray(arr) || arr.length === 0) {
                             console.log('没数据了...');
                             this.isQueryed = true; // 已经查询过一次了再判断是否显示空图片
-                            this.more = false;
-
                             let queryKey = 'tabController[' + this.tabIndex + '].isQueryed';
+                            that.setData({
+                                [queryKey]: this.isQueryed
+                            });
+
+                            this.more = false;
                             let moreKey = 'tabController[' + this.tabIndex + '].more';
                             that.setData({
-                                [queryKey]: this.isQueryed,
                                 [moreKey]: this.more
                             });
+
+                            if (!append) {
+                                let listKey = 'tabController[' + this.tabIndex + '].list';
+                                this.list = [];
+                                that.setData({
+                                    [listKey]: this.list
+                                });
+                            }
                         } else {
-                            this.list = this.list.concat(this.addDateLabel(arr));
+                            if (append){
+                                // 将数据追加在末尾
+                                this.list = this.list.concat(this.addDateLabel(arr));
+                            }else{
+                                // 完全替换数组中的新闻数据
+                                this.list = this.addDateLabel(arr)
+                            }
                             this.isQueryed = true; // 已经查询过一次了再判断是否显示空图片
 
                             let queryKey = 'tabController[' + this.tabIndex + '].isQueryed';
@@ -186,13 +261,17 @@ Page({
      * 加载活动列表
      * 该方法只针对于当前激活状态的tabid进行数据加载
      */
-    loadActivityList() {
+    loadActivityList(append=true) {
         let that = this;
         let currentTab = that.getCurrentTabData(); // 获取当前 标签页数据对象
+        let currentTiming = that.data.currentTiming; // 获取当前的活动时机
         console.log('currentTabcurrentTab: ', currentTab);
         // 如果是全部标签, 则将社团id置空, 因为服务器对于想要获取所有的认证时,id需要是空字符串
         let club_id = currentTab.data.id === 'all' ? '' : currentTab.data.id;
-        let pagenum = currentTab.nextPagenum();
+        if(!append){
+            currentTab.pagenum = 1;
+        }
+        let pagenum = append ? currentTab.nextPagenum() : currentTab.pagenum;
 
         // 加载框
         wx.showLoading({
@@ -202,13 +281,13 @@ Page({
         // 返回活动查询结果
         return Actions.doGet({
             url: URLs.ACTIVITY_CONCERNED_LIST,
-            data: { club_id, pagenum }
+            data: { club_id, pagenum, timing: currentTiming }
         }).then(res => {
             wx.hideLoading();
             if(res && !res.data.err && res.data.list){
                 console.log('社团活动列表:', res);
                 // 考虑如何分标签及保存的数据
-                currentTab.push(res.data.list);
+                currentTab.push(res.data.list, append);
             }
         }).catch(err => {
             wx.hideLoading();
