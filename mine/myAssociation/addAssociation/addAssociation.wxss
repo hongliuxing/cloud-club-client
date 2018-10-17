@@ -1,0 +1,87 @@
+.body {
+  padding: 0 30rpx;
+  box-sizing: border-box;
+}
+
+.image {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 50rpx;
+  width: 100%;
+}
+
+.image_left {
+  display: flex;
+  flex-direction: column;
+}
+
+.image_right {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  box-sizing: border-box;
+  margin-top: -20rpx;
+}
+
+.uploadCard {
+  width: auto;
+  height: 540rpx;
+}
+
+.card {
+  width: 200rpx;
+  text-align: left;
+  font-size: 28rpx;
+  color: #a8a8a8;
+  font-weight: bold;
+  letter-spacing: 2px;
+  padding-left: 30rpx;
+}
+
+.look {
+  color: #3881d8;
+  font-size: 26rpx;
+  letter-spacing: 2px;
+  margin-left: 23rpx;
+  margin-top: 30rpx;
+}
+
+.look::before {
+  content: "(";
+  color: #898989;
+  margin-right: 3rpx;
+}
+
+.look::after {
+  content: ")";
+  color: #898989;
+  margin-left: 3rpx;
+}
+
+.bottom {
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  margin-top: 40rpx;
+}
+
+.btn {
+  border-radius: 10rpx;
+  color: #fff;
+  letter-spacing: 8px;
+  box-sizing: border-box;
+}
+
+.border {
+  border: 2rpx solid #b9b9b9;
+}
+
+.titles{
+  padding-left: 30rpx ;
+  font-size: 28rpx !important;
+}
+._input-class{
+  font-weight: normal !important;
+  font-size: 28rpx !important;
+}

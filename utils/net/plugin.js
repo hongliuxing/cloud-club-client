@@ -161,7 +161,7 @@ const ajax = function ajax({ url, method, header, data, verifyLogin = true }) {
                     reject(err);
                 })
             },
-            fail: function (res) {
+          fail: function (err) {
                 reject(err);
             }
         })

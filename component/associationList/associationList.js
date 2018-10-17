@@ -2,25 +2,28 @@
 Component({
   /**
    * 组件的属性列表
+   * 
+   * admission:**(主要判断哪个用个那个组件渲染，false为社团入驻)
    */
   properties: {
-    imageUrl:String,
+    item:{
+      type:Object,
+      value:{}
+    },
+    index:Number,
+    //状态判断
     status:{
       type:Number,
       value:0
     },
-    image:{
-      type:Boolean,
-      value:true
-    }, 
+    //拒绝原因
     case:String,
-
+    //控制图片高度
     height:{
       type:Number,
       value: 140
     },
-    name:String,
-    time:String,
+    //判断显示时间还是社团成员(仅在社团申请)
     istime:{
       type:Boolean,
       value:false,
@@ -54,5 +57,16 @@ Component({
    */
   methods: {
 
+    //点击跳转详情
+    onClick(e){
+
+      this.triggerEvent('click', { id: e.target.dataset.id})
+    },
+
+    //点击申请
+    onApply(e){
+      let that = this;
+      this.triggerEvent('apply', { child: e.target.dataset.childId, index: that.data.index })
+    }
   }
 })

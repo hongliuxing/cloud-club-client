@@ -1,15 +1,15 @@
 {
   "pages": [
-      "mine/myAssociation/joinGroup/joinGroup",
         "pages/mine/mine",
-        "mine/myAssociation/myAssociation",
+    "mine/myAssociation/addAssociation/addAssociation",
+      "mine/myAssociation/associationEnter/associationEnter",
 
+  
+    "mine/myAssociation/joinGroup/joinGroup",
+    "mine/myAssociation/myAssociation",
     "mine/editSchool/editSchool",
     "pages/index/index",
-    "mine/myAssociation/associationEnter/associationEnter",
-  
     "pages/association/association",
-
     "mine/luckExplain/luckExplain",
     "mine/sportExplain/sportExplain",
     "mine/person/person",

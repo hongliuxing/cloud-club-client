@@ -20,6 +20,17 @@ Page({
    */
   onLoad: function(options) {
     that = this;
+    Actions.doGet({
+      url: URLs.USER_PANEL_INFO,
+      data: {}
+    }).then(res => {
+      that.setData({
+        info: res.data.info
+      })
+      wx.setStorageSync("userInfo", res.data.info)
+    }).catch(err => {
+      console.log('我的社团 err: ', err);
+    });
   },
   //修改信息页面
   goToUser(){
@@ -40,23 +51,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    let data = wx.getStorageSync("userInfo")
-    if (data) {
-      that.setData({
-        nickName: data.nickName,
-        avatarUrl: data.avatarUrl
-      })
-    }
-    Actions.doGet({
-      url: URLs.USER_PANEL_INFO,
-      data: {}
-    }).then(res => {
-      that.setData({
-        info: res.data.info
-      })
-    }).catch(err => {
-      console.log('我的社团 err: ', err);
-    });
+
   },
 
   /**

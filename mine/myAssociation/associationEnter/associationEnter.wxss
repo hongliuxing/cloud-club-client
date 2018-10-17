@@ -12,3 +12,11 @@ page {
   margin-top: 30rpx;
   border-bottom: 2rpx solid #f0f0f0;
 }
+.add{
+  width: 160rpx;
+  height: 160rpx;
+  position: fixed;
+  bottom:20px;
+  right: 20px;
+  z-index: 10;
+}
