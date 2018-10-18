@@ -262,7 +262,7 @@ Page({
           delta: 1
         })
       }, 500)
-
+      wx.setStorageSync("mineRefresh", true)
     }).catch(error => {
 
     })

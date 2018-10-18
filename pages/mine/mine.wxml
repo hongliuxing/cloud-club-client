@@ -30,7 +30,7 @@
 </view>
 
 <view class='goto'>
-   <icon-to-page src="../../images/page/school.png" title="设置学校" value="已通过" bind:onclick="goTo" url="{{urlSchool}}"/>
+   <icon-to-page src="../../images/page/school.png" title="设置学校" value="{{school || '未设置'}}" bind:onclick="goTo" url="{{urlSchool}}"/>
    <icon-to-page src="../../images/page/group.png" title="我的社团" value="2" icon-image="icon" title-name="titleName" bind:onclick="goTo" url="{{myAssociation}}" top="{{false}}"/>
 
    <line-item height="60" back="#f9f9f9"/>

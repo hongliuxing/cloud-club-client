@@ -12,7 +12,9 @@ Page({
     myAssociation: "../../mine/myAssociation/myAssociation",
     luckExplain: "../../mine/luckExplain/luckExplain",
     sportExplain: "../../mine/sportExplain/sportExplain",
-    info:{}
+    info: {},
+    school: null,
+    status: null, //学校状态
   },
 
   /**
@@ -20,13 +22,34 @@ Page({
    */
   onLoad: function(options) {
     that = this;
+    that._request()
+  },
+
+  //请求
+  _request() {
     Actions.doGet({
       url: URLs.USER_PANEL_INFO,
       data: {}
     }).then(res => {
+
+      let status = res.data.info.school_struts;
+      let name = "";
+      if (status == 1) {
+        name = "已通过"
+      } else if (status == 0) {
+        name = "申请中"
+      } else if (status == -1) {
+        name = "未通过"
+      } else {
+        name = "未设置"
+      }
+
       that.setData({
-        info: res.data.info
+        info: res.data.info,
+        school: name,
+        status: status
       })
+
       wx.setStorageSync("userInfo", res.data.info)
     }).catch(err => {
       console.log('我的社团 err: ', err);
@@ -38,6 +61,12 @@ Page({
   },
   //页面跳转
   goTo(e) {
+    if (this.data.myAssociation == e.detail.url) {
+      if (this.data.status == null) {
+        app.globalData.toast("请先设置学校")
+        return
+      }
+    }
     app.globalData.goToPage(e.detail.url)
   },
 
@@ -53,6 +82,9 @@ Page({
    */
   onShow: function() {
 
+    if (wx.getStorageSync("mineRefresh")) {
+      that._request()
+    }
   },
 
   /**

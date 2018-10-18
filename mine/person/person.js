@@ -93,6 +93,7 @@ Page({
       wx.navigateBack({
         delta:1
       })
+      wx.setStorageSync("mineRefresh", true)
     }).catch(error=>{
 
     })
