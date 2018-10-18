@@ -77,35 +77,27 @@ Page({
 
   //可加入列表
   canapplyList(pageindex) {
+    let arr = pageindex == 1 ? [] : that.data.canapplyList;
     Actions.doGet({
       url: URLs.CLUB_SELF_CANAPPLY_LIST,
       data: {
         pagenum: pageindex
       }
     }).then(res => {
-      if (pageindex == 1) {
+      if (res.data.list.length > 0) {
         that.setData({
-          canapplyList: res.data.list,
           canapplyrefresh: true,
-          pagenum: pageindex
         })
       } else {
-        let arr = this.data.canapplyList;
-        if (res.data.list.length > 0) {
-          arr = arr.concat(res.data.list)
-          that.setData({
-            canapplyList: arr,
-            canapplyrefresh: true,
-            pagenum: pageindex
-          })
-        } else {
-          that.setData({
-            canapplyList: arr,
-            canapplyrefresh: false,
-            pagenum: pageindex
-          })
-        }
+        that.setData({
+          canapplyrefresh: false,
+        })
       }
+      arr = arr.concat(res.data.list)
+      that.setData({
+        canapplyList: arr,
+        pagenum: pageindex
+      })
       wx.stopPullDownRefresh()
     }).catch(error => {})
   },
@@ -113,35 +105,27 @@ Page({
 
   //历史申请列表
   applyList(pageindex) {
+    let arr = pageindex == 1 ? [] : that.data.applyList;
     Actions.doGet({
       url: URLs.CLUB_SELF_APPLY_LIST,
       data: {
         pagenum: pageindex
       }
     }).then(res => {
-      if (pageindex == 1) {
+      if (res.data.list.length > 0) {
         that.setData({
-          applyList: res.data.list,
           applyrefresh: true,
-          applyPagenum: pageindex
         })
       } else {
-        let arr = this.data.applyList;
-        if (res.data.list.length > 0) {
-          arr = arr.concat(res.data.list)
-          that.setData({
-            applyList: arr,
-            applyrefresh: true,
-            applyPagenum: pageindex
-          })
-        } else {
-          that.setData({
-            applyList: arr,
-            applyrefresh: false,
-            applyPagenum: pageindex
-          })
-        }
+        that.setData({
+          applyrefresh: false,
+        })
       }
+      arr = arr.concat(res.data.list)
+      that.setData({
+        applyList: arr,
+        applyPagenum: pageindex
+      })
       wx.stopPullDownRefresh()
     }).catch(error => {})
   },

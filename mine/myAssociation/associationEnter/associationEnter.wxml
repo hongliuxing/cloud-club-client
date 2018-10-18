@@ -16,5 +16,5 @@
      
 </view>
 
-<image src='../../../images/page/add.png' class='add'></image> 
+<image src='../../../images/page/add.png' class='add' bindtap='add'></image> 
 

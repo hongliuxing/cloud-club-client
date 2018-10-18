@@ -9,9 +9,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    school:"q23",
-    author:"社会人",
-    phone:"123"
+    school:"",
+    author:"",
+    phone:"",
+    school_id:"",
+    title:""
   },
 
   /**
@@ -19,6 +21,13 @@ Page({
    */
   onLoad: function (options) {
     that = this;
+    let info = wx.getStorageSync("userInfo");
+    that.setData({
+      school: info.school,
+      school_id: info.school_id,
+      phone:info.telephone,
+      author:info.realname
+    })
   },
   //获取input值
   onChange(e) {
@@ -29,30 +38,22 @@ Page({
 
   //提交
   onSubmit() {
-    if (this.data.profe == "") {
+    if (this.data.title == "") {
 
-      app.globalData.toast("请描述所学专业?")
-
-      return
-    }
-    if (this.data.realname == "") {
-
-      app.globalData.toast("请输入您的姓名?")
+      app.globalData.toast("请输入社团名称?")
 
       return
     }
     if (this.data.cert_url == "") {
 
-      app.globalData.toast("请上传手持身份证或学生证照片?")
+      app.globalData.toast("请上传社团合影?")
 
       return
     }
     let data = {
-      school_id: this.data.sid,
-      profe: this.data.profe,
-      educ_job: this.data.educ_job,
-      realname: this.data.realname,
-      cert_url: this.data.cert_url
+      school_id: this.data.school_id,
+      club_url: this.data.cert_url,
+      title: this.data.title
     }
     Actions.doPost({
       url: URLs.SCHOOL_SETTING,

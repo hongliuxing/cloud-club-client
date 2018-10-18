@@ -12,10 +12,15 @@
 
 <view class='responsible'>
    <text class='responsibleTitle'>我负责的社团</text>
-   <icon-to-page src="../../images/page/joinGroup.png" title="加入社团" value="60" bind:onclick="goTo" title-name="responsible-name" value-class="responsible-value"/>
+    <block wx:for="{{list}}" wx:key="index">
+       <icon-to-page wx:if="{{item.is_master=='true'}}" src="{{item.logo_url}}" title="{{item.title}}" value="{{item.membership}}" bind:onclick="goTo" title-name="responsible-name" value-class="responsible-value" bottom="{{false}}"/>
+    </block>
 </view>
-
+<line-item wx:if="{{principal}}"/>
 <view class='responsible'>
    <text class='responsibleTitle'>我参与的社团</text>
-   <icon-to-page src="../../images/page/joinGroup.png" title="加入社团" value="60" bind:onclick="goTo" title-name="responsible-name" value-class="responsible-value"/>
+    <block wx:for="{{list}}" wx:key="index">
+       <icon-to-page wx:if="{{item.is_master=='false'}}" src="{{item.logo_url}}" title="{{item.title}}" value="{{item.membership}}" bind:onclick="goTo" title-name="responsible-name" value-class="responsible-value" bottom="{{false}}"/>
+    </block>
 </view>
+<line-item wx:if="{{jion}}"/>

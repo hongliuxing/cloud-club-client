@@ -1,6 +1,8 @@
 {
   "navigationBarBackgroundColor": "#38bfbb",
   "navigationBarTextStyle": "white",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
   "usingComponents": {
     "icon-to-page": "../../component/iconToPage/iconToPage",
     "line-item":"../../component/lineItem/lineItem"
