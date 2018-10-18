@@ -135,7 +135,11 @@
   letter-spacing: 8px;
   box-sizing: border-box;
 }
-
+.disBtn{
+  background: #f9f9f9 !important;
+  border: 2rpx solid #efefef;
+  color:#808080;
+}
 .border {
   border: 2rpx solid #b9b9b9;
 }

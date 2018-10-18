@@ -1,5 +1,6 @@
 {
   "pages": [
+        "mine/editSchool/editSchool",
         "pages/mine/mine",
     "mine/myAssociation/addAssociation/addAssociation",
       "mine/myAssociation/associationEnter/associationEnter",
@@ -7,7 +8,7 @@
   
     "mine/myAssociation/joinGroup/joinGroup",
     "mine/myAssociation/myAssociation",
-    "mine/editSchool/editSchool",
+
     "pages/index/index",
     "pages/association/association",
     "mine/luckExplain/luckExplain",

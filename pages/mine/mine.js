@@ -33,13 +33,14 @@ Page({
     });
   },
   //修改信息页面
-  goToUser(){
-    app.globalData.goToPage("../../mine/person/person?userinfo="+JSON.stringify(this.data.info))
+  goToUser() {
+    app.globalData.goToPage("../../mine/person/person?userinfo=" + JSON.stringify(this.data.info))
   },
   //页面跳转
-  goTo(e){
+  goTo(e) {
     app.globalData.goToPage(e.detail.url)
   },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

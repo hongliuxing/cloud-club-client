@@ -22,7 +22,7 @@
   </view>
 
   <view class='bottom'>
-    <btn value="申请" btn-class="btn" height="90" bind:click="onSubmit" />
+    <btn value="申请" btn-class="btn" height="90" bind:click="onSubmit" diabled/>
   </view>
 
 </view>

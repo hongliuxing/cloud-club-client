@@ -8,7 +8,7 @@
         <text bindtap='onClose'>取消</text>
         <text bindtap='onSure'>确定</text>
       </view>
-      <picker-view indicator-style="height: 50px;" style="width: 100%; height: 270px;" value="{{value}}" bindchange="selectCity" indicator-style="height: 50px;" mask-class="mask">
+      <picker-view indicator-style="height: 50px;" style="width: 100%; height: 270px;" value="{{value}}" bindchange="selectCity" indicator-style="height: 50px;" mask-class="mask" disabled="{{disabled}}">
         <picker-view-column>
           <view wx:for="{{provinceList}}" class='childView' wx:key="index">{{item.name}}</view>
         </picker-view-column>
@@ -21,17 +21,17 @@
 
 
 
-  <picker range='{{schoolList}}' range-key='{{"uName"}}' bindchange="selectSchool">
+  <picker range='{{schoolList}}' range-key='{{"uName"}}' bindchange="selectSchool" disabled="{{disabled}}">
     <input-item title="学校" value="{{uName}}" right="{{false}}" />
   </picker>
 
-  <input-item title="专业" value="{{profe}}" name="profe" right="{{false}}" go="{{false}}" diabled="{{false}}" _input-class="_input-class" bind:change="onChange" plac="请描述所学专业?"/>
+  <input-item title="专业" value="{{profe}}" name="profe" right="{{false}}" go="{{false}}" diabled="{{disabled}}" _input-class="_input-class" bind:change="onChange" plac="请描述所学专业?"/>
 
-  <picker range='{{educ_jopArr}}'  bindchange="selectDuty">
+  <picker range='{{educ_jopArr}}'  bindchange="selectDuty" disabled="{{disabled}}">
     <input-item title="学历/职务" value="{{educ_jopArr[educ_job]}}" right="{{false}}" spac="2" _input-class="_input-class"/>
    </picker>
 
-  <input-item title="姓名" value="{{realname}}" bind:change="onChange" plac="我是谁?" right="{{false}}" go="{{false}}" diabled="{{false}}" _input-class="_input-class" name="realname" />
+  <input-item title="姓名" value="{{realname}}" bind:change="onChange" plac="我是谁?" right="{{false}}" go="{{false}}" diabled="{{disabled}}" _input-class="_input-class" name="realname" />
 
 
 
@@ -46,7 +46,7 @@
   </view>
 
   <view class='bottom'>
-    <btn value="申请" btn-class="btn" height="90" bind:click="onSubmit" />
+    <btn value="{{value}}" btn-class="btn {{struts ===0 || struts ===1?'disBtn':''}}" height="90" bind:click="onSubmit" disabled="{{struts ===0 || struts ===1}}"/>
   </view>
 
 </view>

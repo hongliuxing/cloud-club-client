@@ -1,6 +1,11 @@
 import * as Actions from "../../utils/net/Actions.js";
 import * as URLs from "../../utils/net/urls.js";
 import uploadFile from "../../utils/upload/support.js";
+import {
+  onStartAnimation,
+  onCloseAnimation,
+  searchProvine
+} from "../../utils/upload/public.js";
 let app = getApp();
 let that;
 Page({
@@ -23,9 +28,12 @@ Page({
     citycode: "",
     educ_jopArr: ["专科", "本科", "研究生", "博士", "导师"],
     educ_job: 1,
-    profe: "",
-    animationData:{},
-    animationMask:{}
+    profe: "123",
+    animationData: {},
+    animationMask: {},
+    struts: null,
+    value: "申请",
+    disabled: true
   },
 
   /**
@@ -33,10 +41,48 @@ Page({
    */
   onLoad: function(options) {
     that = this;
-    /**
-     * 获取经纬度，
-     * 查询当前地址及推送最优学校
-     */
+    let info = wx.getStorageSync("userInfo")
+    if (info.school_struts === 1 || info.school_struts === 0) {
+      Actions.doGet({
+        url: URLs.SCHOOL_LOAD_APPLY,
+        data: {}
+      }).then(res => {
+        let data = res.data.list[0];
+
+        that.setData({
+          cert_url: data.cert_url,
+          profe: data.profe,
+          realname: data.realname,
+          struts: info.school_struts,
+          value: info.school_struts === 1 ? "已通过" : "申请中",
+          uName: info.school
+        })
+        searchProvine(that,data.province_code, data.city_code)
+      }).catch(error => {
+
+      })
+
+    } else {
+      that.onLocation()
+    }
+
+    //判断本地是否缓存了省份列表
+    if (wx.getStorageSync("province")) {
+      that.setData({
+        provinceList: wx.getStorageSync("province")
+      })
+    } else {
+      that.provinceList()
+    }
+  },
+
+
+
+  /**
+   * 获取经纬度，
+   * 查询当前地址及推送最优学校
+   */
+  onLocation() {
     wx.getLocation({
       success: function(res) {
         let data = {
@@ -62,9 +108,6 @@ Page({
         console.log(err, "res")
       }
     })
-
-    that.provinceList()
-
   },
   //获取省份列表
   provinceList() {
@@ -75,6 +118,7 @@ Page({
       that.setData({
         provinceList: res.data.list
       })
+      wx.setStorageSync("province", res.data.list) //存入省份
     }).catch(error => {
 
     })
@@ -87,6 +131,11 @@ Page({
   },
   //打开选择城市
   openCity() {
+    if (this.data.disabled) {
+
+      return
+
+    }
     this.setData({
       visable: !this.data.visable
     })
@@ -96,7 +145,7 @@ Page({
       this.cityList(that.data.value[0])
 
     }
-    that.onStartAnimation()
+    onStartAnimation(that)
   },
 
   //城市列表
@@ -167,12 +216,12 @@ Page({
       citycode: this.data.cityList[index[1]].code
     })
     that.schoolList(this.data.cityList[index[1]].code)
-    this.onCloseAnimation()
+    onCloseAnimation(that)
   },
 
   //关闭选择省市区
   onClose() {
-    this.onCloseAnimation()
+    onCloseAnimation(that)
   },
 
   //提交
@@ -206,13 +255,13 @@ Page({
       url: URLs.SCHOOL_SETTING,
       data: data
     }).then(res => {
-       app.globalData.toast("申请成功")
+      app.globalData.toast("申请成功")
 
-       setTimeout(function(){
-         wx.navigateBack({
-           delta: 1
-         })
-       },500)
+      setTimeout(function() {
+        wx.navigateBack({
+          delta: 1
+        })
+      }, 500)
 
     }).catch(error => {
 
@@ -222,6 +271,11 @@ Page({
 
   //上传照片
   changeImage() {
+    if (this.data.disabled) {
+
+      return
+
+    }
     wx.chooseImage({
       count: 1,
       sizeType: ["compressed"],
@@ -242,68 +296,5 @@ Page({
     })
 
   },
-  
-  //选择省市打开动画
-  onStartAnimation() {
-    var animation = wx.createAnimation({
-      duration: 150,
-      timingFunction: 'linear'
-    })
-    that.animation = animation
-    animation.translateY(300).step()
-    that.setData({
-      animationData: animation.export(),
-    })
-    setTimeout(function () {
-      animation.translateY(0).step()
-      that.setData({
-        animationData: animation.export()
-      })
-    }, 0)
-    var animation2 = wx.createAnimation({
-      timingFunction: 'linear'
-    })
-    // 遮罩渐变动画
-    var animationMask = wx.createAnimation({
-      duration: 150,
-      timingFunction: 'linear',
-    });
-    that.animationMask = animationMask;
-    animationMask.opacity(1).step();
-    that.setData({
-      animationMask: that.animationMask.export(),
-    });
-  },
-  //选择省市关闭动画
-  onCloseAnimation() {
-    var animation = wx.createAnimation({
-      duration: 150,
-      timingFunction: 'linear'
-    })
-    that.animation = animation
-    animation.translateY(0).step()
-    that.setData({
-      animationData: animation.export(),
-    })
-    setTimeout(function () {
-      animation.translateY(300).step()
-      that.setData({
-        animationData: animation.export()
-      })
-    }, 0)
-    // 遮罩渐变动画
-    var animationMask = wx.createAnimation({
-      duration: 150,
-      timingFunction: 'linear',
-    });
-    that.animationMask = animationMask;
-    that.animationMask.opacity(0).step();
-    setTimeout(function () {
-      that.setData({
-        animationMask: that.animationMask.export(),
-        visable: false
-      });
-    }, 150)
-  }
 
 })
