@@ -93,7 +93,7 @@ Page({
 
   //社团详情
   goTo(e){
-    let item = this.data.list[e.detail.index];
+    let item = e.detail.item;
     app.globalData.goToPage("./associationInfo/associationInfo?item=" + JSON.stringify(item))
   },
   /**

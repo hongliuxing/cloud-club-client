@@ -134,7 +134,6 @@ Page({
         member.push(item)
       }
     });
-    console.log(proprieter.concat(deputyDirector, minister, media, member))
     return proprieter.concat(deputyDirector, minister, media, member)
 
   },

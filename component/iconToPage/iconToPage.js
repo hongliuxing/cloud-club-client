@@ -25,7 +25,12 @@ Component({
     value:String,
     name:String,
     url:String,
-    index:Number
+    index:Number,
+
+    item:{
+      type:Object,
+      value:{}
+    }
   },
   externalClasses: ["icon-image", "title-name","value-class"],
 
@@ -42,7 +47,7 @@ Component({
   methods: {
     _click(e){
       let that = this;
-      this.triggerEvent('onclick', { url: e.target.dataset.url, index: that.data.index})
+      this.triggerEvent('onclick', { url: that.data.url, index: that.data.index, item: that.data.item})
     }
   }
 })
