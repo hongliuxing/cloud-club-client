@@ -56,7 +56,7 @@ Page({
       title: this.data.title
     }
     Actions.doPost({
-      url: URLs.SCHOOL_SETTING,
+      url: URLs.CLUBMASTER_CREATE_CLUB,
       data: data
     }).then(res => {
       app.globalData.toast("申请成功")

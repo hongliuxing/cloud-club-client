@@ -8,12 +8,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    more: false, //临时使用,
     pagenum: 1,
     list: [],
     refresh: true,
-    principal:false,// 负责下边线，
-    jion:false,//参加的下边线
+    fifterList:[]
   },
 
   /**
@@ -41,7 +39,7 @@ Page({
         pagenum: pageindex
       }
     }).then(res => {
-      arr = arr.concat(res.data.list)
+       arr = arr.concat(res.data.list)
         if (res.data.list.length > 0) {
           that.setData({
             refresh: true,
@@ -51,41 +49,52 @@ Page({
             refresh: false,
           })
         }
-        /**
-         * 判断列表下边是否有边线数组空则没有
-         */
-      //  for(let i = 0; i < arr.length;i++){
-      //    if (arr[i].is_master=="true"){
-      //          that.setData({
-      //            principal:true
-      //          })
-      //          break;
-      //     }else{
-      //         that.setData({
-      //           principal: false
-      //         })
-      //     }
-      //    if (arr[i].is_master == "false") {
-      //      that.setData({
-      //        jion: true
-      //      })
-      //      continue;
-      //    } else {
-      //      that.setData({
-      //        jion: false
-      //      })
-      //    }
-    
-      //   }
-
         that.setData({
           list: arr,
+          fifterList: that._filterArr(arr),
           pagenum: pageindex
         })
         wx.stopPullDownRefresh()
     }).catch(error => {
 
     })
+  },
+
+  //过滤整合 
+  _filterArr(arr) {
+    //添加身份标记, 我负责的,我参与的
+    let master = [],
+      no_master = [];
+    Array.isArray(arr) && arr.forEach(item => {
+      if (item.is_master === "true") {
+        if (master.length===0){
+          master.unshift({
+            type: "master",
+            text: "我负责的社团"
+          })
+        }
+
+        master.push(item)
+
+      } else if (item.is_master === "false") {
+        if (no_master.length === 0) {
+          no_master.unshift({
+            type: "master",
+            text: "我参与的社团"
+          })
+        }
+        no_master.push(item)
+
+      }
+    });
+    return master.concat(no_master)
+
+  },
+
+  //社团详情
+  goTo(e){
+    let item = this.data.list[e.detail.index];
+    app.globalData.goToPage("./associationInfo/associationInfo?item=" + JSON.stringify(item))
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -126,7 +135,6 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-    console.log(this.data.refresh,"this.data.refresh")
     if (this.data.refresh){
        that._request(this.data.pagenum+1)
     }

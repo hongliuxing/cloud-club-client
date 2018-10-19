@@ -1,0 +1,15 @@
+<template name="associationPanel">
+  <view class='panel'>
+    <view class='panelLeft'>
+      <image class='panelImage' src="{{item.avatar_url}}"></image>
+      <view>
+        <text>{{item.realname}}</text>
+        <text>{{item.profe}}</text>
+      </view>
+    </view>
+    <view class='panelRight'>
+      <image src="../../../images/page/category.png" class='panelRightImage' wx:if="{{item.role_ability!==4}}"></image>
+      <image src="../../../images/page/phone.png" class='panelRightImage2' data-phone="{{item.telephone}}" bindtap='onCall'></image>
+    </view>
+  </view>
+</template>

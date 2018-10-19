@@ -1,0 +1,28 @@
+<import src="../../../template/associationPanel/associationPanel.wxml" />
+<view class="header">
+  <view class='title'>
+    <text>{{title}}</text>
+    <text>{{school}}</text>
+  </view>
+  <view class='channel' style="height:{{width/4}}px">
+    <view>
+      公告
+    </view>
+    <view>
+      社团资料
+    </view>
+    <view wx:if="{{disabled}}">
+      活动管理
+    </view>
+    <view wx:if="{{disabled}}">
+      入社申请
+    </view>
+  </view>
+</view>
+
+<view class='list'>
+  <block wx:for= "{{filterList}}" wx:key="index">
+    <text class='listTitle' wx:if="{{item.type}}">{{item.text}}</text>
+    <template is="associationPanel" data="{{item}}"  wx:if="{{!item.type}}"/>
+  </block>
+</view>

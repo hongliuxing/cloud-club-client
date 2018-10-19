@@ -16,7 +16,7 @@
 </view>
 
 
-<view class='list' style="margin-top:{{table===1?268:160}}rpx;">
+<view class='list' style="margin-top:{{table===1?270:160}}rpx;">
   <view wx:if="{{table===1}}" >
     <block wx:for="{{canapplyList}}"  wx:key="index" data-id="{{item.id}}">
         <association-list  height="150"  isBtn="{{true}}"  item="{{item}}" bind:click="Goto" bind:apply="onApply" index="{{index}}"/>

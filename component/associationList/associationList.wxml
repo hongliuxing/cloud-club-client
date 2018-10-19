@@ -1,6 +1,6 @@
 <wxs src="../../app.wxs" module="util" />   
 <!--参团申请-->
-<view class='listItem padd' style="height:{{height}}rpx" wx:if="{{admission}}" bindtap='onClick' data-id="{{item.id}}">
+<view class='listItem padd' style="height:{{height}}rpx;border-bottom:{{bottom?'2rpx solid #f0f0f0':0}}" wx:if="{{admission}}" bindtap='onClick' data-id="{{item.id}}">
   <view class='context'>
     <image src="{{item.logo_url?item.logo_url:item.club.logo_url}}" style="width:{{height}}rpx;height:{{height}}rpx">
 
@@ -30,21 +30,17 @@
 </view>
 
 <!--社团入驻暂时与社团申请分开-->
-<view class='listItem {{image?"padd":"imagePadd"}}' style="height:{{height}}rpx" wx:if="{{!admission}}">
+<view class='listItem padd' style="height:{{height}}rpx;border-bottom:{{bottom?'2rpx solid #f0f0f0':0}}" wx:if="{{!admission}}">
   <view class='context'>
     <view class='leftContext' style="margin-left:{{image?30:null}}rpx;">
-      <text class='{{image?"title":"name"}}'>{{name}}</text>
-      <text class='{{image && !istime?"employee":"time"}}'>{{time}}</text>
-      <text class='case'>{{case}}</text>
-      <text class='case cases' wx:if="{{!admission && !case && history}}">111</text>
+      <text class='name'>{{item.title || ""}}</text>
+      <text class='{{image && !istime?"employee":"time"}}'>{{item.createdAt}}</text>
+      <text class='case' wx:if="{{item.checked_fail_reason}}">{{item.checked_fail_reason}}</text>
     </view>
   </view>
-  <view class='status' wx:if="{{!admission && !isBtn}}">
-    <text wx:if="{{status===0}}" class='applying'>申请中</text>
-    <text wx:if="{{status===1}}" class='pass'>已通过</text>
-    <text wx:if="{{status===-1}}" class='noPass'>未通过</text>
-  </view>
-  <view class='status' wx:if="{{!admission && isBtn}}">
-    <text class='btn' bindtap='onClick' >申 请</text>
+  <view class='status'>
+    <text wx:if="{{item.struts===0}}" class='applying'>申请中</text>
+    <text wx:if="{{item.struts===1}}" class='pass'>已通过</text>
+    <text wx:if="{{item.struts===-1}}" class='noPass'>未通过</text>
   </view>
 </view>

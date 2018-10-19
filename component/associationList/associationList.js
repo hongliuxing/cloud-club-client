@@ -42,6 +42,11 @@ Component({
     history:{
       type: Boolean,
       valse:false
+    },
+    //判断有没有下边线
+    bottom:{
+      type: Boolean,
+      valse: false
     }
   },
 

@@ -1,7 +1,12 @@
 page {
   background: #f9f9f9;
 }
-
+.header{
+  position: fixed;
+  top:0;
+  z-index: 5;
+  width: 100%;
+}
 .channel {
   border: 0 !important;
 }
@@ -9,8 +14,7 @@ page {
 .list {
   display: flex;
   flex-direction: column;
-  margin-top: 30rpx;
-  border-bottom: 2rpx solid #f0f0f0;
+  margin-top: 150rpx;
 }
 .add{
   width: 160rpx;
