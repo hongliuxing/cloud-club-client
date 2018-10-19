@@ -1,0 +1,12 @@
+<import src="../../../template/associationPanel/associationPanel.wxml" />
+<view class='title'>
+  <text>{{info.title}}</text>
+  <text>{{info.school_name}}</text>
+</view>
+
+<view class='list'>
+  <block wx:for="{{filterList}}" wx:key="index">
+    <text class='listTitle' wx:if="{{item.type}}">{{item.text}}</text>
+    <template is="associationPanel" data="{{item}}" wx:if="{{!item.type}}" />
+  </block>
+</view>

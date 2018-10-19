@@ -20,6 +20,7 @@ Page({
   onLoad: function(options) {
     that = this;
     that._request(1)
+    wx.removeStorageSync("associationInfo")
   },
   //前往社团入驻
   associationEnter() {
@@ -94,7 +95,8 @@ Page({
   //社团详情
   goTo(e){
     let item = e.detail.item;
-    app.globalData.goToPage("./associationInfo/associationInfo?item=" + JSON.stringify(item))
+    wx.setStorageSync("associationInfo", item)
+    app.globalData.goToPage("./associationInfo/associationInfo")
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

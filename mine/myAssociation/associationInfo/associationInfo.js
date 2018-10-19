@@ -16,7 +16,9 @@ Page({
     refresh: true,
     disabled: true, //判读身份显示,
     title: "",
-    school: ""
+    school: "",
+    newjoin_count:"",//入团申请
+    notice_count:"",//公告数量
 
   },
 
@@ -25,8 +27,8 @@ Page({
    */
   onLoad: function(options) {
     that = this;
-    if (options.item) {
-      let item = JSON.parse(options.item);
+    let item = wx.getStorageSync("associationInfo");
+    if (item) {
       that.setData({
         clubid: item.id,
         title: item.title,
@@ -36,6 +38,7 @@ Page({
       that._request({
         clubid: item.id
       })
+      that._panelReauest(item.id)
     }
     wx.getSystemInfo({
       success: function(res) {
@@ -47,8 +50,27 @@ Page({
 
 
   },
+  
+  //面板提示信息
+  _panelReauest(clubid){
+    let lastReadNotice = wx.getStorageSync("last_read_notice")
+    Actions.doGet({
+        url: URLs.CLUB_PANEL_TIPS,
+        data:{
+          last_read_notice: lastReadNotice ? lastReadNotice:"",
+          clubid: clubid
+        }
+    }).then(res=>{
+      that.setData({
+        newjoin_count: res.data.info.newjoin_count,
+        notice_count: res.data.info.notice_count
+      })
+    }).catch(error=>{
 
-  //请求
+    })
+  },
+
+  //社团联系人请求
   _request({
     clubid = that.data.clubid,
     pagenum = that.data.pagenum

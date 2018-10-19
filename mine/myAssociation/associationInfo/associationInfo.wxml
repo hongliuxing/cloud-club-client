@@ -5,17 +5,19 @@
     <text>{{school}}</text>
   </view>
   <view class='channel' style="height:{{width/4}}px">
-    <view>
+    <view class='notice'>
       公告
+      <view class='tip' wx:if="{{notice_count>0}}"></view> 
     </view>
-    <view>
+    <view class='info'>
       社团资料
     </view>
-    <view wx:if="{{disabled}}">
+    <view wx:if="{{disabled}}" class='activity'>
       活动管理
     </view>
-    <view wx:if="{{disabled}}">
+    <view wx:if="{{disabled}}" class='apply'>
       入社申请
+      <view class='applyNum' wx:if="{{newjoin_count===0}}">{{newjoin_count}}</view>
     </view>
   </view>
 </view>

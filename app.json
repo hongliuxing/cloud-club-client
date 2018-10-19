@@ -1,7 +1,9 @@
 {
   "pages": [
+    "mine/myAssociation/associationData/associationData",
+      "mine/myAssociation/myAssociation",
     "pages/mine/mine",
-    "mine/myAssociation/myAssociation",
+ 
     "mine/myAssociation/associationInfo/associationInfo",
     "mine/myAssociation/associationEnter/associationEnter",
     "mine/editSchool/editSchool",
