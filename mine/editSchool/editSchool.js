@@ -28,12 +28,12 @@ Page({
     citycode: "",
     educ_jopArr: ["专科", "本科", "研究生", "博士", "导师"],
     educ_job: 1,
-    profe: "123",
+    profe: "",
     animationData: {},
     animationMask: {},
     struts: null,
     value: "申请",
-    disabled: true
+    disabled: false
   },
 
   /**
@@ -55,7 +55,8 @@ Page({
           realname: data.realname,
           struts: info.school_struts,
           value: info.school_struts === 1 ? "已通过" : "申请中",
-          uName: info.school
+          uName: info.school,
+          disabled:true
         })
         searchProvine(that,data.province_code, data.city_code)
       }).catch(error => {

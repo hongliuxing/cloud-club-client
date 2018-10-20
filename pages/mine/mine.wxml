@@ -31,7 +31,7 @@
 
 <view class='goto'>
    <icon-to-page src="../../images/page/school.png" title="设置学校" value="{{school || '未设置'}}" bind:onclick="goTo" url="{{urlSchool}}"/>
-   <icon-to-page src="../../images/page/group.png" title="我的社团" value="2" icon-image="icon" title-name="titleName" bind:onclick="goTo" url="{{myAssociation}}" top="{{false}}"/>
+   <icon-to-page src="../../images/page/group.png" title="我的社团" value="{{info.club_count || 0}}" icon-image="icon" title-name="titleName" bind:onclick="goTo" url="{{myAssociation}}" top="{{false}}"/>
 
    <line-item height="60" back="#f9f9f9"/>
    <icon-to-page src="../../images/page/luck.png" title="幸运值" value="幸运值是干什么?" bind:onclick="goTo" url="{{luckExplain}}"/>
