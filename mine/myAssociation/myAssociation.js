@@ -21,6 +21,9 @@ Page({
     that = this;
     that._request(1)
     wx.removeStorageSync("associationInfo")
+    wx.showLoading({
+      title: '正在运送社团活动...', mask: true
+    })
   },
   //前往社团入驻
   associationEnter() {
@@ -40,6 +43,7 @@ Page({
         pagenum: pageindex
       }
     }).then(res => {
+      wx.hideLoading()
        arr = arr.concat(res.data.list)
         if (res.data.list.length > 0) {
           that.setData({

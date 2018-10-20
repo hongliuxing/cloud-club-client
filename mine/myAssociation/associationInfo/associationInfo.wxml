@@ -17,7 +17,7 @@
     </view>
     <view wx:if="{{disabled}}" class='apply'>
       入社申请
-      <view class='applyNum' wx:if="{{newjoin_count===0}}">{{newjoin_count}}</view>
+      <view class='applyNum' wx:if="{{newjoin_count>0}}">{{newjoin_count}}</view>
     </view>
   </view>
 </view>

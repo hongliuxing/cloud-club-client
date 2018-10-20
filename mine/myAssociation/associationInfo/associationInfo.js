@@ -62,7 +62,7 @@ Page({
         }
     }).then(res=>{
       that.setData({
-        newjoin_count: res.data.info.newjoin_count,
+        newjoin_count: res.data.info.newjoin_count || 0,
         notice_count: res.data.info.notice_count
       })
     }).catch(error=>{
