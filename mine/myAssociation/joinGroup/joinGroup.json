@@ -1,5 +1,9 @@
 {
+  "navigationBarTitleText": "社团入驻",
   "usingComponents": {
-    "top-channel": "../../../component/TopChannel/TopChannel"
-  }
+    "top-channel": "../../../component/TopChannel/TopChannel",
+    "association-list": "../../component/associationList/associationList"
+  },
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark"
 }

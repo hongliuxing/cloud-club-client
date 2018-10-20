@@ -1,5 +1,5 @@
 <line-item wx:if="{{top}}"/>
-<view class='list' style="height:{{height}}rpx" bindtap='_click' data-url="{{url}}">
+<view class='list' style="height:{{height}}rpx" bindtap='_click' >
   <view>
     <image src="{{src}}" class='icon icon-image'></image>
     <text class='title title-name'>{{title}}</text>

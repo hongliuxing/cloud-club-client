@@ -1,82 +1,203 @@
-// mine/myAssociation/joinGroup/joinGroup.js
+import * as Actions from "../../../utils/net/Actions.js";
+import * as URLs from "../../../utils/net/urls.js";
+let that;
+let app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    table: 1,
+    aa: 123,
+    pagenum: 1,
+    canapplyrefresh: true,
+    canapplyList: [],
+    applyList: [],
+    applyrefresh: true,
+    applyPagenum: 1
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     // 标签页频道组件
-    let topBtns = [
-      { title: "本校社团列表", btype: "event", value: (e) => this.Associations() },
-      { title: "申请历史", btype: "event", value: (e) => this.applyHistory()}
+    that = this;
+    let topBtns = [{
+        title: "本校社团列表",
+        btype: "event",
+        value: (e) => this.Associations()
+      },
+      {
+        title: "申请历史",
+        btype: "event",
+        value: (e) => this.applyHistory()
+      }
     ];
     this.setData({
       topBtns: topBtns
     });
+    that.canapplyList(1)
   },
 
   //本校社团
-  Associations(){
-     console.log("shetuanlibiao")
+  Associations() {
+    if (this.data.table === 1) {
+      return
+    } else {
+      that.setData({
+        table: 1
+      })
+    }
+    if (that.data.canapplyList.length > 0) {
+      return
+    } else {
+      that.canapplyList(1)
+    }
+    
   },
 
   //申请历史
-  applyHistory(){
-    console.log("applyHistory")
-  },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
+  applyHistory() {
+    if (this.data.table === 2) {
+      return
+    } else {
+      that.setData({
+        table: 2
+      })
+    }
+    if (that.data.applyList.length > 0) {
+      return
+    } else {
+      that.applyList(1)
+    }
 
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  //可加入列表
+  canapplyList(pageindex) {
+    let arr = pageindex == 1 ? [] : that.data.canapplyList;
+    Actions.doGet({
+      url: URLs.CLUB_SELF_CANAPPLY_LIST,
+      data: {
+        pagenum: pageindex
+      }
+    }).then(res => {
+      if (res.data.list.length > 0) {
+        that.setData({
+          canapplyrefresh: true,
+        })
+      } else {
+        that.setData({
+          canapplyrefresh: false,
+        })
+      }
+      arr = arr.concat(res.data.list)
+      that.setData({
+        canapplyList: arr,
+        pagenum: pageindex
+      })
+      wx.stopPullDownRefresh()
+    }).catch(error => {})
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
 
+  //历史申请列表
+  applyList(pageindex) {
+    let arr = pageindex == 1 ? [] : that.data.applyList;
+    Actions.doGet({
+      url: URLs.CLUB_SELF_APPLY_LIST,
+      data: {
+        pagenum: pageindex
+      }
+    }).then(res => {
+      if (res.data.list.length > 0) {
+        that.setData({
+          applyrefresh: true,
+        })
+      } else {
+        that.setData({
+          applyrefresh: false,
+        })
+      }
+      arr = arr.concat(res.data.list)
+      that.setData({
+        applyList: arr,
+        applyPagenum: pageindex
+      })
+      wx.stopPullDownRefresh()
+    }).catch(error => {})
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
+  //跳转详情
+  Goto(e) {
+    let id = e.detail.id;
+  },
+
+  //申请入团
+  onApply(e) {
+    let id = e.detail.child;
+    let index = e.detail.index;
+    Actions.doPost({
+      url: URLs.CLUB_SELF_JOIN,
+      data: {
+        clubid: id
+      }
+    }).then(res => {
+      if (res.data) {
+        let clun_id = res.data.info.club_id;
+        if (clun_id == id) {
+          let arr = that.data.canapplyList;
+          arr[index].apply_struts = 0;
+          that.setData({
+            canapplyList: arr
+          })
+          app.globalData.toast("申请成功")
+        }
+      }
+
+    }).catch(error => {})
+  },
+
+  onChange(e) {
+    this.setData({
+      k: e.detail.value
+    })
+  },
+
+  onSearch() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
+    if (that.data.table == 1) {
+
+      that.canapplyList(1)
+
+    } else {
+
+      that.applyList(1)
+    }
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
-
+  onReachBottom: function() {
+    if (that.data.table == 1) {
+      if (that.data.canapplyrefresh) {
+        that.canapplyList(that.data.pagenum + 1)
+      }
+    } else {
+      if (that.data.applyrefresh) {
+        that.applyList(that.data.applyPagenum + 1)
+      }
+    }
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

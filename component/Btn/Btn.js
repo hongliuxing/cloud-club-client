@@ -12,7 +12,11 @@ Component({
       type:String,
       value:"#57d8d6"
     },
-    value:String
+    value:String,
+    disabled:{
+      type:Boolean,
+      value:false
+    }
   },
   externalClasses: ["btn-class"],
 
@@ -28,7 +32,10 @@ Component({
    */
   methods: {
     onclick(){
-      this.triggerEvent('click')
+      if (!this.data.disabled){
+        this.triggerEvent('click')
+      }
+      
     }
   }
 })

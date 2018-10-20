@@ -1,0 +1,26 @@
+page {
+  background: #f9f9f9;
+}
+.header{
+  position: fixed;
+  top:0;
+  z-index: 5;
+  width: 100%;
+}
+.channel {
+  border: 0 !important;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 150rpx;
+}
+.add{
+  width: 160rpx;
+  height: 160rpx;
+  position: fixed;
+  bottom:20px;
+  right: 20px;
+  z-index: 10;
+}

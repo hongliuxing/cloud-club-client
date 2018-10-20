@@ -1,21 +1,22 @@
-<icon-to-page src="../../images/page/school.png" title="社团入驻" value="社团负责人入口" bind:onclick="goTo" right="{{false}}"  value-class="principal"/>
-<icon-to-page src="../../images/page/joinGroup.png" title="加入社团"  bind:onclick="goTo" right="{{false}}" top="{{false}}" />
+<view class='header'>
+  <icon-to-page src="../../images/page/school.png" title="社团入驻" value="社团负责人入口" bind:onclick="associationEnter" right="{{false}}" value-class="principal" />
+  <icon-to-page src="../../images/page/joinGroup.png" title="加入社团" bind:onclick="joinGroup" right="{{false}}" top="{{false}}" />
+</view>
+
+
 <view class='noMore' wx:if="{{more}}">
-   <image src='../../images/page/noMore.png' class='noMoreimage'></image>
-   <text>您还没有加入任何社团</text>
-   <view>
-      <text class='here'>点击这里</text> 
-      <text>加入社团</text>   
-   </view>
+  <image src='../../images/page/noMore.png' class='noMoreimage'></image>
+  <text>您还没有加入任何社团</text>
+  <view>
+    <text class='here'>点击这里</text>
+    <text>加入社团</text>
+  </view>
 </view>
 
 
 <view class='responsible'>
-   <text class='responsibleTitle'>我负责的社团</text>
-   <icon-to-page src="../../images/page/joinGroup.png" title="加入社团" value="60" bind:onclick="goTo" title-name="responsible-name" value-class="responsible-value"/>
-</view>
-
-<view class='responsible'>
-   <text class='responsibleTitle'>我参与的社团</text>
-   <icon-to-page src="../../images/page/joinGroup.png" title="加入社团" value="60" bind:onclick="goTo" title-name="responsible-name" value-class="responsible-value"/>
+  <block wx:for="{{fifterList}}" wx:key="index">
+    <text class='responsibleTitle' wx:if="{{item.type}}">{{item.text}}</text>
+    <icon-to-page wx:if="{{!item.type}}" index="{{index}}" src="{{item.logo_url}}" title="{{item.title}}" value="{{item.membership}}" bind:onclick="goTo" title-name="responsible-name" value-class="responsible-value" top="{{false}}" item="{{item}}"/>
+  </block>
 </view>

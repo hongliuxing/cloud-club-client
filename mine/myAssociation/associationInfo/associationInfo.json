@@ -1,0 +1,7 @@
+{
+    "navigationBarBackgroundColor": "#38bfbb",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "我的社团",
+    "enablePullDownRefresh": true,
+    "backgroundTextStyle": "dark"
+}

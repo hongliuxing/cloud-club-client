@@ -1,0 +1,20 @@
+<view class='header'>
+  <top-channel btns="{{topBtns}}" is-truncation="{{false}}" channel-class="channel"></top-channel>
+</view>
+<view class='list'>
+  <view wx:if="{{table===1}}" >
+    <block wx:for="{{applyingList}}" wx:key="index">
+      <association-list height="140" admission="{{false}}" item="{{item}}" bottom="{{applyingList.length-1==index}}"/>
+    </block>
+  </view>
+
+  <view wx:if="{{table===2}}">
+    <block wx:for="{{applyHistoryList}}" wx:key="index">
+      <association-list height="140" admission="{{false}}" item="{{item}}" bottom="{{applyHistoryList.length-1==index}}"/>
+    </block>
+  </view>
+
+
+</view>
+
+<image src='../../../images/page/add.png' class='add' bindtap='add'></image>

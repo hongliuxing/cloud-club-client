@@ -1,0 +1,128 @@
+.listItem {
+  width: 100%;
+  background: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  border-top: 2rpx solid #f0f0f0;
+}
+
+.context {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.leftContext {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  padding: 20rpx 0;
+  box-sizing: border-box;
+  margin-left: 30rpx;
+}
+
+.leftContext>text {
+  display: inline-block;
+}
+
+.border {
+  border: 2rpx solid #b7b7b7;
+}
+
+.name {
+  font-size: 28rpx;
+  color: #4c5257;
+  font-weight: bold;
+}
+
+.title {
+  font-size: 28rpx;
+  color: #4c5257;
+  font-weight: bold;
+}
+
+.name::before {
+  color: #818285;
+  content: "社团名称:";
+  margin-right: 10rpx;
+}
+
+.employee {
+  color:#7285dd;
+  font-size: 26rpx;
+}
+
+.employee::before {
+  color: #b7b7b7;
+  content: "社团成员:";
+  margin-right: 10rpx;
+}
+
+.employee::after {
+  color: #b7b7b7;
+  content: "人";
+}
+
+.time {
+  color: #b7b7b7;
+  font-size: 26rpx;
+}
+.case{
+  color: #b7b7b7;
+  font-size: 22rpx;
+  display: inline-block;
+}
+.cases{
+  opacity: 0;
+}
+.status {
+  font-size: 24rpx;
+  letter-spacing: 2px;
+}
+
+.padd {
+  padding-right: 50rpx;
+  margin-bottom: 4rpx;
+}
+
+.imagePadd {
+  padding: 0 50rpx;
+}
+
+/**状态判断**/
+
+.applying {
+  color: #7285dd;
+}
+
+.noPass {
+  color: #c46369;
+}
+
+.pass {
+  color: #5bd695;
+}
+
+.btn {
+  display: block;
+  width: 140rpx;
+  height: 50rpx;
+  background: #5cc8c8;
+  text-align: center;
+  line-height: 50rpx;
+  color: #fff;
+}
+
+.btn:active {
+  opacity: 0.8;
+}
+.btnMask{
+  background: #f9f9f9;
+  border: 2rpx solid #efefef;
+  color:#808080;
+}

@@ -1,0 +1,15 @@
+function formateTime(val){
+  var reg = getRegExp("-", "g")
+  if(val){
+    
+    var changeTime = getDate(val.replace(reg, "/"))
+    console.log(changeTime, "changeTime")
+    return changeTime
+  }
+
+  
+} 
+
+module.exports = {
+  formateTime: formateTime
+}

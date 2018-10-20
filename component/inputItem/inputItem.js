@@ -31,9 +31,13 @@ Component({
     go:{
       type:Boolean,
       value:true
+    },
+    typeAlign:{
+      type: String,
+      value: "center"
     }
   },
-  externalClasses: ["_input-class"],
+  externalClasses: ["_input-class","title_class"],
 
   /**
    * 组件的初始数据

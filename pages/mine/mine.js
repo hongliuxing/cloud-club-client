@@ -1,4 +1,7 @@
+import * as Actions from "../../utils/net/Actions.js";
+import * as URLs from "../../utils/net/urls.js";
 let app = getApp();
+let that;
 Page({
 
   /**
@@ -8,65 +11,74 @@ Page({
     urlSchool: "../../mine/editSchool/editSchool",
     myAssociation: "../../mine/myAssociation/myAssociation",
     luckExplain: "../../mine/luckExplain/luckExplain",
-    sportExplain: "../../mine/sportExplain/sportExplain"
+    sportExplain: "../../mine/sportExplain/sportExplain",
+    info: {},
+    school: null,
+    status: null, //学校状态
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    that = this;
+    that._request()
+  },
 
+  //请求
+  _request() {
+    Actions.doGet({
+      url: URLs.USER_PANEL_INFO,
+      data: {}
+    }).then(res => {
+
+      let status = res.data.info.school_struts;
+      let name = "";
+      if (status == 1) {
+        name = "已通过"
+      } else if (status == 0) {
+        name = "申请中"
+      } else if (status == -1) {
+        name = "未通过"
+      } else {
+        name = "未设置"
+      }
+
+      that.setData({
+        info: res.data.info,
+        school: name,
+        status: status
+      })
+
+      wx.setStorageSync("userInfo", res.data.info)
+    }).catch(err => {
+      console.log('我的社团 err: ', err);
+    });
+  },
+  //修改信息页面
+  goToUser() {
+    app.globalData.goToPage("../../mine/person/person?userinfo=" + JSON.stringify(this.data.info))
   },
   //页面跳转
-  goTo(e){
+  goTo(e) {
+    if (this.data.myAssociation == e.detail.url) {
+      if (this.data.status == null) {
+        app.globalData.toast("请先设置学校")
+        return
+      }
+    }
     app.globalData.goToPage(e.detail.url)
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
 
-  },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
 
+    if (wx.getStorageSync("mineRefresh")) {
+      that._request()
+    }
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
-
-  }
 })

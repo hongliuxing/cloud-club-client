@@ -1,0 +1,82 @@
+@import "../../../template/associationPanel/associationPanel.wxss";
+page {
+  background: #f9f9f9;
+}
+
+.header {
+  background: #fff;
+  padding: 20rpx 0;
+  box-sizing: border-box;
+  border-bottom: 2rpx solid #f0f0f0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 5;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: 2px;
+}
+
+.title >text:nth-child(1) {
+  color: #45515b;
+  font-size: 32rpx;
+}
+
+.title >text:nth-child(2) {
+  color: #a9a9a9;
+  font-size: 20rpx;
+  margin-top: 6rpx;
+}
+
+.channel {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  margin-top: 20rpx;
+}
+
+.channel >view {
+  display: flex;
+  flex: 1;
+  border: 2rpx solid #a9a9a9;
+  align-items: center;
+  justify-content: center;
+}
+
+.list {
+  margin-top: 360rpx;
+}
+
+.listTitle {
+  display: inline-block;
+  font-size: 26rpx;
+  color: #a9a9a9;
+  padding: 30rpx 0 20rpx 40rpx;
+  width: 100%;
+  border-bottom: 2rpx solid #f0f0f0;
+}
+.notice,.apply{
+  position: relative;
+}
+.tip,.applyNum{
+  background: #ea5763;
+  width: 20rpx;
+  height: 20rpx;
+  position: absolute;
+  top:5px;
+  right:10px;
+  border-radius: 50%;
+}
+.applyNum{
+  width: 30rpx;
+  height: 30rpx;
+  text-align: center;
+  line-height: 30rpx;
+  font-size: 20rpx;
+  color:#fff;
+}
