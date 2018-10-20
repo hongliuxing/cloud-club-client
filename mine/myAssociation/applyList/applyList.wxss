@@ -1,0 +1,6 @@
+page{
+  background: #f9f9f9;
+}
+.table{
+  border: 0 !important;
+}
