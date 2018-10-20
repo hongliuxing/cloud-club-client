@@ -46,7 +46,7 @@
   </view>
 
   <view class='bottom'>
-    <btn value="{{value}}" btn-class="btn {{struts ===0 || struts ===1?'disBtn':''}}" height="90" bind:click="onSubmit" disabled="{{struts ===0 || struts ===1}}"/>
+    <btn value="{{btnName}}" btn-class="btn {{struts ===0 || struts ===1?'disBtn':''}}" height="90" bind:click="onSubmit" disabled="{{struts ===0 || struts ===1}}"/>
   </view>
 
 </view>

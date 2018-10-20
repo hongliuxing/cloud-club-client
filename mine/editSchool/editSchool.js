@@ -32,8 +32,8 @@ Page({
     animationData: {},
     animationMask: {},
     struts: null,
-    value: "申请",
-    disabled: true
+    btnName: "申请",
+    disabled: false
   },
 
   /**
@@ -54,7 +54,7 @@ Page({
           profe: data.profe,
           realname: data.realname,
           struts: info.school_struts,
-          value: info.school_struts === 1 ? "已通过" : "申请中",
+          btnName: info.school_struts === 1 ? "已通过" : "申请中",
           uName: info.school
         })
         searchProvine(that,data.province_code, data.city_code)
@@ -150,6 +150,7 @@ Page({
 
   //城市列表
   cityList(index) {
+    console.log(index,"8888888888888")
     Actions.doGet({
       url: URLs.SCHOOL_CITY_LIST,
       data: {
