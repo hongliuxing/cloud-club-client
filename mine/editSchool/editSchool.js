@@ -32,7 +32,7 @@ Page({
     animationData: {},
     animationMask: {},
     struts: null,
-    value: "申请",
+    btnName: "申请",
     disabled: false
   },
 
@@ -54,7 +54,7 @@ Page({
           profe: data.profe,
           realname: data.realname,
           struts: info.school_struts,
-          value: info.school_struts === 1 ? "已通过" : "申请中",
+          btnName: info.school_struts === 1 ? "已通过" : "申请中",
           uName: info.school,
           disabled:true
         })
