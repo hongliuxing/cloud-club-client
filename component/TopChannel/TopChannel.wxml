@@ -11,6 +11,7 @@ style='background-color: {{bgColor}};{{isFixed?"position:fixed;z-index: 10000;":
             btn-len="{{btns.length}}" 
             btn-width="{{childWidth}}" 
             selected="{{selectedIndex === idx}}"
+            font-color="{{fontColor}}"
         ></btn>
     </block>
 </scroll-view>

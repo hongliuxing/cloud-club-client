@@ -1,0 +1,115 @@
+/* pages/activity/comment/comment.wxss */
+.container{
+    height: 100%;
+}
+/** 顶部工具栏 ==================================================================**/
+.topbar{
+    width: 100%;
+    height: 100rpx;
+    line-height: 100rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 30rpx;
+    /* background-color: rebeccapurple; */
+    border-bottom: 1rpx solid #DDDFE2;
+}
+.topbar-logo{
+    width: 60rpx;
+    height: 60rpx;
+    border: 1rpx solid #DDDFE2;
+    margin-right: 15rpx;
+    border-radius: 50%;
+}
+.topbar-title{
+    letter-spacing: 5rpx;
+    font-size: 32rpx;
+    font-weight: 600;
+}
+/** 评论面板 ==========================================================================**/
+.com-panel{
+    width: 100%;
+    min-height: 100%;
+    /* background-color: saddlebrown; */
+    padding: 30rpx 0 90rpx;
+    /* background-color: #F2F3F5; */
+}
+.row{
+    display: flex;
+    flex-direction: row;
+}
+.row-left{
+    width: 120rpx;
+    text-align: center;
+    justify-content: center;
+}
+.row-avatar{
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 50%;
+}
+
+.row-right{
+    width: calc(100% - 120rpx - 30rpx);
+    min-height: 100rpx;
+    line-height: 50rpx;
+    background-color: #F2F3F5;
+    border-radius: 20rpx;
+    padding: 10rpx 15rpx;
+    box-sizing: border-box;
+}
+.author{
+    color: rgb(96, 106, 128);
+    font-size: 32rpx;
+    letter-spacing: 4rpx;
+}
+.content{
+    color: #000000;
+    font-size: 34rpx;
+    letter-spacing: 4rpx;
+}
+.row-bottom{
+    margin-left: 120rpx;
+    margin-top: 6rpx;
+    font-size: 24rpx;
+    color: #9097A1;
+    margin-bottom: 40rpx;
+}
+/** 输入框 ==========================================================================**/
+.com-inbox{
+    width: 100%;
+    height: 100rpx;
+    line-height: 100rpx;
+    background-color: #FFFFFF;
+    position: fixed;
+    bottom: 0rpx;
+    border-top: 1rpx solid #DDDFE2;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-team{
+    display: flex;
+    flex-direction: row;
+    width: 94%;
+    height: 70rpx;
+    background-color: #F5F6F7;
+    border: 1rpx solid #DDDFE2;
+    border-radius: 10rpx;
+}
+.it-text{
+    width: 76%;
+    height: 70rpx;
+    line-height: 70rpx;
+    font-size: 32rpx;
+    padding-left: 10rpx;
+}
+.it-btn{
+    width: 24%;
+    height: 70rpx;
+    line-height: 70rpx;
+    /* background-color: #77C7F7; */
+    border: 0rpx hidden transparent;
+}

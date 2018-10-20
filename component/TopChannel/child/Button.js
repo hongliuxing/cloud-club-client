@@ -20,6 +20,12 @@ Component({
           observer: function (newVal, oldVal, changedPath) {
               // console.log('selected change: [old: ' + oldVal +'] [new: '+newVal+']');
           }
+      },
+      fontColor: {
+          type: String, value: '#555',
+          observer: function (newVal, oldVal, changedPath) {
+              console.log('new fontColor: ', newVal);
+          }
       }
   },
 

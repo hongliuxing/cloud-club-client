@@ -2,5 +2,6 @@
     "usingComponents": {
         "top-channel": "/component/TopChannel/TopChannel",
         "list-panel": "/component/DataList/DataList"
-    }
+    },
+    "navigationBarTitleText": "我的社团"
 }

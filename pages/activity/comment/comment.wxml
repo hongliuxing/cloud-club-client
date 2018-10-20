@@ -1,0 +1,40 @@
+<!--评论信息-->
+<view class="container">
+
+    <!--logo及标题栏-->
+    <view class="topbar">
+        <!--logo-->
+        <image class="topbar-logo" mode='aspectFit' src='{{clubLogo}}'></image>
+        <!--标题栏-->
+        <view class="topbar-title">{{atitle}}</view>
+    </view>
+
+    <!--评论面板-->
+    <view class="com-panel">
+        <block wx:for="{{datalist}}" wx:for-index="idx" wx:for-item="item" wx:key="item.id">
+            <!--某条评论-->
+            <view class='row'>
+                <view class='row-left'>
+                    <image class='row-avatar' mode='aspectFit' src='{{item.avatar_url}}'></image>
+                </view>
+                <view class='row-right'>
+                    <view class='author'>{{item.nickname == null ? '匿名' : item.nickname}}</view>
+                    <view class='content'>{{item.content}}</view>
+                </view>
+            </view><!-- row -->
+            <view class='row-bottom'>{{item.createdAt}}</view>
+        </block>
+    </view>
+
+    <!--评论输入框-->
+    <form bindsubmit='submitComment'>
+    <view class="com-inbox">
+        
+        <view class='input-team'>
+            <input class='it-text' name='comm' placeholder='写评论...' bindconfirm='submitComment'></input>
+            <button class='it-btn' form-type='submit' type="primary">回复</button>
+        </view>
+        
+    </view>
+    </form>
+</view>

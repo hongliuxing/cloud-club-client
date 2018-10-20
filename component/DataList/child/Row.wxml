@@ -17,7 +17,10 @@
                 <view class='list-top-club'>{{item.club_title}}</view>
                 <view class='list-top-school'>{{item.school}}</view>
             </view>
-            <view class='list-top-time'>{{item.createdAt}}</view>
+            <!-- <view class='list-top-time'>{{item.createdAt}}</view> -->
+            <view class='list-top-luv' catchtap='onLuvTap'>
+                <image class='icon-luv' mode='aspectFit' src='../icon/luv-full.png'></image>
+            </view>
         </view>
 
         <view class="news-title">
@@ -40,16 +43,18 @@
                 <image class='pic-item' style='' catchtap='onProview' data-index="{{idx}}" src="{{ pic.pic_url }}"></image>
             </block>
         </view>
+        <view class='list-top-time'>{{item.createdAt}}</view>
         <view class="list-btns">
-            <view class='list-btn'>
+            <view class='list-btn list-btn-1' catchtap='onLuvTap'>
                 <image class="list-icon" src='../icon/fire-2.png'></image>
                 <view class='list-icon-text'>{{item.heat}}</view>
             </view>
-            <view class='list-btn'>
+            <view class='list-btn list-btn-2' catchtap='onComment'>
                 <image class="list-icon" src='../icon/comment.png'></image>
+                <view class='list-icon-text'>{{item.comment_count}}</view>
             </view>
-            <view class='list-btn'>
-                <image class="list-icon" style='width:40rpx;height:40rpx;margin-top:5rpx;' src='../icon/share-1.png'></image>
+            <view class='list-btn list-btn-3' catchtap='onShare'>
+                <image class="list-icon" src='../icon/share.png'></image>
             </view>
         </view>
     </view>

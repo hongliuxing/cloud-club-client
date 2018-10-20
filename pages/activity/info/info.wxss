@@ -1,8 +1,6 @@
 .container{
     border-top: 1rpx solid #ddd;
     height: 100%;
-    
-    
 }
 .news{
     background-color: #FFF;

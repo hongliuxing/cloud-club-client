@@ -1,4 +1,5 @@
 import * as Actions from "./utils/net/Actions.js";
+import * as URLs from "./utils/net/urls.js";
 import {goToPage} from "./utils/upload/public.js";
 //app.js
 App({
@@ -15,13 +16,17 @@ App({
     //     })
     // }
 
-    // Actions.doGet({ 
-    //     url: "http://localhost:58888/user/panel-info"
-    // }).then(res => {
-    //     console.log('PanelInfo: ', res);
-    // }).catch(err => {
-    //     console.log('err: ', err);
-    // });
+    Actions.doGet({ 
+        url: URLs.CLUBMASTER_BUILD_APPLY_LIST,
+        data: {
+            struts: 0,
+            pagenum:1
+        }
+    }).then(res => {
+        console.log('CLUBMASTER_BUILD_APPLY_LIST: ', res);
+    }).catch(err => {
+        console.log('err: ', err);
+    });
 
     // wx.getLocation({
     //     type: "gcj02",

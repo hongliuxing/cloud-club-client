@@ -63,6 +63,11 @@ export const ACTIVITY_CONCERNED_LIST = HOST + "activity/concerned-list";
 // 获取当前活动的配图列表
 export const ACTIVITY_PICS = HOST + "activity/pics";
 
+// 获取活动相关的评论列表
+export const ACTIVITY_COMMENTS_LIST = HOST + "activity/comments-list";
+// 新增评论
+export const ACTIVITY_COMMENTS_ADD = HOST + "activity/add-comment";
+
 /***************************************
  * 
  * 【club】 社团相关接口

@@ -8,15 +8,24 @@
                 item="{{item}}"
                 colors="{{item.type==='date'?colors:[]}}"
                 bindRowTap="onRowTap"
+                bindLuvTap="onLuvTap"
+                bindLike="onLike"
+                bindComment="onComment"
+                bindShare="onShare"
             ></row>
         </block>
     </block>
     <block wx:else>
         <view class='nomore' wx:if="{{showEmpty && isQueryed}}">
             <image class='nomore-pic' mode='aspectFit' src='./icon/noMore.png'></image>
-            <view class='nomore-text'>
-                未找到任何活动
-            </view>
+            <block wx:for="{{bean.emptyData}}" wx:for-index="emptyRowIndex" wx:for-item="emptyRow" wx:key="*this">
+                <view class='nomore-text'>
+                    <block wx:for="{{emptyRow}}" wx:for-index="emptyTextIndex" wx:for-item="emptyText" wx:key="*this">
+                    <text wx:if="{{!emptyText.url}}">{{emptyText.text}}</text>
+                    <navigator class='nomore-nav' wx:else open-type="{{emptyText.openType}}" url="{{emptyText.url}}">{{emptyText.text}}</navigator>
+                    </block>
+                </view>
+            </block>
         </view>
     </block>
 </view>

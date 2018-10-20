@@ -95,11 +95,45 @@ Component({
          * 触发单击事件时,调用控制器的单击事件,并传入触发的行数据
          */
         onRowTap( e ){
-            // console.log('onRowTap...', e.detail.item);
             if (typeof this.data.bean.onTap == 'function'){
                 this.data.bean.onTap( e );
             }
-            // this.data.rowTap(e)
+        },
+        /**
+         * 切换关注
+         */
+        onLuvTap( e ){
+            // console.log('切换关注: ', this.data.bean);
+            if (typeof this.data.bean.onToggleLuv == 'function') {
+                this.data.bean.onToggleLuv(e);
+            }
+        },
+        /**
+         * 点赞
+         */
+        onLike(e){
+            // console.log('点赞: ', this.data.bean);
+            if (typeof this.data.bean.onLike == 'function') {
+                this.data.bean.onLike(e);
+            }
+        },
+        /**
+         * 调起评论入口
+         */
+        onComment(e) {
+            // console.log('调起评论入口: ', this.data.bean);
+            if (typeof this.data.bean.onComment == 'function') {
+                this.data.bean.onComment(e);
+            }
+        },
+        /**
+         * 分享
+         */
+        onShare(e) {
+            // console.log('分享: ', this.data.bean);
+            if (typeof this.data.bean.onShare == 'function') {
+                this.data.bean.onShare(e);
+            }
         }
     }
 })

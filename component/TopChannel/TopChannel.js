@@ -64,9 +64,17 @@ Component({
             type: Boolean, value: true
         },
         bgColor: {
-            type: String, value: '#fff'
+            type: String, value: '#fff',
+            observer: function (newVal, oldVal, changedPath) {
+                console.log('new bgColor: ', newVal);
+            }
         },
-        fontColor: String
+        fontColor: {
+            type: String, value: '#555',
+            observer: function (newVal, oldVal, changedPath) {
+                console.log('new fontColor: ', newVal);
+            }
+        }
     },
     externalClasses: ["channel-class"],
     /**

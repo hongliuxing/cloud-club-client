@@ -272,6 +272,8 @@ Page({
             currentTab.pagenum = 1;
         }
         let pagenum = append ? currentTab.nextPagenum() : currentTab.pagenum;
+        // console.log('[[pagenum]] : ', pagenum);
+        // console.log('[[append]] : ', append);
 
         // 加载框
         wx.showLoading({

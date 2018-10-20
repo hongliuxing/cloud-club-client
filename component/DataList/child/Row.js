@@ -72,9 +72,8 @@ Component({
     methods: {
         onTap(e){
             let that = this;
-            // console.log('新闻点击...', that.data.item);
             that.triggerEvent('RowTap', {item: that.data.item}, { bubbles: true });
-            // this.data.item.onTap(e);
+            
         },
         onProview(e){
             // console.log(e.currentTarget.dataset.index);
@@ -105,6 +104,42 @@ Component({
             }else{
                 return "#FFF";
             }
+        },
+        /**
+         * 切换爱
+         */
+        onLuvTap( e ){
+            let that = this;
+            console.log('ROW  切换爱', that.data.item);
+            // that.triggerEvent('RowTap', { item: that.data.item }, { bubbles: true });
+            that.triggerEvent('LuvTap', { item: that.data.item }, { bubbles: true });
+        },
+        /**
+         * 点击点赞
+         */
+        onLuvTap(e) {
+            let that = this;
+            console.log('ROW  点击点赞', that.data.item);
+            // that.triggerEvent('RowTap', { item: that.data.item }, { bubbles: true });
+            that.triggerEvent('Like', { item: that.data.item }, { bubbles: true });
+        },
+        /**
+         * 点击评论
+         */
+        onComment(e) {
+            let that = this;
+            console.log('ROW  点击评论', that.data.item);
+            // that.triggerEvent('RowTap', { item: that.data.item }, { bubbles: true });
+            that.triggerEvent('Comment', { item: that.data.item }, { bubbles: true });
+        },
+        /**
+         * 点击每一行的分享
+         */
+        onShare(e) {
+            let that = this;
+            console.log('ROW  点击分享', that.data.item);
+            that.triggerEvent('Share', { item: that.data.item }, { bubbles: true });
         }
-    }
+
+    }// end: method
 })
