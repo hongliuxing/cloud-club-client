@@ -19,6 +19,15 @@ class SimpleDataController{
     }
 
     /**
+     * 为list数组填充前置数据
+     * 通常情况下是用于填充新添加的, 待审核数据
+     */
+    unshift( data ){
+        this.list.unshift(data);
+        return this.list;
+    }
+
+    /**
      * 为 list 中填充数据
      * arr: 新增的数组数据
      * append: 是否在末尾追加数据( true为末尾追加, false为完全替换 )

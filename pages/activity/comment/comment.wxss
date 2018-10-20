@@ -74,6 +74,12 @@
     font-size: 24rpx;
     color: #9097A1;
     margin-bottom: 40rpx;
+    display: flex;
+    flex-direction: row;
+}
+.checking{
+    color: #F57635;
+    margin-right: 15rpx;
 }
 /** 输入框 ==========================================================================**/
 .com-inbox{

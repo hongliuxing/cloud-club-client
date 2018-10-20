@@ -15,14 +15,22 @@
             <!--某条评论-->
             <view class='row'>
                 <view class='row-left'>
-                    <image class='row-avatar' mode='aspectFit' src='{{item.avatar_url}}'></image>
+                    <block wx:if='{{item.avatar_url}}'>
+                        <image class='row-avatar' mode='aspectFit' src='{{item.avatar_url}}'></image>
+                    </block>
+                    <block wx:else>
+                        <image class='row-avatar' mode='aspectFit' src='{{defaults.avatar}}'></image>
+                    </block>
                 </view>
                 <view class='row-right'>
-                    <view class='author'>{{item.nickname == null ? '匿名' : item.nickname}}</view>
+                    <view class='author'>{{item.nickname == null ? defaults.nickname : item.nickname}}</view>
                     <view class='content'>{{item.content}}</view>
                 </view>
             </view><!-- row -->
-            <view class='row-bottom'>{{item.createdAt}}</view>
+            <view class='row-bottom'>
+                <view class='checking' wx:if="{{item.type == 'checking'}}">待审核</view>
+                {{item.createdAt}}
+            </view>
         </block>
     </view>
 
@@ -31,7 +39,7 @@
     <view class="com-inbox">
         
         <view class='input-team'>
-            <input class='it-text' name='comm' placeholder='写评论...' bindconfirm='submitComment'></input>
+            <input class='it-text' name='comm' value='{{defaultComment}}' placeholder='写评论...' bindconfirm='submitComment'></input>
             <button class='it-btn' form-type='submit' type="primary">回复</button>
         </view>
         

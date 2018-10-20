@@ -96,7 +96,7 @@ export const CLUB_CONTACT_LIST = HOST + "club/contact-list";
 // 包含公告提示、申请入社数据提示
 export const CLUB_PANEL_TIPS = HOST + "club/panel-tips";
 // 查看公告列表
-export const CLUB_NOTICE_LIST = HOST + "club/notice/list";
+export const CLUB_NOTICE_LIST = HOST + "club/notice-list";
 // 查看社团资料
 export const CLUB_DETAIL_INFO = HOST + "club/detail-info";
 

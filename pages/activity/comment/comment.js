@@ -1,6 +1,7 @@
 import * as Actions from "../../../utils/net/Actions.js";
 import * as URLs from "../../../utils/net/urls.js";
 import SimpleDataController from "../../../utils/comps/SimpleDataController";
+import * as Defaults from "../../../utils/default";
 
 // let sdc = new SimpleDataController();
 /**
@@ -14,6 +15,11 @@ Page({
     data: {
         clubLogo: '',
         // dataController: new SimpleDataController()
+        defaults: {
+            avatar: Defaults.DEF_AVATAT,
+            nickname: Defaults.DEF_NIKENAME
+        },
+        defaultComment: ''
     },
 
     /**
@@ -59,7 +65,7 @@ Page({
                 pagenum: dataController.nextPagenum()
             }
         }).then(res => {
-            // console.log('评论列表: ', res);
+            console.log('评论列表: ', res);
             let newVal = dataController.push(res.data.list);
             that.setData({
                 datalist: newVal
@@ -81,19 +87,23 @@ Page({
         }
         val = val.replace(/^\s+|\s+$/gm, '')
         if(val === ''){
-            wx.showToast({
+            return wx.showToast({
                 title: '内容不能是空的',
-                duration: 0,
+                duration: 2000,
+                image: '/images/page/face-fail.png',
                 mask: true
             })
         }
-        if (val.length < 15) {
-            wx.showToast({
-                title: '不能小于15字',
-                duration: 0,
+        if (val.length < 10) {
+            return wx.showToast({
+                title: '不能小于10字',
+                duration: 2000,
+                image: '/images/page/face-fail.png',
                 mask: true
             })
         }
+
+        wx.showLoading({ title: '正在打包评论...', mask: true });
 
         Actions.doPost({
             url: URLs.ACTIVITY_COMMENTS_ADD,
@@ -102,9 +112,44 @@ Page({
                 content: val
             }
         }).then( res => {
+            wx.hideLoading();
             console.log('评论结果: ', val);
+            // 将评论数据立即显示
+            // 获取用户头像 || 或默认头像
+            let {
+                avatar_url = that.data.defaults.avatar, 
+                nickname = that.data.defaults.nickname
+            } = wx.getStorageSync('userInfo');
+
+            let curr_comment = {
+                avatar_url, nickname, createdAt: '刚刚',
+                content: val, type: 'checking'
+            };
+            // 填充前置数据
+            let { dataController } = that.data;
+            let newVal = dataController.unshift(curr_comment);
+            wx.showToast({
+                title: '评论成功!',
+                duration: 2000,
+                mask: true,
+                success: function(){
+                    that.setData({
+                        datalist: newVal,
+                        defaultComment: ''
+                    });
+                }
+            })
+            
+
         }).catch(err=>{
+            wx.hideLoading();
             console.log('评论错误: ', val);
+            return wx.showToast({
+                title: '受到外星攻击...',
+                duration: 2000,
+                image: '/images/page/face-fail.png',
+                mask: true
+            })
         });
     },
 

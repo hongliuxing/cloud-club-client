@@ -30,7 +30,7 @@ Page({
     checkLogin() {
         if (!this.data.hasLoginer) {
             // 如果没有登录态则登录一次
-            wx.showLoading({ title: '正在组装社团...', mask: true });
+            wx.showLoading({ title: '在组装社团...', mask: true });
             return Actions.login();
         }else{
             return Promise.resolve();
@@ -277,7 +277,7 @@ Page({
 
         // 加载框
         wx.showLoading({
-            title: '正在运送社团活动...', mask: true
+            title: '运送社团活动...', mask: true
         })
 
         // 返回活动查询结果
