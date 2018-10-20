@@ -1,5 +1,6 @@
 {
   "pages": [
+        "mine/myAssociation/noticeList/noticeList",
     "mine/myAssociation/associationData/associationData",
       "mine/myAssociation/myAssociation",
     "pages/mine/mine",

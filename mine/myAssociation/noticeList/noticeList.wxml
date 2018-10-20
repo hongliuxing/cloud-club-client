@@ -1,0 +1,12 @@
+<view class='listItem'>
+     <text class='time'>2018-09-12 10:25</text>
+     <view class='content'>
+         <text class='title'>他一尖端我的发</text>
+         <view class='context'>asdajdadjlkasdljdkladklajdlkasjkdajdkjsakdadjaslkdkjaldjasasdsadasdsadsadadasasdsadadadasdasdasdasdasdasdsadasdasasdsadsadasdasdasdasdsadadasadsadadsadada adasdasdasadsadasdsadasadadasdsadasdsadadasdsada
+         </view>
+         <view class='more'>
+         <text>查看更多</text>
+            
+         </view>
+     </view>
+</view>
