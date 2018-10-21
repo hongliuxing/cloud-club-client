@@ -77,7 +77,10 @@ input {
   border: none;
   list-style: none;
 }
-
+.sexBtn{
+  width: 180rpx;
+  text-align: right;
+}
 button {
   padding: 0;
   margin: 0;

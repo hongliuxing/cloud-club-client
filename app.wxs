@@ -2,12 +2,14 @@ function formateTime(val){
   var reg = getRegExp("-", "g")
   if(val){
     
-    var changeTime = getDate(val.replace(reg, "/"))
-    console.log(changeTime, "changeTime")
-    return changeTime
+    var changeTime = getDate(val.replace(reg, "/"));
+    var year = changeTime.getFullYear();
+    var mouth = changeTime.getMonth() + 1 < 10 ? "0" + (changeTime.getMonth() + 1) : changeTime.getMonth() + 1;
+    var day = changeTime.getDate() < 10 ? "0" + changeTime.getDate() : changeTime.getDate();
+    var hours = changeTime.getHours();
+    var minutes = changeTime.getMinutes()
+    return year + "." + mouth + "." + day + " " + hours + ":" + minutes;
   }
-
-  
 } 
 
 module.exports = {

@@ -19,6 +19,7 @@ Page({
     school: "",
     newjoin_count:"",//入团申请
     notice_count:"",//公告数量
+    userId:""
 
   },
 
@@ -33,7 +34,8 @@ Page({
         clubid: item.id,
         title: item.title,
         school: item.uName,
-        disabled: item.is_master == "true" ? true : false
+        disabled: item.is_master == "true" ? true : false,
+        userId: wx.getStorageSync("userInfo").id
       })
       that._request({
         clubid: item.id

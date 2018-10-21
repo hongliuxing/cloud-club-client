@@ -25,6 +25,6 @@
 <view class='list'>
   <block wx:for= "{{filterList}}" wx:key="index">
     <text class='listTitle' wx:if="{{item.type}}">{{item.text}}</text>
-    <template is="associationPanel" data="{{item}}"  wx:if="{{!item.type}}"/>
+    <template is="associationPanel" data="{{item,userId}}"  wx:if="{{!item.type}}"/>
   </block>
 </view>
