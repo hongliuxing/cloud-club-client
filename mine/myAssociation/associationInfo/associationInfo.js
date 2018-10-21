@@ -52,6 +52,10 @@ Page({
 
 
   },
+  //公告列表
+  goTo_notice(){
+    app.globalData.goToPage("../noticeList/noticeList")
+  },
   
   //面板提示信息
   _panelReauest(clubid){

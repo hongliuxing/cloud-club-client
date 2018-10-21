@@ -37,3 +37,16 @@
   color: #5f5c5d;
   margin-right: 20rpx;
 }
+
+.bottom{
+  position: fixed;
+  bottom: 100rpx;
+  z-index: 5;
+  padding: 0 50rpx;
+  box-sizing: border-box;
+  width: 100%;
+}
+.btn{
+  color:#fff;
+  border-radius: 10rpx;
+}

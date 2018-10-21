@@ -79,3 +79,12 @@ page {
   width: 40rpx;
   height: 40rpx;
 }
+
+.add{
+  width: 160rpx;
+  height: 160rpx;
+  position: fixed;
+  bottom:20px;
+  right: 20px;
+  z-index: 10;
+}

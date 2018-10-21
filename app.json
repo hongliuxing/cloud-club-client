@@ -1,9 +1,9 @@
 {
   "pages": [
     "pages/mine/mine",
-        "mine/myAssociation/applyList/applyList",
+    "mine/myAssociation/noticeAdd/noticeAdd",
+    "mine/myAssociation/applyList/applyList",
     "pages/association/association",
-
     "pages/index/index",
     "mine/editSchool/editSchool",
     "demo/uploadtest/uploadtest",
@@ -19,7 +19,6 @@
     "mine/myAssociation/myAssociation",
     "mine/myAssociation/noticeInfo/noticeInfo",
     "mine/myAssociation/noticeList/noticeList",
-   
     "mine/luckExplain/luckExplain",
     "mine/sportExplain/sportExplain",
     "mine/person/person"

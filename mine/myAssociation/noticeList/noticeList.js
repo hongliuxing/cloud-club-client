@@ -22,12 +22,19 @@ Page({
     let info = wx.getStorageSync("associationInfo");
     if (info){
       that.setData({
-        clubid: info.id
-      })
-      that._request({clubid:info.id})     
+        clubid: info.id,
+        role_ability: info.role_ability  //拿到权限判断是否有添加权限
+      }) 
     }
   },
 
+  onShow() {
+    that._request({ clubid: that.data.clubid,pagenum:1 })
+  },
+  //添加
+  add() {
+    app.globalData.goToPage("../noticeAdd/noticeAdd")
+  },
   //请求
   _request({clubid = this.data.clubid, pagenum = this.data.pagenum}){
     let arr = pagenum==1?[]:that.data.list;
@@ -57,10 +64,11 @@ Page({
 
     })
   },
- 
+
   //跳转详情
-  goTo(){
-    app.globalData.goToPage("../noticeInfo/noticeInfo")
+  goTo(e){
+    let index = Number(e.currentTarget.dataset.index);
+    app.globalData.goToPage("../noticeInfo/noticeInfo?item=" + JSON.stringify(this.data.list[index]))
   },
   /**
    * 页面相关事件处理函数--监听用户下拉动作

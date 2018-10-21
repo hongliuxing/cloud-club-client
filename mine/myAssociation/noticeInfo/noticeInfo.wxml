@@ -1,6 +1,10 @@
 <view class='con'>
-    <view class='title'>asdasda</view>
-    <view class='time'>2018-10-02 12:20</view>
-    <view class='context'>挨打了空间的绿卡埃德加阿斯利康大家萨连科暗示的骄傲了肯德基绿卡就奥克兰加大技术科技凯乐科技案件看来大家来得及案件开始就骄傲的捡垃圾了解</view>
-    <view class='author'>小飞飞</view>
+    <view class='title'>{{info.title}}</view>
+    <view class='time'>{{info.createdAt}}</view>
+    <view class='context'>{{info.content}}</view>
+    <view class='author'>{{info["crole.author"]}}</view>
 </view>
+
+  <view class='bottom' wx:if="{{role_ability==3 || role_ability==4}}">
+    <btn value="删除" btn-class="btn" height="90" bind:click="onSubmit" back="#f61612"/>
+  </view>
