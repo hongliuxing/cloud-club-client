@@ -1,13 +1,25 @@
 import * as Actions from "../net/Actions.js";
 import * as URLs from "../net/urls.js";
 
-export const goToPage = (url)=>{
-   wx.navigateTo({
-     url: url,
-   })
+export const goToPage = (url) => {
+  wx.navigateTo({
+    url: url,
+  })
 }
 
-export const toast = (title, icon="none")=>{
+export const goBack = ({
+  title="保存成功"
+}) => {
+  toast(title)
+  setTimeout(function() {
+    wx.navigateBack({
+      delta: 1
+    })
+  }, 500)
+
+}
+
+export const toast = (title, icon = "none") => {
   wx.showToast({
     title: title,
     icon: icon,
@@ -15,7 +27,7 @@ export const toast = (title, icon="none")=>{
 }
 
 //选择省市打开动画
-export const onStartAnimation = (that) =>{
+export const onStartAnimation = (that) => {
   var animation = wx.createAnimation({
     duration: 150,
     timingFunction: 'linear'
@@ -25,7 +37,7 @@ export const onStartAnimation = (that) =>{
   that.setData({
     animationData: animation.export(),
   })
-  setTimeout(function () {
+  setTimeout(function() {
     animation.translateY(0).step()
     that.setData({
       animationData: animation.export()
@@ -49,7 +61,7 @@ export const onStartAnimation = (that) =>{
 
 
 //选择省市关闭动画
-export const onCloseAnimation = (that)=> {
+export const onCloseAnimation = (that) => {
   var animation = wx.createAnimation({
     duration: 150,
     timingFunction: 'linear'
@@ -59,7 +71,7 @@ export const onCloseAnimation = (that)=> {
   that.setData({
     animationData: animation.export(),
   })
-  setTimeout(function () {
+  setTimeout(function() {
     animation.translateY(300).step()
     that.setData({
       animationData: animation.export()
@@ -72,7 +84,7 @@ export const onCloseAnimation = (that)=> {
   });
   that.animationMask = animationMask;
   that.animationMask.opacity(0).step();
-  setTimeout(function () {
+  setTimeout(function() {
     that.setData({
       animationMask: that.animationMask.export(),
       visable: false
@@ -83,7 +95,7 @@ export const onCloseAnimation = (that)=> {
 
 
 //查询省份城市
-export const searchProvine = (that, provinceCode, cityCode) =>{
+export const searchProvine = (that, provinceCode, cityCode) => {
   let proviceList = wx.getStorageSync("province");
   for (let i = 0; i < proviceList.length; i++) {
     if (provinceCode == proviceList[i].code) {
@@ -101,7 +113,7 @@ export const searchProvine = (that, provinceCode, cityCode) =>{
             break;
           }
         }
-      }).catch(error => { })
+      }).catch(error => {})
       break;
     }
   }

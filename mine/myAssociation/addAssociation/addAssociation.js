@@ -59,13 +59,8 @@ Page({
       url: URLs.CLUBMASTER_CREATE_CLUB,
       data: data
     }).then(res => {
-      app.globalData.toast("申请成功")
 
-      setTimeout(function () {
-        wx.navigateBack({
-          delta: 1
-        })
-      }, 500)
+      app.globalData.goBack({ title: "申请成功" })
 
     }).catch(error => {
 
@@ -80,16 +75,23 @@ Page({
       sizeType: ["compressed"],
       sourceType: ['album', 'camera'],
       success: function (res) {
+        wx.showLoading({
+          title: '正在上传',
+          mask:true,
+        })
         Actions.uploadSign.clubApply(res.tempFilePaths[0])
           .then((uploadRes) => {
             if (uploadRes.errMsg == "uploadFile:ok") {
               that.setData({
                 cert_url: uploadRes.pic
               })
+              wx.hideLoading()
+              app.globalData.toast("上传成功")
             }
           })
           .catch(err => {
-            console.log('上传错误：：', err);
+            wx.hideLoading()
+            app.globalData.toast("上传错误")
           });
       },
     })

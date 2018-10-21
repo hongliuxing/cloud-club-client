@@ -1,6 +1,6 @@
 import * as Actions from "./utils/net/Actions.js";
 import * as URLs from "./utils/net/urls.js";
-import { goToPage, toast} from "./utils/upload/public.js";
+import { goToPage, toast, goBack} from "./utils/upload/public.js";
 
 //app.js
 App({
@@ -61,6 +61,7 @@ App({
   globalData: {
     userInfo: null,
     goToPage: goToPage,
-    toast: toast
+    toast: toast,
+    goBack: goBack
   }
 })

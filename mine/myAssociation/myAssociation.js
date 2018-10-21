@@ -8,9 +8,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    pagenum: 1,
-    list: [],
-    refresh: true,
     fifterList:[]
   },
 
@@ -19,7 +16,7 @@ Page({
    */
   onLoad: function(options) {
     that = this;
-    that._request(1)
+    that._request()
     wx.removeStorageSync("associationInfo")
     wx.showLoading({
       title: '正在运送社团活动...', mask: true
@@ -35,31 +32,15 @@ Page({
     app.globalData.goToPage("./joinGroup/joinGroup")
   },
 
-  _request(pageindex) {
-    let arr = pageindex==1?[]:that.data.list;
+  _request() {
     Actions.doGet({
       url: URLs.CLUB_DETAIL_LIST,
-      data: {
-        pagenum: pageindex
-      }
+      data: {}
     }).then(res => {
       wx.hideLoading()
-       arr = arr.concat(res.data.list)
-        if (res.data.list.length > 0) {
-          that.setData({
-            refresh: true,
-          })
-        } else {
-          that.setData({
-            refresh: false,
-          })
-        }
         that.setData({
-          list: arr,
-          fifterList: that._filterArr(arr),
-          pagenum: pageindex
+          fifterList: that._filterArr(res.data.list),
         })
-        wx.stopPullDownRefresh()
     }).catch(error => {
 
     })
@@ -101,48 +82,5 @@ Page({
     let item = e.detail.item;
     wx.setStorageSync("associationInfo", item)
     app.globalData.goToPage("./associationInfo/associationInfo")
-  },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-    that._request(1)
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-    if (this.data.refresh){
-       that._request(this.data.pagenum+1)
-    }
-  },
+  }
 })

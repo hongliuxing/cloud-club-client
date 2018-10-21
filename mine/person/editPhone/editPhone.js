@@ -103,9 +103,9 @@ Page({
       url: URLs.USER_PHONE_SAVE,
       data: data
     }).then(res => {
-      wx.navigateBack({
-        delta:1
-      })
+      
+      app.globalData.goBack({})
+     
       wx.setStorageSync("phone", that.data.telephone)
     }).catch(error => {
 

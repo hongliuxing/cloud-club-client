@@ -50,7 +50,7 @@ Page({
         let data = res.data.list[0];
 
         that.setData({
-          cert_url: data.cert_url,
+          cert_url: info.school_struts === 1 ?"":data.cert_url,
           profe: data.profe,
           realname: data.realname,
           struts: info.school_struts,
@@ -58,6 +58,7 @@ Page({
           uName: info.school
         })
         searchProvine(that,data.province_code, data.city_code)
+        //that.schoolList(data.city_code)
       }).catch(error => {
 
       })

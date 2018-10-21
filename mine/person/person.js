@@ -81,6 +81,7 @@ Page({
   },
   //提交
   onSubmit() {
+
     let data = {
       nickname: this.data.nickname,
       avatar_url: this.data.avatar_url,
@@ -90,9 +91,7 @@ Page({
       url: URLs.USER_SAVE,
       data: data
     }).then(res=>{
-      wx.navigateBack({
-        delta:1
-      })
+      app.globalData.goBack({})
       wx.setStorageSync("mineRefresh", true)
     }).catch(error=>{
 
