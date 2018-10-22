@@ -18,8 +18,10 @@
                 <view class='list-top-school'>{{item.school}}</view>
             </view>
             <!-- <view class='list-top-time'>{{item.createdAt}}</view> -->
-            <view class='list-top-luv' catchtap='onLuvTap'>
-                <image class='icon-luv' mode='aspectFit' src='../icon/luv-full.png'></image>
+            <!-- 收藏(关注)部分 -->
+            <view class='list-top-luv' data-atten='{{item.isAttention}}' catchtap='onLuvTap'>
+                <image wx:if="{{item.isAttention == 1}}" class='icon-luv' mode='aspectFit' src='../icon/luv-full.png'></image>
+                <image wx:elif="{{item.isAttention == 0}}" class='icon-luv' mode='aspectFit' src='../icon/luv-empty.png'></image>
             </view>
         </view>
 
@@ -43,9 +45,9 @@
                 <image class='pic-item' style='' catchtap='onProview' data-index="{{idx}}" src="{{ pic.pic_url }}"></image>
             </block>
         </view>
-        <view class='list-top-time'>{{item.createdAt}}</view>
+        <view class='list-top-time'>作者于 {{item.createdAt}} 发布推文。</view>
         <view class="list-btns">
-            <view class='list-btn list-btn-1' catchtap='onLuvTap'>
+            <view class='list-btn list-btn-1' catchtap='onHeat'>
                 <image class="list-icon" src='../icon/fire-2.png'></image>
                 <view class='list-icon-text'>{{item.heat}}</view>
             </view>

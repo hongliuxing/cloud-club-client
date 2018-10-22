@@ -1,0 +1,66 @@
+/* pages/attention/attention.wxss */
+view{
+    box-sizing: border-box;
+}
+.container{
+    height: 100%;
+}
+/** 关注面板 ==========================================================================**/
+.com-panel{
+    width: 100%;
+    min-height: 100%;
+    padding: 50rpx 0 90rpx;
+}
+.row{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 30rpx;
+    border-bottom: 1rpx solid #f2f2f2;
+    padding-bottom: 15rpx;
+}
+.row-left{
+    margin-left: 15rpx;
+    width: 140rpx;
+    text-align: center;
+    justify-content: center;
+}
+.row-avatar{
+    width: 110rpx;
+    height: 110rpx;
+    border-radius: 50%;
+}
+.row-center{
+    width: calc(100% - 155rpx - 170rpx);
+}
+.author{
+    color: #585858;
+    font-weight: 800;
+    font-size: 28rpx;
+    letter-spacing: 4rpx;
+}
+.school{
+    color: rgb(96, 106, 128);
+    font-size: 26rpx;
+    letter-spacing: 4rpx;
+}
+.fans{
+    color: rgb(96, 106, 128);
+    font-size: 26rpx;
+    letter-spacing: 4rpx;
+}
+
+.row-right{
+    width: 150rpx;
+    line-height: 50rpx;
+    border-radius: 20rpx;
+    margin-right: 20rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.att-on{
+    font-size: 24rpx;
+}
+.att-off{
+    font-size: 24rpx;
+}

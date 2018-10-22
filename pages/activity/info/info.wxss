@@ -37,6 +37,20 @@
 .subhead-left{
     width: 60%;
 }
+/** 收藏关注部分 **/
+.list-top-luv{
+    position: absolute;
+    right: 0rpx;
+    width: 120rpx;
+    height: 80rpx;
+    text-align: center;
+}
+.icon-luv{
+    margin-top: 15rpx;
+    width:50rpx;
+    height: 50rpx;
+}
+
 .left-li{
     display: flex;
     flex-direction: row;
@@ -103,19 +117,7 @@
     color: #FFF;
     margin-right: 15rpx;
 }
-/****/
-.list-icon{
-    width: 50rpx;
-    height: 50rpx;
-    vertical-align: middle;
-}
-.list-icon-text{
-    height: 50rpx;
-    line-height: 60rpx;
-    font-size: 24rpx;
-    letter-spacing: 2rpx;
-    vertical-align: middle;
-}
+
 /****/
 .interval{
     width: 100%;
@@ -128,4 +130,38 @@
     padding: 30rpx;
     font-size: 30rpx;
     color: #05A2E9;
+}
+
+.list-btn{
+    width: 33%;
+    display: flex;
+    flex-direction: row;
+    /* background-color: chartreuse; */
+}
+.list-btn-1{
+
+}
+.list-btn-2{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.list-btn-3{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.list-icon{
+    width: 50rpx;
+    height: 50rpx;
+    vertical-align: middle;
+    margin-right: 5rpx;
+}
+.list-icon-text{
+    height: 50rpx;
+    line-height: 60rpx;
+    font-size: 30rpx;
+    letter-spacing: 2rpx;
+    vertical-align: middle;
+    color: #bbb;
 }

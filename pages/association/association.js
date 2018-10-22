@@ -44,8 +44,8 @@ Page({
         wx.pageScrollTo({
             scrollTop: 0
         })
-        // console.log(index, range[index].activityId);
-        let club_id = range[index].activityId;
+        console.log('【range[index] ： 】', index, range[index]);
+        let club_id = range[index].id;
         // 激活新的标签页
         that.setData({
             currentTabId: club_id
@@ -84,29 +84,32 @@ Page({
     loadMyClub() {
         let that = this;
         // 返回的是请求的Promise
-        return Actions.doGet({
-            url: URLs.CLUB_SIMPLE_LIST,
-            data: {}
-        }).then(res => {
-            console.log('我的社团 res: ', res);
+        return Promise.resolve().then(res => {
+            // console.log('我的社团 res: ', res);
             // 我的社团数据
-            let clubs = res.data.list ? res.data.list : [];
-            clubs.unshift({
+            let public_range = [{
                 title: '全部社团',// 社团名称
                 id: 'all'
-            });
+            }, {
+                    title: '我的学校',// 我的学校
+                id: 'school'
+            }, {
+                    title: '我关注的',// 我关注的
+                id: 'heart'
+            }];
+            
             // 将社团数组生成标签页按钮所需的数据
-            let clubs_range = clubs.map((club, index) => {
-                return {
-                    title: club.title,// 社团名称
-                    ind: index,
-                    activityId: club.id
-                };
-            });
+            // let clubs_range = clubs.map((club, index) => {
+            //     return {
+            //         title: club.title,// 社团名称
+            //         ind: index,
+            //         activityId: club.id
+            //     };
+            // });
             let topBtns = [
                 {
                     title: "我的社团", btype: "list", value: {
-                        range: clubs_range,
+                        range: public_range,
                         rangeKey: 'title',
                         index: 0,
                         bindchange: that.onClubChange
@@ -137,7 +140,7 @@ Page({
             let tabMapper = new Map();
             let tc_index = 0;
             // let now = new Date(); // 今天
-            for (let club of clubs) {
+            for (let club of public_range) {
 
                 // 这里通过 社团id 作为标签页的key
                 // 所指向的值,是一个标签页控制的对象(这个对象很有意思)
@@ -236,7 +239,19 @@ Page({
         let currentTiming = that.data.currentTiming; // 获取当前的活动时机
         console.log('currentTabcurrentTab: ', currentTab);
         // 如果是全部标签, 则将社团id置空, 因为服务器对于想要获取所有的认证时,id需要是空字符串
-        let club_id = currentTab.data.id === 'all' ? '' : currentTab.data.id;
+        let club_id = currentTab.data.id; // 这里不存在 社团id, 只存在 all 和 heart 和 school 三个可选项
+        if ('all' !== club_id && 'heart' !== club_id && 'school' !== club_id){
+            return;
+        }
+        let url = '';
+        if ('all' === club_id){
+            url = URLs.ACTIVITY_PUBLIC_LIST;
+        } else if ('heart' === club_id) {
+            url = URLs.ACTIVITY_ATTENTION_LIST;
+        } else if ('school' === club_id) {
+            url = URLs.ACTIVITY_SCHOOL_LIST;
+        }
+        // 判断填充还是追加数据
         if (!append) {
             currentTab.pagenum = 1;
         }
@@ -249,8 +264,8 @@ Page({
 
         // 返回活动查询结果
         return Actions.doGet({
-            url: URLs.ACTIVITY_CONCERNED_LIST,
-            data: { club_id, pagenum, timing: currentTiming }
+            url: url,
+            data: { pagenum, timing: currentTiming }
         }).then(res => {
             wx.hideLoading();
             if (res && !res.data.err && res.data.list) {

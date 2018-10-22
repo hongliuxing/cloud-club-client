@@ -16,6 +16,11 @@
                 <view class='left-li'><view class='yuan'></view>{{activity.school}}</view>
                 <view class='left-li'><view class='yuan'></view>{{activity.club_title}}</view>
             </view>
+            <!-- 收藏(关注)部分 -->
+            <view class='list-top-luv' data-atten='{{activity.isAttention}}' catchtap='onLuvTap'>
+                <image wx:if="{{activity.isAttention == 1}}" class='icon-luv' mode='aspectFit' src='/images/page/luv-full.png'></image>
+                <image wx:elif="{{activity.isAttention == 0}}" class='icon-luv' mode='aspectFit' src='/images/page/luv-empty.png'></image>
+            </view>
         </view>
         <!--内容-->
         <view class='content'>
@@ -36,15 +41,26 @@
             </view>
         </view>
         <view class="list-btns">
-            <image class="list-icon" src='/images/page/fire-2.png'></image>
-            <view class='list-icon-text'>{{activity.heat}}</view>
+            <!-- <image class="list-icon" src='/images/page/fire-2.png'></image>
+            <view class='list-icon-text'>{{activity.heat}}</view> -->
+            <view class='list-btn list-btn-1' catchtap='onHeat'>
+                <image class="list-icon" src='/images/page/fire-2.png'></image>
+                <view class='list-icon-text'>{{activity.heat}}</view>
+            </view>
+            <view class='list-btn list-btn-2' catchtap='onComment'>
+                <image class="list-icon" src='/images/page/comment.png'></image>
+                <view class='list-icon-text'>{{activity.comment_count}}</view>
+            </view>
+            <view class='list-btn list-btn-3' catchtap='onShare'>
+                <image class="list-icon" src='/images/page/share.png'></image>
+            </view>
         </view>
     </view>
 
     <view class='interval'></view>
 
     <!--活动信息-->
-    <view class='others'>
+    <!-- <view class='others'>
         <view class='moreList'>更多活动 ↓</view>
         <list-panel active="{{true}}" 
             rows="{{ dataListController.list }}" 
@@ -53,6 +69,6 @@
             bean="{{dataListController}}"
             show-empty="{{false}}"
         ></list-panel>
-    </view>
+    </view> -->
 
 </view>

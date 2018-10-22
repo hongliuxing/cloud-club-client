@@ -8,7 +8,6 @@
         "pages/welcome/welcome",
         "pages/activity/info/info",
         "pages/activity/comment/comment",
-
         "mine/myAssociation/associationData/associationData",
         "mine/myAssociation/associationInfo/associationInfo",
         "mine/myAssociation/associationEnter/associationEnter",
@@ -16,11 +15,10 @@
         "mine/myAssociation/joinGroup/joinGroup",
         "mine/myAssociation/myAssociation",
         "pages/mine/mine",
-        
         "mine/luckExplain/luckExplain",
         "mine/sportExplain/sportExplain",
-        "mine/person/person"
-
+        "mine/person/person",
+        "pages/attention/attention"
     ],
     "window": {
         "backgroundTextStyle": "light",
@@ -44,6 +42,12 @@
                 "text": "我的社团"
             },
             {
+                "pagePath": "pages/attention/attention",
+                "iconPath": "images/heart-1.png",
+                "selectedIconPath": "images/heart-2.png",
+                "text": "关注"
+            },
+            {
                 "pagePath": "pages/mine/mine",
                 "iconPath": "images/my-1.png",
                 "selectedIconPath": "images/my-2.png",
@@ -51,5 +55,4 @@
             }
         ]
     }
-
 }

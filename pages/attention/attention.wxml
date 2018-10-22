@@ -1,0 +1,36 @@
+<!-- 关注界面 -->
+<view class="container">
+    <top-channel btns="{{topBtns}}" is-truncation="{{false}}"></top-channel>
+
+    <!-- 关注及推荐面板-->
+    <view class="com-panel">
+        <block wx:for="{{datalist}}" wx:for-index="idx" wx:for-item="item" wx:key="item.id">
+            <!--某条评论-->
+            <view class='row'>
+                <view class='row-left'>
+                    <block wx:if='{{item.logo_url}}'>
+                        <image class='row-avatar' mode='aspectFit' src='{{item.logo_url}}'></image>
+                    </block>
+                    <block wx:else>
+                        <image class='row-avatar' mode='aspectFit' src='{{defaults.avatar}}'></image>
+                    </block>
+                </view>
+                <view class='row-center'>
+                    <view class='author'>{{item.title}}</view>
+                    <view class='school'>{{item.uName}}</view>
+                    <view class='fans'>粉丝: {{item.fans}}</view>
+                    <view class='fans'>社员: {{item.member}}</view>
+                </view>
+                <view class='row-right'>
+                    <button class='att-on' wx:if="{{item.isAttention === 1}}" 
+                        data-cid='{{item.club_id}}'
+                        type='primary' catchtap='cancelAttent'>正在关注</button>
+                    <button class='att-off' wx:else 
+                        data-cid='{{item.club_id}}'
+                        catchtap='doAttent'>关注</button>
+                </view>
+            </view><!-- row -->
+        </block>
+    </view>
+
+</view>

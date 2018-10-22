@@ -77,8 +77,8 @@
 .list-top-time{
     color: #B4B5B7;
     font-size: 10pt;
-    position: absolute;
     right: 30rpx;
+    margin: 20rpx 0 10rpx 0;
 }
 /** 新闻行: 标题 **/
 .news-title{

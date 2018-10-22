@@ -71,6 +71,13 @@ export const ACTIVITY_COMMENTS_LIST = HOST + "activity/comments-list";
 // 新增评论
 export const ACTIVITY_COMMENTS_ADD = HOST + "activity/add-comment";
 
+// 获取所有(全国开放性的)社团活动列表
+export const ACTIVITY_PUBLIC_LIST = HOST + "activity/public-list";
+// 获取我关注的( attention )社团活动列表
+export const ACTIVITY_ATTENTION_LIST = HOST + "activity/attention-list";
+// 获取自己学校的( SCHOOL )社团活动列表
+export const ACTIVITY_SCHOOL_LIST = HOST + "activity/school-list";
+
 /***************************************
  * 
  * 【club】 社团相关接口
@@ -100,6 +107,15 @@ export const CLUB_NOTICE_LIST = HOST + "club/notice-list";
 // 查看社团资料
 export const CLUB_DETAIL_INFO = HOST + "club/detail-info";
 
+
+// 添加关注
+export const CLUB_ATTENTION_ADD = HOST + "club/add-attention";
+// 取消关注
+export const CLUB_ATTENTION_CANCEL = HOST + "club/cancel-attention";
+// 获取关注(社团)列表
+export const CLUB_ATTENTION_LIST = HOST + "club/attention-list";
+// 获取向我推荐的社团列表
+export const CLUB_RECOMMEND_LIST = HOST + "club/recommend-list";
 
 /***************************************
  * 

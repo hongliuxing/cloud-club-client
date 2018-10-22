@@ -104,17 +104,52 @@ Component({
          */
         onLuvTap( e ){
             // console.log('切换关注: ', this.data.bean);
+            let that = this;
             if (typeof this.data.bean.onToggleLuv == 'function') {
-                this.data.bean.onToggleLuv(e);
+                // 关注行为, 返回结果是一个 Promise
+                wx.showLoading({
+                    title: '加入收藏夹...',
+                    mask: true
+                })
+                this.data.bean.onToggleLuv(e)
+                    .then(({ res, isAttention, club_id }) => {
+                        console.log('关注结果: ', res);
+                        wx.hideLoading();
+                        if(res.data.err){
+                            return console.log('关注返回结果有误: ', res);
+                        }
+                        if (isAttention === 0 && typeof res.data.info === 'object'){
+                            // 关注成功
+                            that.data.rows.forEach( r => {
+                                if (r.club_id === club_id)
+                                    r.isAttention = 1;
+                            } );
+                            that.setData({
+                                rows: that.data.rows
+                            })
+                        } else if (isAttention === 1) {
+                            // 取消关注成功
+                            that.data.rows.forEach(r => {
+                                if (r.club_id === club_id)
+                                    r.isAttention = 0;
+                            });
+                            that.setData({
+                                rows: that.data.rows
+                            })
+                        }
+                    }).catch(err => {
+                        wx.hideLoading();
+                        console.log('关注异常: ', err);
+                    });
             }
         },
         /**
          * 点赞
          */
-        onLike(e){
+        onHeat(e){
             // console.log('点赞: ', this.data.bean);
             if (typeof this.data.bean.onLike == 'function') {
-                this.data.bean.onLike(e);
+                this.data.bean.onHeat(e);
             }
         },
         /**

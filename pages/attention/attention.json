@@ -1,0 +1,6 @@
+{
+    "usingComponents": {
+        "top-channel": "/component/TopChannel/TopChannel"
+    },
+    "navigationBarTitleText": "我关注的"
+}

@@ -107,6 +107,7 @@ Component({
         },
         /**
          * 切换爱
+         * 收藏或取消收藏
          */
         onLuvTap( e ){
             let that = this;
@@ -117,11 +118,11 @@ Component({
         /**
          * 点击点赞
          */
-        onLuvTap(e) {
+        onHeat(e) {
             let that = this;
             console.log('ROW  点击点赞', that.data.item);
             // that.triggerEvent('RowTap', { item: that.data.item }, { bubbles: true });
-            that.triggerEvent('Like', { item: that.data.item }, { bubbles: true });
+            that.triggerEvent('Heat', { item: that.data.item }, { bubbles: true });
         },
         /**
          * 点击评论

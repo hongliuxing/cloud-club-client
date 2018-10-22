@@ -1,5 +1,8 @@
+import * as Actions from "../net/Actions.js";
+import * as URLs from "../net/urls.js";
 /**
  * DataList中的控制器对象
+ * 仅仅服务于 "社团活动" 列表专属定制
  */
 class DataListController{
     constructor({ data={}, tabIndex=0, onTap, push}){
@@ -28,10 +31,34 @@ class DataListController{
          */
         this.onToggleLuv = (e) => new Promise( (resolve, reject) => {
             // 执行切换关注的方法
-            console.log('切换关注:::::', e);
+            if (!e.detail.item){
+                return reject('数据有误!');
+            }
+            let { club_id, isAttention } = e.detail.item;
+            if (typeof isAttention !== 'number'){
+                return reject('数据有误!');
+            }
+            let url = '';
+            if (isAttention === 1){
+                url = URLs.CLUB_ATTENTION_CANCEL;
+            } else if (isAttention === 0){
+                url = URLs.CLUB_ATTENTION_ADD;
+            }
+            console.log('切换关注:::::', e.detail.item, isAttention);
+            
+            // 进行关注行为, 或取消关注行为
+            Actions.doPost({
+                url: url,
+                data: {
+                    club_id
+                }
+            }).then(res => {
+                // 返回数据包含 数据库操作数据, 及点赞行为描述
+                resolve({ res, isAttention, club_id})
+            }).catch(reject);
         } );
 
-        this.onLike = (e) => new Promise((resolve, reject) => {
+        this.onHeat = (e) => new Promise((resolve, reject) => {
             // 点赞
             console.log('点赞:::::', e);
         });
