@@ -56,6 +56,11 @@ Page({
   goTo_notice(){
     app.globalData.goToPage("../noticeList/noticeList")
   },
+
+  //申请入社列表
+  goTo_applyList(){
+    app.globalData.goToPage("../applyList/applyList")
+  },
   
   //面板提示信息
   _panelReauest(clubid){

@@ -1,0 +1,87 @@
+.listItem{
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  justify-content: space-between;
+  background: #fff;
+  border-bottom: 2rpx solid #f0f0f0;
+  margin-bottom: 4rpx;
+  
+}
+.listItem_left{
+  display: flex;
+  flex-direction: row;
+}
+.title_image{
+  width: 140rpx;
+  height: 140rpx;
+  margin-right: 20rpx;
+}
+.title_con{
+  display: flex;
+  flex-direction: column;
+}
+.title_con{
+  display: flex;
+  flex-direction: column;
+  font-size: 28rpx;
+  justify-content: center;
+}
+.title_con >text:nth-child(2){
+  color:#a8a8a8;
+
+}
+.profe{
+  display: inline-block;
+  max-width: 320rpx;
+  text-overflow:ellipsis;
+  overflow: hidden;
+  white-space:nowrap;
+}
+.listItem_right{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  
+}
+.listItem_right >view{
+  width: 120rpx;
+  height: 50rpx;
+  text-align: center;
+  line-height: 50rpx;
+  font-size: 28rpx;
+  color:#fff;
+  border-radius: 5rpx;
+}
+.listItem_right >view:active{
+  opacity: 0.8;
+}
+.listItem_right >view:nth-child(1){
+  background: #38bfbb;
+  margin-right: 10rpx;
+}
+.listItem_right >view:nth-child(2){
+  background: #f61612;
+  margin-right: 10rpx;
+}
+.case{
+  color:#a8a8a8;
+  font-size: 24rpx;
+}
+.case::before{
+  content: "拒绝原因:";
+  margin-right: 10rpx;
+  
+}
+.pass,.no_pass{
+  font-size: 24rpx;
+  line-height: 140rpx;
+  margin-right: 30rpx;
+
+}
+.pass{
+  color: #5bd695;
+}
+.no_pass{
+  color: #c46369;
+}

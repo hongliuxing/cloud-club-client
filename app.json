@@ -1,8 +1,11 @@
 {
   "pages": [
-    "pages/mine/mine",
+      "mine/myAssociation/applyList/applyList",
+        "pages/mine/mine",
+     
+
     "mine/myAssociation/noticeAdd/noticeAdd",
-    "mine/myAssociation/applyList/applyList",
+
     "pages/association/association",
     "pages/index/index",
     "mine/editSchool/editSchool",

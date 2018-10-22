@@ -15,7 +15,7 @@
     <view wx:if="{{disabled}}" class='activity'>
       活动管理
     </view>
-    <view wx:if="{{disabled}}" class='apply'>
+    <view wx:if="{{disabled}}" class='apply' bindtap='goTo_applyList'>
       入社申请
       <view class='applyNum' wx:if="{{newjoin_count>0}}">{{newjoin_count}}</view>
     </view>

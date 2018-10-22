@@ -1,3 +1,26 @@
-  <view>
-    <top-channel btns="{{topBtns}}" is-truncation="{{false}}" channel-class="table"></top-channel>
+<import src="../../../template/applyList/applyList.wxml" />
+<view>
+  <top-channel btns="{{topBtns}}" is-truncation="{{false}}" channel-class="table"></top-channel>
+</view>
+
+<view class='list'>
+  <!--审核中-->
+  <view wx:if="{{struts==0}}">
+    <block wx:for="{{AuditingList}}" wx:key="index">
+        <template is="applyList" data="{{item}}" />
+    </block>
   </view>
+  <!--已通过-->
+  <view wx:if="{{struts==1}}">
+    <block wx:for="{{passList}}" wx:key="index">
+        <template is="applyList" data="{{item}}" />
+    </block>
+  </view>
+  <!--未通过-->
+  <view wx:if="{{struts==-1}}">
+    <block wx:for="{{on_passList}}" wx:key="index">
+        <template is="applyList" data="{{item}}" />
+    </block>
+  </view>
+
+</view>
