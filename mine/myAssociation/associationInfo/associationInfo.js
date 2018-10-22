@@ -31,7 +31,8 @@ Page({
     animationMask: {},
     visable: false,
     target_client:"",
-    updatedAt:""
+    updatedAt:"",
+    roleAbility:"",//被操作者的目前的身份
 
   },
 
@@ -122,6 +123,7 @@ Page({
         filterList: that._filterArr(arr),
         pagenum: pagenum
       })
+      wx.stopPullDownRefresh();
     }).catch(error => {
 
     })
@@ -190,6 +192,7 @@ Page({
           visable:true,
           target_client:e.currentTarget.dataset.id,
           updatedAt: e.currentTarget.dataset.time,
+          roleAbility: e.currentTarget.dataset.roleAbility
         })
       onStartAnimation(that, -300, 0)
     }else{
@@ -213,6 +216,18 @@ Page({
       app.globalData.toast("请选择升降权")
       return
     }
+    if (Number(that.data.diff)===1 ){
+      if (that.data.roleAbility==3){
+        app.globalData.toast("权限已升至最大")
+        return
+     }
+    }
+    if (Number(that.data.diff) === -1) {
+      if (that.data.roleAbility == 0) {
+        app.globalData.toast("权限降至最小")
+        return
+      }
+    }
     Actions.doPost({
       url: URLs.CLUBMASTER_SET_POWER,
       data: {
@@ -222,12 +237,11 @@ Page({
         updatedAt: that.data.updatedAt
       }
     }).then(res => {
-      console.log(res,"777777")
       that._request({pagenum: 1 })
       onCloseAnimation(that, 0, -300)
       app.globalData.toast("设置成功")
     }).catch(error => {
-
+        console.log(error)
     })
   },
   //拨打电话

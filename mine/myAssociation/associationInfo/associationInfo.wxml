@@ -1,4 +1,4 @@
-<import src="../../../template/associationPanel/associationPanel.wxml" />
+errorerror   <import src="../../../template/associationPanel/associationPanel.wxml" />
 <view class="header">
   <view class='title'>
     <text>{{title}}</text>
