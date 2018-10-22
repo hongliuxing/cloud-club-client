@@ -57,7 +57,7 @@
   opacity: 0.8;
 }
 .listItem_right >view:nth-child(1){
-  background: #38bfbb;
+  background: #3396fb;
   margin-right: 10rpx;
 }
 .listItem_right >view:nth-child(2){
@@ -80,7 +80,7 @@
 
 }
 .pass{
-  color: #5bd695;
+  color: #3396fb;
 }
 .no_pass{
   color: #c46369;

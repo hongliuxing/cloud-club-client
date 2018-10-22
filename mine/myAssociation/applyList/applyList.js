@@ -1,5 +1,9 @@
 import * as Actions from "../../../utils/net/Actions.js";
 import * as URLs from "../../../utils/net/urls.js";
+import {
+  onStartAnimation,
+  onCloseAnimation
+} from "../../../utils/upload/public.js";
 let that;
 let app = getApp();
 Page({
@@ -26,6 +30,12 @@ Page({
     on_passPagenum: 1,
    
     btn:true,//判断是否显示button
+    visable:false,
+    animationData:{},
+    animationMask:{},
+    reason:"",//拒绝原因
+    rejectId: "",//拒绝申请单id
+    reject_apply_client_id: "",//拒绝申请者的用户id
 
   },
 
@@ -115,41 +125,71 @@ Page({
   },
   //批准
   onAgree(e){
-    wx.showModal({
-      title: '提示',
-      content: '',
-    })
-    return
     let id = e.currentTarget.dataset.applyId;
     let apply_client_id = e.currentTarget.dataset.applyClientId;
     let name = e.currentTarget.dataset.name;
     Actions.doPost({
-      ulr: URLs.CLUBMASTER_JOIN_RATIFY,
+      url: URLs.CLUBMASTER_JOIN_RATIFY,
       data:{
         apply_id:id,
         club_id: that.data.club_id,
         apply_client_id: apply_client_id
       }
     }).then(res=>{
-      
+      wx.showModal({
+        title: '提示',
+        content: '已批准' + name + '入团',
+        showCancel: false,
+        success:function(res){
+          that._request({ struts: 0, pagenum: 1 })
+        }
+
+      })
     }).catch(error=>{
 
     })
-
+  },
+  //获取input的值
+  onChange(e){
+    that.setData({
+      reason:e.detail.value
+    })
   },
   //拒绝
   onRefuse(e){
+    that.setData({
+      visable:true
+    })
+    onStartAnimation(that,300,0)
     let id = e.currentTarget.dataset.applyId;
     let apply_client_id = e.currentTarget.dataset.applyClientId;
+    that.setData({
+      rejectId: id,
+      reject_apply_client_id: apply_client_id
+    })
+  },
+
+  //拒绝------取消
+  onCacel(){
+    onCloseAnimation(that,0 ,-300)
+  },
+  //拒绝------确定
+  onOk(){
+    if (that.data.reason==""){
+       app.globalData.toast("请输入拒绝理由")
+       return
+    }
     Actions.doPost({
-      ulr: URLs.CLUBMASTER_JOIN_REJECT,
+      url: URLs.CLUBMASTER_JOIN_REJECT,
       data: {
-        apply_id: id,
+        apply_id: that.data.rejectId,
         club_id: that.data.club_id,
-        apply_client_id: apply_client_id
+        apply_client_id: that.data.reject_apply_client_id,
+        reason: that.data.reason
       }
     }).then(res => {
-
+      that._request({ struts: 0, pagenum: 1 })
+      onCloseAnimation(that, 0, -300)
     }).catch(error => {
 
     })
@@ -168,7 +208,10 @@ Page({
     }else{
       arr = pagenum == 1 ? [] : that.data.on_passList;
     }
-
+   /**
+    * 根据struts状态写入不同数组
+    *
+   */
     Actions.doGet({
       url: URLs.CLUBMASTER_JOIN_LIST,
       data: {
@@ -203,17 +246,20 @@ Page({
         if (struts == 0) {
           that.setData({
             AuditingRefersh: false,
-            AuditingPagenum: pagenum
+            AuditingPagenum: pagenum,
+            AuditingList: arr,
           })
         } else if (struts == 1) {
           that.setData({
             passRefersh: false,
-            passPagenum: pagenum
+            passPagenum: pagenum,
+            AuditingList: arr,
           })
         } else {
           that.setData({
             on_passRefersh: false,
-            on_passPagenum: pagenum
+            on_passPagenum: pagenum,
+            AuditingList: arr,
           })
         }
       }

@@ -27,18 +27,18 @@ export const toast = (title, icon = "none") => {
 }
 
 //选择省市打开动画
-export const onStartAnimation = (that) => {
+export const onStartAnimation = (that,one=300,two=0) => {
   var animation = wx.createAnimation({
     duration: 150,
     timingFunction: 'linear'
   })
   that.animation = animation
-  animation.translateY(300).step()
+  animation.translateY(one).step()
   that.setData({
     animationData: animation.export(),
   })
   setTimeout(function() {
-    animation.translateY(0).step()
+    animation.translateY(two).step()
     that.setData({
       animationData: animation.export()
     })
@@ -61,18 +61,18 @@ export const onStartAnimation = (that) => {
 
 
 //选择省市关闭动画
-export const onCloseAnimation = (that) => {
+export const onCloseAnimation = (that, one = 0, two = 300) => {
   var animation = wx.createAnimation({
     duration: 150,
     timingFunction: 'linear'
   })
   that.animation = animation
-  animation.translateY(0).step()
+  animation.translateY(one).step()
   that.setData({
     animationData: animation.export(),
   })
   setTimeout(function() {
-    animation.translateY(300).step()
+    animation.translateY(two).step()
     that.setData({
       animationData: animation.export()
     })
