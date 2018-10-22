@@ -7,7 +7,7 @@
   <view class='channel' style="height:{{width/4}}px">
     <view class='notice' bindtap='goTo_notice'>
       公告
-      <view class='tip' wx:if="{{notice_count>0}}"></view> 
+      <view class='tip' wx:if="{{notice_count>0}}"></view>
     </view>
     <view class='info'>
       社团资料
@@ -23,8 +23,25 @@
 </view>
 
 <view class='list'>
-  <block wx:for= "{{filterList}}" wx:key="index">
+  <block wx:for="{{filterList}}" wx:key="index">
     <text class='listTitle' wx:if="{{item.type}}">{{item.text}}</text>
-    <template is="associationPanel" data="{{item,userId}}"  wx:if="{{!item.type}}"/>
+    <template is="associationPanel" data="{{item,userId}}" wx:if="{{!item.type}}" />
   </block>
+</view>
+
+
+<view class='modal' wx:if="{{visable}}" animation="{{animationMask}}">
+  <view class='modal_con' animation="{{animationData}}">
+    <text class='modal_title'>选择升降权</text>
+    <radio-group class="radio-group" bindchange="radioChange">
+      <label class="{{!item.dis?'radio':'disRadio'}}" wx:for="{{items}}" wx:key="index">
+        <radio value="{{item.value}}" disabled="{{item.dis}}" />{{item.name}}
+        <text wx:if="{{item.dis}}" class='wait'>  (待开发)</text>
+      </label>
+    </radio-group>
+    <view class='bottom'>
+      <view bindtap='onCacel'>取消</view>
+      <view bindtap='onOk'>确定</view>
+    </view>
+  </view>
 </view>
