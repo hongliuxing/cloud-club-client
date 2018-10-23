@@ -329,6 +329,22 @@ Page({
             userInfo: e.detail.userInfo,
             hasUserInfo: true
         })
+    },
+    /**
+     * 转发事件触发
+     */
+    onShareAppMessage(e) {
+        let that = this;
+        console.log('转发事件: ', e);
+        let { atitle, aid, cname, school, logo } = e.target.dataset;
+
+        console.log({ atitle, aid, cname, school, logo });
+
+        return {
+            title: atitle + ' [来自: ' + cname + ' - ' + school + ' ]',
+            path: "/pages/activity/info/info?id=" + aid + "&share=true",
+            imageUrl: logo
+        };
     }
 
 })

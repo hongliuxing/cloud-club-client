@@ -1,3 +1,8 @@
+<!-- 如果是分享口, 则显示回主页的浮动按钮 -->
+<view class='back-home' wx:if="{{isShare}}">
+    <image class='back-home-ico' mode='aspectFit' src='/images/page/home.png' catchtap='goHome'></image>
+</view>
+
 <!--活动信息-->
 <view class="container">
 
@@ -51,9 +56,18 @@
                 <image class="list-icon" src='/images/page/comment.png'></image>
                 <view class='list-icon-text'>{{activity.comment_count}}</view>
             </view>
-            <view class='list-btn list-btn-3' catchtap='onShare'>
+            <!-- <view class='list-btn list-btn-3' catchtap='onShare'>
                 <image class="list-icon" src='/images/page/share.png'></image>
-            </view>
+            </view> -->
+            <button class='list-btn list-btn-3' 
+                    data-school='{{activity.school}}' 
+                    data-aid='{{activity.id}}' 
+                    data-cname='{{activity.club_title}}' 
+                    data-atitle='{{activity.title}}'
+                    data-logo='{{activity.logo_url}}'
+                     plain='true' style='border:none;' open-type='share'>
+                    <image class="list-icon" src='/images/page/share.png'></image>
+            </button>
         </view>
     </view>
 

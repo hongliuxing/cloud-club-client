@@ -55,9 +55,17 @@
                 <image class="list-icon" src='../icon/comment.png'></image>
                 <view class='list-icon-text'>{{item.comment_count}}</view>
             </view>
-            <view class='list-btn list-btn-3' catchtap='onShare'>
-                <image class="list-icon" src='../icon/share.png'></image>
-            </view>
+            <!-- <view class='list-btn list-btn-3' catchtap='onShare'> -->
+                <button class='list-btn list-btn-3' 
+                    data-school='{{item.school}}' 
+                    data-aid='{{item.id}}' 
+                    data-cname='{{item.club_title}}' 
+                    data-atitle='{{item.title}}'
+                    data-logo='{{item.logo_url}}'
+                    catchtap='onShare' plain='true' style='border:none;' open-type='share'>
+                    <image class="list-icon" src='../icon/share.png'></image>
+                </button>
+            <!-- </view> -->
         </view>
     </view>
 </block>

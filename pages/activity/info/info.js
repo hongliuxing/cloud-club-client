@@ -12,17 +12,25 @@ Page({
     data: {
         activity: {},
         otherActivityList: [],
-        dataListController: null
+        dataListController: null,
+        isShare: false
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-        //   console.log('activity info: ', options);
+          console.log('activity info: ', options);
         if (!options.id) {
             return;
         }
+
+        let isShare = options.share;
+        if (isShare){
+            // 从分享口进入, 则添加 "回首页" 按钮
+            this.setData({ isShare});
+        }
+
         this.onLoadActivityInfo(options.id)
             // .then(this.onLoadOtherActivitys)
             .then(res => {
@@ -31,6 +39,8 @@ Page({
             .catch(err => {
                 console.log(err);
             });
+        // test
+        // this.reflushPrevpage();
     },
     /**
      * 加载活动信息
@@ -182,10 +192,54 @@ Page({
             that.setData({
                 'activity.isAttention': (isAttention === 1 ? 0 : 1)
             });
+            // 刷新上一页的 关注 状态
+            that.reflushPrevpage();
         }).catch( err => {
             console.log('关注行为有误2', err);
         });
     },
+    /**
+     * 刷新上一级页面( 关注状态 )
+     */
+    reflushPrevpage(){
+        //获取页面栈
+        var pages = getCurrentPages();
+        var prevpage = pages[pages.length - 2];//当前页
+        console.log('上一个页面是: ', prevpage);
+
+        if (prevpage.onReflushPage){
+            // console.log('调用上一个页面的刷新...');
+            prevpage.onReflushPage();
+        }
+    },
+    /**
+     * 回首页
+     */
+    goHome(){
+        wx.switchTab({
+            url: '/pages/association/association',
+            success: function(res) {},
+            fail: function(res) {},
+            complete: function(res) {},
+        })
+    },
+    /**
+     * 转发事件触发
+     */
+    onShareAppMessage(e) {
+        let that = this;
+        console.log('转发事件: ', e);
+        let { atitle, aid, cname, school, logo } = e.target.dataset;
+
+        console.log({ atitle, aid, cname, school, logo });
+
+        return {
+            title: atitle + ' [来自: ' + cname + ' - ' + school + ' ]',
+            path: "/pages/activity/info/info?id=" + aid + "&share=true",
+            imageUrl: logo
+        };
+    },
+    
 
     /**
      * 生命周期函数--监听页面初次渲染完成
@@ -226,13 +280,6 @@ Page({
      * 页面上拉触底事件的处理函数
      */
     onReachBottom: function() {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function() {
 
     }
 })

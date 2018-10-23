@@ -137,10 +137,23 @@ Component({
          * 点击每一行的分享
          */
         onShare(e) {
-            let that = this;
-            console.log('ROW  点击分享', that.data.item);
-            that.triggerEvent('Share', { item: that.data.item }, { bubbles: true });
-        }
+            // let that = this;
+            // console.log('ROW  点击分享', that.data.item);
+            // that.triggerEvent('Share', { item: that.data.item }, { bubbles: true });
+        },
+
+        /**
+         * 转发事件触发
+         */
+        // onShareAppMessage(e){
+        //     let that = this;
+        //     console.log('转发事件: ', e);
+
+        //     return {
+        //         title: "" + that.data.item.school,
+        //         path: "/pages/activity/info/info?id=" + that.data.item.club_id
+        //     };
+        // }
 
     }// end: method
 })

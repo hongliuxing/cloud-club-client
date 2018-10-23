@@ -229,6 +229,26 @@ Page({
         // return this.data.tabController.get(tabId);
         return this.data.tabController[this.data.tabMapper.get(tabId)];
     },
+
+    /**
+     * 刷新页面数据
+     */
+    onReflushPage(){
+        console.log('association 页面刷新...');
+        let that = this;
+        let currentTab = that.getCurrentTabData(); // 获取当前 标签页数据对象
+        currentTab.pagenum = 0;
+        currentTab.list = [];
+        that.loadActivityList();
+    },
+
+    /**
+     * 页面相关事件处理函数--监听用户下拉动作
+     */
+    onPullDownRefresh: function () {
+        this.onReflushPage()
+    },
+
     /**
      * 加载活动列表
      * 该方法只针对于当前激活状态的tabid进行数据加载
@@ -303,6 +323,22 @@ Page({
                 console.log(err);
             });
 
+    },
+    /**
+     * 转发事件触发
+     */
+    onShareAppMessage(e) {
+        let that = this;
+        console.log('转发事件: ', e);
+        let { atitle, aid, cname, school, logo} = e.target.dataset;
+
+        console.log({ atitle, aid, cname, school, logo });
+
+        return {
+            title: atitle + ' [来自: '+cname+' - '+school+' ]',
+            path: "/pages/activity/info/info?id=" + aid + "&share=true",
+            imageUrl: logo
+        };
     }
     // end
 })

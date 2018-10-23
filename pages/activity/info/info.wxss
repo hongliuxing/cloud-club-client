@@ -1,6 +1,7 @@
 .container{
     border-top: 1rpx solid #ddd;
     height: 100%;
+    margin-bottom: 150rpx;
 }
 .news{
     background-color: #FFF;
@@ -164,4 +165,24 @@
     letter-spacing: 2rpx;
     vertical-align: middle;
     color: #bbb;
+}
+
+/** ============================= **/
+.back-home{
+    width: 110rpx;
+    height: 110rpx;
+    border-radius: 50%;
+    position: fixed;
+    right: 50rpx;
+    bottom: 50rpx;
+    background-color: #1296DB;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: darkgrey 10rpx 10rpx 30rpx 5rpx ;
+}
+.back-home-ico{
+    width: 68rpx;
+    height: 68rpx;
 }
