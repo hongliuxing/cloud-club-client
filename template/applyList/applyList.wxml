@@ -1,0 +1,18 @@
+ 
+<template name="applyList">
+  <view class='listItem'>
+    <view class='listItem_left'>
+      <image class="title_image" src="{{item['c.avatar_url']}}"></image>
+      <view class='title_con'>
+        <text>{{item["crole.realname"]}}</text>
+        <text class="profe">{{item["crole.profe"]}}</text>
+      </view>
+    </view>
+    <view class='listItem_right' wx:if="{{item.struts==0}}" >
+      <view bindtap='onAgree'  data-apply-id="{{item.id}}" data-apply-client-id="{{item.apply_client_id}}" data-name="{{item['crole.realname']}}">批准</view>
+      <view bindtap='onRefuse' data-apply-id="{{item.id}}" data-apply-client-id="{{item.apply_client_id}}">拒绝</view>
+    </view>
+    <view class='pass' wx:if="{{item.struts==1}}">已批准</view>
+    <view class='no_pass' wx:if="{{item.struts==-1}}">已拒绝</view>
+  </view>
+</template>  

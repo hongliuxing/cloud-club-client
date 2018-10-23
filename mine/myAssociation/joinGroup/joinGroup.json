@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "社团入驻",
+  "navigationBarTitleText": "申请入团",
   "usingComponents": {
     "top-channel": "../../../component/TopChannel/TopChannel",
     "association-list": "../../component/associationList/associationList"

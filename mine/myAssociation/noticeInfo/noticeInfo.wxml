@@ -1,0 +1,10 @@
+<view class='con'>
+    <view class='title'>{{info.title}}</view>
+    <view class='time'>{{info.createdAt}}</view>
+    <view class='context'>{{info.content}}</view>
+    <view class='author'>{{info["crole.author"]}}</view>
+</view>
+
+  <view class='bottom' wx:if="{{role_ability==3 || role_ability==4}}">
+    <btn value="删除" btn-class="btn" height="90" bind:click="onSubmit" back="#f61612"/>
+  </view>

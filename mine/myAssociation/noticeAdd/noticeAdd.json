@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "input-item": "../../../component/inputItem/inputItem",
+    "line-item": "../../../component/lineItem/lineItem",
+    "btn": "../../../component/Btn/Btn"
+  }
+}

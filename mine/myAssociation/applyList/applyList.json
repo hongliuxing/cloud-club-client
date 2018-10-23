@@ -1,0 +1,8 @@
+{
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
+  "navigationBarTitleText": "入社申请",
+    "usingComponents": {
+      "top-channel": "../../../component/TopChannel/TopChannel"
+    }
+}

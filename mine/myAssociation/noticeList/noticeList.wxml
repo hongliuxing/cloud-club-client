@@ -1,0 +1,13 @@
+<view class='listItem' wx:for="{{list}}" wx:key="index" data-index="{{index}}" bindtap='goTo'>
+     <text class='time'>{{item.created}}</text>
+     <view class='content'>
+         <text class='title'>{{item.title}}</text>
+         <view class='context'>{{item.content}}</view>
+         <view class='more'>
+            <text>查看更多</text>
+            <image src='../../../images/page/more.png'></image>
+         </view>
+     </view>
+</view>
+
+<image src='../../../images/page/add.png' class='add' bindtap='add' wx:if="{{role_ability==3 || role_ability==4}}"></image>

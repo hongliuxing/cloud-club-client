@@ -1,0 +1,20 @@
+<view class='body'>
+
+  <input-item title="公告标题" value="{{title}}" name="title" go="{{false}}" typeAlign="left" title_class="titles" plac="请输入公告标题" diabled="{{false}}"  bind:change="onChange"/>
+ 
+
+  <view class='image'>
+    <view class='image_left'>
+      <text class="card">公告内容</text>
+    </view>
+
+  </view>
+    <view class='image_right'>
+      <textarea placeholder='请输入公告内容' maxlength="200" bindinput='change'>
+      </textarea>
+    </view>
+  <view class='bottom'>
+    <btn value="发布" btn-class="btn" height="90" bind:click="onSubmit" />
+  </view>
+
+</view>
