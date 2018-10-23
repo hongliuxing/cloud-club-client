@@ -5,18 +5,18 @@
   </view>
 
 
-  <view class='logoCon' wx:if="{{table===1}}">
+  <!-- <view class='logoCon' wx:if="{{table===1}}">
     <view class='search'>
       <input placeholder="搜索社团名称" class="searchInput" value='{{k}}' bindinput='onChange'></input>
       <view class='searchBtn' bindtap='onSearch'>
         <image src="../../../images/page/search.png"></image>
       </view>
     </view>
-  </view>
+  </view> -->
 </view>
 
 
-<view class='list' style="margin-top:{{table===1?270:160}}rpx;">
+<view class='list' style="margin-top:160rpx;"> <!-- style="margin-top:{{table===1?270:160}}rpx;-->
   <view wx:if="{{table===1}}" >
     <block wx:for="{{canapplyList}}"  wx:key="index" data-id="{{item.id}}">
         <association-list  height="150"  isBtn="{{true}}"  item="{{item}}" bind:click="Goto" bind:apply="onApply" index="{{index}}"/>

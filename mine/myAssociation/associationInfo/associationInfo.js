@@ -2,6 +2,10 @@ import * as Actions from "../../../utils/net/Actions.js";
 import * as URLs from "../../../utils/net/urls.js";
 let that;
 let app = getApp();
+import {
+  onStartAnimation,
+  onCloseAnimation
+} from "../../../utils/upload/public.js";
 Page({
 
   /**
@@ -19,6 +23,16 @@ Page({
     school: "",
     newjoin_count:"",//入团申请
     notice_count:"",//公告数量
+    userId:"",
+    role_ability:"",//本人社团身份状态
+    items: [{ name: "升权", value: 1, dis: false }, { name: "降权", value: -1, dis: false}, { name: "转让社长", value: 0, dis:true}],
+    diff:"",//升降权
+    animationData: {},
+    animationMask: {},
+    visable: false,
+    target_client:"",
+    updatedAt:"",
+    roleAbility:"",//被操作者的目前的身份
 
   },
 
@@ -33,7 +47,9 @@ Page({
         clubid: item.id,
         title: item.title,
         school: item.uName,
-        disabled: item.is_master == "true" ? true : false
+        disabled: item.is_master == "true" ? true : false,
+        userId: wx.getStorageSync("userInfo").id,
+        role_ability: item.role_ability,
       })
       that._request({
         clubid: item.id
@@ -50,6 +66,19 @@ Page({
 
 
   },
+  //公告列表
+  goTo_notice(){
+    app.globalData.goToPage("../noticeList/noticeList")
+  },
+ 
+  //社团资料
+  goTo_Data(){
+    app.globalData.goToPage("../associationData/associationData")
+  },
+  //申请入社列表
+  goTo_applyList(){
+    app.globalData.goToPage("../applyList/applyList")
+  },
   
   //面板提示信息
   _panelReauest(clubid){
@@ -62,7 +91,7 @@ Page({
         }
     }).then(res=>{
       that.setData({
-        newjoin_count: res.data.info.newjoin_count,
+        newjoin_count: res.data.info.newjoin_count || 0,
         notice_count: res.data.info.notice_count
       })
     }).catch(error=>{
@@ -98,6 +127,7 @@ Page({
         filterList: that._filterArr(arr),
         pagenum: pagenum
       })
+      wx.stopPullDownRefresh();
     }).catch(error => {
 
     })
@@ -159,7 +189,65 @@ Page({
     return proprieter.concat(deputyDirector, minister, media, member)
 
   },
-
+  //甚至权限
+  setPower(e){
+    if (that.data.role_ability==4){
+        that.setData({
+          visable:true,
+          target_client:e.currentTarget.dataset.id,
+          updatedAt: e.currentTarget.dataset.time,
+          roleAbility: e.currentTarget.dataset.roleAbility
+        })
+      onStartAnimation(that, -300, 0)
+    }else{
+      app.globalData.toast("只有本社团社长才可操作")
+    }
+     
+  },
+  //升降权值
+  radioChange(e){
+     that.setData({
+       diff: e.detail.value
+     })
+  },
+  //升降权------取消
+  onCacel() {
+    onCloseAnimation(that, 0, -300)
+  },
+  //升降权-----确定
+  onOk() {
+    if (that.data.reason == "") {
+      app.globalData.toast("请选择升降权")
+      return
+    }
+    if (Number(that.data.diff)===1 ){
+      if (that.data.roleAbility==3){
+        app.globalData.toast("权限已升至最大")
+        return
+     }
+    }
+    if (Number(that.data.diff) === -1) {
+      if (that.data.roleAbility == 0) {
+        app.globalData.toast("权限降至最小")
+        return
+      }
+    }
+    Actions.doPost({
+      url: URLs.CLUBMASTER_SET_POWER,
+      data: {
+        diff: Number(that.data.diff) ,
+        club_id: that.data.clubid,
+        target_client: that.data.target_client,
+        updatedAt: that.data.updatedAt
+      }
+    }).then(res => {
+      that._request({pagenum: 1 })
+      onCloseAnimation(that, 0, -300)
+      app.globalData.toast("设置成功")
+    }).catch(error => {
+        console.log(error)
+    })
+  },
   //拨打电话
   onCall(e) {
     if (e.target.dataset.phone) {
@@ -168,7 +256,6 @@ Page({
         success: function(res) {},
       })
     }
-
   },
 
   /**

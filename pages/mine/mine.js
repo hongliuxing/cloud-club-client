@@ -22,6 +22,7 @@ Page({
    */
   onLoad: function(options) {
     that = this;
+    wx.showLoading({ title: '正在组装社团...', mask: true });
     that._request()
   },
 
@@ -31,7 +32,7 @@ Page({
       url: URLs.USER_PANEL_INFO,
       data: {}
     }).then(res => {
-
+     wx.hideLoading()
       let status = res.data.info.school_struts;
       let name = "";
       if (status == 1) {

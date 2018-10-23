@@ -1,0 +1,9 @@
+{
+  "navigationBarBackgroundColor": "#38bfbb",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "公告",
+  "usingComponents": {
+      "btn": "../../../component/Btn/Btn"
+    }
+}
+

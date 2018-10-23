@@ -8,6 +8,8 @@
         "pages/welcome/welcome",
         "pages/activity/info/info",
         "pages/activity/comment/comment",
+        "pages/attention/attention",
+
         "mine/myAssociation/associationData/associationData",
         "mine/myAssociation/associationInfo/associationInfo",
         "mine/myAssociation/associationEnter/associationEnter",
@@ -18,7 +20,10 @@
         "mine/luckExplain/luckExplain",
         "mine/sportExplain/sportExplain",
         "mine/person/person",
-        "pages/attention/attention"
+        "mine/myAssociation/applyList/applyList",
+        "mine/myAssociation/noticeAdd/noticeAdd",
+        "mine/myAssociation/noticeInfo/noticeInfo",
+        "mine/myAssociation/noticeList/noticeList"
     ],
     "window": {
         "backgroundTextStyle": "light",
@@ -55,4 +60,5 @@
             }
         ]
     }
+
 }

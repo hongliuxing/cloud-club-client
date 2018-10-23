@@ -1,4 +1,5 @@
 @import "../../../template/associationPanel/associationPanel.wxss";
+
 page {
   background: #f9f9f9;
 }
@@ -43,11 +44,19 @@ page {
 .channel >view {
   display: flex;
   flex: 1;
-  border: 2rpx solid #a9a9a9;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-
+.icon{
+  width: 150rpx;
+  height: 180rpx;
+}
+.icon_text{
+  font-size: 22rpx;
+  color:#45515b;
+  letter-spacing: 2px;
+}
 .list {
   margin-top: 360rpx;
 }
@@ -60,23 +69,116 @@ page {
   width: 100%;
   border-bottom: 2rpx solid #f0f0f0;
 }
-.notice,.apply{
+
+.notice, .apply {
   position: relative;
 }
-.tip,.applyNum{
+
+.tip, .applyNum {
   background: #ea5763;
-  width: 20rpx;
-  height: 20rpx;
+  width: 25rpx;
+  height: 25rpx;
   position: absolute;
-  top:5px;
-  right:10px;
+  top: 20rpx;
+  right: 30rpx;
   border-radius: 50%;
 }
-.applyNum{
+
+.applyNum {
   width: 30rpx;
   height: 30rpx;
   text-align: center;
   line-height: 30rpx;
   font-size: 20rpx;
-  color:#fff;
+  color: #fff;
+}
+
+.modal {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 80rpx;
+  box-sizing: border-box;
+}
+
+.modal_con {
+  height: 360rpx;
+  background: #fff;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  transform: translateY(-300rpx)
+}
+.modal_title{
+  font-size: 30rpx;
+  margin-left: 20rpx;
+}
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20rpx;
+}
+
+.radio {
+  font-size: 30rpx;
+  color: #808080;
+  margin-top: 20rpx;
+  display: flex;
+  flex-direction:row;
+  align-items: center;
+}
+
+.disRadio {
+  font-size: 30rpx;
+  color: #a9a9a9;
+  opacity: 0.5;
+  margin-top: 20rpx;
+  display: flex;
+  flex-direction:row;
+  align-items: center;
+}
+.wait{
+  font-size: 26rpx;
+}
+.bottom{
+  margin-top: 20rpx;
+  display: flex;
+  flex:1;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  border-top:2rpx solid #f0f0f0;
+  padding-right: 20rpx;
+  box-sizing: border-box;
+
+}
+.bottom >view{
+  width: 180rpx;
+  height:60rpx;
+  font-size: 30rpx;
+  text-align: center;
+  line-height: 60rpx;
+  border-radius: 10rpx;
+  background: #fafafa;
+}
+.bottom >view:active{
+  opacity: 0.8;
+}
+.titleCase{
+  display: inline-block;
+  font-size: 30rpx;
+  margin-bottom: 20rpx;
+}
+.bottom >view:nth-child(1){
+  margin-right: 30rpx;
+  color:#f61612;
+}
+.bottom >view:nth-child(2){
+  color:#3396fb;
 }

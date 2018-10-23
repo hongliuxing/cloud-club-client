@@ -8,7 +8,7 @@
       </view>
     </view>
     <view class='panelRight'>
-      <image src="../../../images/page/category.png" class='panelRightImage' wx:if="{{item.role_ability!==4}}"></image>
+      <image src="../../../images/page/category.png" class='panelRightImage' data-time="{{item.updatedAt}}" data-role-ability="{{item.role_ability}}" data-id="{{item.id}}" wx:if="{{item.role_ability!==4 &&  userId!=item.id}}" bindtap='setPower'></image>
       <image src="../../../images/page/phone.png" class='panelRightImage2' data-phone="{{item.telephone}}" bindtap='onCall'></image>
     </view>
   </view>

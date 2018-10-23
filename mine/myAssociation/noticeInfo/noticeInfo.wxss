@@ -1,0 +1,52 @@
+.con {
+  display: flex;
+  flex-direction: column;
+  padding: 20rpx 30rpx;
+  box-sizing: border-box;
+}
+
+.title {
+  text-align: center;
+  color: #5f5c5d;
+}
+
+.time {
+  text-align: right;
+  color: #a8a88a;
+  font-size: 26rpx;
+  margin-top: 20rpx;
+}
+
+.context {
+  margin-top: 20rpx;
+  font-size: 28rpx;
+  color: #808080;
+  letter-spacing: 4rpx;
+  line-height: 40rpx;
+}
+
+.author {
+  text-align: right;
+  margin-top: 30rpx;
+  color: #808080;
+  font-size: 28rpx;
+}
+
+.author::before {
+  content: "发布人:";
+  color: #5f5c5d;
+  margin-right: 20rpx;
+}
+
+.bottom{
+  position: fixed;
+  bottom: 100rpx;
+  z-index: 5;
+  padding: 0 50rpx;
+  box-sizing: border-box;
+  width: 100%;
+}
+.btn{
+  color:#fff;
+  border-radius: 10rpx;
+}
