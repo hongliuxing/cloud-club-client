@@ -1,4 +1,4 @@
-errorerror   <import src="../../../template/associationPanel/associationPanel.wxml" />
+<import src="../../../template/associationPanel/associationPanel.wxml" />
 <view class="header">
   <view class='title'>
     <text>{{title}}</text>
@@ -6,17 +6,21 @@ errorerror   <import src="../../../template/associationPanel/associationPanel.wx
   </view>
   <view class='channel' style="height:{{width/4}}px">
     <view class='notice' bindtap='goTo_notice'>
-      公告
+      <image src="../../../images/page/guidepost.jpg" class='icon'></image>
+      <text class='icon_text'>公告</text>
       <view class='tip' wx:if="{{notice_count>0}}"></view>
     </view>
-    <view class='info'>
-      社团资料
+    <view class='info' bindtap='goTo_Data'>
+      <image src="../../../images/page/order.jpg" class='icon'></image>
+      <text class='icon_text'>社团资料</text>
     </view>
     <view wx:if="{{disabled}}" class='activity'>
-      活动管理
+      <image src="../../../images/page/pen.jpg" class='icon'></image>
+      <text class='icon_text'>活动管理</text>
     </view>
     <view wx:if="{{disabled}}" class='apply' bindtap='goTo_applyList'>
-      入社申请
+      <image src="../../../images/page/leaf.jpg" class='icon'></image>
+      <text class='icon_text'>入社申请</text>
       <view class='applyNum' wx:if="{{newjoin_count>0}}">{{newjoin_count}}</view>
     </view>
   </view>

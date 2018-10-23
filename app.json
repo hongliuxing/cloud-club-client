@@ -1,8 +1,9 @@
 {
   "pages": [
-    "mine/myAssociation/associationInfo/associationInfo",
-    "mine/myAssociation/applyList/applyList",
     "pages/mine/mine",
+    "mine/myAssociation/associationInfo/associationInfo",
+    "mine/myAssociation/associationData/associationData",
+    "mine/myAssociation/applyList/applyList",
     "mine/myAssociation/noticeAdd/noticeAdd",
     "pages/association/association",
     "pages/index/index",
@@ -12,7 +13,6 @@
     "pages/welcome/welcome",
     "pages/activity/info/info",
     "pages/activity/comment/comment",
-    "mine/myAssociation/associationData/associationData",
     "mine/myAssociation/associationEnter/associationEnter",
     "mine/myAssociation/addAssociation/addAssociation",
     "mine/myAssociation/joinGroup/joinGroup",

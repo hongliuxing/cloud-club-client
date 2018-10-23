@@ -70,7 +70,11 @@ Page({
   goTo_notice(){
     app.globalData.goToPage("../noticeList/noticeList")
   },
-
+ 
+  //社团资料
+  goTo_Data(){
+    app.globalData.goToPage("../associationData/associationData")
+  },
   //申请入社列表
   goTo_applyList(){
     app.globalData.goToPage("../applyList/applyList")

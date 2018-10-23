@@ -1,5 +1,10 @@
 {
   "navigationBarTitleText": "社团资料",
   "navigationBarBackgroundColor": "#38bfbb",
-  "navigationBarTextStyle": "white"
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "input-item": "../../component/inputItem/inputItem",
+    "line-item": "../../component/lineItem/lineItem",
+    "btn": "../../component/Btn/Btn"
+  }
 }

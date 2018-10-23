@@ -44,11 +44,19 @@ page {
 .channel >view {
   display: flex;
   flex: 1;
-  border: 2rpx solid #a9a9a9;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-
+.icon{
+  width: 150rpx;
+  height: 180rpx;
+}
+.icon_text{
+  font-size: 22rpx;
+  color:#45515b;
+  letter-spacing: 2px;
+}
 .list {
   margin-top: 360rpx;
 }
@@ -68,11 +76,11 @@ page {
 
 .tip, .applyNum {
   background: #ea5763;
-  width: 20rpx;
-  height: 20rpx;
+  width: 25rpx;
+  height: 25rpx;
   position: absolute;
-  top: 5px;
-  right: 10px;
+  top: 20rpx;
+  right: 30rpx;
   border-radius: 50%;
 }
 

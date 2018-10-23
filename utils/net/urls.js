@@ -1,5 +1,5 @@
 // const HOST = "http://127.0.0.1:58888/";
-const HOST = "http://luv-ui.com:58888/";
+const HOST = "https://she-u.cn:58888/";
 
 // 登录接口
 export const LOGIN = HOST + "access/login";
@@ -130,6 +130,10 @@ export const CLUBMASTER_JOIN_REJECT = HOST + "clubmaster/join-reject";
 // 降权: 只能降权级别差大于等于1的角色, 但不能降级为0以下。（3可以降级2, 但不能降级3, 也不能降级至 - 1）
 // 升降权记录: 需做历史记录(保留三个月内)
 export const CLUBMASTER_SET_POWER = HOST + "clubmaster/set-power";
+
+//修改社团资料
+
+export const CLUBMASTER_MOFIFY_CLUB = HOST + "clubmaster/modify-club";
 
 // 已发布: 查询结果与活动列表中的社团活动查询结果一致
 // 审核中 / 待发布: 查询简单结果

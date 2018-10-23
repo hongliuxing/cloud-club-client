@@ -1,12 +1,33 @@
-<import src="../../../template/associationPanel/associationPanel.wxml" />
-<view class='title'>
-  <text>{{info.title}}</text>
-  <text>{{info.school_name}}</text>
-</view>
+<view class='body'>
+  <input-item title="社团名称" value="{{title}}" name="title" bind:change="onChange" spac="2" right="{{false}}" go="{{false}}" diabled="{{(role_ability!==3 && role_ability !== 4) || titleDis }}" />
+  <input-item title="负责人" value="{{info.member['crole.leader']}}" spac="8" right="{{false}}" go="{{false}}" />
 
-<view class='list'>
-  <block wx:for="{{filterList}}" wx:key="index">
-    <text class='listTitle' wx:if="{{item.type}}">{{item.text}}</text>
-    <template is="associationPanel" data="{{item}}" wx:if="{{!item.type}}" />
-  </block>
+
+  <view class='image'>
+    <view class='image_left'>
+      <text class="card">社团简介</text>
+    </view>
+    <view class='image_right'>
+      <textarea placeholder='请输入...' bindinput='onChangeText' value="{{intro}}" disabled='{{role_ability!==3 && role_ability !== 4}}'>
+
+      </textarea>
+    </view>
+  </view>
+
+  <view class='logo' bindtap='changeImage'>
+    <view class='image_left'>
+      <text class="card">社团logo</text>
+    </view>
+    <view class='logo_right'>
+      <image src="{{logo_url}}" class='logo_url'></image>
+      <image src="../../../images/page/more.png" class='right'></image>
+    </view>
+  </view>
+
+  <view class="remark">注: 社团名称每个月只能修改一次</view>
+
+  <view class='bottom' wx:if="{{role_ability==3 || role_ability == 4}}">
+    <btn value="保存" btn-class="btn" height="90" bind:click="onSubmit"/>
+  </view>
+
 </view>
