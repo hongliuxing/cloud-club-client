@@ -8,7 +8,7 @@
       <text class="card">社团简介</text>
     </view>
     <view class='image_right'>
-      <textarea placeholder='请输入...' bindinput='onChangeText' value="{{intro}}" disabled='{{role_ability!==3 && role_ability !== 4}}'>
+      <textarea placeholder='暂无...' bindinput='onChangeText' value="{{intro}}" disabled='{{role_ability!==3 && role_ability !== 4}}'>
 
       </textarea>
     </view>
@@ -24,7 +24,7 @@
     </view>
   </view>
 
-  <view class="remark">注: 社团名称每个月只能修改一次</view>
+  <view class="remark" wx:if="{{role_ability==3 || role_ability == 4}}">注: 社团名称每个月只能修改一次</view>
 
   <view class='bottom' wx:if="{{role_ability==3 || role_ability == 4}}">
     <btn value="保存" btn-class="btn" height="90" bind:click="onSubmit"/>
