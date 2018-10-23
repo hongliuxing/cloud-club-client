@@ -14,7 +14,7 @@ Page({
     info:{},
     title: "",//社团名称
     createdAt:"",//判断是上一次修改时间
-    titleDis:true,//判断是否可以修改title
+    titleDis:false,//判断是否可以修改title
     intro:"",//社团简介
     role_ability: null,
 
@@ -55,18 +55,21 @@ Page({
         clubid: clubid,
       }
     }).then(res => {
-      let mouthAfter = getNextMonth(res.data.info.createdAt.split(" ")[0]);
-      let mouthAfterAll = new Date(mouthAfter +" "+res.data.info.createdAt.split(" ")[1]).getTime();
-      let nowTime = new Date().getTime();
-      if (nowTime>mouthAfterAll){
-         that.setData({
-           titleDis:false
-         })
-      }else{
-        that.setData({
-          titleDis: true
-        })
+      if (res.data.info.title_updatedAt){
+        let mouthAfter = getNextMonth(res.data.info.title_updatedAt.split(" ")[0]);
+        let mouthAfterAll = new Date(mouthAfter + " " + res.data.info.title_updatedAt.split(" ")[1]).getTime();
+        let nowTime = new Date().getTime();
+        if (nowTime > mouthAfterAll) {
+          that.setData({
+            titleDis: false
+          })
+        } else {
+          that.setData({
+            titleDis: true
+          })
+        }
       }
+
       that.setData({
         info:res.data.info,
         title: res.data.info.title,

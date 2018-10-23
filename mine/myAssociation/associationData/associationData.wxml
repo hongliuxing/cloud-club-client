@@ -19,7 +19,7 @@
       <text class="card">社团logo</text>
     </view>
     <view class='logo_right'>
-      <image src="{{logo_url}}" class='logo_url'></image>
+      <image src="{{logo_url}}" class='logo_url' mode="aspectFit"></image>
       <image src="../../../images/page/more.png" class='right'></image>
     </view>
   </view>
