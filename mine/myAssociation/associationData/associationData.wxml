@@ -1,4 +1,7 @@
 <view class='body'>
+  <view class='logo' >
+       <image src="{{logo_url}}" class='logo_url' mode="aspectFit" bindtap='changeImage'></image>
+  </view>
   <input-item title="社团名称" value="{{title}}" name="title" bind:change="onChange" spac="2" right="{{false}}" go="{{false}}" diabled="{{(role_ability!==3 && role_ability !== 4) || titleDis }}" />
   <input-item title="负责人" value="{{info.member['crole.leader']}}" spac="8" right="{{false}}" go="{{false}}" />
 
@@ -14,15 +17,7 @@
     </view>
   </view>
 
-  <view class='logo' bindtap='changeImage'>
-    <view class='image_left'>
-      <text class="card">社团logo</text>
-    </view>
-    <view class='logo_right'>
-      <image src="{{logo_url}}" class='logo_url' mode="aspectFit"></image>
-      <image src="../../../images/page/more.png" class='right'></image>
-    </view>
-  </view>
+
 
   <view class="remark" wx:if="{{role_ability==3 || role_ability == 4}}">注: 社团名称每个月只能修改一次</view>
 
