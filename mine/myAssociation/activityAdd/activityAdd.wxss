@@ -1,0 +1,127 @@
+.body {
+  padding: 0 30rpx;
+  box-sizing: border-box;
+}
+
+.image {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 50rpx;
+  width: 100%;
+}
+
+.image_left {
+  display: flex;
+  flex-direction: column;
+}
+
+.image_right {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+}
+
+.uploadCard {
+  width: auto;
+  height: 540rpx;
+}
+
+.card {
+  width: 160rpx;
+  text-align: left;
+  font-size: 28rpx;
+  color: #a8a8a8;
+  font-weight: bold;
+  letter-spacing: 2px;
+  padding-left: 30rpx;
+}
+
+.look {
+  color: #3881d8;
+  font-size: 26rpx;
+  letter-spacing: 2px;
+  margin-left: 23rpx;
+  margin-top: 30rpx;
+}
+
+.look::before {
+  content: "(";
+  color: #898989;
+  margin-right: 3rpx;
+}
+
+.look::after {
+  content: ")";
+  color: #898989;
+  margin-left: 3rpx;
+}
+
+.bottom {
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  margin-top: 40rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.bottom >view{
+  width: 230rpx;
+}
+
+.btn {
+  border-radius: 10rpx;
+  color: #fff;
+  letter-spacing: 8px;
+  text-indent: 8px;
+  text-align: center;
+  box-sizing: border-box;
+}
+.border {
+  border: 2rpx solid #b9b9b9;
+}
+
+.titles{
+  padding-left: 30rpx ;
+  font-size: 28rpx !important;
+}
+._input-class{
+  font-weight: normal !important;
+  font-size: 28rpx !important;
+}
+textarea{
+  width: 100%;
+  height: 300rpx;
+  border:2rpx solid #f0f0f0;
+  font-size: 28rpx;
+  padding: 10rpx;
+  color:#a8a8a8;
+}
+.addImage{
+  width: 120rpx;
+  height: 120rpx;
+  margin-top: -10rpx;
+  margin-left: -20rpx;
+}
+.activityImage{
+  margin-right: 50rpx;
+  margin-bottom: 20rpx;
+  position: relative;
+}
+.del{
+  position: absolute;
+  height: 50rpx;
+  width: 100%;
+  background: rgba(	220,20,60,.6);
+  bottom:0;
+  z-index: 2;
+  color:#fff;
+  text-align: center;
+  line-height: 50rpx;
+  font-size: 30rpx;
+  letter-spacing: 8px;
+  text-indent: 8px;
+}

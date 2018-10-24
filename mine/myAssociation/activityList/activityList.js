@@ -114,9 +114,43 @@ Page({
       url: URLs.CLUBMASTER_ACTIVITY_LIST,
       data: data
     }).then(res => {
+      // if (struts == 0) {
+      //   let applyingList = pagenum == 1 ? [] : this.data.applyingList; //申请中
+      //   applyingList = applyingList.concat(res.data.list)
+      //   if (res.data.list.length > 0) {
+      //     that.setData({
+      //       applyRefresh: true,
+      //     })
+      //   } else {
+      //     that.setData({
+      //       applyRefresh: false,
+      //     })
+      //   }
 
-      console.log(res,"77777777777777")
+      //   that.setData({
+      //     applyPagenum: pagenum,
+      //     applyingList: applyingList
+      //   })
 
+      // } else {
+      //   let applyHistoryList = pagenum == 1 ? [] : this.data.applyingList; //历史
+      //   applyHistoryList = applyHistoryList.concat(res.data.list)
+      //   if (res.data.list.length > 0) {
+      //     that.setData({
+      //       applyHistoryRefresh: true
+      //     })
+      //   } else {
+      //     that.setData({
+      //       applyHistoryRefresh: false
+      //     })
+      //   }
+
+      //   that.setData({
+      //     applyHistoryPagenum: pagenum,
+      //     applyHistoryList: applyHistoryList,
+      //   })
+      // }
+      // wx.stopPullDownRefresh()
     }).catch(error => {
 
     })
@@ -153,7 +187,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-
+    
   },
 
   /**
@@ -162,11 +196,4 @@ Page({
   onReachBottom: function() {
 
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
-
-  }
 })

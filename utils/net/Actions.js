@@ -12,7 +12,7 @@ export const doGet = plugin.doGet;
  * 上传通用工具
  * 涵盖签名获取 -> 上传至OSS
  */
-const uploadUtil = (url, filepath) => new Promise((resolve, reject) => {
+export const uploadUtil = (url, filepath) => new Promise((resolve, reject) => {
     if (!filepath || filepath.length < 9) {
         return wx.showModal({
             title: '图片错误',
@@ -45,7 +45,7 @@ const uploadUtil = (url, filepath) => new Promise((resolve, reject) => {
 /**
  * 代码不要太长，所以xcx上传部分独立出来了
  */
-const uploadToAlioss = ({ filepath, url, key, policy, OSSAccessKeyId, signature }) => new Promise((resolve, reject) => {
+export const uploadToAlioss = ({ filepath, url, key, policy, OSSAccessKeyId, signature }) => new Promise((resolve, reject) => {
 
   // 调用小程序的上传接口
   wx.uploadFile({
@@ -66,6 +66,61 @@ const uploadToAlioss = ({ filepath, url, key, policy, OSSAccessKeyId, signature 
       }
       console.log('上传图片成功', res)
       resolve(Object.assign({ pic: url + '/' + key }, res));
+    },
+    fail: function (err) {
+      // err.wxaddinfo = aliyunServerURL;
+      reject(new Error('上传错误:', err));
+    },
+  }) // wx.uploadFile
+});
+
+
+//上传活动获取签名（******************************）
+export const uploadUtilActivity = (url, filepath) => new Promise((resolve, reject) => {
+  if (!filepath || filepath.length < 9) {
+    return wx.showModal({
+      title: '图片错误',
+      content: '请重试',
+      showCancel: false,
+    });
+  }
+  // filepath is not null
+  doGet({
+    url,
+    data: { filepath: filepath },
+    // verifyLogin: false // 是否验证登陆的参数，临时用
+  }).then(uploadRes => {
+    // 上传结果
+    if (uploadRes.err) return reject({ err: new Error('上传图片错误', uploadRes) });
+    resolve(uploadRes);
+  }).catch(err => {
+    console.log('上传接口错误：', err);
+    reject(err);
+  }); // doGet
+});
+
+//活动图片上传
+export const uploadToAliossActivity = ({ filepath, url, key, policy, OSSAccessKeyId, signature }) => new Promise((resolve, reject) => {
+
+  // 调用小程序的上传接口
+  wx.uploadFile({
+    url: url,
+    filePath: filepath, // 这个filePath是通过chooseImage选择到的那个路径
+    name: 'file', //必须填file
+    // 这里必须这么填
+    formData: {
+      'key': key,
+      'policy': policy,
+      'OSSAccessKeyId': OSSAccessKeyId,
+      'signature': signature,
+      'success_action_status': '200',
+    },
+    success: function (res) {
+      if (res.statusCode != 200) {
+        return reject(new Error('网络错误:', res));
+      }
+      console.log('上传图片成功', res)
+      resolve(url + '/' + key);
     },
     fail: function (err) {
       // err.wxaddinfo = aliyunServerURL;
