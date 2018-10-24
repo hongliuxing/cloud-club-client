@@ -1,0 +1,82 @@
+.listItem {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  justify-content: space-between;
+  background: #fff;
+  padding-right: 40rpx;
+  box-sizing: border-box;
+}
+
+.image {
+  width: 150rpx;
+  height: 160rpx;
+  border: 2rpx solid #f0f0f0;
+}
+
+.listItem_left {
+  display: flex;
+  flex-direction: row;
+}
+
+.image {
+  margin-right: 20rpx;
+}
+
+.listItem_left >view {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20rpx 0;
+  box-sizing: border-box;
+}
+
+.title {
+  font-size: 30rpx;
+}
+
+.per, .time {
+  font-size: 24rpx;
+  color: #808080;
+}
+
+.listItem_right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn{
+  width: 140rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  color:#fff;
+  font-size: 24rpx;
+  background: #74d0f1;
+  letter-spacing: 10px;
+  text-indent:10px;
+  text-align: center;
+}
+.edit{
+  background: #4dcac7;
+}
+
+
+.apply{
+  font-size: 22rpx;
+  letter-spacing: 1px;
+  color:#3a8be2;
+}
+.right_text{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.refuse{
+  color:#f14856;
+}
+.right_text >text{
+  margin-top: 5rpx;
+}
+.right_text:active{
+  opacity: 0.8;
+}

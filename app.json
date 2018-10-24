@@ -1,5 +1,6 @@
 {
     "pages": [
+        
         "pages/association/association",
         "pages/index/index",
         "mine/editSchool/editSchool",
@@ -16,6 +17,7 @@
         "mine/myAssociation/addAssociation/addAssociation",
         "mine/myAssociation/joinGroup/joinGroup",
         "mine/myAssociation/myAssociation",
+        "mine/myAssociation/activityList/activityList",
         "pages/mine/mine",
         "mine/luckExplain/luckExplain",
         "mine/sportExplain/sportExplain",

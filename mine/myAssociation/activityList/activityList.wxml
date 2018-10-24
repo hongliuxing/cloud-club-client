@@ -1,0 +1,16 @@
+<view class='header'>
+  <top-channel btns="{{topBtns}}" is-truncation="{{false}}" channel-class="channel"></top-channel>
+</view>
+<view class="list">
+  <view wx:if="{{struts==1}}">
+    <activity-list/>
+  </view>
+  <view wx:if="{{struts==-1}}">
+    <activity-list/>
+  </view>
+  <view wx:if="{{struts==0}}">
+    <activity-list/>
+  </view>
+</view>
+
+<image src='../../../images/page/add.png' class='add' bindtap='add' wx:if="{{struts==0 && (role_ability==3 || role_ability==4)}}"></image>

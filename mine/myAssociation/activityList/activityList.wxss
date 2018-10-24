@@ -1,0 +1,20 @@
+page {
+  background: #f9f9f9;
+}
+
+.channel {
+  border: 0 !important;
+}
+
+.list {
+  margin-top: 40rpx;
+}
+.add{
+  width: 160rpx;
+  height: 160rpx;
+  position: fixed;
+  bottom:20px;
+  right: 20px;
+  z-index: 10;
+}
+
