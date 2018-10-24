@@ -1,7 +1,12 @@
 {
     "pages": [
-              "mine/myAssociation/activityList/activityList",
-                "mine/myAssociation/activityAdd/activityAdd",
+                        "mine/myAssociation/activityList/activityList",
+      "pages/mine/mine",
+ 
+                      "mine/myAssociation/activityAdd/activityAdd",
+       
+
+      "mine/person/person",
         "pages/association/association",
         "pages/index/index",
         "mine/editSchool/editSchool",
@@ -19,10 +24,10 @@
         "mine/myAssociation/joinGroup/joinGroup",
         "mine/myAssociation/myAssociation",
 
-        "pages/mine/mine",
+    
         "mine/luckExplain/luckExplain",
         "mine/sportExplain/sportExplain",
-        "mine/person/person",
+    
         "mine/myAssociation/applyList/applyList",
         "mine/myAssociation/noticeAdd/noticeAdd",
         "mine/myAssociation/noticeInfo/noticeInfo",

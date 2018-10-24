@@ -41,6 +41,7 @@ Page({
       telephone: data.telephone
     })
     wx.removeStorageSync("phone")
+    wx.removeStorageSync("mineRefresh")
   },
 
   /**
