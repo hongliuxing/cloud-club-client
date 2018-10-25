@@ -1,12 +1,13 @@
-<view class='listItem'>
+<wxs src="../../app.wxs" module="util" />
+<view class='listItem item-class'>
   <view class='listItem_left'>
-    <view class='image'>
-
-    </view>
+    <image src="{{imageUrl}}" class='image'></image>
     <view>
-      <text class='title'>123</text>
-      <text class='time'>123</text>
-      <text class='per'>123</text>
+      <text class='title'>{{title}}</text>
+      <text class='time'>{{util.formateTime(createdAt)}}</text>
+      <text class='per case' wx:if="{{!btn && struts==-2}}">{{checked_fail_reason}}</text>
+      <text class='per plac' wx:if="{{!btn && struts==-1}}" >000</text>
+      <text class='per' wx:if="{{btn}}">{{author}}</text>
     </view>
   </view>
   <view class='listItem_right' wx:if="{{btn}}">
@@ -19,8 +20,8 @@
   </view>
 
   <view class='listItem_right' wx:if="{{!btn}}">
-    <text class='apply'>申请中</text>
-    <view class='right_text'>
+    <text class='apply' wx:if="{{struts==-1}}">申请中</text>
+    <view class='right_text'wx:if="{{struts==-2}}">
       <text class='apply refuse'>已拒绝</text>
       <text class='apply refuse'>点击撤回</text>
     </view>

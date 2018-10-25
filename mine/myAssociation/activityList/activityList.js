@@ -59,10 +59,11 @@ Page({
     });
     let item = wx.getStorageSync("associationInfo");
     if (item){
-     that.setData({
-       club_id:item.id,
-       role_ability: item.role_ability
-     })
+      that.setData({
+        club_id:item.id,
+        role_ability: item.role_ability
+      })
+      wx.showLoading({ title: '正在加载...', mask: true });
       that.published()
     }
   },
@@ -98,12 +99,14 @@ Page({
       struts: 0
     })
     if (that.data.newActivityList.length == 0) {
+
        that._request({ struts: 0, pagenum: 1 })
     } else {
       return
     }
   },
-
+  
+  //请求
   _request({club_id = that.data.club_id, struts = that.data.struts, pagenum = 1}){
     let data = {
       club_id: club_id,
@@ -114,86 +117,127 @@ Page({
       url: URLs.CLUBMASTER_ACTIVITY_LIST,
       data: data
     }).then(res => {
-      // if (struts == 0) {
-      //   let applyingList = pagenum == 1 ? [] : this.data.applyingList; //申请中
-      //   applyingList = applyingList.concat(res.data.list)
-      //   if (res.data.list.length > 0) {
-      //     that.setData({
-      //       applyRefresh: true,
-      //     })
-      //   } else {
-      //     that.setData({
-      //       applyRefresh: false,
-      //     })
-      //   }
+      wx.hideLoading()
+      
+      if (struts == 1) {
+        
+        let publishedList = pagenum == 1 ? [] : this.data.publishedList; //已发布
+        publishedList = publishedList.concat(res.data.list)
+        if (res.data.list.length > 0) {
+          that.setData({
+            publishedRefersh: true,
+          })
+        } else {
+          that.setData({
+            publishedRefersh: false,
+          })
+        }
+       
+        that.setData({
+          publishedPagenum: pagenum,
+          publishedList: publishedList
+        })
 
-      //   that.setData({
-      //     applyPagenum: pagenum,
-      //     applyingList: applyingList
-      //   })
+      } else if(struts==-1) {
+        let auditList = pagenum == 1 ? [] : this.data.auditList; //审核中
+        auditList = auditList.concat(res.data.list)
+        if (res.data.list.length > 0) {
+          that.setData({
+            auditRefersh: true
+          })
+        } else {
+          that.setData({
+            auditRefersh: false
+          })
+        }
 
-      // } else {
-      //   let applyHistoryList = pagenum == 1 ? [] : this.data.applyingList; //历史
-      //   applyHistoryList = applyHistoryList.concat(res.data.list)
-      //   if (res.data.list.length > 0) {
-      //     that.setData({
-      //       applyHistoryRefresh: true
-      //     })
-      //   } else {
-      //     that.setData({
-      //       applyHistoryRefresh: false
-      //     })
-      //   }
+        that.setData({
+          auditPagenum: pagenum,
+          auditList: auditList,
+        })
+      }else{
+        let newActivityList = pagenum == 1 ? [] : this.data.newActivityList; //新的活动
+        newActivityList = newActivityList.concat(res.data.list)
+        if (res.data.list.length > 0) {
+          that.setData({
+            newActivityRefersh: true
+          })
+        } else {
+          that.setData({
+            newActivityRefersh: false
+          })
+        }
 
-      //   that.setData({
-      //     applyHistoryPagenum: pagenum,
-      //     applyHistoryList: applyHistoryList,
-      //   })
-      // }
-      // wx.stopPullDownRefresh()
+        that.setData({
+          newActivityPagenum: pagenum,
+          newActivityList: newActivityList,
+        })
+      }
+      wx.stopPullDownRefresh()
     }).catch(error => {
 
     })
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
 
+  //添加 
+  add(){
+    app.globalData.goToPage("../activityAdd/activityAdd")
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
+  //撤销活动
+  onRevocation(e){
+    let id = e.currentTarget.dataset.id;
+    let index = e.currentTarget.dataset.index;
+    let arr = that.data.publishedList;
+    wx.showModal({
+      title: '提示',
+      content: '确定要撤销此活动吗?',
+      success:function(res){
+        if (res.confirm){
+          Actions.doPost({
+            url: URLs.CLUBMASTER_ACTIVITY_REPEAL,
+            data: {
+              activity_id: id
+            }
+          }).then(res => {
+            arr.splice(index,1)
+            that.setData({
+              publishedList:arr
+            })
+            app.globalData.toast("撤销成功")
+          }).catch(error => {
 
+          })
+         }
+      }
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
-  },
-
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-    
+    that._request({ pagenum: 1 })
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-
+    if (that.data.struts == 1) {
+      if (that.data.publishedRefersh) {
+        that._request({ pagenum: that.data.publishedPagenum + 1 })
+        wx.showLoading({ title: '加载更多...', mask: true });
+      }
+    } else if (that.data.struts == -1) {
+      if (that.data.auditRefersh) {
+        that._request({ pagenum: that.data.auditPagenum + 1 })
+        wx.showLoading({ title: '加载更多...', mask: true });
+      }
+    } else {
+      if (that.data.newActivityRefersh) {
+        that._request({ pagenum: that.data.newActivityPagenum + 1 });
+        wx.showLoading({ title: '加载更多...', mask: true });
+      }
+    }
   },
 })

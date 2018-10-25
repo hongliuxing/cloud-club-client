@@ -6,8 +6,8 @@ function formateTime(val){
     var year = changeTime.getFullYear();
     var mouth = changeTime.getMonth() + 1 < 10 ? "0" + (changeTime.getMonth() + 1) : changeTime.getMonth() + 1;
     var day = changeTime.getDate() < 10 ? "0" + changeTime.getDate() : changeTime.getDate();
-    var hours = changeTime.getHours();
-    var minutes = changeTime.getMinutes()
+    var hours = changeTime.getHours() < 10 ? "0" + changeTime.getHours() : changeTime.getHours();
+    var minutes = changeTime.getMinutes() < 10 ? "0" + changeTime.getMinutes() : changeTime.getMinutes();
     return year + "." + mouth + "." + day + " " + hours + ":" + minutes;
   }
 } 

@@ -14,7 +14,7 @@
       <image src="../../../images/page/order.jpg" class='icon'></image>
       <text class='icon_text'>社团资料</text>
     </view>
-    <view wx:if="{{disabled}}" class='activity'>
+    <view wx:if="{{disabled}}" class='activity' bindtap='activityManage'>
       <image src="../../../images/page/pen.jpg" class='icon'></image>
       <text class='icon_text'>活动管理</text>
     </view>

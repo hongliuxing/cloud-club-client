@@ -6,6 +6,8 @@
   background: #fff;
   padding-right: 40rpx;
   box-sizing: border-box;
+  border-bottom: 2rpx solid #f0f0f0;
+  border-top: 2rpx solid #f0f0f0;
 }
 
 .image {
@@ -13,6 +15,7 @@
   height: 160rpx;
   border: 2rpx solid #f0f0f0;
 }
+
 
 .listItem_left {
   display: flex;
@@ -32,14 +35,17 @@
 }
 
 .title {
-  font-size: 30rpx;
+  font-size: 26rpx;
+  font-weight: bold;
 }
 
 .per, .time {
   font-size: 24rpx;
-  color: #808080;
+  color: #c5c5c5;
 }
-
+.case::before{
+  content: "拒绝理由: "
+}
 .listItem_right {
   display: flex;
   align-items: center;
@@ -79,4 +85,10 @@
 }
 .right_text:active{
   opacity: 0.8;
+}
+
+
+/**拒绝理由为空时占位**/
+.plac{
+  opacity: 0;
 }

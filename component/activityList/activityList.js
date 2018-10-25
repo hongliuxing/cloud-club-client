@@ -13,10 +13,23 @@ Component({
     isAuthor:{
       type:Boolean,
       value:true
-    }
+    },
+
+    //标题
+    title:String,
+    //时间
+    createdAt:String,
+    //拒绝理由
+    checked_fail_reason:String,
+    //作者
+    author:String,
+    //状态值
+    struts:Number,
+    //图片路径
+    imageUrl:String
 
   },
-
+  externalClasses: ["item-class"],
   /**
    * 组件的初始数据
    */
