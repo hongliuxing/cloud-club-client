@@ -9,24 +9,14 @@ Component({
       type:Boolean,
       value:true
     },
-    //判断是不是作者
-    isAuthor:{
-      type:Boolean,
-      value:true
-    },
 
-    //标题
-    title:String,
-    //时间
-    createdAt:String,
-    //拒绝理由
-    checked_fail_reason:String,
-    //作者
-    author:String,
-    //状态值
-    struts:Number,
-    //图片路径
-    imageUrl:String
+    item:{
+      type:Object,
+      value:{}
+    },
+    //下标
+    index:Number,
+    userId:String
 
   },
   externalClasses: ["item-class"],
@@ -41,6 +31,15 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    //查看
+    onInfo(e){
+      let that = this;
+      this.triggerEvent('lookInfo', { index:that.data.index })
+    },
+    //编辑
+    onEdit(e) {
+      let that = this;
+      this.triggerEvent('edit', { index: that.data.index})
+    },
   }
 })

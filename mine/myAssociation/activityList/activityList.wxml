@@ -63,13 +63,12 @@
   </view>
   <view wx:if="{{struts==-1}}">
     <block wx:for="{{auditList}}" wx:key="index">
-      <activity-list btn="{{false}}" title="{{item.title}}" createdAt="{{item.createdAt}}" checked_fail_reason="{{item.checked_fail_reason}}" struts="{{item.struts}}" item-class="itemClass" />
+      <activity-list btn="{{false}}" item="{{item}}" item-class="itemClass" index="{{index}}" />
     </block>
   </view>
   <view wx:if="{{struts==0}}">
     <block wx:for="{{newActivityList}}" wx:key="index">
-      <activity-list title="{{item.title}}" createdAt="{{item.createdAt}}" checked_fail_reason="{{item.checked_fail_reason}}" struts="{{item.struts}}" item-class="itemClass" author="{{item['crole.author']}}" imageUrl="{{item.imgs[0].pic_url || item.logo_url}}"
-      />
+      <activity-list title="{{item.title}}" item="{{item}}" userId="{{userId}}" index="{{index}}"  bind:lookInfo="onGoInfo" bind:edit="onEdit"/>
     </block>
   </view>
 </view>

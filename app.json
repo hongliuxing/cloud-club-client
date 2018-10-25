@@ -1,8 +1,7 @@
 {
   "pages": [
-      "mine/myAssociation/activityList/activityList",
     "pages/mine/mine",
- 
+    "mine/myAssociation/activityList/activityList",
     "mine/myAssociation/activityAdd/activityAdd",
     "mine/person/person",
     "pages/association/association",

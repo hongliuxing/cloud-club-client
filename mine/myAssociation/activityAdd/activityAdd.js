@@ -19,7 +19,8 @@ Page({
     delImageList:[],
     content:"",
     club_id:"",
-    activity_id:""
+    activity_id:"",
+    isLook:null
   },
 
   /**
@@ -34,6 +35,14 @@ Page({
       author: info.realname,
       club_id: item.id
     })
+    if (options.data){
+      let data = JSON.parse(options.data);
+      that.setData({
+        isLook: data.isLook,
+        title:data.info.title
+      })
+
+    }
   },
   //获取input值
   onChange(e) {

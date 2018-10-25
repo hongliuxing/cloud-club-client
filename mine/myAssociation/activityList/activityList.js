@@ -58,10 +58,12 @@ Page({
       topBtns: topBtns
     });
     let item = wx.getStorageSync("associationInfo");
+    let user = wx.getStorageSync("userInfo")
     if (item){
       that.setData({
         club_id:item.id,
-        role_ability: item.role_ability
+        role_ability: item.role_ability,
+        userId:user.id
       })
       wx.showLoading({ title: '正在加载...', mask: true });
       that.published()
@@ -183,7 +185,7 @@ Page({
   add(){
     app.globalData.goToPage("../activityAdd/activityAdd")
   },
-
+ 
   //撤销活动
   onRevocation(e){
     let id = e.currentTarget.dataset.id;
@@ -211,6 +213,26 @@ Page({
          }
       }
     })
+  },
+
+  //查看
+  onGoInfo(e){
+   let index = e.detail.index;
+   let data = {
+     info: that.data.newActivityList[index],
+     isLook:2
+   }
+    app.globalData.goToPage("../activityAdd/activityAdd?data=" + JSON.stringify(data))
+
+  },
+  //编辑
+  onEdit(e){
+    let index = e.detail.index;
+    let data = {
+      info: that.data.newActivityList[index],
+      isLook: 1
+    }
+    app.globalData.goToPage("../activityAdd/activityAdd?data=" + JSON.stringify(data))
   },
   /**
    * 页面相关事件处理函数--监听用户下拉动作

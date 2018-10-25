@@ -63,7 +63,7 @@ Page({
   //页面跳转
   goTo(e) {
     if (this.data.myAssociation == e.detail.url) {
-      if (this.data.status == null) {
+      if (this.data.status == null ) {
         app.globalData.toast("请先设置学校")
         return
       }
