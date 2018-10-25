@@ -148,7 +148,7 @@ Component({
          */
         onHeat(e){
             // console.log('点赞: ', this.data.bean);
-            if (typeof this.data.bean.onLike == 'function') {
+            if (typeof this.data.bean.onHeat == 'function') {
                 this.data.bean.onHeat(e);
             }
         },

@@ -17,17 +17,17 @@ App({
     //     })
     // }
 
-    Actions.doGet({ 
-        url: URLs.CLUBMASTER_BUILD_APPLY_LIST,
-        data: {
-            struts: 0,
-            pagenum:1
-        }
-    }).then(res => {
-        console.log('CLUBMASTER_BUILD_APPLY_LIST: ', res);
-    }).catch(err => {
-        console.log('err: ', err);
-    });
+    // Actions.doGet({ 
+    //     url: URLs.CLUBMASTER_BUILD_APPLY_LIST,
+    //     data: {
+    //         struts: 0,
+    //         pagenum:1
+    //     }
+    // }).then(res => {
+    //     console.log('CLUBMASTER_BUILD_APPLY_LIST: ', res);
+    // }).catch(err => {
+    //     console.log('err: ', err);
+    // });
 
     // wx.getLocation({
     //     type: "gcj02",

@@ -58,10 +58,23 @@ class DataListController{
             }).catch(reject);
         } );
 
-        this.onHeat = (e) => new Promise((resolve, reject) => {
+        this.onHeat = (e) => {
             // 点赞
+            let that = this;
             console.log('点赞:::::', e);
-        });
+            let {item} = e.detail;
+            let activity_id = item ? item.id: null;
+            if (!activity_id) return Promise.reject();
+            
+            return Actions.doPost({
+                url: URLs.TORCH_HEATING,
+                data: { activity_id }
+            }).then( res => {
+                console.log('点赞结果 成功: ', res);
+            }).catch(err => {
+                console.log('点赞结果 失败: ', err);
+            });
+        };
 
         this.onComment = (e) => new Promise((resolve, reject) => {
             // 调起评论入口

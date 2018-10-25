@@ -1,4 +1,4 @@
-// const HOST = "http://127.0.0.1:58888/";
+// const HOST = "https://127.0.0.1:58888/";
 // const HOST = "http://luv-ui.com:58888/";
 const HOST = "https://she-u.cn:58888/";
 
@@ -21,6 +21,15 @@ export const UPLOAD_CLUB_BGIMG = (clubid) => HOST + "upload/cloudclub/" + clubid
 // 社团活动图的签名
 export const UPLOAD_CLUB_ACTIVITY_PIC = HOST + "upload/cloudclub/activity";
 
+/***************************************
+ * 
+ * 【torch】 火把操作相关接口
+ * 
+ ***************************************/
+// 获取火把
+export const TORCH_PULL = HOST + "torch/pull";
+// 消费火把(点赞)
+export const TORCH_HEATING = HOST + "torch/heating";
 
 /***************************************
  * 

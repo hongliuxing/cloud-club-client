@@ -5,7 +5,9 @@
     <text class='title title-name'>{{title}}</text>
   </view>
   <view>
-    <text class='value value-class'>{{value}}</text>
+    <text 
+        style='{{valueColor?"color:"+valueColor+";":""}} {{!right?"margin-right:30rpx;":""}}' 
+        class='value value-class'>{{value}}</text>
     <image src="../../images/page/more.png" class='right' wx:if="{{right}}"></image>
   </view>
 </view>

@@ -18,11 +18,23 @@ Page({
         // 当前的活动时机
         currentTiming: 0
     },
-    //事件处理函数
-    bindViewTap: function () {
-        wx.navigateTo({
-            url: '../logs/logs'
+    /**
+     * 页面初始化事件
+     */
+    onLoad: function () {
+        let that = this;
+        this.checkLogin().then(res => {
+            // 首次登录成功
+            // wx.hideLoading();
         })
+        .then(that.onLoadPanelInfo) // 加载用户面板所需缓存信息
+        .then(that.loadMyClub) // 获取标签页中的社团标识
+        .catch(err => {
+            // 失败
+            wx.hideLoading();
+            console.log(err);
+        });
+
     },
     /**
      * 若无登录态则尝试登录一次
@@ -35,6 +47,44 @@ Page({
         } else {
             return Promise.resolve();
         }
+    },
+    /**
+     * 加载 Panel 信息
+     * 包含: 用户id, 昵称, 头像, 性别, 电话, 真实姓名
+     * 学校设置状态, 学校id, 学校名称, 社团数量, 幸运值
+     * 是否领取火把, 可用火把数量
+     * 
+     */
+    onLoadPanelInfo(){
+        let that = this;
+
+        Actions.doGet({
+            url: URLs.USER_PANEL_INFO,
+            data: {}
+        }).then(res => {
+            // wx.hideLoading()
+            // let status = res.data.info.school_struts;
+            // let name = "";
+            // if (status == 1) {
+            //     name = "已通过"
+            // } else if (status == 0) {
+            //     name = "申请中"
+            // } else if (status == -1) {
+            //     name = "未通过"
+            // } else {
+            //     name = "未设置"
+            // }
+
+            // that.setData({
+            //     info: res.data.info,
+            //     school: name,
+            //     status: status
+            // })
+
+            wx.setStorageSync("userInfo", res.data.info)
+        }).catch(err => {
+            console.log('加载 Panel 信息 err: ', err);
+        });
     },
     /**
      * 社团的下拉在切换数据时
@@ -217,9 +267,10 @@ Page({
 
             // 手动加载第一次的"全部社团"中的数据
             that.loadActivityList();
-        }).catch(err => {
-            console.log('我的社团 err: ', err);
-        });
+        })
+        // .catch(err => {
+        //     console.log('我的社团 err: ', err);
+        // });
     },
     /**
      * 获取当前的 TabData 
@@ -293,6 +344,7 @@ Page({
                 // 考虑如何分标签及保存的数据
                 currentTab.push(res.data.list, append);
             }
+            wx.hideLoading();
         }).catch(err => {
             wx.hideLoading();
             console.log('社团活动列表 err: ', err);
@@ -308,22 +360,7 @@ Page({
             that.loadActivityList();
         }
     },
-    /**
-     * 页面初始化事件
-     */
-    onLoad: function () {
-        let that = this;
-        this.checkLogin().then(res => {
-            // 首次登录成功
-            wx.hideLoading();
-        })
-            .then(that.loadMyClub) // 获取标签页中的社团标识
-            .catch(err => {
-                // 失败
-                console.log(err);
-            });
-
-    },
+    
     /**
      * 转发事件触发
      */

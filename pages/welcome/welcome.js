@@ -44,7 +44,7 @@ Page({
      */
     goIndex(){
         wx.switchTab({
-            url: '/pages/index/index'
+            url: '/pages/association/association'
         })
     }
 })

@@ -1,6 +1,7 @@
 {
     "component": true,
     "usingComponents": {
-        "row": "/component/DataList/child/Row"
+        "row": "/component/DataList/child/Row",
+        "torch-btn": "/component/TorchButton/TorchButton"
     }
 }

@@ -31,7 +31,7 @@ const wxLogin = () => new Promise((resolve, reject) => {
     wx.login({
         timeout: (2 * 24 * 60 * 60 * 1000), // 超时时间为2天, 支持版本 >= 1.9.9
         success: function (loginRes) {
-            resolve({ loginRes });
+            resolve( loginRes );
         },
         fail: reject
     })
@@ -40,7 +40,7 @@ const wxLogin = () => new Promise((resolve, reject) => {
 /**
  * 应用服务器 - 登录方法
  */
-const appLogin = ({ loginCode }) => new Promise((resolve, reject) => {
+const appLogin = ({ loginCode, encryptedData, iv }) => new Promise((resolve, reject) => {
     /**
      * 应用服务器登陆时传递的数据包括:
      * appid: 应用标识
@@ -50,7 +50,7 @@ const appLogin = ({ loginCode }) => new Promise((resolve, reject) => {
         url: urls.LOGIN,
         data: {
             appid: 'wxf22545deb852c577',
-            loginCode
+            loginCode, encryptedData, iv
         },
         method: 'POST',
         dataType: 'json',
@@ -72,10 +72,13 @@ const appLogin = ({ loginCode }) => new Promise((resolve, reject) => {
 export const login = () => new Promise((resolve, reject) => {
     // 登录之后, 将session_key交给getUserInfo进行解密
     wxLogin()
-    .then(({ loginRes }) => {
+        .then(wxUserinfo)
+        .then(({ loginRes, userRes }) => {
         // 登录成功
         return appLogin({
-            loginCode: loginRes.code
+            loginCode: loginRes.code,
+            encryptedData: userRes.encryptedData,
+            iv: userRes.iv
         });
     })
     .then( appLoginRes => {
@@ -126,13 +129,14 @@ export const login = () => new Promise((resolve, reject) => {
  * 检查请求中是否有正常的登陆状态
  */
 const checkRequest = (res, verifyLogin) => {
+    // console.log('统一请求[checkRequest] =====> ', { res, verifyLogin });
     if (!verifyLogin) return Promise.resolve({ err: null, data: res.data });
     const err = res.data.err;
     if (!err) return Promise.resolve({ err: null, data: res.data });
     const pluginArr = [];
     if (err.errCode == 1001 || err.errCode == 1002 || err.errCode == 1003)
         pluginArr.push(login());
-    return ~~pluginArr === 0 ? Promise.all(pluginArr) : Promise.reject({ err: err.errCode, data: res.data });
+    return pluginArr.length > 0 ? Promise.all(pluginArr) : Promise.reject({ err: err.errCode, data: res.data });
 }
 /**
  * 统一请求
@@ -147,6 +151,7 @@ const ajax = function ajax({ url, method, header, data, verifyLogin = true }) {
             success: function (res) {
                 checkRequest(res, verifyLogin).then(result => {
                     // Array is Promise.all(iterator)
+                    // console.log('统一请求::: ', result);
                     if (Array.isArray(result)) {
                         if (timeout_count > retry){
                             return reject({err: 505, msg: 'request login timeout: [retry: 5]!'});

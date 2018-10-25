@@ -3,6 +3,10 @@
     <view class='btns-box'>
         <image mode='widthFix' class='wel-dialog' src='/images/welcome/welcome-dialog.png'></image>
         <button disabled='{{!canBegin}}' type='{{canBegin?"primary":"default"}}' class='rowBtn' bindtap='goIndex'>开始使用</button>
-        <button class='rowBtn' type='{{canBegin?"default":"primary"}}' open-type="getUserInfo" bindgetuserinfo='userAuthorize'>授 权</button>
+        <button class='rowBtn' 
+         disabled='{{canBegin}}'
+        type='{{canBegin?"default":"primary"}}' 
+        open-type="getUserInfo" 
+        bindgetuserinfo='userAuthorize'>授 权</button>
     </view>
 </view>

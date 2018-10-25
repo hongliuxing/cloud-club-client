@@ -1,10 +1,11 @@
 {
     "pages": [
+        "pages/guide/guide",
         "pages/association/association",
         "pages/index/index",
         "mine/editSchool/editSchool",
         "demo/uploadtest/uploadtest",
-        "pages/guide/guide",
+        
         "pages/welcome/welcome",
         "pages/activity/info/info",
         "pages/activity/comment/comment",

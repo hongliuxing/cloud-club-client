@@ -120,7 +120,7 @@ Component({
          */
         onHeat(e) {
             let that = this;
-            console.log('ROW  点击点赞', that.data.item);
+            // console.log('ROW  点击点赞', that.data.item);
             // that.triggerEvent('RowTap', { item: that.data.item }, { bubbles: true });
             that.triggerEvent('Heat', { item: that.data.item }, { bubbles: true });
         },

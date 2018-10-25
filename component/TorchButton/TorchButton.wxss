@@ -1,0 +1,20 @@
+/* component/TorchButton/TorchButton.wxss */
+.torch-box{
+    position: fixed;
+    /* background-color: red; */
+    right: -50rpx;
+    bottom: 100rpx;
+}
+.torch-text{
+    position: absolute;
+    /* background-color:aquamarine; */
+    height: 100rpx;
+    line-height: 100rpx;
+    margin-left: 52rpx;
+    color: #fff;
+}
+.torch-img{
+    /* background-color: royalblue; */
+    width: 100rpx;
+    height: 200rpx;
+}

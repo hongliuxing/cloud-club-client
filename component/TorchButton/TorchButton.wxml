@@ -1,0 +1,5 @@
+<!--component/TorchButton/TorchButton.wxml-->
+<view class='torch-box'>
+    <view class='torch-text'>5</view>
+    <image class='torch-img' mode='aspectFit' src='/images/page/fire-8.png'></image>
+</view>

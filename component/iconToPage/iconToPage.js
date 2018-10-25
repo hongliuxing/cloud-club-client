@@ -23,6 +23,7 @@ Component({
     src:String,
     title:String,
     value:String,
+    valueColor: String,
     name:String,
     url:String,
     index:Number,
