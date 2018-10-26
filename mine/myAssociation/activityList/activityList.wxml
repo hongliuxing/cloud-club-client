@@ -1,0 +1,76 @@
+<wxs src="../../../app.wxs" module="util" />
+<view class='header'>
+  <top-channel btns="{{topBtns}}" is-truncation="{{false}}" channel-class="channel"></top-channel>
+</view>
+<view class="list">
+  <view wx:if="{{struts==1}}" class='published'>
+    <block wx:for="{{publishedList}}" wx:key="index">
+      <view class='list-row'>
+        <view class="list-top">
+          <!-- 社团部分 -->
+          <view class='list-top_left'>
+            <image class='list-top-logo' src='{{item.logo_url}}' mode="aspectFit"></image>
+            <view class='list-top-text'>
+              <view class='list-top-club'>{{item.club_title}}</view>
+              <view class='list-top-school'>{{item.school}}</view>
+            </view>
+          </view>
+          <!-- <view class='list-top-time'>{{item.createdAt}}</view> -->
+          <!-- 收藏(关注)部分 -->
+          <view class='list-top-luv'>
+            <text>{{util.formateTime(item.createdAt)}}</text>
+          </view>
+        </view>
+
+        <view class="news-title">
+          {{item.title}}
+        </view>
+        <!-- <view class="news-timing" style='background-color:{{timingColor}};'>
+          {{item.timing_text}}
+        </view>
+        <view class="news-period">
+          <view class='news-period-label'>开始</view>{{item.brief_start}}
+        </view>
+        <view class="news-period">
+          <view class='news-period-label'>结束</view>{{item.brief_end}}
+        </view> -->
+        <view class="news-content">
+          {{item.content}}
+        </view>
+        <view class="news-pics">
+          <block wx:for="{{item.imgs}}" wx:key="idx" wx:for-item="pic" wx:for-index="idx">
+            <image class='pic-item' style='' catchtap='onProview' data-index="{{idx}}" src="{{ pic.pic_url }}"></image>
+          </block>
+        </view>
+        <view class="list-btns">
+          <view class='list-btns_left'>
+            <view class='list-btn list-btn-1' catchtap='onHeat'>
+              <image class="list-icon" src='../../../images/page/fire-2.png'></image>
+              <view class='list-icon-text'>{{item.heat}}</view>
+            </view>
+            <view class='list-btn list-btn-2' catchtap='onComment'>
+              <image class="list-icon" src='../../../images/page/sort.png'></image>
+              <view class='list-icon-text'>{{item.comment_count}}</view>
+            </view>
+          </view>
+          <view class='list-btn list-btn-3' data-id="{{item.id}}" data-index="{{index}}" catchtap='onRevocation'>
+            撤销活动
+          </view>
+          <!-- </view> -->
+        </view>
+      </view>
+    </block>
+  </view>
+  <view wx:if="{{struts==-1}}">
+    <block wx:for="{{auditList}}" wx:key="index">
+      <activity-list btn="{{false}}" item="{{item}}" item-class="itemClass" index="{{index}}" />
+    </block>
+  </view>
+  <view wx:if="{{struts==0}}">
+    <block wx:for="{{newActivityList}}" wx:key="index">
+      <activity-list title="{{item.title}}" item="{{item}}" userId="{{userId}}" index="{{index}}"  bind:lookInfo="onGoInfo" bind:edit="onEdit"/>
+    </block>
+  </view>
+</view>
+
+<image src='../../../images/page/add.png' class='add' bindtap='add' wx:if="{{struts==0 && (role_ability==3 || role_ability==4)}}"></image>

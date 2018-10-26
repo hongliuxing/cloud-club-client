@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "我的管理",
+  "usingComponents": {
+    "top-channel": "../../component/TopChannel/TopChannel",
+    "activity-list": "../../component/activityList/activityList"
+  },
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark"
+}

@@ -1,0 +1,222 @@
+page {
+  background: #f9f9f9;
+}
+
+.channel {
+  border: 0 !important;
+}
+
+.list {
+  margin-top: 40rpx;
+}
+.itemClass{
+  margin-bottom: 4rpx;
+}
+.add{
+  width: 160rpx;
+  height: 160rpx;
+  position: fixed;
+  bottom:20px;
+  right: 20px;
+  z-index: 10;
+}
+
+/* component/NewsList/child/Row.wxss */
+/**
+ * 日期相关标记行
+ */
+.date-row{
+    margin-bottom: 20rpx;
+    display: flex;
+    flex-direction: row;
+}
+.mark-icon{
+    width: 20rpx;
+    height: 20rpx;
+    border-radius: 50%;
+    margin-top: 12rpx;
+    background-color: red;
+    position: absolute;
+    z-index: 1;
+}
+.mark-text{
+    color: #fff;
+    font-size: 10pt;
+    padding: 8rpx 15rpx;
+    border-radius: 6rpx;
+    background-color: red;
+}
+
+/**
+ * 新闻内容行
+ */
+.list-row{
+    /* background-color: royalblue; */
+    margin-bottom: 40rpx;
+    padding:0 30rpx  15rpx 30rpx;
+    box-sizing: border-box;
+    border-bottom: 1rpx solid #eee;
+    
+}
+/** 新闻行: 列表顶部 **/
+.list-top{
+    width: 100%;
+    height: 80rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 26rpx;
+}
+.list-top_left{
+  display: flex;
+  flex-direction: row;
+}
+.list-top-logo{
+    width: 100rpx;
+    height: 80rpx;
+    margin-right: 20rpx;
+}
+.list-top-text{
+    height: 100rpx;
+}
+.list-top-club{
+    font-size: 26rpx;
+    font-weight: 700;
+    color: #697077;
+    height: 45rpx;
+    line-height: 45rpx;
+}
+.list-top-school{
+    font-size: 26rpx;
+    color: #98A4AE;
+    height: 35rpx;
+    line-height: 35rpx;
+}
+.list-top-luv{
+    font-size: 28rpx;
+    color:#ddd;     
+}
+.icon-luv{
+    margin-top: 15rpx;
+    width:50rpx;
+    height: 50rpx;
+}
+.list-top-time{
+    color: #B4B5B7;
+    font-size: 10pt;
+    right: 30rpx;
+    margin: 20rpx 0 10rpx 0;
+}
+/** 新闻行: 标题 **/
+.news-title{
+    font-size: 28rpx;
+    font-weight: 700;
+    color: #4D5762;
+    margin-bottom: 15rpx;
+    letter-spacing: 2rpx;
+}
+/** 新闻行: 活动周期 **/
+.news-period{
+    font-size: 24rpx;
+    color: #98A4AE;
+    margin: 10rpx 0;
+    display: flex;
+    flex-direction: row;
+}
+.news-period-label{
+    font-size: 22rpx;
+    padding: 3rpx 10rpx;
+    background-color: #05A2E9;
+    border-radius: 10rpx;
+    color: #FFF;
+    margin-right: 15rpx;
+}
+.news-timing{
+    /* width: 180rpx; */
+    display: inline-block;
+    padding: 0 15rpx;
+    height: 38rpx;
+    line-height: 38rpx;
+    border-radius: 10rpx;
+    /* background-color: rgb(143, 94, 192); */
+    font-size: 25rpx;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 8rpx;
+}
+/** 新闻行: 内容 **/
+.news-content{
+    font-size: 26rpx;
+    letter-spacing: 5rpx;
+    color: #868a8f;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/
+    -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+    -webkit-line-clamp: 3; /** 显示的行数 **/
+    overflow: hidden;  /** 隐藏超出的内容 **/
+    margin-top: 20rpx;
+    margin-bottom: 30rpx;
+}
+/** 新闻行: 图片部分 **/
+.news-pics{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.pic-item{
+    background-color: #ddd;
+    width: 180rpx;
+    height: 180rpx;
+    margin: 0 15rpx 15rpx 0;
+    border-radius: 5rpx;
+}
+/** 新闻行: 列表底部按钮 **/
+.list-btns{
+    display: flex;
+    flex-direction: row;
+    /* height: 50rpx;
+    line-height: 50rpx; */
+    margin-top: 30rpx;
+    color: #8F99A1;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.list-btns_left{
+  display: flex;
+  flex-direction: row;
+}
+.list-btn{
+    display: flex;
+    flex-direction: row;
+}
+.list-btn-2{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-left: 100rpx;
+}
+.list-btn-3{
+    color:red;
+    font-size: 26rpx;
+    text-decoration: underline;
+}
+.list-btn-3:active{
+  opacity: 0.8;
+}
+.list-icon{
+    width: 50rpx;
+    height: 50rpx;
+    vertical-align: middle;
+    margin-right: 5rpx;
+}
+.list-icon-text{
+    height: 50rpx;
+    line-height: 60rpx;
+    font-size: 30rpx;
+    letter-spacing: 2rpx;
+    vertical-align: middle;
+    color: #bbb;
+}
+

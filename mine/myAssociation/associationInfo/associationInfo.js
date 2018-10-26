@@ -75,6 +75,11 @@ Page({
   goTo_Data(){
     app.globalData.goToPage("../associationData/associationData")
   },
+
+  //活动管理
+  activityManage(){
+    app.globalData.goToPage("../activityList/activityList")
+  },
   //申请入社列表
   goTo_applyList(){
     app.globalData.goToPage("../applyList/applyList")

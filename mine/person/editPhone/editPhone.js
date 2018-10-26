@@ -22,7 +22,7 @@ Page({
    */
   onLoad: function(options) {
     that = this;
-    if (options.phone){
+    if (options.phone !="null"){
       this.setData({
         telephone: options.phone
       })

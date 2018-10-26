@@ -24,7 +24,9 @@
         "mine/myAssociation/applyList/applyList",
         "mine/myAssociation/noticeAdd/noticeAdd",
         "mine/myAssociation/noticeInfo/noticeInfo",
-        "mine/myAssociation/noticeList/noticeList"
+        "mine/myAssociation/noticeList/noticeList",
+        "mine/myAssociation/activityList/activityList",
+        "mine/myAssociation/activityAdd/activityAdd"
     ],
     "window": {
         "backgroundTextStyle": "light",
@@ -61,5 +63,4 @@
             }
         ]
     }
-
 }

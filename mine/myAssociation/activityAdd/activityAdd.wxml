@@ -1,0 +1,42 @@
+<view class='body'>
+
+  <input-item title="社团" value="{{titleName}}" go="{{false}}" typeAlign="left" title_class="titles" />
+
+
+  <input-item title="编辑人" value="{{author}}" spac="2" go="{{false}}" _input-class="_input-class" typeAlign="left" title_class="titles" />
+
+  <input-item title="活动标题" value="{{title}}" go="{{false}}" name="title" spac="2" _input-class="_input-class" typeAlign="left" title_class="titles" diabled="{{isLook==2 }}" bind:change="onChange"/>
+
+
+  <view class='image'>
+    <view class='image_left'>
+      <text class="card">活动内容</text>
+    </view>
+    <view class='image_right'>
+      <textarea value="{{content}}" bindinput='onChangeText' disabled='{{isLook==2}}'>
+
+      </textarea>
+    </view>
+  </view>
+  <view class='image'>
+    <view class='image_left'>
+      <text class="card">活动图片</text>
+    </view>
+    <view class='image_right'>
+       <image wx:for = "{{imageList}}" src="{{item}}" class='addImage activityImage' wx:key="index" >
+         <view class="del" data-index = "{{index}}" catchtap='onDel'>删除</view>
+       </image>
+       <image src="../../../images/page/addImage.png" class='addImage' bindtap='changeImage' wx:if="{{isLook!=2 && imageList.length<9}}"></image>
+    </view>
+  </view>
+
+  <view class='bottom' wx:if="{{isLook!=2}}">
+    <view class='save'>
+       <btn value="保存" btn-class="btn" height="90" bind:click="onSubmit" diabled/>
+    </view>
+    <view class='publish'>
+       <btn value="发布" btn-class="btn publishBtn" height="90" bind:click="onSubmit" diabled back="#bfbdbe"/>
+    </view>
+  </view>
+
+</view>
