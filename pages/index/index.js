@@ -16,7 +16,9 @@ Page({
         tabController: null,
         tabHeight: 0,
         // 当前的活动时机
-        currentTiming: 0
+        currentTiming: 0,
+        // 是否在本次执行 onShow 事件中的处理
+        doShow: false
     },
     //事件处理函数
     bindViewTap: function() {
@@ -36,37 +38,30 @@ Page({
             return Promise.resolve();
         }
     },
-    // 用于处理标签页的点击
-    // onTabbarClick(club_id){
-    //     // 滚动条置顶
-    //     // wx.pageScrollTo({
-    //     //     scrollTop: 0
-    //     // })
-    //     // 如果点击的标签页 等于 当前激活的标签页, 则没有其他动作
-    //     if (club_id === this.data.currentTabId){
-    //         return;
-    //     }
-    //     let that = this;
-        
-    //     console.log('点击的标签页id是:', club_id);
-    //     // tab切换后, 设置当前页面的 tabId
-    //     // 激活新的标签页
-    //     that.setData({
-    //         currentTabId: club_id
-    //     });
-    //     // 获取当前页面的 tabData 数据, 如果数据无内容,则尝试请求一次活动列表, 有则略过
-    //     let currentTab = that.getCurrentTabData();
-    //     if (Array.isArray(currentTab.list) && currentTab.list.length === 0){
-    //         // 当前标签页数据为空时,尝试调用一次 活动列表加载
-    //         that.loadActivityList();
-    //     }else{
-    //         // 显示当前标签页数据所示的list
-    //         that.setData({
-    //             newsListData: currentTab.list
-    //         });
-    //     }
-    //     // wx.hideLoading();
-    // },
+    /**
+     * 加载 Panel 信息
+     * 包含: 用户id, 昵称, 头像, 性别, 电话, 真实姓名
+     * 学校设置状态, 学校id, 学校名称, 社团数量, 幸运值
+     * 是否领取火把, 可用火把数量
+     * 
+     */
+    onLoadPanelInfo() {
+        let that = this;
+
+        Actions.doGet({
+            url: URLs.USER_PANEL_INFO,
+            data: {}
+        }).then(res => {
+            // wx.hideLoading()
+
+            wx.setStorageSync("userInfo", res.data.info)
+            that.onReflushPanelHeat();
+            that.setData({ doShow: true })
+        }).catch(err => {
+            console.log('加载 Panel 信息 err: ', err);
+        });
+    },
+    
     /**
      * 社团的下拉在切换数据时
      */
@@ -315,12 +310,31 @@ Page({
             // 首次登录成功
             wx.hideLoading();
         })
+        .then(that.onLoadPanelInfo) // 加载用户面板所需缓存信息
         .then(that.loadMyClub) // 获取标签页中的社团标识
         .catch(err => {
             // 失败
             console.log(err);
         });
 
+    },
+
+    onShow() {
+        console.log('index: onshow...', this.doShow);
+        this.data.doShow && this.onReflushPanelHeat();
+    },
+
+    /**
+     * 刷新火把数量
+     */
+    onReflushPanelHeat() {
+        // console.log('onPanelHeat..............');
+        let that = this;
+        let info = wx.getStorageSync('userInfo');
+        console.log('onReflushPanelHeat 刷新火把数量: ====> ', info['current_torch']);
+        that.setData({
+            torchNum: info['current_torch']
+        });
     },
     getUserInfo: function(e) {
         console.log(e)

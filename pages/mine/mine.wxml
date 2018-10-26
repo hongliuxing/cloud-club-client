@@ -20,9 +20,11 @@
             <text class='value'>{{info.school || "未设置"}}</text>
          </view>
         <view>
-            <text class='title'>社团数量</text>
-            <text class='value'>{{info.club_count || 0}}</text>
-         </view>
+            <!-- <text class='title'>社团数量</text>
+            <text class='value'>{{info.club_count || 0}}</text> -->
+            <text class='title'>火把数量</text>
+            <text class='value'>{{info.current_torch || 0}}</text>
+        </view>
       
       </view>
    

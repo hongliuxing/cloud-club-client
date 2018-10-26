@@ -1,5 +1,8 @@
 <!--component/TorchButton/TorchButton.wxml-->
-<view class='torch-box'>
-    <view class='torch-text'>5</view>
-    <image class='torch-img' mode='aspectFit' src='/images/page/fire-8.png'></image>
+<view class='torch-box' bindtap='tips'>
+    
+    <image class='torch-img' mode='aspectFit' src='/images/page/torch.png'></image>
+    <view class='torch-text'>
+        <text class='torch-chen'>×</text><text class='torch-num'>{{torchNum}}</text>
+    </view>
 </view>

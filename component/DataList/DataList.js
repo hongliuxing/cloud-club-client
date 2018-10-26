@@ -65,13 +65,16 @@ Component({
             top: 60, right: 30, bottom: 60, left: 60
         },
         
-        colors: ['#00A1E9', '#00A497', '#7A4171', '#CD5E3C', '#C85179', '#69821B', '#68699B', '#028760', '#E6B422', '#BB5548', '#1E50A2', '#887F7A']
+        colors: ['#00A1E9', '#00A497', '#7A4171', '#CD5E3C', '#C85179', '#69821B', '#68699B', '#028760', '#E6B422', '#BB5548', '#1E50A2', '#887F7A'],
+
+        torchNum: 0
     },
     /**
      * UI 加载完成之后
      */
-    ready(){
+    attached(){
         let that = this;
+        // that.reflushTorch();
         // console.log('row =>>', this.data.rows);
         // // 组件内部查询元素
         // const query = wx.createSelectorQuery().in(this);
@@ -147,9 +150,35 @@ Component({
          * 点赞
          */
         onHeat(e){
-            // console.log('点赞: ', this.data.bean);
+            let that = this;
+            // 获取用户信息
+            let uinfo = wx.getStorageSync('userInfo');
+            // 点赞前判断火把数量
+            if (uinfo['current_torch'] <= 0){
+                return wx.showToast({
+                    title: '火把用完啦',
+                })
+            }
             if (typeof this.data.bean.onHeat == 'function') {
-                this.data.bean.onHeat(e);
+                this.data.bean.onHeat(e).then(res=>{
+                    console.log('Datalist: 点赞成功=> ', e);
+                    if (e.detail.addHeatNum){
+                        typeof e.detail.addHeatNum == 'function' && e.detail.addHeatNum();
+                    }
+                    // 提示点赞成功
+                    wx.showToast({
+                        title: '活动加温成功!',
+                        duration: 1500,
+                        mask: true
+                    })
+                    // 点赞成功, 先消耗火把
+                    uinfo['current_torch'] = Number(uinfo['current_torch']) - 1;
+                    uinfo['luck'] = Number(uinfo['luck']) + 1;
+                    wx.setStorageSync('userInfo', uinfo);
+                    // 待刷新 mine 数据
+                    wx.setStorageSync("mineRefresh", true);
+                    that.triggerEvent('onReflushPanelHeat', 'ok', { bubbles: true });
+                });
             }
         },
         /**
@@ -169,6 +198,17 @@ Component({
             if (typeof this.data.bean.onShare == 'function') {
                 this.data.bean.onShare(e);
             }
-        }
+        },
+        /**
+         *  刷新火把数量数据
+         */
+        // reflushTorch() {
+        //     let that = this;
+        //     let info = wx.getStorageSync('userInfo');
+        //     console.log('DataList 刷新火把数量: ====> ', info['current_torch']);
+        //     that.setData({
+        //         torchNum: info['current_torch']
+        //     });
+        // }
     }
 })

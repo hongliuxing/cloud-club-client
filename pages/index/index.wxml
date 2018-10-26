@@ -10,6 +10,9 @@
             min-height="{{tabHeight}}"
             bean="{{item}}"
             is-queryed="{{item.isQueryed}}"
-            ></list-panel>
+            bind:onReflushPanelHeat="onReflushPanelHeat"
+            >
+            <torch-btn torch-num='{{torchNum}}'></torch-btn>
+            </list-panel>
     </block>
 </view>

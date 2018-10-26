@@ -16,7 +16,11 @@ Page({
         tabController: null,
         tabHeight: 0,
         // 当前的活动时机
-        currentTiming: 0
+        currentTiming: 0,
+        // 当前的火把数量
+        torchNum: 0,
+        // 是否在本次执行 onShow 事件中的处理
+        doShow: false
     },
     /**
      * 页面初始化事件
@@ -29,6 +33,11 @@ Page({
         })
         .then(that.onLoadPanelInfo) // 加载用户面板所需缓存信息
         .then(that.loadMyClub) // 获取标签页中的社团标识
+        .then(res => {
+            // console.log('aaaaaaaaaaaa');
+            // that.onReflushPanelHeat();
+            // that.setData({doShow: true})
+        })
         .catch(err => {
             // 失败
             wx.hideLoading();
@@ -63,25 +72,10 @@ Page({
             data: {}
         }).then(res => {
             // wx.hideLoading()
-            // let status = res.data.info.school_struts;
-            // let name = "";
-            // if (status == 1) {
-            //     name = "已通过"
-            // } else if (status == 0) {
-            //     name = "申请中"
-            // } else if (status == -1) {
-            //     name = "未通过"
-            // } else {
-            //     name = "未设置"
-            // }
-
-            // that.setData({
-            //     info: res.data.info,
-            //     school: name,
-            //     status: status
-            // })
 
             wx.setStorageSync("userInfo", res.data.info)
+            that.onReflushPanelHeat();
+            that.setData({ doShow: true })
         }).catch(err => {
             console.log('加载 Panel 信息 err: ', err);
         });
@@ -376,6 +370,24 @@ Page({
             path: "/pages/activity/info/info?id=" + aid + "&share=true",
             imageUrl: logo
         };
+    },
+
+    onShow() {
+        this.data.doShow && this.onReflushPanelHeat();
+    },
+
+    /**
+     * 刷新火把数量
+     */
+    onReflushPanelHeat(){
+        // console.log('onPanelHeat..............');
+        let that = this;
+        let info = wx.getStorageSync('userInfo');
+        console.log('onReflushPanelHeat 刷新火把数量: ====> ', info['current_torch']);
+        that.setData({
+            torchNum: info['current_torch']
+        });
     }
+
     // end
 })

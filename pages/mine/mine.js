@@ -61,6 +61,8 @@ Page({
             canPullTorch: currInfo.can_pull_torch
         })
         wx.hideLoading();
+
+        wx.setStorageSync("mineRefresh", null)
         //   wx.setStorageSync("userInfo", res.data.info)
         // }).catch(err => {
         //   console.log('我的社团 err: ', err);
@@ -88,10 +90,43 @@ Page({
         console.log('获取火把:: ', e);
         // 首先判断是否可以获取火把
         let uinfo = wx.getStorageSync('userInfo');
-        if (uinfo['can_pull_torch'] !== 1){
+        // 不能重复领取了
+        if (uinfo['can_pull_torch'] !== 1) {
             // 不能领取
             return that.onToast('不能重复领取');
         }
+        // 如果当前火把还有剩余, 提醒用户领取火把不能累积, 建议先用完再领今日份
+        if (uinfo['current_torch'] > 0){
+            wx.showModal({
+                title: '提示',
+                content: '火把尚未用完, 现在领取会覆盖原有数量!',
+                showCancel: true,
+                cancelText: '先去使用',
+                // cancelColor: '',
+                confirmText: '现在就领',
+                // confirmColor: '',
+                success: function(res) {
+                    if (res.confirm) {
+                        console.log('用户点击确定')
+                        that.pullTorch();
+                    } else if (res.cancel) {
+                        console.log('用户点击取消')
+                    }
+                }
+            })
+        }else{
+            // 无障碍领取火把
+            that.pullTorch();
+        }
+        
+       
+    },
+    /**
+     * 领取火把流程
+     */
+    pullTorch(){
+        let that = this;
+        let uinfo = wx.getStorageSync('userInfo');
         // 否则进入领取环节
         wx.showLoading({
             title: '正在传递火把...',
@@ -102,21 +137,22 @@ Page({
             url: URLs.TORCH_PULL
         }).then(res => {
             wx.hideLoading();
-            if(res.data.err){
+            if (res.data.err) {
                 console.log('获取火把错误: ', res);
                 return that.onToast('服务器繁忙');
             }
             // 变更领取状态 及 火把数量
             let torch_count = res.data.info.result;
-            if (torch_count === -1){
+            if (torch_count === -1) {
                 return that.onToast('请先设置用户信息');
             } else if (torch_count === 0) {
                 return that.onToast('今天领过啦');
             } else if (torch_count > 0) {
                 that.onToast('领到 ' + torch_count + '个火把!');
                 uinfo['can_pull_torch'] = 0;
+                uinfo['current_torch'] = torch_count;
                 wx.setStorageSync('userInfo', uinfo);
-                that.setData({ canPullTorch: 0 });
+                that.setData({ canPullTorch: 0, info: uinfo });
             }
 
         }).catch(err => {
@@ -142,6 +178,7 @@ Page({
         if (wx.getStorageSync("mineRefresh")) {
             that._request()
         }
+
     },
 
 })

@@ -30,7 +30,7 @@
 .list-row{
     /* background-color: royalblue; */
     margin-bottom: 40rpx;
-    padding-bottom: 15rpx;
+    padding-bottom: 5rpx;
     border-bottom: 1rpx solid #eee;
 }
 /** 新闻行: 列表顶部 **/
@@ -149,16 +149,19 @@
 .list-btns{
     display: flex;
     flex-direction: row;
-    /* height: 50rpx;
-    line-height: 50rpx; */
+    height: 80rpx;
+    line-height: 80rpx;
     margin-top: 30rpx;
     color: #8F99A1;
     justify-content: space-between;
+    /* background-color: red; */
 }
 .list-btn{
     width: 33%;
     display: flex;
     flex-direction: row;
+    height: 80rpx;
+    line-height: 80rpx;
     /* background-color: chartreuse; */
 }
 .list-btn-1{

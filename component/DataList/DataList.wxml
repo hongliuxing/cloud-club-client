@@ -2,7 +2,8 @@
  style='min-height: {{minHeight}}px;padding: {{padding.top}}rpx {{padding.right}}rpx {{padding.bottom}}rpx {{padding.left}}rpx;background-color: {{bgcolor}};'
 >
     <block wx:if="{{rows.length > 0}}">
-        <!-- <torch-btn></torch-btn> -->
+        
+        <slot></slot>
         <view wx:if="{{hasTimeline}}" class="timeline" style="margin-top:-{{padding.top-1}}rpx;"></view>
         <block wx:for="{{rows}}" wx:for-index="idx" wx:for-item="item" wx:key="title">
             <row m-left="{{hasTimeline?50:0}}" 

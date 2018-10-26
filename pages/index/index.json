@@ -1,7 +1,8 @@
 {
     "usingComponents": {
         "top-channel": "/component/TopChannel/TopChannel",
-        "list-panel": "/component/DataList/DataList"
+        "list-panel": "/component/DataList/DataList",
+        "torch-btn": "/component/TorchButton/TorchButton"
     },
     "navigationBarTitleText": "我的社团"
 }

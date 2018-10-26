@@ -150,7 +150,42 @@ Page({
     /**
      * 点赞
      */
-    onHeat(){ },
+    onHeat(){
+        let that = this;
+        // 获取用户信息
+        let uinfo = wx.getStorageSync('userInfo');
+        // 点赞前判断火把数量
+        if (uinfo['current_torch'] <= 0) {
+            return wx.showToast({
+                title: '火把用完啦',
+            })
+        }
+        // 本活动ID获取
+        let { id } = that.data.activity;
+        Actions.doPost({
+            url: URLs.TORCH_HEATING,
+            data: { activity_id: id }
+        }).then(res => {
+            console.log('点赞结果 成功: ', res);
+            that.setData({
+                'activity.heat': ( that.data.activity.heat + 1 )
+            });
+            // 提示点赞成功
+            wx.showToast({
+                title: '活动加温成功!',
+                duration: 1500,
+                mask: true
+            })
+            // 点赞成功, 先消耗火把
+            uinfo['current_torch'] = Number(uinfo['current_torch']) - 1;
+            uinfo['luck'] = Number(uinfo['luck']) + 1;
+            wx.setStorageSync('userInfo', uinfo);
+            // 待刷新 mine 数据
+            wx.setStorageSync("mineRefresh", true);
+        }).catch(err => {
+            console.log('点赞结果 失败: ', err);
+        });
+    },
     /**
      * 点击评论
      */
