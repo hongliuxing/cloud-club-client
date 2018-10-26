@@ -143,7 +143,7 @@ Page({
 
         }).catch(err=>{
             wx.hideLoading();
-            console.log('评论错误: ', val);
+            console.log('评论错误: ', val, err);
             return wx.showToast({
                 title: '受到外星攻击...',
                 duration: 2000,
