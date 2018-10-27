@@ -92,8 +92,22 @@ Page({
       url: URLs.USER_SAVE,
       data: data
     }).then(res=>{
-      app.globalData.goBack({})
-      wx.setStorageSync("mineRefresh", true)
+        // 先提示修改成功
+        wx.showToast({
+            title: '保存成功!',
+            icon: 'success',
+            duration: 1500,
+            mask: true,
+            success: function(res) {
+                let uinfo = wx.getStorageSync('userInfo');
+                uinfo.nickname = data.nickname;
+                uinfo.avatar_url = data.avatar_url;
+                uinfo.gender = data.gender;
+                wx.setStorageSync('userInfo', uinfo);
+                wx.setStorageSync("mineRefresh", true);
+            }
+        })
+        
     }).catch(error=>{
 
     })
