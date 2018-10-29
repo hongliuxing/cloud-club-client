@@ -1,6 +1,19 @@
 import * as Actions from "../net/Actions.js";
 import * as URLs from "../net/urls.js";
 
+//防重复点击
+
+export const repeat = (that)=>{
+    that.setData({
+     isRepeat:false
+    })
+    setTimeout(function(){
+      that.setData({
+        isRepeat: true
+      })
+    },1000)
+}
+
 export const goToPage = (url) => {
   wx.navigateTo({
     url: url,

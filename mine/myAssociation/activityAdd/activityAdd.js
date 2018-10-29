@@ -2,6 +2,7 @@ import * as Actions from "../../../utils/net/Actions.js";
 import * as URLs from "../../../utils/net/urls.js";
 import uploadFile from "../../../utils/upload/support.js";
 import { uploadUtilActivity, uploadToAliossActivity} from "../../../utils/net/Actions.js";
+import {repeat} from "../../../utils/upload/public.js";
 let app = getApp();
 let that;
 Page({
@@ -21,7 +22,8 @@ Page({
     club_id:"",
     activity_id:"",
     isLook:null,
-    isSave:false
+    isSave:false,
+    isRepeat:true,//防止重复提交
   },
 
   /**
@@ -101,6 +103,10 @@ Page({
   },
   //保存
   onSubmit() {
+    if (!that.data.isRepeat){
+       return
+    }
+    repeat(that)
     if (this.data.isSave){
       return
     }
