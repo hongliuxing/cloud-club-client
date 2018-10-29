@@ -63,7 +63,7 @@
   </view>
   <view wx:if="{{struts==-1}}">
     <block wx:for="{{auditList}}" wx:key="index">
-      <activity-list btn="{{false}}" item="{{item}}" item-class="itemClass" index="{{index}}" />
+      <activity-list btn="{{false}}" item="{{item}}" item-class="itemClass" index="{{index}}" bind:goBack="goBack"/>
     </block>
   </view>
   <view wx:if="{{struts==0}}">
