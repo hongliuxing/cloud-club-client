@@ -13,7 +13,8 @@ Page({
     author:"",
     phone:"",
     school_id:"",
-    title:""
+    title:"",
+    referrer:"",//推荐人
   },
 
   /**
@@ -53,7 +54,8 @@ Page({
     let data = {
       school_id: this.data.school_id,
       club_url: this.data.cert_url,
-      title: this.data.title
+      title: this.data.title,
+      referrer: this.data.referrer
     }
     Actions.doPost({
       url: URLs.CLUBMASTER_CREATE_CLUB,

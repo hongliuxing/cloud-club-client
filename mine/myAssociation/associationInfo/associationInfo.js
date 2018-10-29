@@ -66,22 +66,34 @@ Page({
 
 
   },
+  onShow(){
+    if (wx.getStorageSync("associationIsChange")){
+      that._request({
+        clubid: that.data.clubid
+      })
+      that._panelReauest(that.data.clubid)
+    }
+  },
   //公告列表
   goTo_notice(){
+    wx.setStorageSync("associationIsChange", false)
     app.globalData.goToPage("../noticeList/noticeList")
   },
  
   //社团资料
   goTo_Data(){
+    wx.setStorageSync("associationIsChange", false)
     app.globalData.goToPage("../associationData/associationData")
   },
 
   //活动管理
   activityManage(){
+    wx.setStorageSync("associationIsChange", false)
     app.globalData.goToPage("../activityList/activityList")
   },
   //申请入社列表
   goTo_applyList(){
+    wx.setStorageSync("associationIsChange", false)
     app.globalData.goToPage("../applyList/applyList")
   },
   

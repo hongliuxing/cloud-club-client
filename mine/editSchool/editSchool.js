@@ -47,8 +47,9 @@ Page({
         url: URLs.SCHOOL_LOAD_APPLY,
         data: {}
       }).then(res => {
+        
         let data = res.data.list[0];
-
+        console.log(res, "888888")
         that.setData({
           cert_url: info.school_struts === 1 ?"":data.cert_url,
           profe: data.profe,

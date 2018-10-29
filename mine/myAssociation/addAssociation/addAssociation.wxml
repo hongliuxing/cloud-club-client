@@ -1,13 +1,15 @@
 <view class='body'>
 
-  <input-item title="学校" value="{{school}}" go="{{false}}" typeAlign="left" title_class="titles" disabled="{{true}}"/>
+  <input-item title="学校" value="{{school}}" go="{{false}}" typeAlign="left" title_class="titles"/>
 
 
-  <input-item title="创建者" value="{{author}}" spac="2" go="{{false}}"  _input-class="_input-class" typeAlign="left" title_class="titles" plac="请输入创建者姓名?" disabled="{{true}}"/>
+  <input-item title="创建者" value="{{author}}" spac="2" go="{{false}}"  _input-class="_input-class" typeAlign="left" title_class="titles" plac="请输入创建者姓名?"/>
 
   <input-item title="电话" value="{{phone}}" go="{{false}}"  _input-class="_input-class" typeAlign="left" title_class="titles" disabled="{{true}}"/>
 
   <input-item title="社团名称" value="{{title}}"  spac="2" bind:change="onChange" plac="本校内的社团名称不能重复?" right="{{false}}" go="{{false}}" diabled="{{false}}" _input-class="_input-class" name="title"  typeAlign="left" title_class="titles"/>
+
+  <input-item title="推荐人" value="{{referrer}}" spac="2" go="{{false}}"  name="referrer" _input-class="_input-class" typeAlign="left" title_class="titles" plac="非必填" diabled="{{false}}" bind:change="onChange" right="{{false}}" />
 
 
 

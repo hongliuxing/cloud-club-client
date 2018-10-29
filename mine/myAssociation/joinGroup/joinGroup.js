@@ -149,7 +149,7 @@ Page({
         let clun_id = res.data.info.club_id;
         if (clun_id == id) {
           let arr = that.data.canapplyList;
-          arr[index].apply_struts = 0;
+          arr[index].last_apply_struts = 0;
           that.setData({
             canapplyList: arr
           })

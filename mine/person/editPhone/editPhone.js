@@ -28,6 +28,9 @@ Page({
       })
     }
   },
+  onUnload:function(){
+    clearInterval(times)
+  },
   //手机号
   onCallPhone(e) {
     this.setData({
@@ -103,10 +106,10 @@ Page({
       url: URLs.USER_PHONE_SAVE,
       data: data
     }).then(res => {
-      
+      wx.setStorageSync("phone", that.data.telephone)
       app.globalData.goBack({})
      
-      wx.setStorageSync("phone", that.data.telephone)
+     
     }).catch(error => {
 
     })

@@ -11,10 +11,10 @@
     </view>
   </view>
   <view class='listItem_right' wx:if="{{btn}}">
-    <view class='btn' wx:if="{{item['crole.client_id']!==userId}}" bindtap='onInfo'>
+    <view class='btn' wx:if="{{item['crole.client_id']!==userId}}" bindtap='onInfo' data-id="{{item.id}}">
       查看
     </view>
-    <view class='btn edit' wx:if="{{item['crole.client_id']===userId}}" bindtap='onEdit'>
+    <view class='btn edit' wx:if="{{item['crole.client_id']===userId}}" bindtap='onEdit' data-id="{{item.id}}">
       编辑
     </view>
   </view>

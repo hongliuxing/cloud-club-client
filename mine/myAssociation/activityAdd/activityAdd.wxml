@@ -3,7 +3,7 @@
   <input-item title="社团" value="{{titleName}}" go="{{false}}" typeAlign="left" title_class="titles" />
 
 
-  <input-item title="编辑人" value="{{author}}" spac="2" go="{{false}}" _input-class="_input-class" typeAlign="left" title_class="titles" />
+  <input-item title="编辑人" value="{{author}}" spac="2" go="{{false}}" _input-class="_input-class" typeAlign="left" title_class="titles" wx:if="{{author!==''}}"/>
 
   <input-item title="活动标题" value="{{title}}" go="{{false}}" name="title" spac="2" _input-class="_input-class" typeAlign="left" title_class="titles" diabled="{{isLook==2 }}" bind:change="onChange"/>
 
@@ -24,7 +24,7 @@
     </view>
     <view class='image_right'>
        <image wx:for = "{{imageList}}" src="{{item}}" class='addImage activityImage' wx:key="index" >
-         <view class="del" data-index = "{{index}}" catchtap='onDel'>删除</view>
+         <view class="del" data-index = "{{index}}" catchtap='onDel' wx:if="{{isLook!=2}}">删除</view>
        </image>
        <image src="../../../images/page/addImage.png" class='addImage' bindtap='changeImage' wx:if="{{isLook!=2 && imageList.length<9}}"></image>
     </view>
@@ -32,10 +32,10 @@
 
   <view class='bottom' wx:if="{{isLook!=2}}">
     <view class='save'>
-       <btn value="保存" btn-class="btn" height="90" bind:click="onSubmit" diabled/>
+       <btn value="保存" btn-class="btn" height="90" bind:click="onSubmit" diabled back="{{!isSave?'#57d8d6':'#bfbdbe'}}"/>
     </view>
     <view class='publish'>
-       <btn value="发布" btn-class="btn publishBtn" height="90" bind:click="onSubmit" diabled back="#bfbdbe"/>
+       <btn value="发布" btn-class="btn publishBtn" height="90" bind:click="onPublish" diabled back="{{isSave?'#57d8d6':'#bfbdbe'}}"/>
     </view>
   </view>
 

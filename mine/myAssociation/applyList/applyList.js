@@ -142,6 +142,7 @@ Page({
         showCancel: false,
         success:function(res){
           that._request({ struts: 0, pagenum: 1 })
+          wx.setStorageSync("associationIsChange", true)
         }
 
       })
@@ -189,6 +190,7 @@ Page({
       }
     }).then(res => {
       that._request({ struts: 0, pagenum: 1 })
+      wx.setStorageSync("associationIsChange", true)
       onCloseAnimation(that, 0, -300)
     }).catch(error => {
 

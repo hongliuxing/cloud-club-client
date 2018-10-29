@@ -20,7 +20,8 @@ Page({
     content:"",
     club_id:"",
     activity_id:"",
-    isLook:null
+    isLook:null,
+    isSave:false
   },
 
   /**
@@ -28,36 +29,81 @@ Page({
    */
   onLoad: function (options) {
     that = this;
-    let info = wx.getStorageSync("userInfo");
-    let item = wx.getStorageSync("associationInfo");
-    that.setData({
-      titleName: item.title,
-      author: info.realname,
-      club_id: item.id
-    })
-    if (options.data){
-      let data = JSON.parse(options.data);
+    let data = JSON.parse(options.data);
+    if (data.isAdd==1){ //判断是编辑查看还是添加
+      let info = wx.getStorageSync("userInfo");
+      let item = wx.getStorageSync("associationInfo");
       that.setData({
-        isLook: data.isLook,
-        title:data.info.title
+        titleName: item.title,
+        author: info.realname,
+        club_id: item.id
       })
+    }else{
+     that.setData({
+       isLook:data.isLook,
+       activity_id:data.id  
+     })
 
+     if(data.isLook==1){
+       that.setData({
+         isSave:true
+       })
+     }
+      that._detail(data.id) //查详情
     }
   },
+  
+  //查详情
+  _detail(id){
+    Actions.doGet({
+      url: URLs.ACTIVITY_SIMPLE_INFO,
+      data: {activity_id:id}
+
+    }).then(res => {
+      let data = res.data.info;
+      let arr =[];
+      for(let i of data.imgs){
+        arr.push(i.pic_url)
+      }
+      that.setData({
+        titleName: data.club_title,
+        club_id: data.club_id,
+        title: data.title,
+        content: data.content,
+        imageList: arr
+      })
+    }).catch(error => {
+
+    })
+  },
+
   //获取input值
   onChange(e) {
+    if(this.data.isLook==1){
+      that.setData({
+        isSave: false
+      })
+    }
     this.setData({
       [e.detail.name]: e.detail.value
     })
   },
   //活动内容
   onChangeText(e){
+    if (this.data.isLook == 1) {
+      that.setData({
+        isSave: false
+      })
+    }
     this.setData({
       content: e.detail.value
     })
   },
-  //提交
+  //保存
   onSubmit() {
+    if (this.data.isSave){
+      return
+    }
     if (this.data.title == "") {
 
       app.globalData.toast("请输入活动标题?")
@@ -88,16 +134,41 @@ Page({
       data: data
     }).then(res => {
       that.requestDel()
-      app.globalData.goBack({ title: "保存成功" })
+      that.setData({
+        isSave: true
+      })
+    }).catch(error => {
+
+    })
+
+  },
+
+  //发布
+  onPublish() {
+    if (!this.data.isSave) {
+      return
+    }
+    Actions.doPost({
+      url: URLs.CLUBMASTER_ACTIVITY_SAVE,
+      data: {
+        activity_id: that.data.activity_id
+      }
+    }).then(res => {
+
+      app.globalData.goBack({ title: "发布成功" })
 
     }).catch(error => {
 
     })
 
   },
-  
   //上传照片
   changeImage() {
+    if (this.data.isLook == 1) {
+      that.setData({
+        isSave: false
+      })
+    }
     wx.chooseImage({
       count: 9 - (that.data.imageList.length),
       sizeType: ["compressed"],

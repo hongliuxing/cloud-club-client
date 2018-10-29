@@ -183,7 +183,10 @@ Page({
 
   //添加 
   add(){
-    app.globalData.goToPage("../activityAdd/activityAdd")
+    let data = {
+      isAdd: 1
+    }
+    app.globalData.goToPage("../activityAdd/activityAdd?data=" + JSON.stringify(data))
   },
  
   //撤销活动
@@ -217,20 +220,22 @@ Page({
 
   //查看
   onGoInfo(e){
-   let index = e.detail.index;
+   let id = e.detail.id;
    let data = {
-     info: that.data.newActivityList[index],
-     isLook:2
+     id: id,
+     isLook:2,
+     isAdd: 2
    }
     app.globalData.goToPage("../activityAdd/activityAdd?data=" + JSON.stringify(data))
 
   },
   //编辑
   onEdit(e){
-    let index = e.detail.index;
+    let id = e.detail.id;
     let data = {
-      info: that.data.newActivityList[index],
-      isLook: 1
+      id: id,
+      isLook: 1,
+      isAdd: 2
     }
     app.globalData.goToPage("../activityAdd/activityAdd?data=" + JSON.stringify(data))
   },
