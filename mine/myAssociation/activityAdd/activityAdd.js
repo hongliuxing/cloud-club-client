@@ -225,6 +225,11 @@ Page({
 
   //删除图片
   onDel(e){
+    if (this.data.isLook == 1) {
+      that.setData({
+        isSave: false
+      })
+    }
     let index = e.currentTarget.dataset.index;
     let delImage = that.data.delImageList;
     delImage.push(that.data.imageList[index])
