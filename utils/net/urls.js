@@ -186,3 +186,6 @@ export const CLUBMASTER_ACTIVITY_PUBLISH = HOST + "clubmaster/activity/publish";
 // 管理活动: 撤销
 // 撤销后, 变为待审核0状态
 export const CLUBMASTER_ACTIVITY_REPEAL = HOST + "clubmaster/activity/repeal";
+
+//查看编辑中的社团活动信息
+export const CLUBMASTER_EDIT_INFO = HOST + "clubmaster/edit-info";

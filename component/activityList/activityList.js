@@ -16,7 +16,11 @@ Component({
     },
     //下标
     index:Number,
-    userId:String
+    userId:String,
+    imageUrl:{
+      type:String,
+      value:"../../images/page/WechatIMG279.png"
+    }
 
   },
   externalClasses: ["item-class"],
@@ -34,12 +38,17 @@ Component({
     //查看
     onInfo(e){
       let that = this;
-      this.triggerEvent('lookInfo', { index:that.data.index })
+      this.triggerEvent('lookInfo', { index:that.data.index,id:e.currentTarget.dataset.id })
     },
     //编辑
     onEdit(e) {
       let that = this;
-      this.triggerEvent('edit', { index: that.data.index})
+      this.triggerEvent('edit', { index: that.data.index, id: e.currentTarget.dataset.id })
     },
+    //回撤
+    onBack(){
+      let that = this;
+      this.triggerEvent('goBack', { index: that.data.index, id: e.currentTarget.dataset.id })
+    }
   }
 })

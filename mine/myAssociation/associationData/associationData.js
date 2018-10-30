@@ -92,6 +92,7 @@ Page({
       url: URLs.CLUBMASTER_MOFIFY_CLUB,
       data:resData
     }).then(res=>{
+       wx.setStorageSync("associationIsChange", true)
        app.globalData.goBack({title:"保存成功"})
     }).catch(error=>{
 

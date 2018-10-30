@@ -101,7 +101,6 @@ export const uploadUtilActivity = (url, filepath) => new Promise((resolve, rejec
 
 //活动图片上传
 export const uploadToAliossActivity = ({ filepath, url, key, policy, OSSAccessKeyId, signature }) => new Promise((resolve, reject) => {
-
   // 调用小程序的上传接口
   wx.uploadFile({
     url: url,

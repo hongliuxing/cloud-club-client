@@ -13,7 +13,6 @@
 .image {
   width: 150rpx;
   height: 160rpx;
-  border: 2rpx solid #f0f0f0;
 }
 
 

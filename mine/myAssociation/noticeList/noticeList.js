@@ -26,6 +26,7 @@ Page({
         role_ability: info.role_ability  //拿到权限判断是否有添加权限
       }) 
     }
+    wx.setStorageSync("associationIsChange", true)
   },
 
   onShow() {

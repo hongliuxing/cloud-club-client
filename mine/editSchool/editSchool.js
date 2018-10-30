@@ -47,25 +47,26 @@ Page({
         url: URLs.SCHOOL_LOAD_APPLY,
         data: {}
       }).then(res => {
-        let data = res.data.list[0];
 
+        let data = res.data.list[0];
+        console.log(res, "888888")
         that.setData({
-          cert_url: info.school_struts === 1 ?"":data.cert_url,
+          cert_url: info.school_struts === 1 ? "" : data.cert_url,
           profe: data.profe,
           realname: data.realname,
           struts: info.school_struts,
           btnName: info.school_struts === 1 ? "已通过" : "申请中",
           uName: info.school,
-          disabled:true
+          disabled: true
         })
-        searchProvine(that,data.province_code, data.city_code)
+        searchProvine(that, data.province_code, data.city_code)
         //that.schoolList(data.city_code)
       }).catch(error => {
 
       })
 
     } else {
-      that.onLocation()
+      that.addressAuth()
     }
 
     //判断本地是否缓存了省份列表
@@ -77,16 +78,59 @@ Page({
       that.provinceList()
     }
   },
+  
+  //地址授权
+  addressAuth() {
+    wx.getSetting({
+      success:function(res){
+        if (!res.authSetting['scope.userLocation']){
+            wx.showModal({
+              title: '请求授权当前位置',
+              content: '需要获取您的地理位置，请确认授权',
+              success:function(){
+                if(res.cancel){
+                    wx.showToast({
+                      title: '拒绝授权影响部分功能',
+                      icon:"none",
+                      duration:1000
+                    })
+                } else if (res.confirm){
+                  wx.openSetting({
+                    success:function(val){
+                      if (val.authSetting["scope.userLocation"] == true){
+                        wx.showToast({
+                          title: '授权成功',
+                          icon: 'success',
+                          duration: 5000
+                        })
+                        that.onLoaction()
+                      }else{
+                        wx.showToast({
+                          title: '授权失败',
+                          icon: 'none',
+                          duration: 1000
+                        })
+                      }
+                    }
+                  })
 
-
+                }
+              }
+            })
+        } else if (res.authSetting['scope.userLocation'] == undefined){
+          that.onLoaction()
+        }
+      }
+    })
+  },
 
   /**
    * 获取经纬度，
    * 查询当前地址及推送最优学校
    */
-  onLocation() {
+  onLoaction(){
     wx.getLocation({
-      success: function(res) {
+      success: function (res) {
         let data = {
           latitude: res.latitude,
           longitude: res.longitude
@@ -106,7 +150,7 @@ Page({
 
         })
       },
-      fail: function(err) {
+      fail: function (err) {
         console.log(err, "res")
       }
     })
@@ -152,7 +196,7 @@ Page({
 
   //城市列表
   cityList(index) {
-    console.log(index,"8888888888888")
+    console.log(index, "8888888888888")
     Actions.doGet({
       url: URLs.SCHOOL_CITY_LIST,
       data: {
@@ -271,9 +315,9 @@ Page({
     })
 
   },
-
   //上传照片
   changeImage() {
+
     if (this.data.disabled) {
 
       return

@@ -126,7 +126,6 @@
 .bottom {
   padding: 0 30rpx;
   box-sizing: border-box;
-  margin-top: 40rpx;
 }
 
 .btn {

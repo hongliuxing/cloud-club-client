@@ -75,8 +75,8 @@ Page({
     //页面跳转
     goTo(e) {
         if (this.data.myAssociation == e.detail.url) {
-            if (this.data.status == null) {
-                app.globalData.toast("请先设置学校")
+            if (this.data.status != 1) {
+                app.globalData.toast("学校信息未通过")
                 return
             }
         }

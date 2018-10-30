@@ -29,6 +29,12 @@ Page({
 
   //加入社团
   joinGroup() {
+    let info = wx.getStorageSync("userInfo");
+    if (info.telephone == null || info.telephone ==""){
+      app.globalData.toast("请先完善个人信息")
+      return
+
+    }
     app.globalData.goToPage("./joinGroup/joinGroup")
   },
 
