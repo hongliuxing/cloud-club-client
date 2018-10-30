@@ -189,35 +189,52 @@ Page({
     app.globalData.goToPage("../activityAdd/activityAdd?data=" + JSON.stringify(data))
   },
  
-  //撤销活动
+  //已发布撤销活动
   onRevocation(e){
     let id = e.currentTarget.dataset.id;
     let index = e.currentTarget.dataset.index;
     let arr = that.data.publishedList;
+    that.back(id, index, arr,1)
+  },
+  //审核中回撤
+  goBack(e){
+    let id = e.detail.id;
+    let index = e.detail.index;
+    let arr = that.data.auditList;
+    that.back(id, index, arr,2)
+  },
+  //回撤公用
+  back(id, index, arr, isAudit) { //isAudit判断是哪个列表
+
     wx.showModal({
       title: '提示',
       content: '确定要撤销此活动吗?',
-      success:function(res){
-        if (res.confirm){
+      success: function (res) {
+        if (res.confirm) {
           Actions.doPost({
             url: URLs.CLUBMASTER_ACTIVITY_REPEAL,
             data: {
               activity_id: id
             }
           }).then(res => {
-            arr.splice(index,1)
-            that.setData({
-              publishedList:arr
-            })
+            arr.splice(index, 1)
+            if (isAudit==1){
+              that.setData({
+                publishedList: arr
+              })
+            }else{
+              that.setData({
+                auditList: arr
+              })
+            }
             app.globalData.toast("撤销成功")
           }).catch(error => {
 
           })
-         }
+        }
       }
     })
   },
-
   //查看
   onGoInfo(e){
    let id = e.detail.id;
