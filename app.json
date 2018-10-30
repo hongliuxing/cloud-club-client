@@ -5,12 +5,10 @@
         "pages/index/index",
         "mine/editSchool/editSchool",
         "demo/uploadtest/uploadtest",
-        
         "pages/welcome/welcome",
         "pages/activity/info/info",
         "pages/activity/comment/comment",
         "pages/attention/attention",
-
         "mine/myAssociation/associationData/associationData",
         "mine/myAssociation/associationInfo/associationInfo",
         "mine/myAssociation/associationEnter/associationEnter",
@@ -26,7 +24,8 @@
         "mine/myAssociation/noticeInfo/noticeInfo",
         "mine/myAssociation/noticeList/noticeList",
         "mine/myAssociation/activityList/activityList",
-        "mine/myAssociation/activityAdd/activityAdd"
+        "mine/myAssociation/activityAdd/activityAdd",
+        "pages/clubinfo/clubinfo"
     ],
     "window": {
         "backgroundTextStyle": "light",

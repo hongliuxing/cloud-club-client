@@ -74,6 +74,9 @@ Component({
             observer: function (newVal, oldVal, changedPath) {
                 console.log('new fontColor: ', newVal);
             }
+        },
+        isFixed: {
+            type: Boolean, value: true
         }
     },
     externalClasses: ["channel-class"],
@@ -84,8 +87,7 @@ Component({
         // 被选中的 btn index
         selectedIndex: 0,
         arrowLeft: 'none',
-        arrowRight: 'none',
-        isFixed: true
+        arrowRight: 'none'
     },
     attached(){
         // console.log('attached: ', this.data.btns);

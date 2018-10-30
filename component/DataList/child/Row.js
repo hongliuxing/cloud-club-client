@@ -27,7 +27,7 @@ Component({
                         pics: newVal.imgs
                     });
                     // 将图片对象数组, 解析为简单的图片字符串数组
-                    let previewArr = newVal.imgs.map(img => img.pic_url);
+                    let previewArr = newVal.imgs;//.map(img => img.pic_url);
                     this.setData({
                         previewArr: previewArr
                     });
@@ -45,6 +45,10 @@ Component({
                     this.setData({ dateColor: c });
                 }
             }
+        },
+        // 是否显示顶部的社团信息
+        isShowClub: {
+            type: Boolean, value: true
         }
     },
 

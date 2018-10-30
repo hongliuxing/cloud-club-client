@@ -7,5 +7,6 @@
     "navigationBarTitleText": "社有云社团",
     "navigationBarBackgroundColor": "#935cb6",
     "navigationBarTextStyle": "white",
+    "backgroundTextStyle":"dark",
     "enablePullDownRefresh": true
 }

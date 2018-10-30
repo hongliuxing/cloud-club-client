@@ -180,5 +180,30 @@ Page({
         }
 
     },
+    /**
+     * 
+     */
+    test(){
+        // wx.chooseImage({
+        //     count: 0,
+        //     sizeType: ["compressed"],
+        //     sourceType: ['album', 'camera'],
+        //     success: function(res) {
+        //         console.log('选择图片:', res);
+        //         Actions.uploadSign.activityPic(res.tempFilePaths[0])
+        //             .then((uploadRes) => {
+        //                 console.log('ActivityPic:', uploadRes);
+        //                 if (uploadRes.errMsg == "uploadFile:ok") {
+        //                     that.setData({
+        //                         cert_url: uploadRes.pic
+        //                     })
+        //                 }
+        //             })
+        //             .catch(err => {
+        //                 console.log('上传错误：：', err);
+        //             });
+        //     }
+        // })
+    }
 
 })

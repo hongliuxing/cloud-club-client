@@ -36,6 +36,9 @@
    <icon-to-page src="../../images/page/group.png" title="我的社团" value="{{info.club_count || 0}}" icon-image="icon" title-name="titleName" bind:onclick="goTo" url="{{myAssociation}}" top="{{false}}"/>
 
    <line-item height="40" back="#f9f9f9"/>
+   <icon-to-page src="../../images/page/question.png" title="火把规则" value="为什么要领取?" 
+        bind:onclick="test" 
+        />
    <icon-to-page src="../../images/page/heat.png" title="领取火把" 
         value="{{canPullTorch === 1 ? '可领取' : '已领取'}}" 
         value-color="{{canPullTorch === 1 ? '#4DCC63' : ''}}"

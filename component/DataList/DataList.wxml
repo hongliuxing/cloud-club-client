@@ -9,6 +9,7 @@
             <row m-left="{{hasTimeline?50:0}}" 
                 item="{{item}}"
                 colors="{{item.type==='date'?colors:[]}}"
+                is-show-club="{{isShowClub}}"
                 bindRowTap="onRowTap"
                 bindLuvTap="onLuvTap"
                 bindLike="onLike"

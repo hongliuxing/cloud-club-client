@@ -6,9 +6,9 @@ import { goToPage, toast, goBack} from "./utils/upload/public.js";
 App({
   onLaunch: function () {
     // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
+    // var logs = wx.getStorageSync('logs') || []
+    // logs.unshift(Date.now())
+    // wx.setStorageSync('logs', logs)
 
     // 临时登录
     // if (!wx.getStorageSync("loginer")){

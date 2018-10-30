@@ -3,6 +3,7 @@ import * as Actions from "../../utils/net/Actions.js";
 import * as URLs from "../../utils/net/urls.js";
 import * as Defaults from "../../utils/default";
 import SimpleDataController from "../../utils/comps/SimpleDataController";
+import { AttentionCache } from "../../utils/cache";
 
 Page({
 
@@ -33,6 +34,10 @@ Page({
                 value: () => that.onToggleTab('recommend')
             }
         ];
+        // 更新数据的获取版本
+        // let attention_version = new Date();
+        // wx.setStorageSync('attention_version', attention_version);
+
         // 渲染顶部标签页
         // 及推荐 / 关注列表
         let attent = new SimpleDataController();
@@ -41,7 +46,8 @@ Page({
         that.setData({
             topBtns: topBtns,
             datalist: [],
-            attent, recommend
+            attent, recommend, 
+            attention_version: AttentionCache.getVersion()
         });
         // 首次加载 : 关注
         that.onLoadAttentions();
@@ -88,6 +94,7 @@ Page({
             if(res.data.err || !Array.isArray(res.data.list)){
                 return;
             }
+            // 设置关注数据
             that.setData({
                 datalist: controller.push(res.data.list)
             });
@@ -99,10 +106,16 @@ Page({
     /**
      * 加载我推荐的社团
      */
-    onLoadRecommends() {
+    onLoadRecommends(reload = false) {
         let that = this;
         let controller = that.data.recommend;
         that.setData({ listType: 'recommend' }); //CLUB_RECOMMEND_LIST
+
+        // 如果是重新加载
+        if (reload) {
+            controller.pagenum = 0;
+            controller.list = [];
+        }
 
         // 获取关注的社团列表
         Actions.doGet({
@@ -194,6 +207,26 @@ Page({
             return that.data.recommend
         }
     },
+    /**
+     * 跳转显示社团的事件
+     */
+    onShowClub(e){
+        console.log('显示社团信息:', e);
+        let { clubid, isAttention } = e.currentTarget.dataset;
+        if (!clubid || isAttention === undefined) return;
+        wx.navigateTo({
+            url: '/pages/clubinfo/clubinfo?club_id=' + clubid + '&isAttention=' + isAttention,
+            success: function(res) {}
+        })
+    },
+    /**
+     * 刷新页面数据
+     */
+    onReflushPage() {
+        console.log('attention 页面刷新...');
+        let that = this;
+        that.onToggleTab(that.data.listType);
+    },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
@@ -206,7 +239,22 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function() {
+        let that = this;
+        // 根据版本, 对比是否需要刷新数据
+        let originVersion = that.data.attention_version;
+        // let newVersion = wx.getStorageSync('attention_version');
 
+        // 没有数据则尝试加载
+        if (! AttentionCache.equals(originVersion)){
+            console.log('关注面板...刷新版本数据...');
+            let tabName = that.data.listType;
+            if (tabName === 'attent') return that.onLoadAttentions(true);
+            if (tabName === 'recommend') return that.onLoadRecommends(true);
+            
+            that.setData({
+                attention_version: AttentionCache.getVersion()
+            });
+        }
     },
 
     /**

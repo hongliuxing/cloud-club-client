@@ -88,6 +88,9 @@ export const ACTIVITY_ATTENTION_LIST = HOST + "activity/attention-list";
 // 获取自己学校的( SCHOOL )社团活动列表
 export const ACTIVITY_SCHOOL_LIST = HOST + "activity/school-list";
 
+// 获取当前社团相关活动的所有照片
+export const ACTIVITY_ALBUM = HOST + "activity/album";
+
 /***************************************
  * 
  * 【club】 社团相关接口

@@ -5,7 +5,7 @@ import * as URLs from "../net/urls.js";
  * 仅仅服务于 "社团活动" 列表专属定制
  */
 class DataListController{
-    constructor({ data={}, tabIndex=0, onTap, push}){
+    constructor({ data = {}, tabIndex = 0, onTap, push, emptyData}){
         this.data = data;
         this.list = []; // 当前标签页的list数据
         this.tabIndex = tabIndex;
@@ -21,7 +21,7 @@ class DataListController{
         this.emptyData = [
             [{url: null, text: '空哒空哒空哒!'}],
             [{ text: '点击' }, { url: '/pages/index/index', openType:'switchTab', text: '这里'},{text: '查看更多内容!'}]
-        ];
+        ] || emptyData;
 
         this.onTap = onTap;
         this.push = push;

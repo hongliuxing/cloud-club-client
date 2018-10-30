@@ -1,0 +1,58 @@
+<!--pages/clubinfo/clubinfo.wxml-->
+<!--社团信息-->
+<view class="container">
+    <!-- 背景图部分 -->
+    <view class='topbox'>
+        <!-- 社团logo -->
+        <image class='club-logo' mode='aspectFill' src='{{club.logo_url}}'></image>
+    </view>
+
+    <!-- 社团信息部分 -->
+    <view class='clubbox'>
+        <!-- 关注按钮 -->
+        <view class='attent-box'>
+            <button wx:if="{{club.isAttention == 1}}" type='primary' class='attent-btn' data-atten='1' catchtap='onLuvTap'>正在关注</button>
+            <button wx:elif="{{club.isAttention == 0}}" class='attent-btn' data-atten='0' catchtap='onLuvTap'>关注</button>
+        </view>
+        <!-- 社团名称 -->
+        <view class='club-title'>{{club.title}}</view>
+        <!-- 所属学校 -->
+        <view class='club-school'>{{club['school.school_name']}}</view>
+        <!-- 社团介绍 -->
+        <view class='club-intro'>{{club.intro==null?'暂无介绍':club.intro}}</view>
+        <!-- 其他内容: 关注者, 社员 -->
+        <view class='club-stat'>
+            <!-- 关注者 -->
+            <view class='cstat-item'>
+                <text class='cstat-item-num'>{{club.stat.fans}}</text>正在关注
+            </view>
+            <!-- 社员 -->
+            <view class='cstat-item'>
+                <text class='cstat-item-num'>{{club.stat.member}}</text>位社员
+            </view>
+        </view>
+    </view><!-- end: topbox -->
+
+
+    <!-- 中部标签 -->
+    <view class='middlebox'>
+        <top-channel btns="{{topBtns}}" is-truncation="{{false}}" is-fixed="{{false}}"></top-channel>
+        <view wx:if="{{currentPanel=='activity'}}" class='activity-list'>
+            <list-panel active="{{true}}" 
+                rows="{{ dataListController.list }}" 
+                is-show-club="{{false}}"
+                has-timeline="{{false}}"
+                bgcolor="#FFFFFF"
+                bean="{{dataListController}}"
+                show-empty="{{false}}"
+            ></list-panel>
+        </view>
+        <view wx:elif="{{currentPanel == 'album'}}" class='album-list'>
+            <!-- 相册部分界面 -->
+            <block wx:for="{{albumController.list}}" wx:for-index="idx" wx:for-item="item" wx:key="*this">
+                <image class='album-pic' mode='aspectFill' src='{{item}}' data-index="{{idx}}" catchtap='onAlbumProview'></image>
+            </block>
+        </view>
+    </view>
+
+</view>

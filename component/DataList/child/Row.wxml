@@ -11,7 +11,7 @@
     style='margin-left:{{mLeft}}rpx;'
     bindtap='onTap'
     >
-        <view class="list-top"><!-- 社团部分 -->
+        <view wx:if="{{isShowClub}}" class="list-top"><!-- 社团部分 -->
             <image class='list-top-logo' mode='scaleToFill' src='{{item.logo_url}}'></image>
             <view class='list-top-text'>
                 <view class='list-top-club'>{{item.club_title}}</view>
@@ -42,7 +42,7 @@
         </view>
         <view class="news-pics">
             <block wx:for="{{pics}}" wx:key="*this" wx:for-item="pic"  wx:for-index="idx" >
-                <image class='pic-item' style='' catchtap='onProview' data-index="{{idx}}" src="{{ pic.pic_url }}"></image>
+                <image class='pic-item' style='' catchtap='onProview' data-index="{{idx}}" src="{{ pic }}"></image>
             </block>
         </view>
         <view class='list-top-time'>作者于 {{item.createdAt}} 发布推文。</view>

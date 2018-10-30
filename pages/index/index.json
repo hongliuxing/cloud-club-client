@@ -4,5 +4,8 @@
         "list-panel": "/component/DataList/DataList",
         "torch-btn": "/component/TorchButton/TorchButton"
     },
-    "navigationBarTitleText": "我的社团"
+    "navigationBarTitleText": "我的社团",
+    "navigationBarTextStyle": "white",
+    "backgroundTextStyle": "dark",
+    "enablePullDownRefresh": true
 }

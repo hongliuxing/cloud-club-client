@@ -9,13 +9,15 @@
             <view class='row'>
                 <view class='row-left'>
                     <block wx:if='{{item.logo_url}}'>
-                        <image class='row-avatar' mode='aspectFit' src='{{item.logo_url}}'></image>
+                        <image class='row-avatar' mode='aspectFill' src='{{item.logo_url}}'></image>
                     </block>
                     <block wx:else>
-                        <image class='row-avatar' mode='aspectFit' src='{{defaults.avatar}}'></image>
+                        <image class='row-avatar' mode='aspectFill' src='{{defaults.avatar}}'></image>
                     </block>
                 </view>
-                <view class='row-center'>
+                <view class='row-center' 
+                    data-clubid='{{item.club_id}}' 
+                    data-is-attention='{{item.isAttention}}' bindtap='onShowClub'>
                     <view class='author'>{{item.title}}</view>
                     <view class='school'>{{item.uName}}</view>
                     <view class='fans'>粉丝: {{item.fans}}</view>

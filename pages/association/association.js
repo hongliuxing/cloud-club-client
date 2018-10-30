@@ -1,6 +1,7 @@
 import * as Actions from "../../utils/net/Actions.js";
 import * as URLs from "../../utils/net/urls.js";
 import DataListController from "../../utils/comps/DataListController.js";
+import { AttentionCache } from "../../utils/cache";
 //获取应用实例
 // const app = getApp()
 
@@ -27,6 +28,12 @@ Page({
      */
     onLoad: function () {
         let that = this;
+        // 缓存版本, onShow控制刷新
+        that.setData({
+            attention_version: AttentionCache.getVersion()
+        });
+
+        // 首次加载
         this.checkLogin().then(res => {
             // 首次登录成功
             // wx.hideLoading();
@@ -188,7 +195,7 @@ Page({
 
                 // 这里通过 社团id 作为标签页的key
                 // 所指向的值,是一个标签页控制的对象(这个对象很有意思)
-                tc.push(new DataListController({
+                let controller = new DataListController({
                     data: {
                         id: club.id // 记录了标签页id
                     },
@@ -241,7 +248,37 @@ Page({
                             });
                         }
                     }// func: push
-                }));// new DataListController
+                });// new DataListController
+
+                // 针对不同的控制器, 生成不同的"空列表"提示
+                if (club.id == 'all'){
+                    controller['emptyData'] = [
+                        [{ url: null, text: '仿佛这里没有找到您想要的内容' }],
+                        [{ text: '我们会继续努力检索' }]
+                    ];
+                } else if (club.id == 'school') {
+                    let userInfo = wx.getStorageSync('userInfo');
+                    let hasSchool = userInfo ? userInfo.school_id : null;
+                    if (hasSchool){ // 如果拥有学校
+                        controller['emptyData'] = [
+                            [{ url: null, text: '没找到合适的活动内容' }],
+                            [{ text: '我们会继续努力检索' }]
+                        ];
+                    }else{ // 如果没设置学校
+                        controller['emptyData'] = [
+                            [{ url: null, text: '您还没设置学校信息' }],
+                            [ { url: '/pages/mine/mine', openType: 'switchTab', text: '点击' }, { text: '设置您所在的学校' }]
+                        ];
+                    }
+                } else if (club.id == 'heart') {
+                    controller['emptyData'] = [
+                        [{ url: null, text: '关注列表中没找到数据' }],
+                        [{ text: '我们会继续努力检索' }]
+                    ];
+                }
+
+                // 装载控制器
+                tc.push(controller);
 
                 tabMapper.set(club.id, tc_index++);
             } // for(let club of clubs)
@@ -339,6 +376,7 @@ Page({
                 currentTab.push(res.data.list, append);
             }
             wx.hideLoading();
+            wx.stopPullDownRefresh();
         }).catch(err => {
             wx.hideLoading();
             console.log('社团活动列表 err: ', err);
@@ -373,7 +411,17 @@ Page({
     },
 
     onShow() {
+        let that = this;
         this.data.doShow && this.onReflushPanelHeat();
+
+        // 查看关注状态是否需要更新
+        let originVersion = that.data.attention_version;
+        if (!AttentionCache.equals(originVersion)) {
+            that.onReflushPage();
+            that.setData({
+                attention_version: AttentionCache.getVersion()
+            });
+        }
     },
 
     /**

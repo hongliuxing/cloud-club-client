@@ -1,6 +1,7 @@
 import * as Actions from "../../utils/net/Actions.js";
 import * as URLs from "../../utils/net/urls.js";
 import DataListController from "../../utils/comps/DataListController.js";
+import { AttentionCache } from "../../utils/cache";
 //获取应用实例
 const app = getApp()
 
@@ -167,7 +168,7 @@ Page({
 
                 // 这里通过 社团id 作为标签页的key
                 // 所指向的值,是一个标签页控制的对象(这个对象很有意思)
-                tc.push(new DataListController({
+                let controller = new DataListController({
                     data: {
                         id: club.id // 记录了标签页id
                     },
@@ -220,7 +221,24 @@ Page({
                             });
                         }
                     }// func: push
-                }));// new DataListController
+                });// new DataListController
+                
+                let userInfo = wx.getStorageSync('userInfo');
+                let hasClub = userInfo ? userInfo.club_count : 0;
+                if (!hasClub){
+                    controller['emptyData'] = [
+                        [{ url: null, text: '您还没加入社团' }],
+                        [{ url: '/pages/mine/mine', openType: 'switchTab', text: '点击' }, { text: '加入您的社团' }]
+                    ];
+                }else{
+                    controller['emptyData'] = [
+                        [{ url: null, text: '没有找到相应的社团活动' }],
+                        [{ text: '我们会继续努力检索' }]
+                    ];
+                }
+
+                // 装载控制器
+                tc.push(controller);
 
                 tabMapper.set(club.id, tc_index++);
             } // for(let club of clubs)
@@ -286,6 +304,8 @@ Page({
                 // 考虑如何分标签及保存的数据
                 currentTab.push(res.data.list, append);
             }
+            // 尝试停止下拉刷新
+            wx.stopPullDownRefresh();
         }).catch(err => {
             wx.hideLoading();
             console.log('社团活动列表 err: ', err);
@@ -306,6 +326,11 @@ Page({
      */
     onLoad: function() {
         let that = this;
+        // 缓存版本, onShow控制刷新
+        that.setData({
+            attention_version: AttentionCache.getVersion()
+        });
+
         this.checkLogin().then(res => {
             // 首次登录成功
             wx.hideLoading();
@@ -320,8 +345,36 @@ Page({
     },
 
     onShow() {
-        console.log('index: onshow...', this.doShow);
+        // console.log('index: onshow...', this.doShow);
+        let that = this;
         this.data.doShow && this.onReflushPanelHeat();
+
+        // 查看关注状态是否需要更新
+        let originVersion = that.data.attention_version;
+        if (!AttentionCache.equals(originVersion)) {
+            that.onReflushPage();
+            that.setData({
+                attention_version: AttentionCache.getVersion()
+            });
+        }
+    },
+    /**
+     * 刷新页面数据
+     */
+    onReflushPage() {
+        console.log('association 页面刷新...');
+        let that = this;
+        let currentTab = that.getCurrentTabData(); // 获取当前 标签页数据对象
+        currentTab.pagenum = 0;
+        currentTab.list = [];
+        that.loadActivityList();
+    },
+
+    /**
+     * 页面相关事件处理函数--监听用户下拉动作
+     */
+    onPullDownRefresh: function () {
+        this.onReflushPage()
     },
 
     /**

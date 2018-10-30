@@ -1,4 +1,6 @@
 // component/NewsList/NewsList.js
+import { AttentionCache } from "../../utils/cache";
+
 Component({
     /**
      * 组件的属性列表
@@ -49,6 +51,10 @@ Component({
             observer: function (newVal, oldVal, changedPath) {
                 console.log('isQueryed ::::::', newVal);
             }
+        },
+        // 是否显示顶部的社团信息
+        isShowClub: {
+            type: Boolean, value: true
         }
     },
 
@@ -111,7 +117,7 @@ Component({
             if (typeof this.data.bean.onToggleLuv == 'function') {
                 // 关注行为, 返回结果是一个 Promise
                 wx.showLoading({
-                    title: '加入收藏夹...',
+                    title: '正在关注...',
                     mask: true
                 })
                 this.data.bean.onToggleLuv(e)
@@ -121,6 +127,9 @@ Component({
                         if(res.data.err){
                             return console.log('关注返回结果有误: ', res);
                         }
+                        // 刷新关注缓存数据
+                        AttentionCache.reflush();
+
                         if (isAttention === 0 && typeof res.data.info === 'object'){
                             // 关注成功
                             that.data.rows.forEach( r => {
@@ -130,6 +139,12 @@ Component({
                             that.setData({
                                 rows: that.data.rows
                             })
+                            wx.showToast({
+                                title: '已添加关注',
+                                // icon: '',
+                                duration: 1500,
+                                mask: true
+                            })
                         } else if (isAttention === 1) {
                             // 取消关注成功
                             that.data.rows.forEach(r => {
@@ -138,6 +153,12 @@ Component({
                             });
                             that.setData({
                                 rows: that.data.rows
+                            })
+                            wx.showToast({
+                                title: '已取消关注',
+                                // icon: '',
+                                duration: 1500,
+                                mask: true
                             })
                         }
                     }).catch(err => {
@@ -156,6 +177,7 @@ Component({
             // 点赞前判断火把数量
             if (uinfo['current_torch'] <= 0){
                 return wx.showToast({
+                    image: '/images/page/face-fail.png',
                     title: '火把用完啦',
                 })
             }

@@ -34,7 +34,7 @@
         <!--图片部分-->
         <view class='imgs'>
             <block wx:for="{{activity.imgs}}" wx:key="*this" wx:for-item="pic"  wx:for-index="idx" >
-                <image class='pic-item' style='' catchtap='onProview' data-index="{{idx}}" src="{{ pic.pic_url }}"></image>
+                <image class='pic-item' style='' catchtap='onProview' data-index="{{idx}}" src="{{ pic }}"></image>
             </block>
         </view>
         <view class='news-time'>
