@@ -61,9 +61,13 @@
 }
 
 .bottom {
+  position: fixed;
+  width: 100%;
+  bottom:100rpx;
+  z-index: 10;
+  left: 0;
   padding: 0 30rpx;
   box-sizing: border-box;
-  margin-top: 40rpx;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

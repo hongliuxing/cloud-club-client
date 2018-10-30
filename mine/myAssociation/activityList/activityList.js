@@ -70,6 +70,12 @@ Page({
     }
   },
 
+  onShow(){ 
+    if(wx.getStorageSync("isActivityRefersh")){
+      that._request({})
+    }
+    
+  },
   //已发布
   published(){
     that.setData({
@@ -183,6 +189,7 @@ Page({
 
   //添加 
   add(){
+    wx.removeStorageSync("isActivityRefersh")
     let data = {
       isAdd: 1
     }
@@ -237,6 +244,7 @@ Page({
   },
   //查看
   onGoInfo(e){
+    wx.removeStorageSync("isActivityRefersh")
    let id = e.detail.id;
    let data = {
      id: id,
@@ -248,6 +256,7 @@ Page({
   },
   //编辑
   onEdit(e){
+    wx.removeStorageSync("isActivityRefersh")
     let id = e.detail.id;
     let data = {
       id: id,

@@ -1,67 +1,64 @@
 {
-    "pages": [
-            "mine/myAssociation/activityList/activityList",
-        "pages/guide/guide",
-        "pages/association/association",
-        "pages/index/index",
-        "mine/editSchool/editSchool",
-        "demo/uploadtest/uploadtest",
-        
-        "pages/welcome/welcome",
-        "pages/activity/info/info",
-        "pages/activity/comment/comment",
-        "pages/attention/attention",
-
-        "mine/myAssociation/associationData/associationData",
-        "mine/myAssociation/associationInfo/associationInfo",
-        "mine/myAssociation/associationEnter/associationEnter",
-        "mine/myAssociation/addAssociation/addAssociation",
-        "mine/myAssociation/joinGroup/joinGroup",
-        "mine/myAssociation/myAssociation",
-        "pages/mine/mine",
-        "mine/luckExplain/luckExplain",
-        "mine/sportExplain/sportExplain",
-        "mine/person/person",
-        "mine/myAssociation/applyList/applyList",
-        "mine/myAssociation/noticeAdd/noticeAdd",
-        "mine/myAssociation/noticeInfo/noticeInfo",
-        "mine/myAssociation/noticeList/noticeList",
-  
-        "mine/myAssociation/activityAdd/activityAdd"
-    ],
-    "window": {
-        "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "#fff",
-        "navigationBarTitleText": "社有云社团",
-        "navigationBarTextStyle": "black"
-    },
-    "tabBar": {
-        "selectedColor": "#01b2bc",
-        "list": [
-            {
-                "pagePath": "pages/association/association",
-                "iconPath": "images/cloud-1.png",
-                "selectedIconPath": "images/cloud-2.png",
-                "text": "云社团"
-            },
-            {
-                "pagePath": "pages/index/index",
-                "iconPath": "images/activity-1.png",
-                "selectedIconPath": "images/activity-2.png",
-                "text": "我的社团"
-            },
-            {
-                "pagePath": "pages/attention/attention",
-                "iconPath": "images/heart-1.png",
-                "selectedIconPath": "images/heart-2.png",
-                "text": "关注"
-            },
-            {
-                "pagePath": "pages/mine/mine",
-                "iconPath": "images/my-1.png",
-                "selectedIconPath": "images/my-2.png",
-                "text": "个人"
-            }
-        ]
-    }
+  "pages": [
+    "mine/myAssociation/activityList/activityList",
+    "pages/guide/guide",
+    "pages/association/association",
+    "pages/index/index",
+    "mine/editSchool/editSchool",
+    "demo/uploadtest/uploadtest",
+    "pages/welcome/welcome",
+    "pages/activity/info/info",
+    "pages/activity/comment/comment",
+    "pages/attention/attention",
+    "mine/myAssociation/associationData/associationData",
+    "mine/myAssociation/associationInfo/associationInfo",
+    "mine/myAssociation/associationEnter/associationEnter",
+    "mine/myAssociation/addAssociation/addAssociation",
+    "mine/myAssociation/joinGroup/joinGroup",
+    "mine/myAssociation/myAssociation",
+    "pages/mine/mine",
+    "mine/luckExplain/luckExplain",
+    "mine/sportExplain/sportExplain",
+    "mine/person/person",
+    "mine/myAssociation/applyList/applyList",
+    "mine/myAssociation/noticeAdd/noticeAdd",
+    "mine/myAssociation/noticeInfo/noticeInfo",
+    "mine/myAssociation/noticeList/noticeList",
+    "mine/myAssociation/activityAdd/activityAdd"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "社有云社团",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "selectedColor": "#01b2bc",
+    "list": [
+      {
+        "pagePath": "pages/association/association",
+        "iconPath": "images/cloud-1.png",
+        "selectedIconPath": "images/cloud-2.png",
+        "text": "云社团"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/activity-1.png",
+        "selectedIconPath": "images/activity-2.png",
+        "text": "我的社团"
+      },
+      {
+        "pagePath": "pages/attention/attention",
+        "iconPath": "images/heart-1.png",
+        "selectedIconPath": "images/heart-2.png",
+        "text": "关注"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "iconPath": "images/my-1.png",
+        "selectedIconPath": "images/my-2.png",
+        "text": "个人"
+      }
+    ]
+  }
 }
