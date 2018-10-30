@@ -61,16 +61,12 @@ Page({
 
     }).then(res => {
       let data = res.data.info;
-      let arr =[];
-      for(let i of data.imgs){
-        arr.push(i.pic_url)
-      }
       that.setData({
         titleName: data.club_title,
         club_id: data.club_id,
         title: data.title,
         content: data.content,
-        imageList: arr
+        imageList: data.imgs
       })
     }).catch(error => {
 
@@ -133,10 +129,11 @@ Page({
       url: URLs.CLUBMASTER_ACTIVITY_SAVE,
       data: data
     }).then(res => {
-      that.requestDel()
       that.setData({
         isSave: true
       })
+      that.requestDel()
+
     }).catch(error => {
 
     })
