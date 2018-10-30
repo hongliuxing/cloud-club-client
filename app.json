@@ -1,7 +1,7 @@
 {
   "pages": [
-    "mine/myAssociation/activityList/activityList",
     "pages/guide/guide",
+    "mine/myAssociation/activityList/activityList",
     "pages/association/association",
     "pages/index/index",
     "mine/editSchool/editSchool",

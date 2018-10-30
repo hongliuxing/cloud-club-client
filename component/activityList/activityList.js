@@ -16,7 +16,11 @@ Component({
     },
     //下标
     index:Number,
-    userId:String
+    userId:String,
+    imageUrl:{
+      type:String,
+      value:"../../images/page/WechatIMG279.png"
+    }
 
   },
   externalClasses: ["item-class"],
