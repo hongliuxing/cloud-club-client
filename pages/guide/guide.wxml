@@ -1,0 +1,4 @@
+<view class="container">
+    <image class='logo' mode='widthFix' src='/images/logo.jpg'></image>
+    <image class='loading' mode='widthFix' src='/images/loading.gif'></image>
+</view>

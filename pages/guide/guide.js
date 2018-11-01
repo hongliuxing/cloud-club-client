@@ -18,10 +18,11 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-        wx.showLoading({
-            title: '正在搬运物资...',
-            mask: true
-        })
+        // wx.showLoading({
+        //     title: '正在搬运物资...',
+        //     mask: true
+        // })
+        setTimeout(this.onRouter, 1500)
     },
 
     /**
@@ -35,6 +36,9 @@ Page({
         //     wx.switchTab({ url: '/pages/association/association' });
         // }
         // else 
+        
+    }, // onReady
+    onRouter(){
         if (this.data.canIUse && wx.getSetting) {
             // 如果缓存中不存在登录态, 则鉴权
             wx.getSetting({
@@ -54,8 +58,8 @@ Page({
 
         // 有0.11%的用户的版本不支持open-type或wx.getSetting
         // 版本 < 1.6.8 的用户只能说 bye bye 了
-        else{
+        else {
             wx.redirectTo({ url: '/pages/welcome/welcome' });
         }
-    }// onReady
+    }
 })
