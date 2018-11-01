@@ -125,16 +125,43 @@ Component({
         onHeat(e) {
             let that = this;
             // console.log('ROW  点击点赞', that.data.item);
+            wx.showModal({
+                title: '活动加温',
+                content: '您确认为该活动加温?',
+                showCancel: true,
+                cancelText: '再犹豫下',
+                // cancelColor: '',
+                confirmText: '贡献火把',
+                // confirmColor: '',
+                success: function(res) {
+                    if (res.confirm) {
+                        console.log('用户点击确定')
+                        that.triggerEvent('Heat', {
+                            item: that.data.item, addHeatNum: function () {
+                                // (列表中显示的) 点赞数量自增
+                                let _item = that.data.item;
+                                _item.heat++;
+
+                                that.setData({
+                                    'item': _item
+                                });
+                            }
+                        }, { bubbles: true });
+                    } else if (res.cancel) {
+                        console.log('用户点击取消')
+                    }
+                }
+            })
             // that.triggerEvent('RowTap', { item: that.data.item }, { bubbles: true });
-            that.triggerEvent('Heat', { item: that.data.item, addHeatNum: function(){
-                // (列表中显示的) 点赞数量自增
-                let _item = that.data.item;
-                _item.heat++;
+            // that.triggerEvent('Heat', { item: that.data.item, addHeatNum: function(){
+            //     // (列表中显示的) 点赞数量自增
+            //     let _item = that.data.item;
+            //     _item.heat++;
                 
-                that.setData({
-                    'item': _item
-                });
-            } }, { bubbles: true });
+            //     that.setData({
+            //         'item': _item
+            //     });
+            // } }, { bubbles: true });
         },
         /**
          * 点击评论
