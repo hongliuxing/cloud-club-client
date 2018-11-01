@@ -176,6 +176,10 @@ Page({
     onShow: function() {
 
         if (wx.getStorageSync("mineRefresh")) {
+            wx.showLoading({
+              title: '正在组装社团...',
+              mask: true
+            });
             that._request()
         }
 
