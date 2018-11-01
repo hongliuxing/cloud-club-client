@@ -11,7 +11,7 @@
     <view class='clubbox'>
         <!-- 关注按钮 -->
         <view class='attent-box'>
-            <button wx:if="{{club.isAttention == 1}}" type='primary' class='attent-btn' data-atten='1' catchtap='onLuvTap'>正在关注</button>
+            <button wx:if="{{club.isAttention == 1}}" type='primary' class='attent-btn' data-atten='1' catchtap='onLuvTap'>已关注</button>
             <button wx:elif="{{club.isAttention == 0}}" class='attent-btn' data-atten='0' catchtap='onLuvTap'>关注</button>
         </view>
         <!-- 社团名称 -->

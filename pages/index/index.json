@@ -5,6 +5,7 @@
         "torch-btn": "/component/TorchButton/TorchButton"
     },
     "navigationBarTitleText": "我的社团",
+    "navigationBarBackgroundColor": "#FEBB46",
     "navigationBarTextStyle": "white",
     "backgroundTextStyle": "dark",
     "enablePullDownRefresh": true

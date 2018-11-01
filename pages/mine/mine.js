@@ -12,6 +12,7 @@ Page({
         myAssociation: "../../mine/myAssociation/myAssociation",
         luckExplain: "../../mine/luckExplain/luckExplain",
         sportExplain: "../../mine/sportExplain/sportExplain",
+        torchExplain: "../explain/torch/torch",
         info: {},
         school: null,
         status: null, //学校状态

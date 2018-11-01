@@ -1,6 +1,8 @@
 <!--index.wxml-->
 <view class="container">
-    <top-channel btns="{{topBtns}}" is-truncation="{{false}}"></top-channel>
+    <top-channel btns="{{topBtns}}" is-truncation="{{false}}"
+        bg-color="#FEBB46" font-color="#FFFFFF"
+    ></top-channel>
 </view>
 <view>
     <block wx:for="{{ tabController }}" wx:for-index="idx" wx:for-item="item" wx:key="data.id">

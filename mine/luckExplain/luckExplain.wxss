@@ -1,1 +1,22 @@
 /* mine/luckExplain/luckExplain.wxss */
+/* view{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+} */
+.container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.ex-img{
+    width: 100%;
+    display: block;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}

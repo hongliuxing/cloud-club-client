@@ -1,2 +1,9 @@
 <!--mine/luckExplain/luckExplain.wxml-->
-<text>mine/luckExplain/luckExplain.wxml</text>
+<view class="container">
+    <image class="ex-img" mode='widthFix'  src='https://sheu-huabei5.oss-cn-huhehaote.aliyuncs.com/app/explain/luck/luck_01.jpg'></image>
+    <image class="ex-img" mode='widthFix'  src='https://sheu-huabei5.oss-cn-huhehaote.aliyuncs.com/app/explain/luck/luck_02.jpg'></image>
+    <image class="ex-img" mode='widthFix'  src='https://sheu-huabei5.oss-cn-huhehaote.aliyuncs.com/app/explain/luck/luck_03.jpg'></image>
+    <image class="ex-img" mode='widthFix'  src='https://sheu-huabei5.oss-cn-huhehaote.aliyuncs.com/app/explain/luck/luck_04.jpg'></image>
+    <image class="ex-img" mode='widthFix'  src='https://sheu-huabei5.oss-cn-huhehaote.aliyuncs.com/app/explain/luck/luck_05.jpg'></image>
+    <image class="ex-img" mode='widthFix'  src='https://sheu-huabei5.oss-cn-huhehaote.aliyuncs.com/app/explain/luck/luck_06.jpg'></image>
+</view>

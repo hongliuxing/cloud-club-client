@@ -1,0 +1,9 @@
+<!--pages/explain/torch/torch.wxml-->
+<view class="container">
+    <image class="ex-img" mode='widthFix' src='https://sheu-huabei5.oss-cn-huhehaote.aliyuncs.com/app/explain/torch/heat_01.jpg'></image>
+    <image class="ex-img" mode='widthFix'  src='https://sheu-huabei5.oss-cn-huhehaote.aliyuncs.com/app/explain/torch/heat_02.jpg'></image>
+    <image class="ex-img" mode='widthFix'  src='https://sheu-huabei5.oss-cn-huhehaote.aliyuncs.com/app/explain/torch/heat_03.jpg'></image>
+    <image class="ex-img" mode='widthFix'  src='https://sheu-huabei5.oss-cn-huhehaote.aliyuncs.com/app/explain/torch/heat_04.jpg'></image>
+    <image class="ex-img" mode='widthFix'  src='https://sheu-huabei5.oss-cn-huhehaote.aliyuncs.com/app/explain/torch/heat_05.jpg'></image>
+    <image class="ex-img" mode='widthFix'  src='https://sheu-huabei5.oss-cn-huhehaote.aliyuncs.com/app/explain/torch/heat_06.jpg'></image>
+</view>

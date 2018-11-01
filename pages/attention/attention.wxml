@@ -1,6 +1,8 @@
 <!-- 关注界面 -->
 <view class="container">
-    <top-channel btns="{{topBtns}}" is-truncation="{{false}}"></top-channel>
+    <top-channel btns="{{topBtns}}" is-truncation="{{false}}"
+        
+    ></top-channel>
 
     <!-- 关注及推荐面板-->
     <view class="com-panel">
@@ -26,7 +28,7 @@
                 <view class='row-right'>
                     <button class='att-on' wx:if="{{item.isAttention === 1}}" 
                         data-cid='{{item.club_id}}'
-                        type='primary' catchtap='cancelAttent'>正在关注</button>
+                        type='primary' catchtap='cancelAttent'>已关注</button>
                     <button class='att-off' wx:else 
                         data-cid='{{item.club_id}}'
                         catchtap='doAttent'>关注</button>

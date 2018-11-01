@@ -6,8 +6,8 @@
           </view>
           <text class='name'>{{info.nickname || "暂无您的大名"}}</text>
           <view class='editInfo'>
-               <text>修改个人信息</text>
-               <image src='../../images/page/more.png' class='more'></image>
+               <text>点击修改个人信息</text>
+               <!-- <image src='../../images/page/more.png' class='more'></image> -->
           </view>
       </view>
       <view class='schoolInfo'>
@@ -35,18 +35,18 @@
    <icon-to-page src="../../images/page/school.png" title="设置学校" value="{{school || '未设置'}}" bind:onclick="goTo" url="{{urlSchool}}"/>
    <icon-to-page src="../../images/page/group.png" title="我的社团" value="{{info.club_count || 0}}" icon-image="icon" title-name="titleName" bind:onclick="goTo" url="{{myAssociation}}" top="{{false}}"/>
 
-   <line-item height="40" back="#f9f9f9"/>
-   <icon-to-page src="../../images/page/question.png" title="火把规则" value="为什么要领取?" 
-        bind:onclick="test" 
-        />
+   <line-item height="30" back="#f9f9f9"/>
+   
    <icon-to-page src="../../images/page/heat.png" title="领取火把" 
         value="{{canPullTorch === 1 ? '可领取' : '已领取'}}" 
         value-color="{{canPullTorch === 1 ? '#4DCC63' : ''}}"
         right="{{false}}"
         bind:onclick="onPullTorch" />
 
-   <line-item height="40" back="#f9f9f9"/>
-   <icon-to-page src="../../images/page/luck.png" title="幸运值" value="幸运值是干什么?" bind:onclick="goTo" url="{{luckExplain}}"/>
-   <icon-to-page src="../../images/page/fire-2.png" title="运动热度说明" bind:onclick="goTo" url="{{sportExplain}}" top="{{false}}"/>
+   <line-item height="30" back="#f9f9f9"/>
+   <icon-to-page src="../../images/page/question.png" title="火把规则" value="为什么要领取?" 
+        bind:onclick="goTo" url="{{torchExplain}}" />
+   <icon-to-page src="../../images/page/luck.png" title="幸运值" value="提升个人抽奖概率" bind:onclick="goTo" url="{{luckExplain}}"/>
+   <icon-to-page src="../../images/page/fire-2.png" title="社团活动奖励规则" value="赛季评比" bind:onclick="goTo" url="{{sportExplain}}" top="{{false}}"/>
 </view>
 

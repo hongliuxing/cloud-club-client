@@ -1,2 +1,11 @@
 <!--mine/sportExplain/sportExplain.wxml-->
-<text>mine/sportExplain/sportExplain.wxml</text>
+<view class="container">
+    <image class="ex-img" mode='widthFix' src='https://sheu-huabei5.oss-cn-huhehaote.aliyuncs.com/app/explain/club/club_01.jpg'></image>
+    <image class="ex-img" mode='widthFix'  src='https://sheu-huabei5.oss-cn-huhehaote.aliyuncs.com/app/explain/club/club_02.jpg'></image>
+    <image class="ex-img" mode='widthFix'  src='https://sheu-huabei5.oss-cn-huhehaote.aliyuncs.com/app/explain/club/club_03.jpg'></image>
+    <image class="ex-img" mode='widthFix'  src='https://sheu-huabei5.oss-cn-huhehaote.aliyuncs.com/app/explain/club/club_04.jpg'></image>
+    <image class="ex-img" mode='widthFix'  src='https://sheu-huabei5.oss-cn-huhehaote.aliyuncs.com/app/explain/club/club_05.jpg'></image>
+    <image class="ex-img" mode='widthFix'  src='https://sheu-huabei5.oss-cn-huhehaote.aliyuncs.com/app/explain/club/club_06.jpg'></image>
+    <image class="ex-img" mode='widthFix'  src='https://sheu-huabei5.oss-cn-huhehaote.aliyuncs.com/app/explain/club/club_07.jpg'></image>
+    <image class="ex-img" mode='widthFix'  src='https://sheu-huabei5.oss-cn-huhehaote.aliyuncs.com/app/explain/club/club_08.jpg'></image>
+</view>

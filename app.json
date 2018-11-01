@@ -25,7 +25,8 @@
         "mine/myAssociation/noticeList/noticeList",
         "mine/myAssociation/activityList/activityList",
         "mine/myAssociation/activityAdd/activityAdd",
-        "pages/clubinfo/clubinfo"
+        "pages/clubinfo/clubinfo",
+        "pages/explain/torch/torch"
     ],
     "window": {
         "backgroundTextStyle": "light",
