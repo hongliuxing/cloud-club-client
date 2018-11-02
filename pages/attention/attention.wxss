@@ -11,6 +11,27 @@ view{
     min-height: 100%;
     padding: 50rpx 0 90rpx;
 }
+.com-panel-empty{
+    width: 100%;
+    height: calc(100vh - 110rpx);
+    background-color: #E6ECF0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.empty-row{
+    width: 100%;
+    text-align: center;
+    padding: 10rpx 0;
+}
+.tx_color1{
+    color: #1A1D20;
+}
+.tx_color2{
+    color: #657786;
+    font-size: 25rpx;
+}
 .row{
     display: flex;
     flex-direction: row;

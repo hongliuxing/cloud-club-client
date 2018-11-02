@@ -58,6 +58,10 @@ Page({
      */
     onToggleTab(tabName){
         let that = this;
+        wx.showLoading({
+            title: '切换显示',
+            mask: true
+        })
         // 滚动条置顶
         wx.pageScrollTo({
             scrollTop: 0
@@ -69,6 +73,12 @@ Page({
         if (tabName === 'attent') return that.onLoadAttentions(true);
         if (tabName === 'recommend') return that.onLoadRecommends(true);
 
+    },
+    /**
+     * 隐藏加载窗口
+     */
+    hideLoadingMessage(){
+        wx.hideLoading();
     },
 
     /**
@@ -98,8 +108,11 @@ Page({
             that.setData({
                 datalist: controller.push(res.data.list)
             });
+
+            that.hideLoadingMessage();
         }).catch(err => {
             console.log('关注列表错误: ', err);
+            that.hideLoadingMessage();
         });
     },
 
@@ -129,8 +142,10 @@ Page({
             that.setData({
                 datalist: controller.push(res.data.list)
             });
+            that.hideLoadingMessage();
         }).catch(err => {
             console.log('推荐列表错误: ', err);
+            that.hideLoadingMessage();
         });
     },
 

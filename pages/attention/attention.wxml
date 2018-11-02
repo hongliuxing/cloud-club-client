@@ -5,7 +5,7 @@
     ></top-channel>
 
     <!-- 关注及推荐面板-->
-    <view class="com-panel">
+    <view class="com-panel" wx:if="{{datalist && datalist.length > 0}}">
         <block wx:for="{{datalist}}" wx:for-index="idx" wx:for-item="item" wx:key="item.id">
             <!--某条评论-->
             <view class='row'>
@@ -35,6 +35,11 @@
                 </view>
             </view><!-- row -->
         </block>
+        
+    </view>
+    <view class="com-panel-empty" wx:elif="{{!datalist || datalist.length === 0}}">
+        <view class="empty-row tx_color1">这里暂时空空如也</view>
+        <view class="empty-row tx_color2">当你关注了一些社团，会在这里显示</view>
     </view>
 
 </view>
