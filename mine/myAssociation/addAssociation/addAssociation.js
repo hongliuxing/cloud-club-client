@@ -61,7 +61,7 @@ Page({
       url: URLs.CLUBMASTER_CREATE_CLUB,
       data: data
     }).then(res => {
-
+      wx.setStorageSync('addAssociation', true)
       app.globalData.goBack({ title: "申请成功" })
 
     }).catch(error => {

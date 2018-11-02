@@ -133,6 +133,8 @@ Page({
   //跳转详情
   Goto(e) {
     let id = e.detail.id;
+    let isAttention = e.detail.isAttention;
+    app.globalData.goToPage("../../../pages/clubinfo/clubinfo?club_id=" + id + "&isAttention=" + isAttention)
   },
 
   //申请入团

@@ -43,8 +43,15 @@ Page({
       topBtns: topBtns
     });
     that._request(0, 1)
+    wx.removeStorageSync('addAssociation')
   },
-
+   
+  onShow(){
+    if (wx.getStorageSync('addAssociation')){
+      that._request(0, 1)
+    }
+    
+  }, 
   //申请中
   applying(e) {
     if (this.data.table === 1) {
@@ -135,6 +142,7 @@ Page({
 
   //添加
   add() {
+    wx.setStorageSync('addAssociation', false)
     app.globalData.goToPage("../addAssociation/addAssociation")
   },
   /**

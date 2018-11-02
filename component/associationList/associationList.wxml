@@ -1,6 +1,6 @@
 <wxs src="../../app.wxs" module="util" />   
 <!--参团申请-->
-<view class='listItem padd' style="height:{{height}}rpx;border-bottom:{{bottom?'2rpx solid #f0f0f0':0}}" wx:if="{{admission}}" bindtap='onClick' data-id="{{item.id}}">
+<view class='listItem padd' style="height:{{height}}rpx;border-bottom:{{bottom?'2rpx solid #f0f0f0':0}}" wx:if="{{admission}}" bindtap='onClick' data-id="{{item.id}}" data-is-attention="{{item.isAttention}}">
   <view class='context'>
     <image src="{{item.logo_url?item.logo_url:item.club.logo_url}}" style="width:{{height}}rpx;height:{{height}}rpx">
 
