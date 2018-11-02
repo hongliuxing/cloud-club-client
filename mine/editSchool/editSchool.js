@@ -80,8 +80,10 @@ Page({
   
   //地址授权
   addressAuth() {
+    console.log(111111)
     wx.getSetting({
       success:function(res){
+        console.log(res.authSetting['scope.userLocation'],"res.authSetting['scope.userLocation']")
         if (!res.authSetting['scope.userLocation']){
             wx.showModal({
               title: '请求授权当前位置',
@@ -117,6 +119,8 @@ Page({
               }
             })
         } else if (res.authSetting['scope.userLocation'] == undefined){
+          that.onLoaction()
+        }else{
           that.onLoaction()
         }
       }
