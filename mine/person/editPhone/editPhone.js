@@ -106,7 +106,14 @@ Page({
       url: URLs.USER_PHONE_SAVE,
       data: data
     }).then(res => {
-      wx.setStorageSync("phone", that.data.telephone)
+      let currInfo = wx.getStorageSync("userInfo");
+      if (currInfo) {
+        currInfo["telephone"] = that.data.telephone;
+        wx.setStorageSync('userInfo', currInfo);
+      } else {
+
+        wx.setStorageSync('userInfo', { telephone: that.data.telephone });
+      }
       app.globalData.goBack({})
      
      

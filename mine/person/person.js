@@ -56,10 +56,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    let phone = wx.getStorageSync("phone");
-    if (phone){
+    let userInfo = wx.getStorageSync("userInfo");
+    if (userInfo){
       that.setData({
-        telephone: phone
+        telephone: userInfo.telephone || ""
       })
     }
   },
