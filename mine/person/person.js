@@ -105,6 +105,11 @@ Page({
                 uinfo.gender = data.gender;
                 wx.setStorageSync('userInfo', uinfo);
                 wx.setStorageSync("mineRefresh", true);
+                setTimeout(function(){
+                  wx.navigateBack({
+                    delta: 1
+                  })
+                },1000)
             }
         })
         
