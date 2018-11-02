@@ -14,7 +14,7 @@ Page({
         sportExplain: "../../mine/sportExplain/sportExplain",
         torchExplain: "../explain/torch/torch",
         info: {},
-        school: null,
+        school: "未设置",
         status: null, //学校状态
     },
 
@@ -58,7 +58,7 @@ Page({
         that.setData({
             info: currInfo,
             school: name,
-            status: status,
+            status: status || null ,
             canPullTorch: currInfo.can_pull_torch
         })
         wx.hideLoading();
@@ -175,8 +175,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function() {
-
-        if (wx.getStorageSync("mineRefresh")) {
+      if (wx.getStorageSync("mineRefresh")) {
             wx.showLoading({
               title: '正在组装社团...',
               mask: true

@@ -17,7 +17,7 @@
          </view>
          <view>
             <text class='title'>学校</text>
-            <text class='value'>{{info.school || "未设置"}}</text>
+            <text class='value'>{{status==1?info.school:school}}</text>
          </view>
         <view>
             <!-- <text class='title'>社团数量</text>

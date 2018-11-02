@@ -49,18 +49,17 @@ Page({
       }).then(res => {
 
         let data = res.data.list[0];
-        console.log(res, "888888")
         that.setData({
           cert_url: info.school_struts === 1 ? "" : data.cert_url,
           profe: data.profe,
           realname: data.realname,
           struts: info.school_struts,
           btnName: info.school_struts === 1 ? "已通过" : "申请中",
-          uName: info.school,
+          uName: info.school || "",
           disabled: true
         })
         searchProvine(that, data.province_code, data.city_code)
-        //that.schoolList(data.city_code)
+        that.schoolList(data.city_code, data.school_id)
       }).catch(error => {
 
       })
@@ -196,7 +195,6 @@ Page({
 
   //城市列表
   cityList(index) {
-    console.log(index, "8888888888888")
     Actions.doGet({
       url: URLs.SCHOOL_CITY_LIST,
       data: {
@@ -236,20 +234,31 @@ Page({
   },
 
   //根据城市code查询所对应的学校列表
-  schoolList(code) {
+  schoolList(code,sid) {   //sid  判断是不是查详情如果是显示已提交学校否则不是第一个学校
     Actions.doGet({
       url: URLs.SCHOOL_CITYLIST,
       data: {
         citycode: code
       }
     }).then(res => {
-
-      that.setData({
-        schoolList: res.data.list,
-        uName: res.data.list[0].uName,
-        sid: res.data.list[0].sid
-      })
-
+      if (sid){
+        for (let i of res.data.list){
+          if (i.sid == sid){
+            that.setData({
+              schoolList: res.data.list,
+              uName: i.uName,
+              sid: i.sid
+            })
+              break;
+            }
+        }
+      }else{
+        that.setData({
+          schoolList: res.data.list,
+          uName: res.data.list[0].uName,
+          sid: res.data.list[0].sid
+        })
+      }
     }).catch(error => {
 
     })
@@ -302,6 +311,14 @@ Page({
       url: URLs.SCHOOL_SETTING,
       data: data
     }).then(res => {
+      let currInfo = wx.getStorageSync("userInfo");
+      if (currInfo){
+        currInfo["school_struts"] = 0;
+        wx.setStorageSync('userInfo', currInfo);
+      }else{
+        wx.setStorageSync('userInfo', {school_struts:0});
+      }
+
       app.globalData.toast("申请成功")
 
       setTimeout(function() {

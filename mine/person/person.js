@@ -33,14 +33,16 @@ Page({
    */
   onLoad: function (options) {
     that = this;
-    let data = JSON.parse(options.userinfo);
-    that.setData({
-      gender: data.gender || 0,
-      avatar_url: data.avatar_url,
-      nickname: data.nickname,
-      telephone: data.telephone
-    })
-    wx.removeStorageSync("phone")
+    let uinfo = wx.getStorageSync('userInfo');
+    let phone = wx.getStorageSync('phone');
+    if (uinfo){
+      that.setData({
+        gender: uinfo.gender || 0,
+        avatar_url: uinfo.avatar_url,
+        nickname: uinfo.nickname,
+        telephone: phone || ""
+      })
+    }
     wx.removeStorageSync("mineRefresh")
   },
 
@@ -92,7 +94,7 @@ Page({
       url: URLs.USER_SAVE,
       data: data
     }).then(res=>{
-        // 先提示修改成功
+       // 先提示修改成功
         wx.showToast({
             title: '保存成功!',
             icon: 'success',
@@ -100,10 +102,14 @@ Page({
             mask: true,
             success: function(res) {
                 let uinfo = wx.getStorageSync('userInfo');
-                uinfo.nickname = data.nickname;
-                uinfo.avatar_url = data.avatar_url;
-                uinfo.gender = data.gender;
-                wx.setStorageSync('userInfo', uinfo);
+                if (uinfo){
+                    uinfo.nickname = data.nickname;
+                    uinfo.avatar_url = data.avatar_url;
+                    uinfo.gender = data.gender;
+                    wx.setStorageSync('userInfo', uinfo);
+                }else{
+                  wx.setStorageSync('userInfo', data);
+                }
                 wx.setStorageSync("mineRefresh", true);
                 setTimeout(function(){
                   wx.navigateBack({
