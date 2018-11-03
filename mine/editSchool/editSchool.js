@@ -33,7 +33,8 @@ Page({
     animationMask: {},
     struts: null,
     btnName: "申请",
-    disabled: false
+    disabled: false,
+    checked_fail_reason:""
   },
 
   /**
@@ -42,21 +43,31 @@ Page({
   onLoad: function(options) {
     that = this;
     let info = wx.getStorageSync("userInfo")
-    if (info.school_struts === 1 || info.school_struts === 0) {
+    if (info.school_struts !=null) {
       Actions.doGet({
         url: URLs.SCHOOL_LOAD_APPLY,
         data: {}
       }).then(res => {
 
         let data = res.data.list[0];
+        if (info.school_struts=== 1 || info.school_struts === 0){
+          that.setData({
+            cert_url: info.school_struts === 1 ? "" : data.cert_url,
+            btnName: info.school_struts === 1 ? "已通过" : "申请中",
+            disabled: true
+          })
+        }else{
+          that.setData({
+            cert_url: data.cert_url,
+            disabled: false
+          })
+        }
         that.setData({
-          cert_url: info.school_struts === 1 ? "" : data.cert_url,
           profe: data.profe,
           realname: data.realname,
           struts: info.school_struts,
-          btnName: info.school_struts === 1 ? "已通过" : "申请中",
           uName: info.school || "",
-          disabled: true
+          checked_fail_reason: data.checked_fail_reason
         })
         searchProvine(that, data.province_code, data.city_code)
         that.schoolList(data.city_code, data.school_id)

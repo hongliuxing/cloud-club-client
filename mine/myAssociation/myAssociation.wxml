@@ -1,5 +1,5 @@
 <view class='header'>
-  <icon-to-page src="../../images/page/school.png" title="社团入驻" value="社团负责人入口" bind:onclick="associationEnter" right="{{false}}" value-class="principal" />
+  <icon-to-page src="../../images/page/school.png" title="创建社团" value="社团负责人入口" bind:onclick="associationEnter" right="{{false}}" value-class="principal" />
   <icon-to-page src="../../images/page/joinGroup.png" title="加入社团" bind:onclick="joinGroup" right="{{false}}" top="{{false}}" />
 </view>
 

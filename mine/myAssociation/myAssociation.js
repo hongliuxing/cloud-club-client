@@ -22,6 +22,15 @@ Page({
       title: '正在运送社团活动...', mask: true
     })
   },
+
+  onShow() {
+    if (wx.getStorageSync("associationIsChange")) {
+      that._request()
+      wx.showLoading({
+        title: '加载中...', mask: true
+      })
+    }
+  },
   //前往社团入驻
   associationEnter() {
     app.globalData.goToPage("./associationEnter/associationEnter")
@@ -87,6 +96,7 @@ Page({
   goTo(e){
     let item = e.detail.item;
     wx.setStorageSync("associationInfo", item)
+    wx.setStorageSync("associationIsChange", false)
     app.globalData.goToPage("./associationInfo/associationInfo")
   }
 })

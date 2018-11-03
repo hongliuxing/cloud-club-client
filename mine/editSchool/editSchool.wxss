@@ -2,7 +2,18 @@
   padding: 0 30rpx;
   box-sizing: border-box;
 }
-
+.failCase{
+  padding: 20rpx 30rpx;
+  box-sizing: border-box;
+  background: #ffeef0;
+  font-size: 26rpx;
+  color:#b59395;
+}
+.failCase::before{
+  content: "原因:";
+  margin-right: 10rpx;
+  
+}
 .selectcity {
   position: absolute;
   top: 0;

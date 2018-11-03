@@ -1,3 +1,4 @@
+<view wx:if="{{struts==-1}}" class='failCase'>{{checked_fail_reason || ""}}</view>
 <view class='body'>
 
   <input-item title="城市" value="{{proCity}}" bind:click="openCity" />
