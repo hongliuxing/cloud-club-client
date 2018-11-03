@@ -2,7 +2,33 @@
   padding: 0 30rpx;
   box-sizing: border-box;
 }
-
+.tip{
+  padding: 20rpx;
+  box-sizing: border-box;
+  width: 100%;
+  background: #fef6e3;
+  font-size: 24rpx;
+  color:#83765d;
+}
+.date{
+  padding: 20rpx 30rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  font-size: 28rpx;
+  letter-spacing: 2px; 
+  color:#a8a8a8;
+  border-bottom: 2rpx solid #ebebeb;
+}
+.data_title{
+  font-weight: bold;
+}
+.time{
+  margin-top: 20rpx;
+}
+.data_right{
+  margin-left: 100rpx;
+}
 .image {
   display: flex;
   flex: 1;
@@ -61,15 +87,11 @@
 }
 
 .bottom {
-  position: fixed;
-  width: 100%;
-  bottom:100rpx;
-  z-index: 10;
-  left: 0;
   padding: 0 30rpx;
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
+  margin:200rpx 0 100rpx 0;
   justify-content: space-between;
 }
 .bottom >view{
@@ -128,4 +150,17 @@ textarea{
   font-size: 30rpx;
   letter-spacing: 8px;
   text-indent: 8px;
+}
+
+.remark{
+  font-size: 20rpx;
+  color:#a8a8a8;
+  display: flex;
+  flex-direction: column;
+  padding-left: 30rpx;
+  box-sizing: border-box;
+  margin-top:20rpx;
+}
+.remark >text:nth-child(2){
+  margin-top: 5rpx;
 }

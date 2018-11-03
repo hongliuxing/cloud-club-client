@@ -65,7 +65,6 @@ Page({
         role_ability: item.role_ability,
         userId:user.id
       })
-      wx.showLoading({ title: '正在加载...', mask: true });
       that.published()
     }
   },
@@ -81,11 +80,12 @@ Page({
     that.setData({
       struts: 1
     })
-    if (that.data.publishedList.length==0){
-         that._request({ struts: 1, pagenum: 1 })
-      }else{
-         return
-      }
+    that._request({ struts: 1, pagenum: 1 })
+    // if (that.data.publishedList.length==0){
+    //      that._request({ struts: 1, pagenum: 1 })
+    //   }else{
+    //      return
+    //   }
 
   },
   
@@ -94,11 +94,12 @@ Page({
     that.setData({
       struts: -1
     })
-    if (that.data.auditList.length == 0) {
-      that._request({ struts: -1, pagenum: 1 })
-    } else {
-      return
-    }
+    that._request({ struts: -1, pagenum: 1 })
+    // if (that.data.auditList.length == 0) {
+    //   that._request({ struts: -1, pagenum: 1 })
+    // } else {
+    //   return
+    // }
   },
 
   //新的活动
@@ -106,16 +107,18 @@ Page({
     that.setData({
       struts: 0
     })
-    if (that.data.newActivityList.length == 0) {
+    that._request({ struts: 0, pagenum: 1 })
+    // if (that.data.newActivityList.length == 0) {
 
-       that._request({ struts: 0, pagenum: 1 })
-    } else {
-      return
-    }
+    //    that._request({ struts: 0, pagenum: 1 })
+    // } else {
+    //   return
+    // }
   },
   
   //请求
   _request({club_id = that.data.club_id, struts = that.data.struts, pagenum = 1}){
+    wx.showLoading({ title: '正在加载...', mask: true });
     let data = {
       club_id: club_id,
       struts: struts,
@@ -279,17 +282,14 @@ Page({
     if (that.data.struts == 1) {
       if (that.data.publishedRefersh) {
         that._request({ pagenum: that.data.publishedPagenum + 1 })
-        wx.showLoading({ title: '加载更多...', mask: true });
       }
     } else if (that.data.struts == -1) {
       if (that.data.auditRefersh) {
         that._request({ pagenum: that.data.auditPagenum + 1 })
-        wx.showLoading({ title: '加载更多...', mask: true });
       }
     } else {
       if (that.data.newActivityRefersh) {
         that._request({ pagenum: that.data.newActivityPagenum + 1 });
-        wx.showLoading({ title: '加载更多...', mask: true });
       }
     }
   },

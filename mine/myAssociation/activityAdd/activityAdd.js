@@ -28,6 +28,14 @@ Page({
     isRepeat: true, //防止重复提交
     oldImageList:[],//编辑时需要记录原来照片数组
     isAdd:1,
+    opportunityArr: ["筹办期","活动总结"],
+    timing:0,
+    brief_start:"",
+    brief_end: "",
+    start_date:"年/月/日",
+    start_time: "时:分",
+    end_date: "年/月/日",
+    end_time: "时:分"
   },
 
   /**
@@ -71,6 +79,8 @@ Page({
 
     }).then(res => {
       let data = res.data.info;
+      let start = data.brief_start.split(" ");
+      let end = data.brief_end.split(" ");
       that.setData({
         titleName: data.club_title,
         club_id: data.club_id,
@@ -78,13 +88,76 @@ Page({
         title: data.title,
         content: data.content,
         imageList: data.imgs,
-        oldImageList: data.imgs //编辑时需要记录原来照片数组,
+        oldImageList: data.imgs, //编辑时需要记录原来照片数组,
+        timing: data.timing,
+        start_date: start[0],
+        start_time: start[1],
+        end_date: end[0],
+        end_time: end[1]
       })
     }).catch(error => {
 
     })
   },
 
+  //选择活动时机
+  onSelectOpportunity(e){
+    if (this.data.isLook == 1) {
+      that.setData({
+        isSave: false
+      })
+    }
+    that.setData({
+      timing:e.detail.value
+    })
+  },
+  /**************选择开始日期************* */
+  //选择开始日期
+  startDate(e){
+    if (this.data.isLook == 1) {
+      that.setData({
+        isSave: false
+      })
+    }
+    that.setData({
+      start_date:e.detail.value
+    })
+  },
+ //选择开始时间
+  startTime(e){
+    if (this.data.isLook == 1) {
+      that.setData({
+        isSave: false
+      })
+    }
+    that.setData({
+      start_time: e.detail.value
+    })
+  },
+
+  /**************选择结束日期************* */
+  //选择结束日期
+  endDate(e) {
+    if (this.data.isLook == 1) {
+      that.setData({
+        isSave: false
+      })
+    }
+    that.setData({
+      end_date: e.detail.value
+    })
+  },
+  //选择结束时间
+  endTime(e){
+    if (this.data.isLook == 1) {
+      that.setData({
+        isSave: false
+      })
+    }
+    that.setData({
+      end_time: e.detail.value
+    })
+  },
   //获取input值
   onChange(e) {
     if (this.data.isLook == 1) {
@@ -122,6 +195,39 @@ Page({
 
       return
     }
+    if (this.data.start_date == "年/月/日") {
+
+      app.globalData.toast("请选择开始时间的日期?")
+
+      return
+    }
+    if (this.data.start_time == "时:分") {
+
+      app.globalData.toast("请选择开始时间的时分?")
+
+      return
+    }
+    if (this.data.end_date == "年/月/日") {
+
+      app.globalData.toast("请选择结束时间的日期?")
+
+      return
+    }
+    if (this.data.end_time == "时:分") {
+
+      app.globalData.toast("请选择结束时间的时分?")
+
+      return
+    }
+    let brief_start = this.data.start_date + " " + this.data.start_time; //开始时间
+    let brief_end = this.data.end_date + " " + this.data.end_time;//结束时间
+
+    if (new Date(brief_start).getTime() > new Date(brief_end).getTime()){
+
+      app.globalData.toast("开始时间不能大于结束时间?")
+
+      return
+    }
     if (this.data.content == "") {
 
       app.globalData.toast("请输入活动内容呢?")
@@ -139,6 +245,9 @@ Page({
       content: that.data.content,
       title: that.data.title,
       imgs: that.data.imageList,
+      timing: that.data.timing,
+      brief_start: brief_start,
+      brief_end: brief_end
     }
     if (that.data.activity_id) {
       data["activity_id"] = that.data.activity_id

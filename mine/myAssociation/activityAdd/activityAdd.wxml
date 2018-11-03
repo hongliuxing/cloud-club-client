@@ -1,12 +1,47 @@
+<view class='tip'>一旦活动发布，便会进入审核阶段，在未校对之前请慎重发布。您可以先进行活动保存，校对无误之后再进行发布</view>
 <view class='body'>
 
   <input-item title="社团" value="{{titleName}}" go="{{false}}" typeAlign="left" title_class="titles" />
 
 
-  <input-item title="编辑人" value="{{author}}" spac="2" go="{{false}}" _input-class="_input-class" typeAlign="left" title_class="titles"/>
+  <input-item title="编辑人" value="{{author}}" spac="2" go="{{false}}" _input-class="_input-class" typeAlign="left" title_class="titles" />
 
-  <input-item title="活动标题" value="{{title}}" go="{{false}}" name="title" spac="2" _input-class="_input-class" typeAlign="left" title_class="titles" diabled="{{isLook==2 }}" bind:change="onChange"/>
+  <input-item title="活动标题" value="{{title}}" go="{{false}}" name="title" spac="2" _input-class="_input-class" typeAlign="left" title_class="titles" diabled="{{isLook==2}}" bind:change="onChange" />
 
+
+
+  <view class='date'>
+    <view class='data_title'>开始时间</view>
+    <view class='data_right'>
+      <picker mode="date" disabled='{{isLook==2}}' bindchange="startDate">
+        <text>{{start_date}}</text>
+      </picker>
+      <picker mode="time" disabled='{{isLook==2}}' bindchange="startTime" class='time'>
+        <text>{{start_time}}</text>
+      </picker>
+    </view>
+  </view>
+
+  <view class='date'>
+    <view class='data_title'>结束时间</view>
+    <view class='data_right'>
+      <picker mode="date" disabled='{{isLook==2}}' bindchange="endDate">
+        <text>{{end_date}}</text>
+      </picker>
+      <picker mode="time" disabled='{{isLook==2}}' bindchange="endTime" class='time'>
+        <text>{{end_time}}</text>
+      </picker>
+    </view>
+  </view>
+
+
+  <picker range='{{opportunityArr}}' bindchange='onSelectOpportunity' disabled='{{isLook==2}}'>
+    <input-item title="活动时机" value="{{opportunityArr[timing]}}" typeAlign="left" title_class="titles" spac="2" />
+  </picker>
+  <view class='remark'>
+    <text> 筹办期：活动尚未开始或进行中，用户可以通过时间范围进行筛选该活动。</text>
+    <text> 活动总结：活动已结束，整理活动结果及照片进行总结性说明。</text>
+  </view>
 
   <view class='image'>
     <view class='image_left'>
@@ -23,19 +58,19 @@
       <text class="card">活动图片</text>
     </view>
     <view class='image_right'>
-       <image wx:for = "{{imageList}}" src="{{item}}" class='addImage activityImage' wx:key="index" data-image="{{item}}" bindtap='onBigImage'>
-         <view class="del" data-index = "{{index}}" catchtap='onDel' wx:if="{{isLook!=2}}">删除</view>
-       </image>
-       <image src="../../../images/page/addImage.png" class='addImage' bindtap='changeImage' wx:if="{{isLook!=2 && imageList.length<9}}"></image>
+      <image wx:for="{{imageList}}" src="{{item}}" class='addImage activityImage' wx:key="index" data-image="{{item}}" bindtap='onBigImage'>
+        <view class="del" data-index="{{index}}" catchtap='onDel' wx:if="{{isLook!=2}}">删除</view>
+      </image>
+      <image src="../../../images/page/addImage.png" class='addImage' bindtap='changeImage' wx:if="{{isLook!=2 && imageList.length<9}}"></image>
     </view>
   </view>
 
   <view class='bottom' wx:if="{{isLook!=2}}">
     <view class='save'>
-       <btn value="保存" btn-class="btn" height="90" bind:click="onSubmit" diabled back="{{!isSave?'#57d8d6':'#bfbdbe'}}"/>
+      <btn value="保存" btn-class="btn" height="90" bind:click="onSubmit" diabled back="{{!isSave?'#57d8d6':'#bfbdbe'}}" />
     </view>
     <view class='publish'>
-       <btn value="发布" btn-class="btn publishBtn" height="90" bind:click="onPublish" diabled back="{{isSave?'#57d8d6':'#bfbdbe'}}"/>
+      <btn value="发布" btn-class="btn publishBtn" height="90" bind:click="onPublish" diabled back="{{isSave?'#57d8d6':'#bfbdbe'}}" />
     </view>
   </view>
 
