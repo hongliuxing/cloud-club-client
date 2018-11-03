@@ -65,7 +65,9 @@ Page({
       app.globalData.goBack({ title: "申请成功" })
 
     }).catch(error => {
-
+      if (error.data.err.errCode==103){
+        app.globalData.toast("已存在相同名称的社团")
+      }
     })
 
   },

@@ -38,7 +38,7 @@
   <view class='image' wx:if="{{struts!==1}}">
     <view class='image_left'>
       <text class="card">证件</text>
-      <text class='look'>查看示例</text>
+      <!-- <text class='look'>查看示例</text> -->
     </view>
     <view class='image_right'>
       <image src="{{cert_url?cert_url:'../../images/page/uploadCard.jpg'}}" class='uploadCard {{cert_url?"border":""}}' bindtap='changeImage'></image>

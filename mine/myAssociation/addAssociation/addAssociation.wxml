@@ -16,7 +16,7 @@
   <view class='image'>
     <view class='image_left'>
       <text class="card">社友合影</text>
-      <text class='look'>查看示例</text>
+      <!-- <text class='look'>查看示例</text> -->
     </view>
     <view class='image_right'>
       <image src="{{cert_url?cert_url:'../../../images/page/groupPhoto.jpg'}}" class='uploadCard {{cert_url?"border":""}}' bindtap='changeImage'></image>

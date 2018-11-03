@@ -128,6 +128,35 @@ Page({
     }).catch(error=>{
 
     })
+  },
+  //上传照片
+  changeImage() {
+    wx.chooseImage({
+      count: 1,
+      sizeType: ["compressed"],
+      sourceType: ['album', 'camera'],
+      success: function (res) {
+        wx.showLoading({
+          title: '正在上传',
+          mask: true,
+        })
+        Actions.uploadSign.pid(res.tempFilePaths[0])
+          .then((uploadRes) => {
+            if (uploadRes.errMsg == "uploadFile:ok") {
+              that.setData({
+                avatar_url: uploadRes.pic
+              })
+              wx.hideLoading()
+              app.globalData.toast("上传成功")
+            }
+          })
+          .catch(err => {
+            wx.hideLoading()
+            app.globalData.toast("上传错误")
+          });
+      },
+    })
+
   }
 
 })

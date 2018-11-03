@@ -1,6 +1,6 @@
 <view class="summary">
-  <view>
-    <image src="{{avatar_url ?avatar_url : '../../images/page/default-avatar.png'}}" class="avatar" />
+  <view> 
+    <image src="{{avatar_url ?avatar_url : '../../images/page/default-avatar.png'}}" class="avatar"  bindtap='changeImage'/>
   </view>
 </view>
 <view class='input'>
