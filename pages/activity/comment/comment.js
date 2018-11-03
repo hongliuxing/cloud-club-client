@@ -109,7 +109,8 @@ Page({
             url: URLs.ACTIVITY_COMMENTS_ADD,
             data: {
                 activity_id: that.data.activityId,
-                content: val
+                content: val,
+                formId: e.detail.formId
             }
         }).then( res => {
             wx.hideLoading();
