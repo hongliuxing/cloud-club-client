@@ -35,7 +35,7 @@
     <view class='leftContext' style="margin-left:{{image?30:null}}rpx;">
       <text class='name'>{{item.title || ""}}</text>
       <text class='{{image && !istime?"employee":"time"}}'>{{item.createdAt}}</text>
-      <text class='case' wx:if="{{item.checked_fail_reason}}">{{item.checked_fail_reason}}</text>
+      <text class='enterCase' wx:if="{{item.checked_fail_reason}}">{{item.checked_fail_reason}}</text>
     </view>
   </view>
   <view class='status'>

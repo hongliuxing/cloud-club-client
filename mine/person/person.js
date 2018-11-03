@@ -63,6 +63,12 @@ Page({
       })
     }
   },
+  //获取昵称
+  onChangeName(e){
+    that.setData({
+      nickname:e.detail.value
+    })
+  },
   //获取头像
   bindgetuserinfo(e) {
     if (e.detail.errMsg === "getUserInfo:ok") {

@@ -72,13 +72,16 @@
   color: #b7b7b7;
   font-size: 26rpx;
 }
-.case{
+.case,.enterCase{
   color: #b7b7b7;
   font-size: 22rpx;
   display: inline-block;
 }
 .cases{
   opacity: 0;
+}
+.enterCase::before{
+  content: '原因:'
 }
 .status {
   font-size: 24rpx;

@@ -16,6 +16,7 @@ Page({
         info: {},
         school: "未设置",
         status: null, //学校状态
+        telephone:""
     },
 
     /**
@@ -59,7 +60,8 @@ Page({
             info: currInfo,
             school: name,
             status: status || null ,
-            canPullTorch: currInfo.can_pull_torch
+            canPullTorch: currInfo.can_pull_torch,
+            telephone: currInfo.telephone
         })
         wx.hideLoading();
 
@@ -76,6 +78,10 @@ Page({
     //页面跳转
     goTo(e) {
         if (this.data.myAssociation == e.detail.url) {
+          if (this.data.telephone==""){
+               app.globalData.toast("请先绑定手机号")
+               return 
+            }
             if (this.data.status != 1) {
                 app.globalData.toast("学校信息未通过")
                 return
