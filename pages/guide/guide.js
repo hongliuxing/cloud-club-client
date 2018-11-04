@@ -22,7 +22,7 @@ Page({
         //     title: '正在搬运物资...',
         //     mask: true
         // })
-        setTimeout(this.onRouter, 1500)
+        setTimeout(this.onRouter, 800)
     },
 
     /**

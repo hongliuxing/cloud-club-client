@@ -72,6 +72,7 @@
     font-size: 30rpx;
     color: #686868;
     letter-spacing: 5rpx;
+    word-break:break-all;
     /* text-indent: 66rpx; */
 }
 .imgs{

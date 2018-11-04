@@ -49,6 +49,7 @@
 .club-intro{
     font-size: 33rpx;
     letter-spacing: 2rpx;
+    word-break:break-all;
 }
 .club-stat{
     display: flex;
