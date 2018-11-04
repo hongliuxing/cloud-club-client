@@ -137,27 +137,28 @@ Page({
 
   //申请入团
   onApply(e) {
-    let id = e.detail.child;
-    let index = e.detail.index;
-    Actions.doPost({
-      url: URLs.CLUB_SELF_JOIN,
-      data: {
-        clubid: id
-      }
-    }).then(res => {
-      if (res.data) {
-        let clun_id = res.data.info.club_id;
-        if (clun_id == id) {
-          let arr = that.data.canapplyList;
-          arr[index].last_apply_struts = 0;
-          that.setData({
-            canapplyList: arr
-          })
-          app.globalData.toast("申请成功")
-        }
-      }
-
-    }).catch(error => {})
+        // console.log('申请入团: ', e);
+        let id = e.detail.child;
+        let index = e.detail.index;
+        Actions.doPost({
+            url: URLs.CLUB_SELF_JOIN,
+            data: {
+                clubid: id,
+                formId: e.detail.formId
+            }
+        }).then(res => {
+            if (res.data) {
+                let clun_id = res.data.info.club_id;
+                if (clun_id == id) {
+                let arr = that.data.canapplyList;
+                arr[index].last_apply_struts = 0;
+                that.setData({
+                    canapplyList: arr
+                })
+                app.globalData.toast("申请成功")
+                }
+            }
+        }).catch(error => {})
   },
 
   onChange(e) {

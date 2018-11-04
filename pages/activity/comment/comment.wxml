@@ -35,11 +35,11 @@
     </view>
 
     <!--评论输入框-->
-    <form bindsubmit='submitComment'>
+    <form bindsubmit='submitComment' report-submit="{{true}}">
     <view class="com-inbox">
         
         <view class='input-team'>
-            <input class='it-text' name='comm' value='{{defaultComment}}' placeholder='写评论...' bindconfirm='submitComment'></input>
+            <input class='it-text' name='comm' value='{{defaultComment}}' placeholder='写评论...' ></input>
             <button class='it-btn' form-type='submit' type="primary">回复</button>
         </view>
         

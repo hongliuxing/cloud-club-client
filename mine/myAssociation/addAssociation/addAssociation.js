@@ -38,7 +38,8 @@ Page({
   },
 
   //提交
-  onSubmit() {
+  onSubmit(e) {
+      console.log('提交 e:', e);
     if (this.data.title == "") {
 
       app.globalData.toast("请输入社团名称?")
@@ -55,7 +56,8 @@ Page({
       school_id: this.data.school_id,
       club_url: this.data.cert_url,
       title: this.data.title,
-      referrer: this.data.referrer
+      referrer: this.data.referrer,
+      formId: e.detail.formId
     }
     Actions.doPost({
       url: URLs.CLUBMASTER_CREATE_CLUB,
@@ -65,7 +67,7 @@ Page({
       app.globalData.goBack({ title: "申请成功" })
 
     }).catch(error => {
-
+        console.log('error: ', error);
     })
 
   },

@@ -64,14 +64,21 @@ Component({
 
     //点击跳转详情
     onClick(e){
-
+        console.log('onClick: ', e);
       this.triggerEvent('click', { id: e.target.dataset.id})
     },
 
     //点击申请
     onApply(e){
-      let that = this;
-      this.triggerEvent('apply', { child: e.target.dataset.childId, index: that.data.index })
-    }
+        let that = this;
+        console.log('onApply: ', e);
+        this.triggerEvent('apply', { 
+          child: e.target.dataset.childId, 
+          index: that.data.index,
+          formId: e.detail.formId
+
+        })
+    },
+      voidEvent(){}
   }
 })

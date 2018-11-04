@@ -281,7 +281,8 @@ Page({
   },
 
   //提交
-  onSubmit() {
+  onSubmit(e) {
+    //   console.log('提交学校数据: ', e);
     if (this.data.profe == "") {
 
       app.globalData.toast("请描述所学专业?")
@@ -305,7 +306,8 @@ Page({
       profe: this.data.profe,
       educ_job: this.data.educ_job,
       realname: this.data.realname,
-      cert_url: this.data.cert_url
+      cert_url: this.data.cert_url,
+      formId: e.detail.formId
     }
     Actions.doPost({
       url: URLs.SCHOOL_SETTING,

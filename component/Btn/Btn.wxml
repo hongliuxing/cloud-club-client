@@ -1,3 +1,10 @@
-<view class='btn btn-class' style="height:{{height}}rpx;background:{{back}}" bindtap='onclick'>
+<view wx:if="{{!formBtn}}" class='btn btn-class' style="height:{{height}}rpx;background:{{back}}" bindtap='onclick'>
   {{value}}
 </view>
+<form wx:elif="{{formBtn}}"  bindsubmit='onclick' report-submit="{{true}}">
+    <button
+        form-type='submit'
+        class='btn btn-class' 
+        style="height:{{height}}rpx;background:{{back}}"
+    >{{value}}</button>
+</form>

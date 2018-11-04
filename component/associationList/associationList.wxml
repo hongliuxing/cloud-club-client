@@ -20,7 +20,17 @@
   <view class='status' wx:if="{{isBtn}}">
      <block wx:if="{{item.contact_struts == null || item.contact_struts==-1}}">
            <text class='btn btnMask' wx:if="{{item.last_apply_struts==0}}">审 核 中</text>
-           <text class='btn' catchtap='onApply' data-child-id="{{item.id}}" wx:if="{{item.last_apply_struts==null || item.last_apply_struts==-1}}">申 请</text>
+           <form wx:if="{{item.last_apply_struts==null || item.last_apply_struts==-1}}"
+                catchsubmit='onApply'
+                report-submit="{{true}}"
+           >
+           <button class='btn btnApply' 
+                catchtap='voidEvent' 
+                form-type='submit'
+                data-child-id="{{item.id}}" 
+                
+                >申 请</button>
+            </form>
      </block> 
       <block wx:if="{{item.contact_struts == 0 || item.contact_struts==1}}">
            <text class='btn btnMask'>已 加 入</text>

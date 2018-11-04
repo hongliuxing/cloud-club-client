@@ -16,6 +16,11 @@ Component({
     disabled:{
       type:Boolean,
       value:false
+    },
+    // 是否需要form表单的按钮,默认false
+    formBtn:{
+        type: Boolean,
+        value: false
     }
   },
   externalClasses: ["btn-class"],
@@ -31,9 +36,10 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    onclick(){
+    onclick(e){
+        // console.log('组件 e:', e);
       if (!this.data.disabled){
-        this.triggerEvent('click')
+        this.triggerEvent('click', e.detail)
       }
       
     }

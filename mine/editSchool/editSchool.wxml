@@ -46,7 +46,11 @@
   </view>
 
   <view class='bottom' style="margin-top:{{struts!==1?40:300}}rpx">
-    <btn value="{{btnName}}" btn-class="btn {{struts ===0 || struts ===1?'disBtn':''}}" height="90" bind:click="onSubmit" disabled="{{struts ===0 || struts ===1}}"/>
+    <btn value="{{btnName}}" btn-class="btn {{struts ===0 || struts ===1?'disBtn':''}}" 
+        height="90" bind:click="onSubmit" 
+        disabled="{{struts ===0 || struts ===1}}"
+        form-btn="{{true}}"
+        />
   </view>
 
 </view>

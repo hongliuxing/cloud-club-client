@@ -80,7 +80,7 @@ Page({
      */
     submitComment(e){
         let that = this;
-        // console.log('提交内容: ', e);
+        console.log('评论提交内容: ', e);
         let val = e.detail.value;
         if(typeof val === 'object'){
             val = val.comm;
@@ -109,7 +109,8 @@ Page({
             url: URLs.ACTIVITY_COMMENTS_ADD,
             data: {
                 activity_id: that.data.activityId,
-                content: val
+                content: val,
+                formId: e.detail.formId
             }
         }).then( res => {
             wx.hideLoading();

@@ -117,6 +117,9 @@
   line-height: 50rpx;
   color: #fff;
 }
+.btnApply{
+    font-size: 28rpx;
+}
 
 .btn:active {
   opacity: 0.8;
