@@ -64,8 +64,7 @@ Component({
 
     //点击跳转详情
     onClick(e){
-
-      this.triggerEvent('click', { id: e.target.dataset.id, isAttention: e.target.dataset.isAttention})
+      this.triggerEvent('click', { id: e.currentTarget.dataset.id, isAttention: e.currentTarget.dataset.isAttention})
     },
 
     //点击申请
