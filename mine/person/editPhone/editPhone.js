@@ -71,7 +71,7 @@ Page({
             smsToken: res.data.info
           })
         }).catch(error => {
-
+          x = 0;
         })
 
       } else {
@@ -118,7 +118,7 @@ Page({
      
      
     }).catch(error => {
-
+      app.globalData.toast("验证码过期或错误,请稍后再试")
     })
   }
 

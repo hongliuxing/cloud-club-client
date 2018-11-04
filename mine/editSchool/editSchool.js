@@ -88,49 +88,26 @@ Page({
       that.provinceList()
     }
   },
-  
-  //地址授权
+  //地址授权button手动点击
+  handlerAddress(e){
+    if (e.detail.authSetting['scope.userLocation']){
+         that.onLoaction()
+    }
+  },
+  //进入页面自动地址授权
   addressAuth() {
-    console.log(111111)
     wx.getSetting({
       success:function(res){
-        console.log(res.authSetting['scope.userLocation'],"res.authSetting['scope.userLocation']")
         if (!res.authSetting['scope.userLocation']){
-            wx.showModal({
-              title: '请求授权当前位置',
-              content: '需要获取您的地理位置，请确认授权',
-              success:function(){
-                if(res.cancel){
-                    wx.showToast({
-                      title: '拒绝授权影响部分功能',
-                      icon:"none",
-                      duration:1000
-                    })
-                } else if (res.confirm){
-                  wx.openSetting({
-                    success:function(val){
-                      if (val.authSetting["scope.userLocation"] == true){
-                        wx.showToast({
-                          title: '授权成功',
-                          icon: 'success',
-                          duration: 5000
-                        })
-                        that.onLoaction()
-                      }else{
-                        wx.showToast({
-                          title: '授权失败',
-                          icon: 'none',
-                          duration: 1000
-                        })
-                      }
-                    }
-                  })
-
-                }
-              }
-            })
-        } else if (res.authSetting['scope.userLocation'] == undefined){
-          that.onLoaction()
+          wx.authorize({
+            scope: 'scope.userLocation',
+            success(e) {
+              that.onLoaction()
+            },
+            fail(error){
+              console.log(error)
+            }
+          })
         }else{
           that.onLoaction()
         }
@@ -143,11 +120,12 @@ Page({
    * 查询当前地址及推送最优学校
    */
   onLoaction(){
+    
     wx.getLocation({
-      success: function (res) {
+      success: function (e) {
         let data = {
-          latitude: res.latitude,
-          longitude: res.longitude
+          latitude: e.latitude,
+          longitude: e.longitude
         }
         Actions.doGet({
           url: URLs.SCHOOL_NEARBY_LIST,

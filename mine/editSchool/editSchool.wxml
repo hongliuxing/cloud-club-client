@@ -1,3 +1,11 @@
+<view class='tipcon'>
+  <view class='tip'>
+      <text>温馨提示：为确保“社有奖项”获奖者的确是在校生，所有奖项筛选范围必须是通过【学校设置】审核的宝宝们。</text>
+      <button class='Auth'  open-type="openSetting" bindopensetting='handlerAddress' >您可以点击这里授权自动获取定位</button>
+  </view>
+</view>
+
+
 <view wx:if="{{struts==-1}}" class='failCase'>{{checked_fail_reason || ""}}</view>
 <view class='body'>
 

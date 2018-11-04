@@ -36,6 +36,8 @@ export const toast = (title, icon = "none") => {
   wx.showToast({
     title: title,
     icon: icon,
+    duration:1500,
+    mask:true
   })
 }
 

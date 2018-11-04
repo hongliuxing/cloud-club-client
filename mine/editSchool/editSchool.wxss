@@ -2,18 +2,60 @@
   padding: 0 30rpx;
   box-sizing: border-box;
 }
-.failCase{
+
+button::after {
+  border: none;
+}
+
+button {
+  background-color: #fff;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  line-height: 0;
+  border-radius: 0;
+}
+
+.tipcon {
+  display: flex;
+  justify-content: center;
+}
+
+.tip {
+  font-size: 22rpx;
+  background-color: #daecf8;
+  box-sizing: border-box;
+  color: #537984;
+  width: 90%;
+  padding: 15rpx 20rpx;
+  border-radius: 15rpx;
+  text-align: left;
+}
+
+.Auth {
+  margin-top: 20rpx;
+  padding:15rpx 0rpx;
+  box-sizing: border-box;
+  width: 400rpx;
+  font-size: 22rpx;
+  background-color: #daecf8;
+  color: #537984;
+  font-weight: bold;
+}
+
+.failCase {
   padding: 20rpx 30rpx;
   box-sizing: border-box;
   background: #ffeef0;
   font-size: 26rpx;
-  color:#b59395;
+  color: #b59395;
 }
-.failCase::before{
+
+.failCase::before {
   content: "原因:";
   margin-right: 10rpx;
-  
 }
+
 .selectcity {
   position: absolute;
   top: 0;
@@ -40,6 +82,7 @@
   padding-bottom: 20rpx;
   transform: translateY(300px);
 }
+
 .button {
   display: flex;
   flex-direction: row;
@@ -65,7 +108,8 @@
 .button>text:nth-child(1) {
   color: #808080;
 }
-.childView{
+
+.childView {
   display: flex;
   justify-content: center;
   line-height: 50px;
@@ -137,6 +181,7 @@
 .bottom {
   padding: 0 30rpx;
   box-sizing: border-box;
+  margin-bottom: 50rpx;
 }
 
 .btn {
@@ -145,16 +190,19 @@
   letter-spacing: 8px;
   box-sizing: border-box;
 }
-.disBtn{
+
+.disBtn {
   background: #f9f9f9 !important;
   border: 2rpx solid #efefef;
-  color:#808080;
+  color: #808080;
 }
+
 .border {
   border: 2rpx solid #b9b9b9;
 }
-.canvas{
+
+.canvas {
   position: absolute;
-  left:-3000px;
-  top:-3000px;
+  left: -3000px;
+  top: -3000px;
 }
