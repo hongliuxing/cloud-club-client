@@ -64,7 +64,20 @@ Component({
 
     //点击跳转详情
     onClick(e){
-      this.triggerEvent('click', { id: e.currentTarget.dataset.id, isAttention: e.currentTarget.dataset.isAttention})
+      let data = {};
+      if (this.data.isBtn){
+        data = {
+          id: e.currentTarget.dataset.id,
+          isAttention: e.currentTarget.dataset.isAttention
+        }
+      }else{
+        data = {
+          id: e.currentTarget.dataset.clubid,
+          isAttention: e.currentTarget.dataset.isAttention
+        }
+      }
+
+      this.triggerEvent('click',data)
     },
 
     //点击申请

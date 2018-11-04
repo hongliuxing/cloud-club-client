@@ -40,7 +40,7 @@ Page({
   joinGroup() {
     let info = wx.getStorageSync("userInfo");
     if (info.telephone == null || info.telephone ==""){
-      app.globalData.toast("请先完善个人信息")
+      app.globalData.toast("你尚未绑定电话号码")
       return
 
     }

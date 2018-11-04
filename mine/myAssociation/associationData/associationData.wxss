@@ -116,8 +116,8 @@
 
 }
 .logo_url{
-  height: 200rpx;
-  width: 200rpx;
+  max-height: 200rpx;
+  max-width: 200rpx;
   border: 10rpx solid #f0f0f0;
   border-radius: 50%;
 }

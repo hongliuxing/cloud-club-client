@@ -87,7 +87,7 @@
 }
 
 .bottom {
-  padding: 0 30rpx;
+  padding: 0 20rpx;
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
@@ -95,7 +95,7 @@
   justify-content: space-between;
 }
 .bottom >view{
-  width: 230rpx;
+  width: 290rpx;
 }
 
 .btn {

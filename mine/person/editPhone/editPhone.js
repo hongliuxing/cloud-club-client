@@ -43,6 +43,10 @@ Page({
     if (!this.data.isTime && x === 1) {
       if (testPhone.test(this.data.telephone)) {
         let time = 60;
+        that.setData({
+          codeText: time,
+          disabled: true
+        })
         times = setInterval(function() {
           if (time <= 1) {
             that.setData({
@@ -60,7 +64,6 @@ Page({
           }
 
         }, 1000)
-
         Actions.doPost({
           url: URLs.USER_PHONE_SMS,
           data: {

@@ -268,7 +268,7 @@ Page({
       if (that.data.isAdd==1){
         wx.setStorageSync("isActivityRefersh", true)
       }
-      
+      app.globalData.toast("保存成功")
     }).catch(error => {
 
     })
