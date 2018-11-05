@@ -44,6 +44,7 @@ button {
 }
 
 .failCase {
+    margin: 8rpx 0;
   padding: 20rpx 30rpx;
   box-sizing: border-box;
   background: #ffeef0;
@@ -52,7 +53,7 @@ button {
 }
 
 .failCase::before {
-  content: "原因:";
+  content: "未通过原因:";
   margin-right: 10rpx;
 }
 

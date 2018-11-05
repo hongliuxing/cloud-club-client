@@ -124,6 +124,7 @@ Page({
         }
         albumController = that.data.albumController;
         
+        wx.showLoading({ title: '载入数据...', mask: true });
         // 加载相册数据
         return Actions.doGet({
             url: URLs.ACTIVITY_ALBUM,
@@ -132,6 +133,7 @@ Page({
                 pagenum: albumController.nextPagenum()
             }
         }).then(res => {
+            wx.hideLoading();
             console.log('加载相册数据成功: ', res);
             let newVal = albumController.push(res.data.list.map(o => o.pic_url));
             that.setData({
@@ -140,6 +142,8 @@ Page({
 
         }).catch(err => {
             console.log('加载相册数据异常: ', err);
+            wx.hideLoading();
+            app.globalData.toast("载入数据异常")
         });
     },
 
@@ -150,10 +154,12 @@ Page({
         if (!club_id) return;
         let that = this;
 
+        wx.showLoading({ title: '载入数据...', mask: true });
         return Actions.doGet({
             url: URLs.ACTIVITY_CONCERNED_LIST,
             data: { club_id, pagenum: 1 }
         }).then(res => {
+            wx.hideLoading();
             console.log('ActivityList => ', res);
             if (res.data.err) {
                 return console.log(res.data.err);
@@ -167,6 +173,8 @@ Page({
             }
         }).catch(err => {
             console.log('更多活动加载失败:', err);
+            wx.hideLoading();
+            app.globalData.toast("载入数据异常")
         });
     },
     /**

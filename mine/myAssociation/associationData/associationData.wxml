@@ -1,6 +1,6 @@
 <view class='body'>
   <view class='logo' >
-       <image src="{{logo_url}}" class='logo_url' mode="widthFix" bindtap='changeImage'></image>
+       <image src="{{logo_url}}" class='logo_url' mode="aspectFill" bindtap='changeImage'></image>
   </view>
   <input-item title="社团名称" value="{{title}}" name="title" bind:change="onChange" spac="2" right="{{false}}" go="{{false}}" diabled="{{(role_ability!==3 && role_ability !== 4) || titleDis }}" />
   <input-item title="负责人" value="{{info.member['crole.leader']}}" spac="8" right="{{false}}" go="{{false}}" />

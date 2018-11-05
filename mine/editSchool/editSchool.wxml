@@ -1,62 +1,68 @@
 <view class='tipcon'>
-  <view class='tip'>
-      <text>温馨提示：为确保“社有奖项”获奖者的确是在校生，所有奖项筛选范围必须是通过【学校设置】审核的宝宝们。</text>
-      <button class='Auth'  open-type="openSetting" bindopensetting='handlerAddress' >您可以点击这里授权自动获取定位</button>
-  </view>
+    <view class='tip'>
+        <text>温馨提示：为确保“社有奖项”获奖者的确是在校生，所有奖项筛选范围必须是通过【学校设置】审核的宝宝们。</text>
+        <button class='Auth' open-type="openSetting" bindopensetting='handlerAddress'>您可以点击这里授权自动获取定位</button>
+    </view>
 </view>
 
 
 <view wx:if="{{struts==-1}}" class='failCase'>{{checked_fail_reason || ""}}</view>
 <view class='body'>
 
-  <input-item title="城市" value="{{proCity}}" bind:click="openCity" />
+    <input-item title="城市" value="{{proCity}}" bind:click="openCity" />
 
-  <view class="selectcity" wx:if="{{visable}}"  animation="{{animationMask}}">
-    <view animation="{{animationData}}">
-      <view class='button'>
-        <text bindtap='onClose'>取消</text>
-        <text bindtap='onSure'>确定</text>
-      </view>
-      <picker-view indicator-style="height: 50px;" style="width: 100%; height: 270px;" value="{{value}}" bindchange="selectCity" indicator-style="height: 50px;" mask-class="mask" disabled="{{disabled}}">
-        <picker-view-column>
-          <view wx:for="{{provinceList}}" class='childView' wx:key="index">{{item.name}}</view>
-        </picker-view-column>
-        <picker-view-column>
-          <view wx:for="{{cityList}}" class='childView' wx:key="index">{{item.name}}</view>
-        </picker-view-column>
-      </picker-view>
+    <view class="selectcity" wx:if="{{visable}}" animation="{{animationMask}}">
+        <view animation="{{animationData}}">
+            <view class='button'>
+                <text bindtap='onClose'>取消</text>
+                <text bindtap='onSure'>确定</text>
+            </view>
+            <picker-view indicator-style="height: 50px;" style="width: 100%; height: 270px;" value="{{value}}" bindchange="selectCity" indicator-style="height: 50px;" mask-class="mask" disabled="{{disabled}}">
+                <picker-view-column>
+                    <view wx:for="{{provinceList}}" class='childView' wx:key="index">{{item.name}}</view>
+                </picker-view-column>
+                <picker-view-column>
+                    <view wx:for="{{cityList}}" class='childView' wx:key="index">{{item.name}}</view>
+                </picker-view-column>
+            </picker-view>
+        </view>
     </view>
-  </view>
 
 
 
-  <picker range='{{schoolList}}' range-key='{{"uName"}}' bindchange="selectSchool" disabled="{{disabled}}">
-    <input-item title="学校" value="{{uName}}" right="{{false}}" />
-  </picker>
+    <picker range='{{schoolList}}' range-key='{{"uName"}}' bindchange="selectSchool" disabled="{{disabled}}">
+        <input-item title="学校" value="{{uName}}" right="{{false}}" />
+    </picker>
 
-  <input-item title="专业" value="{{profe}}" name="profe" right="{{false}}" go="{{false}}" diabled="{{disabled}}" _input-class="_input-class" bind:change="onChange" plac="请描述所学专业?"/>
+    <input-item title="专业" value="{{profe}}" name="profe" right="{{false}}" go="{{false}}" diabled="{{disabled}}" _input-class="_input-class" bind:change="onChange" plac="请描述所学专业?" />
 
-  <picker range='{{educ_jopArr}}'  bindchange="selectDuty" disabled="{{disabled}}">
-    <input-item title="学历/职务" value="{{educ_jopArr[educ_job]}}" right="{{false}}" spac="2" _input-class="_input-class"/>
-   </picker>
+    <picker range='{{educ_jopArr}}' bindchange="selectDuty" disabled="{{disabled}}">
+        <input-item title="学历/职务" value="{{educ_jopArr[educ_job]}}" right="{{false}}" spac="2" _input-class="_input-class" />
+    </picker>
 
-  <input-item title="姓名" value="{{realname}}" bind:change="onChange" plac="我是谁?" right="{{false}}" go="{{false}}" diabled="{{disabled}}" _input-class="_input-class" name="realname" />
+    <input-item title="姓名" value="{{realname}}" bind:change="onChange" plac="我是谁?" right="{{false}}" go="{{false}}" diabled="{{disabled}}" _input-class="_input-class" name="realname" />
 
 
 
-  <view class='image' wx:if="{{struts!==1}}">
-    <view class='image_left'>
-      <text class="card">证件</text>
-      <!-- <text class='look'>查看示例</text> -->
+    <view class='image' wx:if="{{struts!==1}}">
+        <view class='image_left'>
+            <text class="card">证件</text>
+            <!-- <text class='look'>查看示例</text> -->
+        </view>
+        <view class='image_right'>
+            <image src="{{cert_url?cert_url:'../../images/page/uploadCard.jpg'}}" class='uploadCard {{cert_url?"border":""}}' bindtap='changeImage'></image>
+        </view>
     </view>
-    <view class='image_right'>
-      <image src="{{cert_url?cert_url:'../../images/page/uploadCard.jpg'}}" class='uploadCard {{cert_url?"border":""}}' bindtap='changeImage'></image>
-    </view>
-  </view>
 
-  <view class='bottom' style="margin-top:{{struts!==1?40:300}}rpx">
-    <btn value="{{btnName}}" btn-class="btn {{struts ===0 || struts ===1?'disBtn':''}}" height="90" bind:click="onSubmit" disabled="{{struts ===0 || struts ===1}}"/>
-  </view>
+    <view class='bottom' style="margin-top:{{struts!==1?40:300}}rpx">
+        <btn value="{{btnName}}" 
+            btn-class="btn {{struts ===0 || struts ===1?'disBtn':''}}" 
+            height="90" 
+            bind:click="onSubmit" 
+            disabled="{{struts ===0 || struts ===1}}"
+            form-btn="{{true}}"
+             />
+    </view>
 
 </view>
 

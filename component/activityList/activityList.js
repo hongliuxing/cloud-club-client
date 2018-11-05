@@ -46,7 +46,7 @@ Component({
       this.triggerEvent('edit', { index: that.data.index, id: e.currentTarget.dataset.id })
     },
     //回撤
-    onBack(){
+    onBack(e){
       let that = this;
       this.triggerEvent('goBack', { index: that.data.index, id: e.currentTarget.dataset.id })
     }

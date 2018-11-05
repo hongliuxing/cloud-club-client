@@ -70,7 +70,7 @@
       <btn value="保存" btn-class="btn" height="90" bind:click="onSubmit" diabled back="{{!isSave?'#57d8d6':'#bfbdbe'}}" />
     </view>
     <view class='publish'>
-      <btn value="发布" btn-class="btn publishBtn" height="90" bind:click="onPublish" diabled back="{{isSave?'#57d8d6':'#bfbdbe'}}" />
+      <btn value="发布" btn-class="btn publishBtn" height="90" bind:click="onPublish" diabled back="{{isSave?'#57d8d6':'#bfbdbe'}}" form-btn="{{true}}" />
     </view>
   </view>
 

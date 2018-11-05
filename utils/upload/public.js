@@ -28,7 +28,7 @@ export const goBack = ({
     wx.navigateBack({
       delta: 1
     })
-  }, 500)
+  }, 800)
 
 }
 

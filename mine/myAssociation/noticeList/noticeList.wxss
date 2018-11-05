@@ -27,16 +27,19 @@ page {
   flex:1;
   padding-top: 20rpx;
   box-sizing: border-box;
+  border: 1rpx solid #f1f1f1;
 }
 .title{
-  text-align: center;
+  text-align: left;
   display: inline-block;
-  width: 100%;
+  width: 90%;
+  margin: 0 auto;
+  /* padding: 5rpx 15rpx; */
   font-size: 30rpx;
   color:#5f5c5d;
   font-weight: bold;
   letter-spacing: 2px;
-  
+  word-break:break-all;
 }
 .context{
   width: 100%;

@@ -24,7 +24,7 @@
   </view>
   <view wx:if="{{table===2}}">
       <block wx:for="{{applyList}}"  wx:key="index"  >
-        <association-list history="{{true}}" height="160" item="{{item}}" istime="{{true}}" bind:click="Goto"/>
+        <association-list history="{{true}}" height="160" item="{{item}}" istime="{{true}}"/>
      </block> 
   </view>
 </view>

@@ -67,6 +67,11 @@
     color: #000000;
     font-size: 34rpx;
     letter-spacing: 4rpx;
+    width: 100%;
+    /* display: flex;
+    flex-wrap: wrap;
+    word-wrap : break-word; */
+    word-break:break-all;
 }
 .row-bottom{
     margin-left: 120rpx;
