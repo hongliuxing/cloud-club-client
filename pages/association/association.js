@@ -79,8 +79,16 @@ Page({
             data: {}
         }).then(res => {
             // wx.hideLoading()
+            let headerInfo = wx.getStorageSync("headerInfo")
+            let data = res.data.info;
+          if (data.avatar_url == null || data.avatar_url==""){
+               data.avatar_url = headerInfo.avatar_url
 
-            wx.setStorageSync("userInfo", res.data.info)
+            }
+          if (data.nickname == null || data.nickname==""){
+              data.nickname = headerInfo.nickname
+            }   
+           wx.setStorageSync("userInfo", data)
             that.onReflushPanelHeat();
             that.setData({ doShow: true })
         }).catch(err => {
