@@ -8,6 +8,11 @@ export const login = plugin.login;
 export const doPost = plugin.doPost;
 export const doGet = plugin.doGet;
 
+// 封装请求
+export const loadPanelInfo = () => doGet({
+    url: URLs.USER_PANEL_INFO
+});
+
 /**
  * 上传通用工具
  * 涵盖签名获取 -> 上传至OSS

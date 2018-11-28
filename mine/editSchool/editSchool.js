@@ -199,6 +199,8 @@ Page({
 
     //城市列表
     cityList(index) {
+        // console.log('城市索引: ', index);
+        // console.log('省份编码: ', that.data.provinceList[index].code);
         Actions.doGet({
             url: URLs.SCHOOL_CITY_LIST,
             data: {
@@ -239,12 +241,14 @@ Page({
 
     //根据城市code查询所对应的学校列表
     schoolList(code, sid) { //sid  判断是不是查详情如果是显示已提交学校否则不是第一个学校
+        console.log('根据城市code查询所对应的学校列表: ', code, sid);
         Actions.doGet({
             url: URLs.SCHOOL_CITYLIST,
             data: {
                 citycode: code
             }
         }).then(res => {
+            console.log('查到的学校列表: ', res);
             if (sid) {
                 for (let i of res.data.list) {
                     if (i.sid == sid) {

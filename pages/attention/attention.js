@@ -95,11 +95,17 @@ Page({
             controller.list = [];
         }
 
+        wx.showLoading({
+            title: '加载关注社团...',
+            mask: true
+        });
+
         // 获取关注的社团列表
         Actions.doGet({
             url: URLs.CLUB_ATTENTION_LIST,
             data: { pagenum: controller.nextPagenum() }
         }).then(res => {
+            wx.hideLoading();
             console.log('关注列表: ', res);
             if(res.data.err || !Array.isArray(res.data.list)){
                 return;
@@ -129,6 +135,11 @@ Page({
             controller.pagenum = 0;
             controller.list = [];
         }
+
+        wx.showLoading({
+            title: '正在搜索推荐...',
+            mask: true
+        });
 
         // 获取关注的社团列表
         Actions.doGet({

@@ -74,26 +74,25 @@ Page({
     onLoadPanelInfo(){
         let that = this;
 
-        Actions.doGet({
-            url: URLs.USER_PANEL_INFO,
-            data: {}
-        }).then(res => {
-            // wx.hideLoading()
-            let headerInfo = wx.getStorageSync("headerInfo")
-            let data = res.data.info;
-          if (data.avatar_url == null || data.avatar_url==""){
-               data.avatar_url = headerInfo.avatar_url
+        Actions.loadPanelInfo()
+            .then(res => {
+                // wx.hideLoading()
+                let headerInfo = wx.getStorageSync("headerInfo")
+                let data = res.data.info;
+                if (data.avatar_url == null || data.avatar_url == "") {
+                    data.avatar_url = headerInfo.avatar_url
 
-            }
-          if (data.nickname == null || data.nickname==""){
-              data.nickname = headerInfo.nickname
-            }   
-           wx.setStorageSync("userInfo", data)
-            that.onReflushPanelHeat();
-            that.setData({ doShow: true })
-        }).catch(err => {
-            console.log('加载 Panel 信息 err: ', err);
-        });
+                }
+                if (data.nickname == null || data.nickname == "") {
+                    data.nickname = headerInfo.nickname
+                }
+                wx.setStorageSync("userInfo", data)
+                that.onReflushPanelHeat();
+                that.setData({ doShow: true })
+            })
+            .catch(err => {
+                console.log('加载 Panel 信息 err: ', err);
+            });
     },
     /**
      * 社团的下拉在切换数据时

@@ -1,6 +1,7 @@
 // const HOST = "https://127.0.0.1:58888/";
 // const HOST = "http://luv-ui.com:58888/";
 const HOST = "https://she-u.cn:58888/";
+// const HOST = "https://localhost/";
 
 // 登录接口
 export const LOGIN = HOST + "access/login";
